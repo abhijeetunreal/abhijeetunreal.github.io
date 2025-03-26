@@ -59,7 +59,7 @@
     .video-container {
         position: relative;
         width: 100%;
-        
+    
         padding-top: 56.25%; /* 16:9 Aspect Ratio */
     }
     .video-container iframe {
@@ -86,6 +86,7 @@
         background-color: #111;
         border-radius: 50%;
         animation: morph 2s infinite ease-in-out;
+        z-index: -1; /* Keeps animation in the background */
     }
     @keyframes morph {
         0% {
@@ -121,9 +122,92 @@
             
             iframe.onload = function () {
                 iframe.style.opacity = "1";
-                setTimeout(() => {
-                    loadingAnimation.style.display = "none";
-                }, 1000);
+            };
+        });
+    });
+</script>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 66px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div><div class="video-container">
+    <div class="loading"></div>
+    <iframe src="https://player.vimeo.com/video/1069637081?autoplay=1&loop=1&muted=1&background=1" 
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+</div>
+
+
+<style>
+    .video-container {
+        position: relative;
+        width: 100%;
+    
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20vw;
+        height: 20vw;
+        max-width: 150px;
+        max-height: 150px;
+        min-width: 60px;
+        min-height: 60px;
+        background-color: #111;
+        border-radius: 50%;
+        animation: morph 2s infinite ease-in-out;
+        z-index: -1; /* Keeps animation in the background */
+    }
+    @keyframes morph {
+        0% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+        25% {
+            border-radius: 60% 50% 40% 60% / 40% 50% 60% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(30deg);
+        }
+        50% {
+            border-radius: 50% 60% 50% 40% / 60% 40% 50% 60%;
+            transform: translate(-50%, -50%) scale(1.2) rotate(60deg);
+        }
+        75% {
+            border-radius: 40% 50% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(90deg);
+        }
+        100% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(120deg);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoContainers = document.querySelectorAll(".video-container");
+        
+        videoContainers.forEach(container => {
+            const iframe = container.querySelector("iframe");
+            const loadingAnimation = container.querySelector(".loading");
+            
+            iframe.onload = function () {
+                iframe.style.opacity = "1";
             };
         });
     });
@@ -141,6 +225,94 @@
             frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
     </iframe>
 </div>
+
+
+<style>
+    .video-container {
+        position: relative;
+        width: 100%;
+    
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20vw;
+        height: 20vw;
+        max-width: 150px;
+        max-height: 150px;
+        min-width: 60px;
+        min-height: 60px;
+        background-color: #111;
+        border-radius: 50%;
+        animation: morph 2s infinite ease-in-out;
+        z-index: -1; /* Keeps animation in the background */
+    }
+    @keyframes morph {
+        0% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+        25% {
+            border-radius: 60% 50% 40% 60% / 40% 50% 60% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(30deg);
+        }
+        50% {
+            border-radius: 50% 60% 50% 40% / 60% 40% 50% 60%;
+            transform: translate(-50%, -50%) scale(1.2) rotate(60deg);
+        }
+        75% {
+            border-radius: 40% 50% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(90deg);
+        }
+        100% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(120deg);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoContainers = document.querySelectorAll(".video-container");
+        
+        videoContainers.forEach(container => {
+            const iframe = container.querySelector("iframe");
+            const loadingAnimation = container.querySelector(".loading");
+            
+            iframe.onload = function () {
+                iframe.style.opacity = "1";
+            };
+        });
+    });
+</script>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 66px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div><div class="video-container">
+    <div class="loading"></div>
+    <iframe src="https://www.youtube.com/embed/4GdaKHmeIho?autoplay=1&loop=1&playlist=4GdaKHmeIho&mute=1&controls=0&showinfo=0&modestbranding=1" 
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+</div>>
+
 
 
 <style>
@@ -174,6 +346,7 @@
         background-color: #111;
         border-radius: 50%;
         animation: morph 2s infinite ease-in-out;
+        z-index: -1; /* Keeps animation in the background */
     }
     @keyframes morph {
         0% {
@@ -209,9 +382,180 @@
             
             iframe.onload = function () {
                 iframe.style.opacity = "1";
-                setTimeout(() => {
-                    loadingAnimation.style.display = "none";
-                }, 1000);
+            };
+        });
+    });
+</script>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 66px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div><div class="video-container">
+    <div class="loading"></div>
+    <iframe src="https://www.youtube.com/embed/eW4-CkkgjbM?autoplay=1&loop=1&playlist=eW4-CkkgjbM&mute=1&controls=0&showinfo=0&modestbranding=1" 
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+</div>
+
+
+
+<style>
+    .video-container {
+        position: relative;
+        width: 100%;
+        
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20vw;
+        height: 20vw;
+        max-width: 150px;
+        max-height: 150px;
+        min-width: 60px;
+        min-height: 60px;
+        background-color: #111;
+        border-radius: 50%;
+        animation: morph 2s infinite ease-in-out;
+        z-index: -1; /* Keeps animation in the background */
+    }
+    @keyframes morph {
+        0% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+        25% {
+            border-radius: 60% 50% 40% 60% / 40% 50% 60% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(30deg);
+        }
+        50% {
+            border-radius: 50% 60% 50% 40% / 60% 40% 50% 60%;
+            transform: translate(-50%, -50%) scale(1.2) rotate(60deg);
+        }
+        75% {
+            border-radius: 40% 50% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(90deg);
+        }
+        100% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(120deg);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoContainers = document.querySelectorAll(".video-container");
+        
+        videoContainers.forEach(container => {
+            const iframe = container.querySelector("iframe");
+            const loadingAnimation = container.querySelector(".loading");
+            
+            iframe.onload = function () {
+                iframe.style.opacity = "1";
+            };
+        });
+    });
+</script>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 66px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div><div class="video-container">
+    <div class="loading"></div>
+    <iframe src="https://www.youtube.com/embed/nZooo49sUEM?autoplay=1&loop=1&playlist=nZooo49sUEM&mute=1&controls=0&showinfo=0&modestbranding=1" 
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+</div>
+
+
+
+<style>
+    .video-container {
+        position: relative;
+        width: 100%;
+        
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20vw;
+        height: 20vw;
+        max-width: 150px;
+        max-height: 150px;
+        min-width: 60px;
+        min-height: 60px;
+        background-color: #111;
+        border-radius: 50%;
+        animation: morph 2s infinite ease-in-out;
+        z-index: -1; /* Keeps animation in the background */
+    }
+    @keyframes morph {
+        0% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+        25% {
+            border-radius: 60% 50% 40% 60% / 40% 50% 60% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(30deg);
+        }
+        50% {
+            border-radius: 50% 60% 50% 40% / 60% 40% 50% 60%;
+            transform: translate(-50%, -50%) scale(1.2) rotate(60deg);
+        }
+        75% {
+            border-radius: 40% 50% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1.1) rotate(90deg);
+        }
+        100% {
+            border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+            transform: translate(-50%, -50%) scale(1) rotate(120deg);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoContainers = document.querySelectorAll(".video-container");
+        
+        videoContainers.forEach(container => {
+            const iframe = container.querySelector("iframe");
+            const loadingAnimation = container.querySelector(".loading");
+            
+            iframe.onload = function () {
+                iframe.style.opacity = "1";
             };
         });
     });
