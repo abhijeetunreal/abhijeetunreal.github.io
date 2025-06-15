@@ -1,5 +1,4 @@
 
-import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,15 +11,7 @@ import Logo from "./components/Logo";
 const queryClient = new QueryClient();
 
 const App = () => {
-  useEffect(() => {
-    document.documentElement.classList.add('light');
-    document.body.classList.add('bg-background');
-    return () => {
-      document.documentElement.classList.remove('light');
-      document.body.classList.remove('bg-background');
-    };
-  }, []);
-
+  // The theme is now handled by ThemeToggle.tsx
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -40,3 +31,4 @@ const App = () => {
 };
 
 export default App;
+
