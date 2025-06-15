@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect, Suspense } from 'react';
+import React, { useRef, useEffect, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Environment } from '@react-three/drei';
@@ -90,6 +90,26 @@ const FluidSphere = () => {
 };
 
 const Logo = () => {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 3], fov: 75 }} gl={{ alpha: true }}>
@@ -97,7 +117,7 @@ const Logo = () => {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
           <FluidSphere />
-          <Environment preset="studio" />
+          {!isDark && <Environment preset="studio" />}
         </Suspense>
       </Canvas>
     </div>

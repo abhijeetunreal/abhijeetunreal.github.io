@@ -11,7 +11,7 @@ type CellState = {
 };
 
 const AIPhilosophyGrid = () => {
-  const [cells, setCells] = useState<CellState[]>(() => Array(25).fill({ content: null, isLoading: false }));
+  const [cells, setCells] = useState<CellState[]>(() => Array(16).fill({ content: null, isLoading: false }));
 
   const handleClick = useCallback(async (index: number) => {
     if (cells[index].isLoading || cells[index].content) return;
@@ -41,7 +41,7 @@ const AIPhilosophyGrid = () => {
   }, [cells]);
 
   return (
-    <div className="grid grid-cols-5 grid-rows-5 aspect-square border-2 border-border gap-px bg-border">
+    <div className="grid grid-cols-4 grid-rows-4 aspect-square border-2 border-border gap-px bg-border">
       {cells.map((cell, i) => (
         <div
           key={i}
