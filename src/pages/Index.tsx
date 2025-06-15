@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import ProjectCard from '@/components/ProjectCard';
 import AiIdeaGenerator from '@/components/AiIdeaGenerator';
 import InteractiveGrid from '@/components/InteractiveGrid';
+import { useState } from 'react';
 
 const projects = [
   {
@@ -23,6 +24,13 @@ const projects = [
 ];
 
 const Index = () => {
+  const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+
+  const filteredProjects = activeTag
+    ? projects.filter((project) => project.tags.includes(activeTag))
+    : projects;
+
   return (
     <div className="bg-background text-foreground min-h-screen font-mono">
       <Header />
@@ -38,9 +46,36 @@ const Index = () => {
         </section>
 
         <section id="work" className="mb-24 md:mb-32">
-          <h3 className="text-2xl font-bold mb-8">[SELECTED WORKS]</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+          <div className="flex flex-col md:flex-row md:items-center md:gap-8 mb-8">
+            <h3 className="text-2xl font-bold mb-4 md:mb-0 shrink-0">[SELECTED WORKS]</h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setActiveTag(null)}
+                className={`text-xs font-bold border px-3 py-1 transition-colors ${
+                  activeTag === null
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'border-accent hover:border-primary hover:text-primary'
+                }`}
+              >
+                [ALL]
+              </button>
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setActiveTag(tag)}
+                  className={`text-xs font-bold border px-3 py-1 transition-colors ${
+                    activeTag === tag
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'border-accent hover:border-primary hover:text-primary'
+                  }`}
+                >
+                  [{tag.toUpperCase()}]
+                </button>
+              ))}
+            </div>
+          </div>
+          <div key={activeTag || 'all'} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project) => (
               <ProjectCard key={project.title} {...project} />
             ))}
           </div>
