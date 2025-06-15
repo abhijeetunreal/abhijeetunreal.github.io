@@ -59,7 +59,8 @@ const FluidSphere = () => {
         const dotProduct = worldNormal.dot(viewVector);
         const edgeFactor = Math.pow(1.0 - Math.abs(dotProduct), 3.0);
         
-        const noise = Math.sin(p.x * 8 + time * 2.5) * Math.cos(p.y * 4 + time * 2.5) * 0.15;
+        // Slowed down the animation speed by reducing the time multiplier
+        const noise = Math.sin(p.x * 8 + time * 0.8) * Math.cos(p.y * 4 + time * 0.8) * 0.15;
         
         p.addScaledVector(normal, noise * edgeFactor);
         positions.setXYZ(i, p.x, p.y, p.z);
@@ -79,8 +80,8 @@ const FluidSphere = () => {
         metalness={0}
         roughness={0}
         transmission={0.98}
-        thickness={2.0}
-        ior={1.7}
+        thickness={1.5}
+        ior={1.5}
         clearcoat={1}
         clearcoatRoughness={0}
        />
@@ -96,7 +97,7 @@ const Logo = () => {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
           <FluidSphere />
-          <Environment preset="city" />
+          <Environment preset="studio" />
         </Suspense>
       </Canvas>
     </div>
