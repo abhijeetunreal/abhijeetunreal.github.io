@@ -2,7 +2,7 @@
 import Header from '@/components/Header';
 import AiIdeaGenerator from '@/components/AiIdeaGenerator';
 import InteractiveGrid from '@/components/InteractiveGrid';
-import CirclePacking from '@/components/CirclePacking';
+import ProjectShowcase from '@/components/ProjectShowcase';
 
 const projects = [
   {
@@ -48,10 +48,10 @@ const Index = () => {
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-4">
               <h3 className="text-2xl font-bold shrink-0">[SELECTED WORKS]</h3>
-              <p className="text-sm text-muted-foreground hidden md:block">Click a category to zoom in. Drag to pan.</p>
+              <p className="text-sm text-muted-foreground hidden md:block">Click a category to filter the projects.</p>
             </div>
           </div>
-          <CirclePacking projects={projects} tags={allTags} />
+          <ProjectShowcase projects={projects} tags={allTags} />
         </section>
 
         <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-center">
