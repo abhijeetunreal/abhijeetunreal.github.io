@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+
+import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { MeshRefractionMaterial, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -85,8 +86,10 @@ const Logo = () => {
       <Canvas camera={{ position: [0, 0, 3], fov: 75 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Environment preset="studio" />
-        <FluidSphere />
+        <Suspense fallback={null}>
+          <Environment preset="studio" />
+          <FluidSphere />
+        </Suspense>
       </Canvas>
     </div>
   );
