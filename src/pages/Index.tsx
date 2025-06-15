@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import ProjectShowcase from '@/components/ProjectShowcase';
@@ -5,13 +6,18 @@ import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
 
-const Index = () => {
+interface IndexProps {
+  onSelectProject: (slug: string) => void;
+  onGoHome: () => void;
+}
+
+const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
   const { hero, work, about, workedWith, projects, contactLinks } = content;
   const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
 
   return (
     <div className="text-foreground min-h-screen font-mono">
-      <Header />
+      <Header onGoHome={onGoHome} />
       <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
         <section id="hero" className="mb-24 md:mb-32">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
@@ -33,7 +39,7 @@ const Index = () => {
               <p className="text-sm text-muted-foreground hidden md:block">{work.subtitle}</p>
             </div>
           </div>
-          <ProjectShowcase projects={projects} tags={allTags} />
+          <ProjectShowcase projects={projects} tags={allTags} onSelectProject={onSelectProject} />
         </section>
 
         <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-start">

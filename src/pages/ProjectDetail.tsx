@@ -1,33 +1,28 @@
 
-import { useParams, Link } from 'react-router-dom';
 import content from '@/data/content.json';
 import Header from '@/components/Header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import NotFound from './NotFound';
-import { slugify } from '@/lib/utils';
+import { Project } from '@/types/content';
 
-const ProjectDetail = () => {
-    const { slug } = useParams<{ slug: string }>();
-    const project = content.projects.find(p => slugify(p.title) === slug);
+interface ProjectDetailProps {
+    project: Project;
+    onBack: () => void;
+}
 
-    if (!project) {
-        return <NotFound />;
-    }
+const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
     return (
         <div className="text-foreground min-h-screen font-mono">
-            <Header />
+            <Header onGoHome={onBack} />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 <div className="max-w-4xl mx-auto">
                     <div className="mb-8">
-                        <Link to="/">
-                             <Button variant="ghost" className="mb-8 px-0 hover:bg-transparent text-muted-foreground hover:text-foreground">
-                                <ArrowLeft className="mr-2 h-4 w-4" />
-                                Back to all projects
-                            </Button>
-                        </Link>
+                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-muted-foreground hover:text-foreground">
+                            <ArrowLeft className="mr-2 h-4 w-4" />
+                            Back to all projects
+                        </Button>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">{project.title}</h1>
                         <div className="flex flex-wrap gap-2 mb-8">
                             {project.tags.map(tag => (

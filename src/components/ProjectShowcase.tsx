@@ -3,18 +3,18 @@ import React, { useState, useMemo } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Link } from 'react-router-dom';
 import { slugify } from '@/lib/utils';
 import { Project } from '@/types/content';
 
 type ProjectShowcaseProps = {
   projects: Project[];
   tags: string[];
+  onSelectProject: (slug: string) => void;
 };
 
 const PROJECTS_TO_SHOW_INITIALLY = 6;
 
-const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
+const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcaseProps) => {
   const [activeTag, setActiveTag] = useState<string>('All');
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -50,7 +50,11 @@ const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projectsToShow.map((project, index) => (
-          <Link to={`/project/${slugify(project.title)}`} key={project.title} className="block hover:no-underline group">
+          <div 
+            onClick={() => onSelectProject(slugify(project.title))} 
+            key={project.title} 
+            className="block hover:no-underline group cursor-pointer"
+          >
             <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors" style={{ animationDelay: `${index * 100}ms` }}>
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
@@ -64,7 +68,7 @@ const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
                 </div>
               </CardContent>
             </Card>
-          </Link>
+          </div>
         ))}
       </div>
       {filteredProjects.length > PROJECTS_TO_SHOW_INITIALLY && (
