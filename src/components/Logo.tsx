@@ -1,49 +1,10 @@
-import React, { useRef, useEffect, Suspense, useMemo } from 'react';
+import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-
-const LensMaterial = shaderMaterial(
-  // Uniforms
-  {},
-  // Vertex Shader
-  `
-    varying vec3 vNormal;
-    varying vec3 vViewPosition;
-
-    void main() {
-      vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-      vViewPosition = -modelViewPosition.xyz;
-      vNormal = normalize(normalMatrix * normal);
-      gl_Position = projectionMatrix * modelViewPosition;
-    }
-  `,
-  // Fragment Shader
-  `
-    varying vec3 vNormal;
-    varying vec3 vViewPosition;
-
-    void main() {
-      vec3 normal = normalize(vNormal);
-      vec3 viewDir = normalize(vViewPosition);
-      
-      // Calculate fresnel term. The power (4.0) controls the sharpness of the rim.
-      float fresnel = pow(1.0 - abs(dot(viewDir, normal)), 4.0);
-      
-      // Make the rim effect more pronounced
-      fresnel = smoothstep(0.4, 1.0, fresnel);
-
-      // The color of the rim is white, and the alpha is based on the fresnel effect.
-      // The center is transparent (fresnel is ~0), edges are semi-opaque (fresnel is ~1).
-      gl_FragColor = vec4(vec3(1.0), fresnel * 0.9);
-    }
-  `
-);
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
-  const material = useMemo(() => new LensMaterial({ transparent: true }), []);
 
   useEffect(() => {
     const updateMousePosition = (ev: PointerEvent) => {
@@ -97,9 +58,14 @@ const FluidSphere = () => {
     <mesh
       ref={meshRef}
       scale={1.5}
-      material={material}
     >
       <sphereGeometry args={[0.5, 128, 128]} />
+      <meshPhysicalMaterial
+        roughness={0}
+        transmission={1.0}
+        thickness={0.7}
+        ior={1.5}
+       />
     </mesh>
   );
 };
