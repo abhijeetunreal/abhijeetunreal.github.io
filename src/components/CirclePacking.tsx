@@ -1,4 +1,3 @@
-
 import * as THREE from 'three';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -148,7 +147,7 @@ export default function CirclePacking({ projects, tags }: CirclePackingProps) {
                     <ProjectCircle key={`${project.title}-${i}`} project={project} position={position} />
                 ))}
                 
-                <MapControls enableRotate={false} makeDefault ref={(controls) => (THREE.Cache.enabled = true, controls && (controls.object.up.set(0,1,0), controls.update()))} />
+                <MapControls enableRotate={false} makeDefault />
             </Canvas>
         </div>
     );
