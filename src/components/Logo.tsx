@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const Logo = () => (
@@ -39,7 +40,7 @@ const Logo = () => (
                     .circle {
                         stroke-dasharray: 300;
                         stroke-dashoffset: 300;
-                        animation: draw 6s linear infinite alternate;
+                        animation: draw 6s linear infinite;
                     }
                     .c1 { animation-delay: 0s; }
                     .c2 { animation-delay: -2s; }
