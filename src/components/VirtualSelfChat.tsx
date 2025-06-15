@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -51,14 +50,15 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
-    const messagesEndRef = useRef<null | HTMLDivElement>(null);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
+    const scrollContainerRef = useRef<null | HTMLDivElement>(null);
 
     useEffect(() => {
-        scrollToBottom()
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTo({
+                top: scrollContainerRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
     }, [messages, isTyping]);
 
 
@@ -85,7 +85,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 <Brain className="h-5 w-5 text-muted-foreground" />
                 <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
             </div>
-            <div className="flex-grow overflow-y-auto pr-4 mb-4 space-y-4">
+            <div ref={scrollContainerRef} className="flex-grow overflow-y-auto pr-4 mb-4 space-y-4">
                 {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`rounded-lg px-4 py-2 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
@@ -100,7 +100,6 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                         </div>
                     </div>
                 )}
-                <div ref={messagesEndRef} />
             </div>
             <form onSubmit={handleSubmit} className="flex gap-2">
                 <Input
