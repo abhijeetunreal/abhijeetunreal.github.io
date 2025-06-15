@@ -59,8 +59,8 @@ const FluidSphere = () => {
         const dotProduct = worldNormal.dot(viewVector);
         const edgeFactor = Math.pow(1.0 - Math.abs(dotProduct), 3.0);
         
-        // Slowed down the animation speed by reducing the time multiplier
-        const noise = Math.sin(p.x * 8 + time * 0.8) * Math.cos(p.y * 4 + time * 0.8) * 0.15;
+        // Reduced the distortion by lowering the noise multiplier
+        const noise = Math.sin(p.x * 8 + time * 0.8) * Math.cos(p.y * 4 + time * 0.8) * 0.05;
         
         p.addScaledVector(normal, noise * edgeFactor);
         positions.setXYZ(i, p.x, p.y, p.z);
