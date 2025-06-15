@@ -1,11 +1,16 @@
+
 import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { MeshRefractionMaterial, Environment } from '@react-three/drei';
+import { MeshRefractionMaterial, Environment, useEnvironment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
+
+  const envMap = useEnvironment({
+    files: 'https://raw.githubusercontent.com/pmndrs/drei-assets/master/hdri/studio_small_03_1k.hdr',
+  });
 
   useEffect(() => {
     const updateMousePosition = (ev: PointerEvent) => {
@@ -68,6 +73,7 @@ const FluidSphere = () => {
     >
       <sphereGeometry args={[0.5, 128, 128]} />
       <MeshRefractionMaterial
+        envMap={envMap}
         bounces={2}
         aberrationStrength={0.01}
         ior={1.5}
