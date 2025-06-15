@@ -2,7 +2,6 @@ import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import InteractiveGrid from '@/components/InteractiveGrid';
 import ProjectShowcase from '@/components/ProjectShowcase';
-import Logo from '@/components/Logo';
 
 const projects = [
   {
@@ -39,10 +38,6 @@ const Index = () => {
             I experiment with technology, blend it with design, and innovate for human needs.
           </h2>
         </section>
-
-        <div className="flex justify-center mb-16">
-          <Logo />
-        </div>
 
         <section id="ai-playground" className="mb-24 md:mb-32">
             <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self.</p>

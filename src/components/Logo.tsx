@@ -1,29 +1,41 @@
-
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
-  const [hovered, setHover] = useState(false);
+  const mousePosition = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateMousePosition = (ev: PointerEvent) => {
+      mousePosition.current = { x: ev.clientX, y: ev.clientY };
+    };
+    window.addEventListener('pointermove', updateMousePosition);
+    return () => {
+      window.removeEventListener('pointermove', updateMousePosition);
+    };
+  }, []);
+
   const vec = new THREE.Vector3();
 
   useFrame((state) => {
     if (meshRef.current) {
-      // Make the sphere follow the mouse/touch
+      // Convert mouse position from screen pixels to normalized device coordinates
+      const x = (mousePosition.current.x / state.size.width) * 2 - 1;
+      const y = -(mousePosition.current.y / state.size.height) * 2 + 1;
+      
+      // Make the sphere follow the mouse
       vec.set(
-        (state.pointer.x * state.viewport.width) / 2,
-        (state.pointer.y * state.viewport.height) / 2,
+        (x * state.viewport.width) / 2,
+        (y * state.viewport.height) / 2,
         0
       );
-      meshRef.current.position.lerp(vec, 0.05);
+      meshRef.current.position.lerp(vec, 0.1);
 
       const time = state.clock.getElapsedTime();
       
-      // Smoothly interpolate scale on hover
-      const targetScale = hovered ? 3.5 : 3;
-      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+      // Keep scale constant
+      meshRef.current.scale.set(3, 3, 3);
 
       // Organic wobbling effect
       const geometry = meshRef.current.geometry;
@@ -51,27 +63,17 @@ const FluidSphere = () => {
   return (
     <mesh
       ref={meshRef}
-      scale={3} // Made it smaller
-      onPointerOver={(event) => {
-        event.stopPropagation();
-        setHover(true);
-      }}
-      onPointerOut={(event) => {
-        event.stopPropagation();
-        setHover(false);
-      }}
+      scale={3}
     >
       <sphereGeometry args={[0.5, 128, 128]} />
       <meshPhysicalMaterial 
-        color={hovered ? '#A3E635' : '#FFFFFF'} // Tint color
+        color={'#FFFFFF'}
         transmission={1.0}
         opacity={0.9}
         metalness={0.1}
         roughness={0}
-        ior={1.33} // Index of Refraction for water
+        ior={1.33}
         thickness={0.2}
-        clearcoat={1}
-        clearcoatRoughness={0}
       />
     </mesh>
   );
@@ -79,11 +81,10 @@ const FluidSphere = () => {
 
 const Logo = () => {
   return (
-    <div className="w-full h-[300px] md:h-[400px] cursor-none">
+    <div className="fixed inset-0 z-50 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 3], fov: 75 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Environment preset="city" />
         <FluidSphere />
       </Canvas>
     </div>
