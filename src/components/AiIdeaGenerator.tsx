@@ -1,30 +1,89 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Button } from '@/components/ui/button';
 
-const techs = ["VR/AR", "Machine Learning", "IoT", "Blockchain", "Haptic Feedback", "Biometrics", "Voice UI"];
-const designs = ["generative art", "data visualization", "inclusive design", "speculative design", "sustainable UX"];
-const needs = ["foster empathy", "promote mental wellness", "enhance creativity", "build community", "simplify complexity"];
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+};
 
-const getRandomItem = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+type AiIdeaGeneratorProps = {
+    projects: Project[];
+}
 
-const AiIdeaGenerator = () => {
-  const [idea, setIdea] = useState("Click the button to generate a project concept.");
+const getRandomItem = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
+
+const concepts = ["connection", "identity", "sustainability", "future of work", "digital well-being", "learning"];
+
+const AiIdeaGenerator = ({ projects }: AiIdeaGeneratorProps) => {
+  const [idea, setIdea] = useState("Click the button to generate a project concept inspired by my work.");
+  const [displayedIdea, setDisplayedIdea] = useState(idea);
+  const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    if (isTyping) {
+      setDisplayedIdea('');
+      let i = 0;
+      const typingInterval = setInterval(() => {
+        if (i < idea.length) {
+          setDisplayedIdea(prev => prev + idea.charAt(i));
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          setIsTyping(false);
+        }
+      }, 30);
+
+      return () => {
+        clearInterval(typingInterval);
+      };
+    }
+  }, [idea, isTyping]);
+
+  const uniqueTags = useMemo(() => {
+    return [...new Set(projects.flatMap(p => p.tags))];
+  }, [projects]);
 
   const generateIdea = () => {
-    const newIdea = `A ${getRandomItem(techs)} project using ${getRandomItem(designs)} to ${getRandomItem(needs)}.`;
+    if (isTyping) return; // Don't generate while typing
+
+    if (uniqueTags.length < 2) {
+        const newIdea = "Not enough project tags to generate an idea.";
+        setIdea(newIdea);
+        setDisplayedIdea(newIdea); // Don't type this message
+        return;
+    }
+    
+    let tag1 = getRandomItem(uniqueTags);
+    let tag2 = getRandomItem(uniqueTags);
+    // Ensure two different tags are picked
+    while(tag1 === tag2) {
+        tag2 = getRandomItem(uniqueTags);
+    }
+    
+    const concept = getRandomItem(concepts);
+    
+    const newIdea = `An exploration of ${concept}, combining my experience in ${tag1} and ${tag2}.`;
     setIdea(newIdea);
+    setIsTyping(true);
   };
 
   return (
     <div className="border-2 border-dashed border-border p-6 text-center">
       <h3 className="text-sm uppercase font-bold text-muted-foreground mb-4">[AI Project Idea Generator]</h3>
-      <p className="text-lg text-foreground min-h-[3em] mb-6">{idea}</p>
-      <button
+      <p className="text-lg text-foreground min-h-[4em] mb-6 font-bold">
+        {displayedIdea}
+        {isTyping && <span className="animate-pulse opacity-75">_</span>}
+      </p>
+      <Button
         onClick={generateIdea}
-        className="font-bold bg-primary text-primary-foreground px-6 py-3 hover:bg-foreground hover:text-background transition-colors"
+        size="lg"
+        className="font-bold"
+        disabled={isTyping}
       >
-        [ GENERATE ]
-      </button>
+        {isTyping ? "[GENERATING...]" : "[ GENERATE NEW CONCEPT ]"}
+      </Button>
     </div>
   );
 };

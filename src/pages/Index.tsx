@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import AiIdeaGenerator from '@/components/AiIdeaGenerator';
 import InteractiveGrid from '@/components/InteractiveGrid';
@@ -41,7 +40,7 @@ const Index = () => {
         </section>
 
         <section id="ai-playground" className="mb-24 md:mb-32">
-            <AiIdeaGenerator />
+            <AiIdeaGenerator projects={projects} />
         </section>
 
         <section id="work" className="mb-24 md:mb-32">
