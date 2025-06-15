@@ -26,7 +26,7 @@ const AnimatedShape = () => {
             onPointerOut={() => setHover(false)}
             scale={clicked ? 1.2 : 1}
         >
-            <meshStandardMaterial color={hovered ? 'hsl(var(--primary))' : 'hsl(var(--foreground))'} wireframe />
+            <meshStandardMaterial color={hovered ? 'royalblue' : '#cccccc'} wireframe />
         </Icosahedron>
     );
 };
