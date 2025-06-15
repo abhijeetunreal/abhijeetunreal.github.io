@@ -1,8 +1,7 @@
-
 import * as THREE from 'three';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Billboard, Circle, Text, MapControls } from '@react-three/drei';
+import { Billboard, Circle, Text } from '@react-three/drei';
 
 type Project = {
   title: string;
@@ -148,7 +147,6 @@ export default function CirclePacking({ projects, tags }: CirclePackingProps) {
                     <ProjectCircle key={`${project.title}-${i}`} project={project} position={position} />
                 ))}
                 
-                <MapControls enableRotate={false} makeDefault />
             </Canvas>
         </div>
     );
