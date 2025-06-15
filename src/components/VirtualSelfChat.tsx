@@ -1,8 +1,7 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Send } from 'lucide-react';
+import { Brain, Send } from 'lucide-react';
 
 type Project = {
   title: string;
@@ -89,7 +88,10 @@ const VirtualSelfChat = ({ projects }: VirtualSelfChatProps) => {
 
     return (
         <div className="border-2 border-dashed border-border p-6 flex flex-col h-[60vh] max-h-[500px]">
-            <h3 className="text-sm uppercase font-bold text-muted-foreground mb-4 text-center">[Ask My Digital Self]</h3>
+            <div className="flex justify-center items-center gap-2 mb-4">
+                <Brain className="h-5 w-5 text-muted-foreground animate-pulse" />
+                <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
+            </div>
             <div className="flex-grow overflow-y-auto pr-4 mb-4 space-y-4">
                 {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
