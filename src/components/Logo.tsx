@@ -53,11 +53,11 @@ const Logo = () => (
                     .circle {
                         stroke-dasharray: 300;
                         stroke-dashoffset: 300;
-                        animation: draw 6s linear infinite;
+                        animation: draw 12s linear infinite;
                     }
                     .c1 { animation-delay: 0s; }
-                    .c2 { animation-delay: -2s; }
-                    .c3 { animation-delay: -4s; }
+                    .c2 { animation-delay: -4s; }
+                    .c3 { animation-delay: -8s; }
                 `}
             </style>
             <g filter="url(#distortion)">
