@@ -70,7 +70,7 @@ const TagCircle = ({ tag, position, onSelect, projectCount }: { tag: string, pos
                 color="white"
                 anchorX="center"
                 anchorY="middle"
-                opacity={0.7}
+                fillOpacity={0.7}
                 font="/fonts/inter-regular.woff"
             >
                 {`${projectCount} project${projectCount !== 1 ? 's' : ''}`}
