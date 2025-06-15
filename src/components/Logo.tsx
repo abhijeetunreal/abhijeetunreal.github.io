@@ -1,6 +1,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FluidSphere = () => {
@@ -12,21 +13,36 @@ const FluidSphere = () => {
       const time = state.clock.getElapsedTime();
       
       // Smoothly interpolate scale on hover
-      const targetScale = hovered ? 6 : 5;
+      const targetScale = hovered ? 3.5 : 3;
       meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
 
-      // Add a subtle pulsing effect
-      const pulse = Math.sin(time * 2) * 0.05;
-      // We need to apply the pulse to the current scale
-      const currentScale = meshRef.current.scale.x;
-      meshRef.current.scale.set(currentScale + pulse, currentScale + pulse, currentScale + pulse);
+      // Organic wobbling effect
+      const geometry = meshRef.current.geometry;
+      const positions = geometry.attributes.position as THREE.BufferAttribute;
+      
+      // Store original positions on first frame
+      if (!geometry.userData.originalPositions) {
+          geometry.userData.originalPositions = positions.clone();
+      }
+      const originalPos = geometry.userData.originalPositions as THREE.BufferAttribute;
+
+      for (let i = 0; i < positions.count; i++) {
+        const p = new THREE.Vector3().fromBufferAttribute(originalPos, i);
+        const normal = new THREE.Vector3().fromBufferAttribute(originalPos, i).normalize();
+        // A simple noise function using sine and cosine
+        const noise = Math.sin(p.x * 4 + time * 1.5) * Math.cos(p.y * 4 + time * 1.5) * 0.05;
+        p.addScaledVector(normal, noise);
+        positions.setXYZ(i, p.x, p.y, p.z);
+      }
+      geometry.attributes.position.needsUpdate = true;
+      geometry.computeVertexNormals();
     }
   });
 
   return (
     <mesh
       ref={meshRef}
-      scale={5}
+      scale={3} // Made it smaller
       onPointerOver={(event) => {
         event.stopPropagation();
         setHover(true);
@@ -36,13 +52,17 @@ const FluidSphere = () => {
         setHover(false);
       }}
     >
-      <sphereGeometry args={[0.5, 64, 64]} />
-      <meshStandardMaterial 
-        color={hovered ? '#84CC16' : '#A3E635'} // Brighter on hover
-        transparent 
-        opacity={0.8} 
-        roughness={0.1} 
+      <sphereGeometry args={[0.5, 128, 128]} />
+      <meshPhysicalMaterial 
+        color={hovered ? '#A3E635' : '#FFFFFF'} // Tint color
+        transmission={1.0}
+        opacity={0.9}
         metalness={0.1}
+        roughness={0}
+        ior={1.33} // Index of Refraction for water
+        thickness={0.2}
+        clearcoat={1}
+        clearcoatRoughness={0}
       />
     </mesh>
   );
@@ -51,9 +71,10 @@ const FluidSphere = () => {
 const Logo = () => {
   return (
     <div className="w-full h-[300px] md:h-[400px] cursor-pointer">
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <ambientLight intensity={1.5} />
+      <Canvas camera={{ position: [0, 0, 3], fov: 75 }}>
+        <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
+        <Environment preset="city" />
         <FluidSphere />
       </Canvas>
     </div>
