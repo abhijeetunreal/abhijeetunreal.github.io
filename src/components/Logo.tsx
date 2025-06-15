@@ -1,16 +1,10 @@
-
 import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { MeshRefractionMaterial, Environment, useEnvironment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
-
-  const envMap = useEnvironment({
-    files: 'https://raw.githubusercontent.com/pmndrs/drei-assets/master/hdri/studio_small_03_1k.hdr',
-  });
 
   useEffect(() => {
     const updateMousePosition = (ev: PointerEvent) => {
@@ -72,15 +66,7 @@ const FluidSphere = () => {
       scale={1.5}
     >
       <sphereGeometry args={[0.5, 128, 128]} />
-      <MeshRefractionMaterial
-        envMap={envMap}
-        bounces={2}
-        aberrationStrength={0.001}
-        ior={1.01}
-        fresnel={0.1}
-        color={"white"}
-        fastChroma
-      />
+      <meshStandardMaterial transparent opacity={0.3} roughness={0.1} metalness={0.1} />
     </mesh>
   );
 };
@@ -88,11 +74,10 @@ const FluidSphere = () => {
 const Logo = () => {
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 3], fov: 75 }}>
+      <Canvas camera={{ position: [0, 0, 3], fov: 75 }} gl={{ alpha: true }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
-          <Environment files="https://raw.githubusercontent.com/pmndrs/drei-assets/master/hdri/studio_small_03_1k.hdr" />
           <FluidSphere />
         </Suspense>
       </Canvas>
