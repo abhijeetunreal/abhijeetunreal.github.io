@@ -1,3 +1,4 @@
+
 import * as THREE from 'three';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -34,13 +35,13 @@ const ProjectCircle = ({ project, position }: { project: Project, position: [num
     return (
         <group position={position}>
             <Circle args={[0.8, 32]} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <meshStandardMaterial color={hovered ? 'hsl(var(--primary))' : 'hsl(var(--foreground))'} />
+                <meshStandardMaterial color={hovered ? '#8B5CF6' : '#4B5563'} />
             </Circle>
             <Billboard>
                 <Text
                     position={[0, 0, 0.1]}
                     fontSize={0.15}
-                    color={hovered ? 'hsl(var(--background))' : 'hsl(var(--primary-foreground))'}
+                    color={'#F9FAFB'}
                     maxWidth={1.4}
                     textAlign="center"
                     anchorY="middle"
@@ -57,10 +58,10 @@ const TagCircle = ({ tag, position, onSelect, projectCount }: { tag: string, pos
     return (
         <group position={position}>
             <Circle args={[2, 64]} onClick={() => onSelect(tag)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <meshStandardMaterial color={hovered ? 'hsl(var(--primary))' : 'hsl(var(--accent))'} transparent opacity={0.9}/>
+                <meshStandardMaterial color={hovered ? '#8B5CF6' : '#1F2937'} transparent opacity={0.9}/>
             </Circle>
             <Billboard>
-                <Text position={[0, 0, 0.1]} fontSize={0.3} color="hsl(var(--accent-foreground))" textAlign="center" anchorY="middle">
+                <Text position={[0, 0, 0.1]} fontSize={0.3} color="#E5E7EB" textAlign="center" anchorY="middle">
                     {`${tag.toUpperCase()}\n(${projectCount})`}
                 </Text>
             </Billboard>
