@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Icosahedron } from '@react-three/drei';
@@ -36,8 +35,8 @@ const AbstractAnimation = () => {
         <div className="h-[300px] md:h-[400px] cursor-pointer">
             <Canvas camera={{ position: [0, 0, 4.5] }}>
                 <ambientLight intensity={Math.PI / 2} />
-                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-                <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={Math.PI} />
+                <pointLight position={[-10, -10, -10]} intensity={Math.PI} />
                 <AnimatedShape />
             </Canvas>
         </div>
