@@ -1,6 +1,47 @@
 import React, { useRef, useEffect, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+
+const LensMaterial = shaderMaterial(
+  // Uniforms
+  {},
+  // Vertex Shader
+  `
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+
+    void main() {
+      vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+      vViewPosition = -modelViewPosition.xyz;
+      vNormal = normalize(normalMatrix * normal);
+      gl_Position = projectionMatrix * modelViewPosition;
+    }
+  `,
+  // Fragment Shader
+  `
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+
+    void main() {
+      vec3 normal = normalize(vNormal);
+      vec3 viewDir = normalize(vViewPosition);
+      
+      // Calculate fresnel term. The power (4.0) controls the sharpness of the rim.
+      float fresnel = pow(1.0 - abs(dot(viewDir, normal)), 4.0);
+      
+      // Make the rim effect more pronounced
+      fresnel = smoothstep(0.4, 1.0, fresnel);
+
+      // The color of the rim is white, and the alpha is based on the fresnel effect.
+      // The center is transparent (fresnel is ~0), edges are semi-opaque (fresnel is ~1).
+      gl_FragColor = vec4(vec3(1.0), fresnel * 0.9);
+    }
+  `
+);
+
+// Extend Three.js to include our custom material
+extend({ LensMaterial });
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -20,11 +61,9 @@ const FluidSphere = () => {
 
   useFrame((state) => {
     if (meshRef.current) {
-      // Convert mouse position from screen pixels to normalized device coordinates
       const x = (mousePosition.current.x / state.size.width) * 2 - 1;
       const y = -(mousePosition.current.y / state.size.height) * 2 + 1;
       
-      // Make the sphere follow the mouse
       vec.set(
         (x * state.viewport.width) / 2,
         (y * state.viewport.height) / 2,
@@ -34,14 +73,11 @@ const FluidSphere = () => {
 
       const time = state.clock.getElapsedTime();
       
-      // Keep scale constant but smaller
       meshRef.current.scale.set(1.5, 1.5, 1.5);
 
-      // Organic wobbling effect
       const geometry = meshRef.current.geometry;
       const positions = geometry.attributes.position as THREE.BufferAttribute;
       
-      // Store original positions on first frame
       if (!geometry.userData.originalPositions) {
           geometry.userData.originalPositions = positions.clone();
       }
@@ -50,7 +86,6 @@ const FluidSphere = () => {
       for (let i = 0; i < positions.count; i++) {
         const p = new THREE.Vector3().fromBufferAttribute(originalPos, i);
         const normal = new THREE.Vector3().fromBufferAttribute(originalPos, i).normalize();
-        // A simple noise function using sine and cosine
         const noise = Math.sin(p.x * 4 + time * 1.5) * Math.cos(p.y * 4 + time * 1.5) * 0.05;
         p.addScaledVector(normal, noise);
         positions.setXYZ(i, p.x, p.y, p.z);
@@ -66,7 +101,7 @@ const FluidSphere = () => {
       scale={1.5}
     >
       <sphereGeometry args={[0.5, 128, 128]} />
-      <meshStandardMaterial transparent opacity={0.3} roughness={0.1} metalness={0.1} />
+      <lensMaterial transparent />
     </mesh>
   );
 };
