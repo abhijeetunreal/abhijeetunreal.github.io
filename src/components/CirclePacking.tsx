@@ -2,7 +2,6 @@
 import * as THREE from 'three';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Circle } from '@react-three/drei';
 
 type Project = {
   title: string;
@@ -34,9 +33,10 @@ const ProjectCircle = ({ project, position }: { project: Project, position: [num
     const [hovered, setHovered] = useState(false);
     return (
         <group position={position}>
-            <Circle args={[0.8, 32]} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+            <mesh onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+                <circleGeometry args={[0.8, 32]} />
                 <meshStandardMaterial color={hovered ? '#8B5CF6' : '#4B5563'} />
-            </Circle>
+            </mesh>
         </group>
     );
 };
@@ -45,9 +45,10 @@ const TagCircle = ({ tag, position, onSelect, projectCount }: { tag: string, pos
     const [hovered, setHovered] = useState(false);
     return (
         <group position={position}>
-            <Circle args={[2, 64]} onClick={() => onSelect(tag)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+            <mesh onClick={() => onSelect(tag)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+                <circleGeometry args={[2, 64]} />
                 <meshStandardMaterial color={hovered ? '#8B5CF6' : '#1F2937'} transparent opacity={0.9}/>
-            </Circle>
+            </mesh>
         </group>
     );
 };
