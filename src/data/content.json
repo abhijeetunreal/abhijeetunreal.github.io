@@ -1,0 +1,68 @@
+
+{
+  "name": "YOUR NAME",
+  "navLinks": [
+    { "label": "[WORK]", "href": "/#work" },
+    { "label": "[ABOUT]", "href": "/#about" },
+    { "label": "[CONTACT]", "href": "/#contact" }
+  ],
+  "contactLinks": [
+      { "label": "[EMAIL]", "href": "mailto:your.email@example.com" },
+      { "label": "[LINKEDIN]", "href": "#" },
+      { "label": "[GITHUB]", "href": "#" }
+  ],
+  "hero": {
+    "title": "I experiment with technology, blend it with design, and innovate for human needs."
+  },
+  "aiChat": {
+      "greeting": "Hello! I'm a digital consciousness, trained on this portfolio. Ask me anything about the creator's work or thoughts.",
+      "promptPlaceholder": "Ask about my work, skills, philosophy..."
+  },
+  "work": {
+      "title": "[SELECTED WORKS]",
+      "subtitle": "Click a category to filter the projects."
+  },
+  "about": {
+    "title": "[ABOUT ME]",
+    "paragraph1": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities.",
+    "paragraph2": "Click the grid to reveal a core tenet of my design philosophy."
+  },
+  "workedWith": {
+      "title": "[PREVIOUSLY WORKED WITH]",
+      "companies": ["Google", "Microsoft", "Apple", "Amazon", "Meta", "Netflix", "Spotify", "OpenAI"]
+  },
+  "projects": [
+    {
+      "title": "Project Alpha",
+      "description": "An immersive data narrative exploring climate change through generative visuals.",
+      "tags": ["Data Visualization", "Web GL", "Storytelling"],
+      "fullDescription": "An immersive data narrative exploring climate change through generative visuals. This project aims to make the abstract concept of climate change more tangible and personal through interactive, data-driven art.",
+      "designProcess": "A detailed walkthrough of the design process would be here. Discussing user research, ideation, prototyping, and user testing. For Project Alpha, we started with extensive research into climate data sets and how they could be represented visually in a compelling way. We explored various generative art techniques before settling on a particle system driven by real-time weather data.",
+      "technicalDetails": "An explanation of the technology stack and implementation details. For example, discussing the use of WebGL for generative visuals in Project Alpha. The core of this project is built with Three.js and a custom GLSL shader pipeline for performance. Data is fetched from a public API and processed on the client-side."
+    },
+    {
+      "title": "Project Beta",
+      "description": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation.",
+      "tags": ["AI", "UX Design", "Mobile App", "Wellness", "Data Visualization"],
+      "fullDescription": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation. By analyzing user input and biometric data (with permission), the app generates ambient audio tailored to the user's current state.",
+      "designProcess": "The design process was heavily focused on user experience and creating a calming, intuitive interface. We conducted user interviews with people who use focus apps and identified key pain points. Iterative prototyping and testing were crucial to refining the sound generation algorithm and UI.",
+      "technicalDetails": "The app is built using React Native. The AI component is a custom-trained neural network hosted on a cloud service, which processes user data to generate sound parameters. We also integrated with health APIs to optionally use data like heart rate variability."
+    },
+    {
+      "title": "Project Gamma",
+      "description": "A speculative design project imagining future interfaces for brain-computer interaction.",
+      "tags": ["Speculative Design", "HCI", "Prototyping", "AI"],
+      "fullDescription": "A speculative design project imagining future interfaces for brain-computer interaction. This project doesn't aim to build a working product, but to provoke thought and discussion about the future of human-computer interfaces and their ethical implications.",
+      "designProcess": "This project was driven by 'what if' scenarios. We created a series of design fictions, including concept videos and physical prototypes, to illustrate how BCI might integrate into daily life. The process involved world-building and narrative creation as much as traditional design work.",
+      "technicalDetails": "While no real BCI was used, we prototyped the interface concepts using Figma and Framer, simulating the experience of a thought-controlled UI. The prototypes were used in user workshops to gather feedback on the concepts."
+    },
+    {
+      "title": "Project Delta",
+      "description": "An interactive installation about AI ethics.",
+      "tags": ["AI", "Storytelling", "Data Visualization"],
+      "fullDescription": "An interactive installation about AI ethics. This physical installation presents users with ethical dilemmas related to AI and visualizes the collective choices of all participants.",
+      "designProcess": "The core of the design process was crafting compelling and nuanced ethical scenarios. We worked with ethicists and AI researchers to ensure the content was accurate and thought-provoking. The physical design of the installation was meant to be both inviting and slightly unsettling, to match the theme.",
+      "technicalDetails": "The installation uses a combination of projection mapping, custom-built hardware with sensors (Arduino), and a backend server (Node.js) to collect and process user responses. The visualizations are created with p5.js."
+    }
+  ]
+}

@@ -1,17 +1,10 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Brain, Send } from 'lucide-react';
-
-type Project = {
-  title: string;
-  description: string;
-  tags: string[];
-};
-
-type VirtualSelfChatProps = {
-  projects: Project[];
-};
+import content from '@/data/content.json';
+import { Project } from '@/types/content';
 
 type Message = {
     sender: 'user' | 'ai';
@@ -32,11 +25,11 @@ const generateAiResponse = (message: string, projects: Project[]): string => {
     
     const projectMentioned = projects.find(p => lowerCaseMessage.includes(p.title.toLowerCase().replace('project ','')));
     if (projectMentioned) {
-        return `${projectMentioned.title}: ${projectMentioned.description}. It involves skills like ${projectMentioned.tags.join(', ')}.`;
+        return `${projectMentioned.title}: ${projectMentioned.fullDescription}. It involves skills like ${projectMentioned.tags.join(', ')}.`;
     }
 
     if (lowerCaseMessage.includes('about') || lowerCaseMessage.includes('who are you')) {
-        return "I'm a designer driven by the convergence of disparate fields, blending technology and creativity to meet human needs. My process is a dialogue between human needs and technological possibilities.";
+        return content.about.paragraph1;
     }
 
     if (lowerCaseMessage.includes('contact')) {
@@ -52,9 +45,9 @@ const generateAiResponse = (message: string, projects: Project[]): string => {
 }
 
 
-const VirtualSelfChat = ({ projects }: VirtualSelfChatProps) => {
+const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const [messages, setMessages] = useState<Message[]>([
-        { sender: 'ai', text: "Hello! I'm a digital consciousness, trained on this portfolio. Ask me anything about the creator's work or thoughts." }
+        { sender: 'ai', text: content.aiChat.greeting }
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -114,7 +107,7 @@ const VirtualSelfChat = ({ projects }: VirtualSelfChatProps) => {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask about my work, skills, philosophy..."
+                    placeholder={content.aiChat.promptPlaceholder}
                     disabled={isTyping}
                     className="flex-grow"
                 />
