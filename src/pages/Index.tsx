@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import InteractiveGrid from '@/components/InteractiveGrid';
 import ProjectShowcase from '@/components/ProjectShowcase';
+import Marquee from '@/components/Marquee';
 
 const projects = [
   {
@@ -24,6 +25,10 @@ const projects = [
     description: "An interactive installation about AI ethics.",
     tags: ["AI", "Storytelling", "Data Visualization"],
   },
+];
+
+const workedWith = [
+  "Google", "Microsoft", "Apple", "Amazon", "Meta", "Netflix", "Spotify", "OpenAI"
 ];
 
 const Index = () => {
@@ -66,6 +71,11 @@ const Index = () => {
                 <p className="text-muted-foreground">Click the grid to reveal a core tenet of my design philosophy.</p>
             </div>
             <InteractiveGrid />
+        </section>
+
+        <section id="worked-with" className="mb-24 md:mb-32">
+          <h3 className="text-2xl font-bold text-center mb-8">[PREVIOUSLY WORKED WITH]</h3>
+          <Marquee items={workedWith} />
         </section>
 
       </main>
