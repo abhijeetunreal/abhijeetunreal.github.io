@@ -1,10 +1,7 @@
-
 import Header from '@/components/Header';
-import ProjectCard from '@/components/ProjectCard';
 import AiIdeaGenerator from '@/components/AiIdeaGenerator';
 import InteractiveGrid from '@/components/InteractiveGrid';
-import { useState } from 'react';
-import StreamGraphFilter from '@/components/StreamGraphFilter';
+import CirclePacking from '@/components/CirclePacking';
 
 const projects = [
   {
@@ -26,11 +23,6 @@ const projects = [
 
 const Index = () => {
   const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
-  const [activeTag, setActiveTag] = useState<string | null>(null);
-
-  const filteredProjects = activeTag
-    ? projects.filter((project) => project.tags.includes(activeTag))
-    : projects;
 
   return (
     <div className="bg-background text-foreground min-h-screen font-mono">
@@ -50,19 +42,10 @@ const Index = () => {
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-4">
               <h3 className="text-2xl font-bold shrink-0">[SELECTED WORKS]</h3>
-              <p className="text-sm text-muted-foreground hidden md:block">Hover a stream to see the category, click to filter.</p>
+              <p className="text-sm text-muted-foreground hidden md:block">Click a category to zoom in. Drag to pan.</p>
             </div>
-            <StreamGraphFilter
-              tags={allTags}
-              activeTag={activeTag}
-              onTagChange={setActiveTag}
-            />
           </div>
-          <div key={activeTag || 'all'} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
-            ))}
-          </div>
+          <CirclePacking projects={projects} tags={allTags} />
         </section>
 
         <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-center">
