@@ -1,12 +1,16 @@
 
 import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { MeshRefractionMaterial, Environment } from '@react-three/drei';
+import { MeshRefractionMaterial, useEnvironment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
+
+  const envMap = useEnvironment({
+    files: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_03_1k.hdr',
+  });
 
   useEffect(() => {
     const updateMousePosition = (ev: PointerEvent) => {
@@ -69,6 +73,7 @@ const FluidSphere = () => {
     >
       <sphereGeometry args={[0.5, 128, 128]} />
       <MeshRefractionMaterial
+        envMap={envMap}
         bounces={2}
         aberrationStrength={0.01}
         ior={1.5}
@@ -87,7 +92,6 @@ const Logo = () => {
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
-          <Environment preset="studio" />
           <FluidSphere />
         </Suspense>
       </Canvas>
@@ -96,3 +100,4 @@ const Logo = () => {
 };
 
 export default Logo;
+
