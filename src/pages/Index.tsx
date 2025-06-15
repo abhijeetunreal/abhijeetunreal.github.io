@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import InteractiveGrid from '@/components/InteractiveGrid';
@@ -42,10 +41,7 @@ const Index = () => {
         </section>
 
         <section id="ai-playground" className="mb-24 md:mb-32">
-            <div className="flex items-center gap-4 mb-8">
-              <h3 className="text-2xl font-bold shrink-0">[AI PLAYGROUND]</h3>
-              <p className="text-sm text-muted-foreground hidden md:block">Interact with my digital self or the generative art piece.</p>
-            </div>
+            <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self or the generative art piece.</p>
             <div className="grid md:grid-cols-2 gap-16 items-center">
                 <VirtualSelfChat projects={projects} />
                 <Logo />
