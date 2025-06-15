@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import InteractiveGrid from '@/components/InteractiveGrid';
 import ProjectShowcase from '@/components/ProjectShowcase';
+import AbstractAnimation from '@/components/AbstractAnimation';
 
 const projects = [
   {
@@ -33,10 +34,11 @@ const Index = () => {
     <div className="bg-background text-foreground min-h-screen font-mono">
       <Header />
       <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
-        <section id="hero" className="mb-24 md:mb-32">
+        <section id="hero" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-16 items-center">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
             I experiment with technology, blend it with design, and innovate for human needs.
           </h2>
+          <AbstractAnimation />
         </section>
 
         <section id="ai-playground" className="mb-24 md:mb-32">
