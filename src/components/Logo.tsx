@@ -25,16 +25,29 @@ const Logo = () => (
                 </linearGradient>
                 <filter id="distortion">
                     <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="0">
-                         <animate attributeName="baseFrequency" dur="10s" values="0.02;0.01;0.005;0.015;0.02" repeatCount="indefinite" />
+                         <animate attributeName="baseFrequency" dur="10s" values="0.02;0.05;0.02" repeatCount="indefinite" />
                     </feTurbulence>
-                    <feDisplacementMap in="SourceGraphic" scale="15" />
+                    <feDisplacementMap in="SourceGraphic" scale="25" />
                 </filter>
             </defs>
             <style>
                 {`
                     @keyframes draw {
-                        to {
+                        0% {
+                            stroke-dashoffset: 300;
+                            opacity: 1;
+                        }
+                        50% {
                             stroke-dashoffset: 0;
+                            opacity: 1;
+                        }
+                        80% {
+                            stroke-dashoffset: 0;
+                            opacity: 1;
+                        }
+                        100% {
+                            stroke-dashoffset: 0;
+                            opacity: 0;
                         }
                     }
                     .circle {
