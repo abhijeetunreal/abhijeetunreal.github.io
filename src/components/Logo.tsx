@@ -23,6 +23,12 @@ const Logo = () => (
                     <stop offset="0%" stopColor="hsl(var(--primary))" />
                     <stop offset="100%" stopColor="hsl(var(--muted))" />
                 </linearGradient>
+                <filter id="distortion">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="0">
+                         <animate attributeName="baseFrequency" dur="15s" values="0.02;0.005;0.02" repeatCount="indefinite" />
+                    </feTurbulence>
+                    <feDisplacementMap in="SourceGraphic" scale="3" />
+                </filter>
             </defs>
             <style>
                 {`
@@ -41,9 +47,11 @@ const Logo = () => (
                     .c3 { animation-delay: -4s; }
                 `}
             </style>
-            <circle className="circle c1" cx="50" cy="50" r="45" stroke="url(#g1)" strokeWidth="2" />
-            <circle className="circle c2" cx="50" cy="50" r="35" stroke="url(#g2)" strokeWidth="2" />
-            <circle className="circle c3" cx="50" cy="50" r="25" stroke="url(#g3)" strokeWidth="2" />
+            <g filter="url(#distortion)">
+                <circle className="circle c1" cx="50" cy="50" r="45" stroke="url(#g1)" strokeWidth="2" />
+                <circle className="circle c2" cx="50" cy="50" r="35" stroke="url(#g2)" strokeWidth="2" />
+                <circle className="circle c3" cx="50" cy="50" r="25" stroke="url(#g3)" strokeWidth="2" />
+            </g>
         </svg>
     </div>
 );
