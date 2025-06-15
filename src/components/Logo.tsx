@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { MeshRefractionMaterial, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FluidSphere = () => {
@@ -34,8 +35,8 @@ const FluidSphere = () => {
 
       const time = state.clock.getElapsedTime();
       
-      // Keep scale constant
-      meshRef.current.scale.set(3, 3, 3);
+      // Keep scale constant but smaller
+      meshRef.current.scale.set(1.5, 1.5, 1.5);
 
       // Organic wobbling effect
       const geometry = meshRef.current.geometry;
@@ -63,17 +64,16 @@ const FluidSphere = () => {
   return (
     <mesh
       ref={meshRef}
-      scale={3}
+      scale={1.5}
     >
       <sphereGeometry args={[0.5, 128, 128]} />
-      <meshPhysicalMaterial 
-        color={'#FFFFFF'}
-        transmission={1.0}
-        opacity={0.9}
-        metalness={0.1}
-        roughness={0}
-        ior={1.33}
-        thickness={0.2}
+      <MeshRefractionMaterial
+        bounces={2}
+        aberrationStrength={0.01}
+        ior={1.5}
+        fresnel={1}
+        color={"white"}
+        fastChroma
       />
     </mesh>
   );
@@ -85,6 +85,7 @@ const Logo = () => {
       <Canvas camera={{ position: [0, 0, 3], fov: 75 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
+        <Environment preset="studio" />
         <FluidSphere />
       </Canvas>
     </div>
