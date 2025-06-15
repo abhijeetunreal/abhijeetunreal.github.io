@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import React, { useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Text } from '@react-three/drei';
 
 type Project = {
   title: string;
@@ -43,12 +44,37 @@ const ProjectCircle = ({ project, position }: { project: Project, position: [num
 
 const TagCircle = ({ tag, position, onSelect, projectCount }: { tag: string, position: [number, number, number], onSelect: (tag: string) => void, projectCount: number }) => {
     const [hovered, setHovered] = useState(false);
+    const radius = useMemo(() => 1.2 + projectCount * 0.4, [projectCount]);
+
     return (
         <group position={position}>
             <mesh onClick={() => onSelect(tag)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <circleGeometry args={[2, 64]} />
+                <circleGeometry args={[radius, 64]} />
                 <meshStandardMaterial color={hovered ? '#8B5CF6' : '#1F2937'} transparent opacity={0.9}/>
             </mesh>
+            <Text
+                position={[0, radius * 0.1, 0.1]}
+                fontSize={radius * 0.25}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                maxWidth={radius * 1.5}
+                textAlign="center"
+                font="/fonts/inter-bold.woff"
+            >
+                {tag.toUpperCase()}
+            </Text>
+             <Text
+                position={[0, -radius * 0.4, 0.1]}
+                fontSize={radius * 0.15}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                opacity={0.7}
+                font="/fonts/inter-regular.woff"
+            >
+                {`${projectCount} project${projectCount !== 1 ? 's' : ''}`}
+            </Text>
         </group>
     );
 };
@@ -61,7 +87,7 @@ export default function CirclePacking({ projects, tags }: CirclePackingProps) {
     const tagData = useMemo(() => {
         const data: { [key: string]: { position: [number, number, number], count: number } } = {};
         const numTags = tags.length;
-        const radius = 2.5 + numTags * 0.5;
+        const radius = numTags * 1.5; // Increased radius to prevent overlap
         tags.forEach((tag, i) => {
             const angle = (i / numTags) * 2 * Math.PI;
             data[tag] = {

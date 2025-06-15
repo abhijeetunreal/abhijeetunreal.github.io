@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import AiIdeaGenerator from '@/components/AiIdeaGenerator';
 import InteractiveGrid from '@/components/InteractiveGrid';
@@ -12,12 +13,17 @@ const projects = [
   {
     title: "Project Beta",
     description: "A mobile app that uses AI to create personalized soundscapes for focus and relaxation.",
-    tags: ["AI", "UX Design", "Mobile App", "Wellness"],
+    tags: ["AI", "UX Design", "Mobile App", "Wellness", "Data Visualization"],
   },
   {
     title: "Project Gamma",
     description: "A speculative design project imagining future interfaces for brain-computer interaction.",
-    tags: ["Speculative Design", "HCI", "Prototyping"],
+    tags: ["Speculative Design", "HCI", "Prototyping", "AI"],
+  },
+  {
+    title: "Project Delta",
+    description: "An interactive installation about AI ethics.",
+    tags: ["AI", "Storytelling", "Data Visualization"],
   },
 ];
 
