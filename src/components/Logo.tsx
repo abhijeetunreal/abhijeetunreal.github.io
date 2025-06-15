@@ -1,7 +1,18 @@
+
 import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { ShaderMaterialProps } from '@react-three/fiber';
+
+// Add the type to JSX.IntrinsicElements to fix the TypeScript error.
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      lensMaterial: ShaderMaterialProps & { transparent?: boolean };
+    }
+  }
+}
 
 const LensMaterial = shaderMaterial(
   // Uniforms
