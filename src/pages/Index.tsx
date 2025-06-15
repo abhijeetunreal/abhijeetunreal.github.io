@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import InteractiveGrid from '@/components/InteractiveGrid';
 import ProjectShowcase from '@/components/ProjectShowcase';
-import AbstractAnimation from '@/components/AbstractAnimation';
+import Logo from '@/components/Logo';
 
 const projects = [
   {
@@ -48,7 +48,7 @@ const Index = () => {
             </div>
             <div className="grid md:grid-cols-2 gap-16 items-center">
                 <VirtualSelfChat projects={projects} />
-                <AbstractAnimation />
+                <Logo />
             </div>
         </section>
 
