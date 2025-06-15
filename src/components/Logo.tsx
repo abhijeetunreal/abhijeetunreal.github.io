@@ -75,9 +75,9 @@ const FluidSphere = () => {
       <MeshRefractionMaterial
         envMap={envMap}
         bounces={2}
-        aberrationStrength={0.005}
-        ior={1.05}
-        fresnel={1}
+        aberrationStrength={0.001}
+        ior={1.01}
+        fresnel={0.1}
         color={"white"}
         fastChroma
       />
