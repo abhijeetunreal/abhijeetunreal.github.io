@@ -25,13 +25,17 @@
   "about": {
     "title": "[ABOUT ME]",
     "paragraph1": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities.",
-    "paragraph2": "Hover over the grid to reveal core tenets of my design philosophy.",
+    "paragraph2": "Click on a cell in the grid to generate a unique design philosophy statement, powered by a simple AI model trained on my work and ethos.",
     "philosophies": [
       { "statement": "Design is a medium for conversation, not just a solution." },
       { "statement": "Technology should be an extension of human capability, not a replacement." },
       { "statement": "Embrace ambiguity and complexity to find novel insights." },
       { "statement": "The most powerful experiences are born from interdisciplinary collaboration." }
     ]
+  },
+  "aiPhilosophy": {
+    "context": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities. I believe design is a medium for conversation, technology should be an extension of human capability, ambiguity should be embraced, and collaboration is key.",
+    "promptTemplate": "Generate a concise design philosophy statement (under 15 words) based on the following context: {context}. The statement should feel insightful and unique."
   },
   "workedWith": {
       "title": "[PREVIOUSLY WORKED WITH]",

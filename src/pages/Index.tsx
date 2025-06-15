@@ -1,9 +1,9 @@
 import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
-import InteractiveGrid from '@/components/InteractiveGrid';
 import ProjectShowcase from '@/components/ProjectShowcase';
 import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
+import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
 
 const Index = () => {
   const { hero, work, about, workedWith, projects, contactLinks } = content;
@@ -36,7 +36,7 @@ const Index = () => {
           <ProjectShowcase projects={projects} tags={allTags} />
         </section>
 
-        <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-center">
+        <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-start">
             <div>
                 <h3 className="text-2xl font-bold mb-4">{about.title}</h3>
                 <p className="text-muted-foreground mb-4">
@@ -44,7 +44,7 @@ const Index = () => {
                 </p>
                 <p className="text-muted-foreground">{about.paragraph2}</p>
             </div>
-            <InteractiveGrid philosophies={about.philosophies} />
+            <AIPhilosophyGrid />
         </section>
 
         <section id="worked-with" className="mb-24 md:mb-32">

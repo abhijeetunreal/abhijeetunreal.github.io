@@ -1,4 +1,3 @@
-
 export interface NavLink {
     label: string;
     href: string;
@@ -17,6 +16,18 @@ export interface Philosophy {
     statement: string;
 }
 
+export interface About {
+    title: string;
+    paragraph1: string;
+    paragraph2: string;
+    philosophies: Philosophy[];
+}
+
+export interface AiPhilosophy {
+    context: string;
+    promptTemplate: string;
+}
+
 export interface ContentData {
     name: string;
     navLinks: NavLink[];
@@ -32,15 +43,11 @@ export interface ContentData {
         title: string;
         subtitle: string;
     };
-    about: {
-        title: string;
-        paragraph1: string;
-        paragraph2: string;
-        philosophies: Philosophy[];
-    };
+    about: About;
     workedWith: {
         title: string;
         companies: string[];
     };
     projects: Project[];
+    aiPhilosophy: AiPhilosophy;
 }
