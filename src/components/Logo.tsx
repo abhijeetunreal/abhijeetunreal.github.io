@@ -1,8 +1,17 @@
 
 import React, { useRef } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { Canvas, useFrame, extend, Node } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+
+// Define the type for our custom material's props (the uniforms)
+type FluidMaterialType = THREE.ShaderMaterial & {
+  u_time: number;
+  u_mouse: THREE.Vector2;
+  u_color1: THREE.Color;
+  u_color2: THREE.Color;
+  u_color3: THREE.Color;
+};
 
 const FluidMaterial = shaderMaterial(
   // Uniforms
@@ -113,6 +122,13 @@ const FluidMaterial = shaderMaterial(
 
 // We need to tell react-three-fiber about our custom material
 extend({ FluidMaterial });
+
+// Augment the JSX namespace to include our custom material
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    fluidMaterial: Node<FluidMaterialType, typeof THREE.ShaderMaterial>
+  }
+}
 
 const FluidSphere = () => {
   const materialRef = useRef<any>();
