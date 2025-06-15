@@ -40,11 +40,14 @@ const Index = () => {
           </h2>
         </section>
 
+        <div className="flex justify-center mb-16">
+          <Logo />
+        </div>
+
         <section id="ai-playground" className="mb-24 md:mb-32">
-            <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self or the generative art piece.</p>
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self.</p>
+            <div>
                 <VirtualSelfChat projects={projects} />
-                <Logo />
             </div>
         </section>
 
