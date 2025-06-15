@@ -7,9 +7,18 @@ import * as THREE from 'three';
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const [hovered, setHover] = useState(false);
+  const vec = new THREE.Vector3();
 
   useFrame((state) => {
     if (meshRef.current) {
+      // Make the sphere follow the mouse/touch
+      vec.set(
+        (state.pointer.x * state.viewport.width) / 2,
+        (state.pointer.y * state.viewport.height) / 2,
+        0
+      );
+      meshRef.current.position.lerp(vec, 0.05);
+
       const time = state.clock.getElapsedTime();
       
       // Smoothly interpolate scale on hover
@@ -70,7 +79,7 @@ const FluidSphere = () => {
 
 const Logo = () => {
   return (
-    <div className="w-full h-[300px] md:h-[400px] cursor-pointer">
+    <div className="w-full h-[300px] md:h-[400px] cursor-none">
       <Canvas camera={{ position: [0, 0, 3], fov: 75 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
