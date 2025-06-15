@@ -16,14 +16,15 @@ type CirclePackingProps = {
 };
 
 const CameraController = ({ targetPosition, targetZoom }: { targetPosition: THREE.Vector3, targetZoom: number }) => {
-    const { camera, gl } = useThree();
-    const controls = gl.userData.controls;
+    const { camera, controls } = useThree();
 
     useFrame(() => {
         camera.position.lerp(targetPosition, 0.05);
         camera.zoom = THREE.MathUtils.lerp(camera.zoom, targetZoom, 0.05);
         camera.updateProjectionMatrix();
-        if (controls) controls.update();
+        if (controls) {
+            (controls as any).update();
+        }
     });
 
     return null;
