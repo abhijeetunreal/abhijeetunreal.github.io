@@ -1,11 +1,9 @@
-
 import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
 import Logo from "./components/Logo";
 import ProjectDetail from "./pages/ProjectDetail";
 import content from '@/data/content.json';
