@@ -126,12 +126,12 @@ extend({ FluidMaterial });
 // Augment the JSX namespace to include our custom material
 declare module '@react-three/fiber' {
   interface ThreeElements {
-    fluidMaterial: Node<FluidMaterialType, typeof THREE.ShaderMaterial>
+    fluidMaterial: Node<FluidMaterialType, typeof FluidMaterial>
   }
 }
 
 const FluidSphere = () => {
-  const materialRef = useRef<any>();
+  const materialRef = useRef<FluidMaterialType>(null);
 
   useFrame((state) => {
     if (materialRef.current) {
