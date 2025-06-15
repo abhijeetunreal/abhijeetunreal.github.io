@@ -25,7 +25,13 @@
   "about": {
     "title": "[ABOUT ME]",
     "paragraph1": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities.",
-    "paragraph2": "Click the grid to reveal a core tenet of my design philosophy."
+    "paragraph2": "Hover over the grid to reveal core tenets of my design philosophy.",
+    "philosophies": [
+      { "statement": "Design is a medium for conversation, not just a solution." },
+      { "statement": "Technology should be an extension of human capability, not a replacement." },
+      { "statement": "Embrace ambiguity and complexity to find novel insights." },
+      { "statement": "The most powerful experiences are born from interdisciplinary collaboration." }
+    ]
   },
   "workedWith": {
       "title": "[PREVIOUSLY WORKED WITH]",
@@ -63,6 +69,30 @@
       "fullDescription": "An interactive installation about AI ethics. This physical installation presents users with ethical dilemmas related to AI and visualizes the collective choices of all participants.",
       "designProcess": "The core of the design process was crafting compelling and nuanced ethical scenarios. We worked with ethicists and AI researchers to ensure the content was accurate and thought-provoking. The physical design of the installation was meant to be both inviting and slightly unsettling, to match the theme.",
       "technicalDetails": "The installation uses a combination of projection mapping, custom-built hardware with sensors (Arduino), and a backend server (Node.js) to collect and process user responses. The visualizations are created with p5.js."
+    },
+    {
+        "title": "Project Epsilon",
+        "description": "A tool for collaborative world-building for writers and game designers.",
+        "tags": ["Collaboration", "UX Design", "Web App"],
+        "fullDescription": "A web-based platform that enables multiple users to collaboratively create and manage fictional worlds. It includes tools for map making, character development, and timeline creation.",
+        "designProcess": "The project started from identifying the needs of creative teams. We interviewed Dungeons & Dragons groups, novelists, and indie game developers. The design focuses on flexible data structures and a non-linear creative process.",
+        "technicalDetails": "Built with React and a real-time database (Firebase) to allow for seamless collaboration. The map-making tool uses Leaflet.js with custom overlays."
+    },
+    {
+        "title": "Project Zeta",
+        "description": "An AR experience that reveals the hidden histories of city landmarks.",
+        "tags": ["AR", "Mobile App", "Storytelling"],
+        "fullDescription": "An augmented reality mobile app that overlays historical photos and information onto real-world buildings and locations as you view them through your phone's camera.",
+        "designProcess": "We partnered with local historians to gather archival content. The UX challenge was to present this information in an engaging way without overwhelming the user. We used narrative threads to guide users on historical walks.",
+        "technicalDetails": "The app uses ARKit for iOS and ARCore for Android. 3D models of historical scenes were created in Blender and optimized for mobile performance."
+    },
+    {
+        "title": "Project Eta",
+        "description": "A generative music system based on weather patterns.",
+        "tags": ["Generative Art", "Web App", "AI"],
+        "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
+        "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
+        "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output."
     }
   ]
 }

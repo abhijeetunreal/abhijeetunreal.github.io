@@ -79,9 +79,9 @@ const FluidSphere = () => {
       <meshPhysicalMaterial
         metalness={0}
         roughness={0}
-        transmission={0.98}
-        thickness={1.5}
-        ior={1.5}
+        transmission={1.0}
+        thickness={0.5}
+        ior={1.4}
         clearcoat={1}
         clearcoatRoughness={0}
        />

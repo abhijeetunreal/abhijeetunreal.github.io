@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import InteractiveGrid from '@/components/InteractiveGrid';
@@ -45,7 +44,7 @@ const Index = () => {
                 </p>
                 <p className="text-muted-foreground">{about.paragraph2}</p>
             </div>
-            <InteractiveGrid />
+            <InteractiveGrid philosophies={about.philosophies} />
         </section>
 
         <section id="worked-with" className="mb-24 md:mb-32">

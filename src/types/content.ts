@@ -13,6 +13,10 @@ export interface Project {
     technicalDetails: string;
 }
 
+export interface Philosophy {
+    statement: string;
+}
+
 export interface ContentData {
     name: string;
     navLinks: NavLink[];
@@ -32,6 +36,7 @@ export interface ContentData {
         title: string;
         paragraph1: string;
         paragraph2: string;
+        philosophies: Philosophy[];
     };
     workedWith: {
         title: string;

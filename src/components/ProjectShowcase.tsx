@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,8 +12,11 @@ type ProjectShowcaseProps = {
   tags: string[];
 };
 
+const PROJECTS_TO_SHOW_INITIALLY = 6;
+
 const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
   const [activeTag, setActiveTag] = useState<string>('All');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const filteredProjects = useMemo(() => {
     if (activeTag === 'All') {
@@ -20,6 +24,13 @@ const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
     }
     return projects.filter(p => p.tags.includes(activeTag));
   }, [activeTag, projects]);
+
+  const projectsToShow = useMemo(() => {
+    if (isExpanded) {
+      return filteredProjects;
+    }
+    return filteredProjects.slice(0, PROJECTS_TO_SHOW_INITIALLY);
+  }, [isExpanded, filteredProjects]);
 
   const allTagsWithAll = ['All', ...tags];
 
@@ -38,7 +49,7 @@ const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
         ))}
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredProjects.map((project, index) => (
+        {projectsToShow.map((project, index) => (
           <Link to={`/project/${slugify(project.title)}`} key={project.title} className="block hover:no-underline group">
             <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors" style={{ animationDelay: `${index * 100}ms` }}>
               <CardHeader>
@@ -56,6 +67,13 @@ const ProjectShowcase = ({ projects, tags }: ProjectShowcaseProps) => {
           </Link>
         ))}
       </div>
+      {filteredProjects.length > PROJECTS_TO_SHOW_INITIALLY && (
+        <div className="mt-12 text-center">
+          <Button variant="outline" onClick={() => setIsExpanded(!isExpanded)}>
+            {isExpanded ? 'Show Less' : 'View More'}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
