@@ -77,8 +77,8 @@ const FluidSphere = () => {
       <sphereGeometry args={[0.5, 128, 128]} />
       <meshPhysicalMaterial
         metalness={0}
-        roughness={0.05}
-        transmission={0.9}
+        roughness={0}
+        transmission={0.98}
         thickness={2.0}
         ior={1.7}
         clearcoat={1}
@@ -90,8 +90,8 @@ const FluidSphere = () => {
 
 const Logo = () => {
   return (
-    <div className="fixed inset-0 z-50 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 3], fov: 75 }} gl={{ alpha: true }}>
+    <div className="fixed inset-0 z-50">
+      <Canvas className="pointer-events-none" camera={{ position: [0, 0, 3], fov: 75 }} gl={{ alpha: true }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
