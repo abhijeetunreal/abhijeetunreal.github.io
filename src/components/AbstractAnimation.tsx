@@ -1,6 +1,6 @@
+
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Icosahedron } from '@react-three/drei';
 import * as THREE from 'three';
 
 const AnimatedShape = () => {
@@ -17,16 +17,16 @@ const AnimatedShape = () => {
     });
 
     return (
-        <Icosahedron
+        <mesh
             ref={meshRef}
-            args={[1.5, 0]}
             onClick={() => setClick(!clicked)}
             onPointerOver={() => setHover(true)}
             onPointerOut={() => setHover(false)}
             scale={clicked ? 1.2 : 1}
         >
+            <icosahedronGeometry args={[1.5, 0]} />
             <meshStandardMaterial color={hovered ? 'royalblue' : '#cccccc'} wireframe />
-        </Icosahedron>
+        </mesh>
     );
 };
 
