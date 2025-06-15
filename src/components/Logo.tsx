@@ -26,6 +26,7 @@ const Logo = () => (
                 <filter id="distortion">
                     <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="0">
                          <animate attributeName="baseFrequency" dur="10s" values="0.02;0.05;0.02" repeatCount="indefinite" />
+                         <animate attributeName="seed" dur="1s" values="0;1;2;3;4;5;0" repeatCount="indefinite" />
                     </feTurbulence>
                     <feDisplacementMap in="SourceGraphic" scale="25" />
                 </filter>
