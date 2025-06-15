@@ -1,0 +1,72 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 10% 10%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 10% 12%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 10% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 130 100% 50%; /* Electric Green */
+    --primary-foreground: 220 10% 10%;
+
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 220 10% 20%;
+    --muted-foreground: 210 20% 75%;
+
+    --accent: 220 10% 30%;
+    --accent-foreground: 210 20% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 10% 30%;
+    --input: 220 10% 30%;
+    --ring: 130 100% 50%;
+
+    --radius: 0rem; /* No border radius for brutalist style */
+  }
+
+  .dark {
+    /* Same as root for a forced dark theme */
+    --background: 220 10% 10%;
+    --foreground: 210 20% 95%;
+    --card: 220 10% 12%;
+    --card-foreground: 210 20% 95%;
+    --popover: 220 10% 10%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 130 100% 50%;
+    --primary-foreground: 220 10% 10%;
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 210 20% 95%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 210 20% 75%;
+    --accent: 220 10% 30%;
+    --accent-foreground: 210 20% 95%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 10% 30%;
+    --input: 220 10% 30%;
+    --ring: 130 100% 50%;
+    --radius: 0rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+}
