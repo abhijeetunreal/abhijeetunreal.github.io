@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -110,6 +110,9 @@ const FluidMaterial = shaderMaterial(
     }
   `
 );
+
+// We need to tell react-three-fiber about our custom material
+extend({ FluidMaterial });
 
 const FluidSphere = () => {
   const materialRef = useRef<any>();
