@@ -43,11 +43,24 @@ const FluidSphere = () => {
       }
       const originalPos = geometry.userData.originalPositions as THREE.BufferAttribute;
 
+      const cameraPosition = state.camera.position;
+      const normalMatrix = new THREE.Matrix3().getNormalMatrix(meshRef.current.matrixWorld);
+
       for (let i = 0; i < positions.count; i++) {
         const p = new THREE.Vector3().fromBufferAttribute(originalPos, i);
+        const pWorld = p.clone().applyMatrix4(meshRef.current.matrixWorld);
+        
+        const viewVector = new THREE.Vector3().subVectors(cameraPosition, pWorld).normalize();
+        
         const normal = new THREE.Vector3().fromBufferAttribute(originalPos, i).normalize();
-        const noise = Math.sin(p.x * 4 + time * 1.5) * Math.cos(p.y * 4 + time * 1.5) * 0.05;
-        p.addScaledVector(normal, noise);
+        const worldNormal = normal.clone().applyMatrix3(normalMatrix).normalize();
+        
+        const dotProduct = worldNormal.dot(viewVector);
+        const edgeFactor = Math.pow(1.0 - Math.abs(dotProduct), 3.0);
+        
+        const noise = Math.sin(p.x * 8 + time * 2.5) * Math.cos(p.y * 4 + time * 2.5) * 0.15;
+        
+        p.addScaledVector(normal, noise * edgeFactor);
         positions.setXYZ(i, p.x, p.y, p.z);
       }
       geometry.attributes.position.needsUpdate = true;
