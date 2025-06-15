@@ -1,18 +1,7 @@
-
-import React, { useRef, useEffect, Suspense } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
+import React, { useRef, useEffect, Suspense, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { ShaderMaterialProps } from '@react-three/fiber';
-
-// Add the type to JSX.IntrinsicElements to fix the TypeScript error.
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      lensMaterial: ShaderMaterialProps & { transparent?: boolean };
-    }
-  }
-}
 
 const LensMaterial = shaderMaterial(
   // Uniforms
@@ -51,12 +40,10 @@ const LensMaterial = shaderMaterial(
   `
 );
 
-// Extend Three.js to include our custom material
-extend({ LensMaterial });
-
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
+  const material = useMemo(() => new LensMaterial({ transparent: true }), []);
 
   useEffect(() => {
     const updateMousePosition = (ev: PointerEvent) => {
@@ -110,9 +97,9 @@ const FluidSphere = () => {
     <mesh
       ref={meshRef}
       scale={1.5}
+      material={material}
     >
       <sphereGeometry args={[0.5, 128, 128]} />
-      <lensMaterial transparent />
     </mesh>
   );
 };
