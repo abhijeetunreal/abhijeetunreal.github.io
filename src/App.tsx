@@ -13,10 +13,10 @@ const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add('light');
     document.body.classList.add('bg-background');
     return () => {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('light');
       document.body.classList.remove('bg-background');
     };
   }, []);

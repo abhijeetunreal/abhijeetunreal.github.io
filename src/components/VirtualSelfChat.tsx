@@ -87,7 +87,7 @@ const VirtualSelfChat = ({ projects }: VirtualSelfChatProps) => {
     };
 
     return (
-        <div className="bg-black/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 flex flex-col h-[60vh] max-h-[500px]">
+        <div className="bg-card/20 backdrop-blur-md border border-foreground/10 rounded-3xl p-6 flex flex-col h-[60vh] max-h-[500px]">
             <div className="flex justify-center items-center gap-2 mb-4">
                 <Brain className="h-5 w-5 text-muted-foreground" />
                 <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
