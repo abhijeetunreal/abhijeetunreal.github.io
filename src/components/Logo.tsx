@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { Environment } from '@react-three/drei';
 
 const FluidSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -61,10 +62,13 @@ const FluidSphere = () => {
     >
       <sphereGeometry args={[0.5, 128, 128]} />
       <meshPhysicalMaterial
+        metalness={0}
         roughness={0}
         transmission={1.0}
-        thickness={0.7}
-        ior={1.5}
+        thickness={1.5}
+        ior={2.33}
+        clearcoat={1}
+        clearcoatRoughness={0}
        />
     </mesh>
   );
@@ -78,6 +82,7 @@ const Logo = () => {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
           <FluidSphere />
+          <Environment preset="city" />
         </Suspense>
       </Canvas>
     </div>
