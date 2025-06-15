@@ -6,20 +6,44 @@ const Logo = () => (
         <svg
             width="80"
             height="80"
-            viewBox="0 0 60 60"
+            viewBox="0 0 100 100"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="text-primary animate-pulse"
         >
-            <path
-                d="M30 0 L60 30 L30 60 L0 30 Z"
-                stroke="currentColor"
-                strokeWidth="3"
-            />
-            <path
-                d="M30 15 L45 30 L30 45 L15 30 Z"
-                fill="currentColor"
-            />
+            <defs>
+                <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" />
+                    <stop offset="100%" stopColor="hsl(var(--accent))" />
+                </linearGradient>
+                <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" />
+                    <stop offset="100%" stopColor="hsl(var(--secondary))" />
+                </linearGradient>
+                 <linearGradient id="g3" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" />
+                    <stop offset="100%" stopColor="hsl(var(--muted))" />
+                </linearGradient>
+            </defs>
+            <style>
+                {`
+                    @keyframes draw {
+                        to {
+                            stroke-dashoffset: 0;
+                        }
+                    }
+                    .circle {
+                        stroke-dasharray: 300;
+                        stroke-dashoffset: 300;
+                        animation: draw 6s ease-in-out infinite alternate;
+                    }
+                    .c1 { animation-delay: 0s; }
+                    .c2 { animation-delay: -2s; }
+                    .c3 { animation-delay: -4s; }
+                `}
+            </style>
+            <circle className="circle c1" cx="50" cy="50" r="45" stroke="url(#g1)" strokeWidth="2" />
+            <circle className="circle c2" cx="50" cy="50" r="35" stroke="url(#g2)" strokeWidth="2" />
+            <circle className="circle c3" cx="50" cy="50" r="25" stroke="url(#g3)" strokeWidth="2" />
         </svg>
     </div>
 );
