@@ -25,7 +25,7 @@ const Logo = () => (
                 </linearGradient>
                 <filter id="distortion">
                     <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="0">
-                         <animate attributeName="baseFrequency" dur="15s" values="0.02;0.005;0.02" repeatCount="indefinite" />
+                         <animate attributeName="baseFrequency" dur="25s" values="0.02;0.01;0.005;0.015;0.02" repeatCount="indefinite" />
                     </feTurbulence>
                     <feDisplacementMap in="SourceGraphic" scale="3" />
                 </filter>
@@ -40,7 +40,7 @@ const Logo = () => (
                     .circle {
                         stroke-dasharray: 300;
                         stroke-dashoffset: 300;
-                        animation: draw 6s ease-in-out infinite alternate;
+                        animation: draw 6s linear infinite alternate;
                     }
                     .c1 { animation-delay: 0s; }
                     .c2 { animation-delay: -2s; }
