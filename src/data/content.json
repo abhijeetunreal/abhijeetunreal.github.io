@@ -1,6 +1,6 @@
 
 {
-  "name": "YOUR NAME",
+  "name": "ABHIJEET",
   "navLinks": [
     { "label": "[WORK]", "href": "/#work" },
     { "label": "[ABOUT]", "href": "/#about" },
@@ -39,7 +39,7 @@
   },
   "workedWith": {
       "title": "[PREVIOUSLY WORKED WITH]",
-      "companies": ["Google", "Microsoft", "Apple", "Amazon", "Meta", "Netflix", "Spotify", "OpenAI"]
+      "companies": ["CodeFryDev", "Airbus", "Lost Pixels"]
   },
   "projects": [
     {
