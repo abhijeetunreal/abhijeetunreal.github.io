@@ -6,6 +6,7 @@ import { Environment } from '@react-three/drei';
 const FluidSphere = ({ isDark }: { isDark: boolean }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
+  const lastGeomUpdate = useRef(0);
 
   useEffect(() => {
     const updateMousePosition = (ev: PointerEvent) => {
@@ -19,48 +20,46 @@ const FluidSphere = ({ isDark }: { isDark: boolean }) => {
 
   const vec = new THREE.Vector3();
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
+    // Smooth position update based on delta
     if (meshRef.current) {
       const x = (mousePosition.current.x / state.size.width) * 2 - 1;
       const y = -(mousePosition.current.y / state.size.height) * 2 + 1;
-
       vec.set(
         (x * state.viewport.width) / 2,
         (y * state.viewport.height) / 2,
         0
       );
-      meshRef.current.position.lerp(vec, 0.1);
-
-      const time = state.clock.getElapsedTime();
-
+      // Use delta for smooth interpolation
+      meshRef.current.position.lerp(vec, Math.min(1, delta * 6));
       meshRef.current.scale.set(1.5, 1.5, 1.5);
+    }
 
+    // Geometry update at lower frequency (e.g., 20 FPS)
+    const now = state.clock.getElapsedTime();
+    if (now - lastGeomUpdate.current < 1 / 20) return;
+    lastGeomUpdate.current = now;
+
+    if (meshRef.current) {
+      const time = state.clock.getElapsedTime();
       const geometry = meshRef.current.geometry;
       const positions = geometry.attributes.position as THREE.BufferAttribute;
-
       if (!geometry.userData.originalPositions) {
-          geometry.userData.originalPositions = positions.clone();
+        geometry.userData.originalPositions = positions.clone();
       }
       const originalPos = geometry.userData.originalPositions as THREE.BufferAttribute;
-
       const cameraPosition = state.camera.position;
       const normalMatrix = new THREE.Matrix3().getNormalMatrix(meshRef.current.matrixWorld);
-
       for (let i = 0; i < positions.count; i++) {
         const p = new THREE.Vector3().fromBufferAttribute(originalPos, i);
         const pWorld = p.clone().applyMatrix4(meshRef.current.matrixWorld);
-
         const viewVector = new THREE.Vector3().subVectors(cameraPosition, pWorld).normalize();
-
         const normal = new THREE.Vector3().fromBufferAttribute(originalPos, i).normalize();
         const worldNormal = normal.clone().applyMatrix3(normalMatrix).normalize();
-
         const dotProduct = worldNormal.dot(viewVector);
         const edgeFactor = Math.pow(1.0 - Math.abs(dotProduct), 3.0);
-
         // Reduced the distortion by lowering the noise multiplier
         const noise = Math.sin(p.x * 8 + time * 0.8) * Math.cos(p.y * 4 + time * 0.8) * 0.05;
-
         p.addScaledVector(normal, noise * edgeFactor);
         positions.setXYZ(i, p.x, p.y, p.z);
       }
@@ -74,7 +73,7 @@ const FluidSphere = ({ isDark }: { isDark: boolean }) => {
       ref={meshRef}
       scale={1.5}
     >
-      <sphereGeometry args={[0.5, 48, 48]} />
+      <sphereGeometry args={[0.5, 48, 54]} />
       <meshPhysicalMaterial
         color={isDark ? '#9c9a9a' : '#e0e0e0'}
         metalness={1}
