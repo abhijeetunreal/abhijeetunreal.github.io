@@ -34,19 +34,37 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                     <div className="space-y-6 text-lg text-muted-foreground">
                         <p>{project.fullDescription}</p>
                         
-                        <div className="aspect-video bg-muted rounded-lg my-12 flex items-center justify-center">
-                            <p className="text-muted-foreground">[Project Image/Visual]</p>
-                        </div>
-
                         <h3 className="text-2xl font-bold text-foreground pt-8">[DESIGN PROCESS]</h3>
                         <p>{project.designProcess}</p>
                         
-                        <div className="aspect-video bg-muted rounded-lg my-12 flex items-center justify-center">
-                            <p className="text-muted-foreground">[Another Project Image/Visual]</p>
-                        </div>
-
                         <h3 className="text-2xl font-bold text-foreground pt-8">[TECHNICAL DETAILS]</h3>
                         <p>{project.technicalDetails}</p>
+
+                        {project.sections && project.sections.length > 0 && (
+                            <>
+                                <h3 className="text-2xl font-bold text-foreground pt-8">[PROJECT SHOWCASE]</h3>
+                                <div className="space-y-8">
+                                    {project.sections.map((section, index) => (
+                                        <div key={index}>
+                                            {section.type === 'image' && section.src && (
+                                                <div className="rounded-lg overflow-hidden">
+                                                    <img 
+                                                        src={section.src} 
+                                                        alt={section.alt || `Project image ${index + 1}`}
+                                                        className="w-full h-auto object-cover"
+                                                    />
+                                                </div>
+                                            )}
+                                            {section.type === 'paragraph' && section.content && (
+                                                <p className="text-muted-foreground leading-relaxed">
+                                                    {section.content}
+                                                </p>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </main>

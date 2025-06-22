@@ -1,15 +1,25 @@
+
 export interface NavLink {
     label: string;
     href: string;
+}
+
+export interface ProjectSection {
+    type: 'image' | 'paragraph';
+    src?: string;
+    alt?: string;
+    content?: string;
 }
 
 export interface Project {
     title: string;
     description: string;
     tags: string[];
+    cardImage?: string;
     fullDescription: string;
     designProcess: string;
     technicalDetails: string;
+    sections?: ProjectSection[];
 }
 
 export interface Philosophy {

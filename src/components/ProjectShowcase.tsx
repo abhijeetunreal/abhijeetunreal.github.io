@@ -55,7 +55,15 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
             key={project.title} 
             className="block hover:no-underline group cursor-pointer"
           >
-            <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors" style={{ animationDelay: `${index * 100}ms` }}>
+            <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
+              {project.cardImage && (
+                <div 
+                  className="h-48 bg-cover bg-center relative"
+                  style={{ backgroundImage: `url(${project.cardImage})` }}
+                >
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                </div>
+              )}
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>
