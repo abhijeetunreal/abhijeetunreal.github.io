@@ -1,5 +1,4 @@
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -17,6 +16,7 @@ const PROJECTS_TO_SHOW_INITIALLY = 6;
 const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcaseProps) => {
   const [activeTag, setActiveTag] = useState<string>('All');
   const [isExpanded, setIsExpanded] = useState(false);
+  const tagScrollRef = useRef<HTMLDivElement>(null);
 
   const filteredProjects = useMemo(() => {
     if (activeTag === 'All') {
@@ -32,17 +32,75 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     return filteredProjects.slice(0, PROJECTS_TO_SHOW_INITIALLY);
   }, [isExpanded, filteredProjects]);
 
-  const allTagsWithAll = ['All', ...tags];
+  const allTagsWithAll = useMemo(() => ['All', ...tags], [tags]);
+
+  useEffect(() => {
+    const el = tagScrollRef.current;
+    if (!el) return;
+
+    let animationFrame: number;
+    let startTime: number | null = null;
+    let startScroll: number = 0;
+    let targetScroll: number = 0;
+    let duration: number = 600; // ms, adjust for more/less inertia
+    let isAnimating = false;
+
+    function easeOutCubic(t: number) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    const animate = (timestamp: number) => {
+      if (startTime === null) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = easeOutCubic(progress);
+      el.scrollLeft = startScroll + (targetScroll - startScroll) * ease;
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        isAnimating = false;
+        startTime = null;
+      }
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (el.scrollWidth > el.clientWidth && e.deltaY !== 0) {
+        e.preventDefault();
+        if (isAnimating) {
+          // If animating, use current scroll as new start
+          startScroll = el.scrollLeft;
+          targetScroll += e.deltaY * 2; // adjust multiplier for sensitivity
+        } else {
+          startScroll = el.scrollLeft;
+          targetScroll = el.scrollLeft + e.deltaY * 2;
+        }
+        targetScroll = Math.max(0, Math.min(targetScroll, el.scrollWidth - el.clientWidth));
+        startTime = null;
+        isAnimating = true;
+        cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+      cancelAnimationFrame(animationFrame);
+    };
+  }, []);
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+      <div
+        ref={tagScrollRef}
+        className="flex items-center gap-2 mb-8 overflow-x-auto hide-scrollbar px-2 -mx-2 whitespace-nowrap"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+      >
         {allTagsWithAll.map(tag => (
           <Button
             key={tag}
             variant={activeTag === tag ? 'default' : 'outline'}
             onClick={() => setActiveTag(tag)}
-            className="rounded-full px-4 py-2 text-sm"
+            className="rounded-full px-4 py-2 text-sm mx-1 whitespace-nowrap"
           >
             {tag}
           </Button>

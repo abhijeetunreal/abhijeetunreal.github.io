@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -109,5 +108,21 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Hide horizontal scrollbar for elements with .hide-scrollbar */
+  .hide-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scroll-behavior: smooth; /* Smooth scrolling */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    height: 8px;
+    background: transparent;
+    opacity: 0;
+  }
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    opacity: 0;
   }
 }

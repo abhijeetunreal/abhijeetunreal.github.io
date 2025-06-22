@@ -1,10 +1,10 @@
-
 import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
 import ProjectShowcase from '@/components/ProjectShowcase';
 import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
+import { useEffect } from 'react';
 
 interface IndexProps {
   onSelectProject: (slug: string) => void;
@@ -14,6 +14,14 @@ interface IndexProps {
 const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
   const { hero, work, about, workedWith, projects, contactLinks } = content;
   const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
+
+  useEffect(() => {
+    // Set light mode as default
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
 
   return (
     <div className="text-foreground min-h-screen font-mono">
