@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Environment } from '@react-three/drei';
 
-const FluidSphere = ({ isDark }: { isDark: boolean }) => {
+const FluidSphere = React.memo(({ isDark }: { isDark: boolean }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosition = useRef({ x: 0, y: 0 });
   const lastGeomUpdate = useRef(0);
@@ -86,7 +86,7 @@ const FluidSphere = ({ isDark }: { isDark: boolean }) => {
       />
     </mesh>
   );
-};
+});
 
 // Add support for both HDRI and image environments
 const getEnvType = (url?: string) => {
@@ -97,7 +97,7 @@ const getEnvType = (url?: string) => {
   return null;
 };
 
-const Logo = ({ customEnvLink }: { customEnvLink?: string }) => {
+const Logo = React.memo(({ customEnvLink }: { customEnvLink?: string }) => {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return document.documentElement.classList.contains('dark');
@@ -146,6 +146,6 @@ const Logo = ({ customEnvLink }: { customEnvLink?: string }) => {
       </Canvas>
     </div>
   );
-};
+});
 
 export default Logo;

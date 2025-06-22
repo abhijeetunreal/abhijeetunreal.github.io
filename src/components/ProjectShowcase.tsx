@@ -38,6 +38,18 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     const el = tagScrollRef.current;
     if (!el) return;
 
+    // Preload all images in the project cards for smoother experience
+    const preloadImages = () => {
+      const images = Array.from(document.querySelectorAll('.project-card-image'));
+      images.forEach((img: any) => {
+        if (img && img.dataset.src) {
+          const image = new window.Image();
+          image.src = img.dataset.src;
+        }
+      });
+    };
+    setTimeout(preloadImages, 0);
+
     let animationFrame: number;
     let startTime: number | null = null;
     let startScroll: number = 0;
@@ -88,6 +100,41 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     };
   }, []);
 
+  // Memoized Badge for tags
+  const MemoBadge = React.memo(Badge);
+
+  // Memoized ProjectCard component for performance
+  const ProjectCard = React.memo(({ project, onSelectProject, index }: { project: Project, onSelectProject: (slug: string) => void, index: number }) => (
+    <div
+      onClick={() => onSelectProject(slugify(project.title))}
+      className="block hover:no-underline group cursor-pointer"
+      key={project.title}
+    >
+      <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
+        {project.cardImage && (
+          <div
+            className="h-48 bg-cover bg-center relative project-card-image"
+            style={{ backgroundImage: `url(${project.cardImage})` }}
+            data-src={project.cardImage}
+          >
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+          </div>
+        )}
+        <CardHeader>
+          <CardTitle>{project.title}</CardTitle>
+          <CardDescription>{project.description}</CardDescription>
+        </CardHeader>
+        <CardContent className="mt-auto pt-4">
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map(tag => (
+              <MemoBadge key={tag} variant="secondary">{tag}</MemoBadge>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ));
+
   return (
     <div>
       <div
@@ -108,33 +155,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projectsToShow.map((project, index) => (
-          <div 
-            onClick={() => onSelectProject(slugify(project.title))} 
-            key={project.title} 
-            className="block hover:no-underline group cursor-pointer"
-          >
-            <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
-              {project.cardImage && (
-                <div 
-                  className="h-48 bg-cover bg-center relative"
-                  style={{ backgroundImage: `url(${project.cardImage})` }}
-                >
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                </div>
-              )}
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto pt-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <Badge key={tag} variant="secondary">{tag}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <ProjectCard project={project} onSelectProject={onSelectProject} index={index} key={project.title} />
         ))}
       </div>
       {filteredProjects.length > PROJECTS_TO_SHOW_INITIALLY && (
