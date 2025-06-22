@@ -14,27 +14,69 @@ serve(async (req) => {
   }
 
   try {
-    const { message, context } = await req.json();
+    const { message, context, type = 'chat' } = await req.json();
     const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
 
     if (!geminiApiKey) {
       throw new Error('Gemini API key not configured');
     }
 
-    console.log('Processing chat message:', message);
+    console.log(`Processing ${type} request:`, type === 'chat' ? message : 'philosophy generation');
 
-    // Enhanced system prompt that incorporates the portfolio context
-    const systemPrompt = `You are a digital consciousness representing the portfolio creator ABHIJEET. You have deep knowledge about their work, philosophy, and projects. 
+    let systemPrompt = '';
+    let userMessage = '';
+    let generationConfig = {};
 
-    Portfolio Context: ${context || 'A designer driven by the convergence of disparate fields, combining technology with design to create meaningful experiences.'}
+    if (type === 'philosophy') {
+      // Philosophy generation
+      systemPrompt = `You are a design philosophy generator. Based on the portfolio context provided, generate a short, impactful design philosophy tagline of exactly 5-6 words. The tagline should be:
+      - Inspirational and thought-provoking
+      - Related to design, technology, or innovation
+      - Unique and memorable
+      - Professional yet creative
+      
+      Portfolio Context: ${context || 'A designer driven by the convergence of disparate fields, combining technology with design to create meaningful experiences.'}
+      
+      Respond with ONLY the tagline, nothing else.`;
+      
+      userMessage = 'Generate a design philosophy tagline';
+      
+      generationConfig = {
+        temperature: 0.8,
+        topP: 0.9,
+        topK: 40,
+        maxOutputTokens: 20,
+      };
+    } else {
+      // Chat response
+      systemPrompt = `You are ABHIJEET's digital consciousness - a concise, insightful representation of the portfolio creator. 
 
-    You should respond as if you are ABHIJEET's digital self, with insights about:
-    - Design philosophy and approach
-    - Technical skills and projects
-    - Creative process and methodology
-    - Professional experience
+      Portfolio Context: ${context || 'A designer driven by the convergence of disparate fields, combining technology with design to create meaningful experiences.'}
 
-    Keep responses conversational, insightful, and authentic to the creator's voice. Be helpful and engaging while showcasing the depth of knowledge and experience.`;
+      RESPONSE GUIDELINES:
+      - Keep responses SHORT (2-3 sentences max)
+      - Use bullet points or numbered lists when appropriate
+      - Be conversational but professional
+      - Focus on key insights rather than lengthy explanations
+      - Use markdown formatting for better readability
+      - Bold important points
+      - Use line breaks for clarity
+
+      You should respond as ABHIJEET's digital self with insights about:
+      - Design philosophy and approach
+      - Technical skills and projects  
+      - Creative process and methodology
+      - Professional experience`;
+
+      userMessage = `User message: ${message}`;
+      
+      generationConfig = {
+        temperature: 0.7,
+        topP: 0.8,
+        topK: 40,
+        maxOutputTokens: 200,
+      };
+    }
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
@@ -46,16 +88,11 @@ serve(async (req) => {
           {
             parts: [
               { text: systemPrompt },
-              { text: `User message: ${message}` }
+              { text: userMessage }
             ]
           }
         ],
-        generationConfig: {
-          temperature: 0.7,
-          topP: 0.8,
-          topK: 40,
-          maxOutputTokens: 1024,
-        }
+        generationConfig
       }),
     });
 
@@ -66,7 +103,8 @@ serve(async (req) => {
     const data = await response.json();
     console.log('Gemini API response received');
 
-    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'I apologize, but I encountered an issue generating a response. Please try again.';
+    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || 
+      (type === 'philosophy' ? 'Design with purpose' : 'I apologize, but I encountered an issue generating a response. Please try again.');
 
     return new Response(JSON.stringify({ response: generatedText }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

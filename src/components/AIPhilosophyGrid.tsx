@@ -1,9 +1,10 @@
 
 import React, { useState, useCallback } from 'react';
-import { generatePhilosophy } from '@/lib/ai';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import content from '@/data/content.json';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 type CellState = {
   content: string | null;
@@ -12,6 +13,62 @@ type CellState = {
 
 const AIPhilosophyGrid = () => {
   const [cells, setCells] = useState<CellState[]>(() => Array(16).fill({ content: null, isLoading: false }));
+  const { toast } = useToast();
+
+  const createPortfolioContext = () => {
+    return `
+        About: ${content.about.paragraph1}
+        
+        Projects: ${content.projects.map(p => `${p.title}: ${p.description} (Skills: ${p.tags.join(', ')})`).join('; ')}
+        
+        Design Philosophy: ${content.about.paragraph2}
+        
+        Companies worked with: ${content.workedWith.companies.join(', ')}
+    `;
+  };
+
+  const generatePhilosophy = async (): Promise<string> => {
+    try {
+      console.log('Generating AI philosophy through Supabase Edge Function...');
+
+      const { data, error } = await supabase.functions.invoke('gemini-chat', {
+        body: { 
+          context: createPortfolioContext(),
+          type: 'philosophy'
+        }
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw new Error(error.message || 'Failed to generate philosophy');
+      }
+
+      if (data?.error) {
+        console.error('Gemini API error:', data.error);
+        throw new Error(data.error);
+      }
+
+      return data?.response || 'Design with purpose';
+
+    } catch (error) {
+      console.error('Error generating philosophy:', error);
+      toast({
+        title: "Philosophy Generation Error",
+        description: "Failed to generate philosophy. Please try again.",
+        variant: "destructive",
+      });
+      
+      // Fallback philosophies
+      const fallbacks = [
+        'Design with purpose',
+        'Innovation through convergence',
+        'Technology meets humanity',
+        'Create meaningful experiences',
+        'Build bridges, not walls'
+      ];
+      return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+    }
+  };
 
   const handleClick = useCallback(async (index: number) => {
     if (cells[index].isLoading || cells[index].content) return;
@@ -23,7 +80,7 @@ const AIPhilosophyGrid = () => {
     });
 
     try {
-      const philosophy = await generatePhilosophy(content.aiPhilosophy);
+      const philosophy = await generatePhilosophy();
       
       setCells(prevCells => {
         const newCells = [...prevCells];
@@ -34,11 +91,11 @@ const AIPhilosophyGrid = () => {
       console.error("Failed to generate philosophy:", error);
       setCells(prevCells => {
         const newCells = [...prevCells];
-        newCells[index] = { content: 'Error generating.', isLoading: false };
+        newCells[index] = { content: 'Design with purpose', isLoading: false };
         return newCells;
       });
     }
-  }, [cells]);
+  }, [cells, toast]);
 
   return (
     <div className="grid grid-cols-4 grid-rows-4 aspect-square border-2 border-border gap-px bg-border">
@@ -56,7 +113,7 @@ const AIPhilosophyGrid = () => {
           {cell.isLoading ? (
             <Skeleton className="w-full h-8" />
           ) : cell.content ? (
-            <p className="text-primary font-bold animate-fade-in text-xs md:text-sm">
+            <p className="text-primary font-bold animate-fade-in text-xs md:text-sm leading-tight">
               {cell.content}
             </p>
           ) : (

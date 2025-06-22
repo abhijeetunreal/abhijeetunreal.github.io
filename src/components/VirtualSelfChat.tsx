@@ -31,25 +31,27 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
         }
     }, [messages, isTyping]);
 
+    const createPortfolioContext = () => {
+        return `
+            About: ${content.about.paragraph1}
+            
+            Projects: ${projects.map(p => `${p.title}: ${p.description} (Skills: ${p.tags.join(', ')})`).join('; ')}
+            
+            Design Philosophy: ${content.about.paragraph2}
+            
+            Companies worked with: ${content.workedWith.companies.join(', ')}
+        `;
+    };
+
     const generateAiResponse = async (message: string): Promise<string> => {
         try {
             console.log('Calling Gemini API through Supabase Edge Function...');
-            
-            // Create context from portfolio data
-            const portfolioContext = `
-                About: ${content.about.paragraph1}
-                
-                Projects: ${projects.map(p => `${p.title}: ${p.description} (Skills: ${p.tags.join(', ')})`).join('; ')}
-                
-                Design Philosophy: ${content.about.paragraph2}
-                
-                Companies worked with: ${content.workedWith.companies.join(', ')}
-            `;
 
             const { data, error } = await supabase.functions.invoke('gemini-chat', {
                 body: { 
                     message: message,
-                    context: portfolioContext
+                    context: createPortfolioContext(),
+                    type: 'chat'
                 }
             });
 
@@ -73,7 +75,6 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 variant: "destructive",
             });
             
-            // Fallback to a basic response
             return "I'm experiencing some technical difficulties right now. Please try asking your question again, or feel free to explore the portfolio to learn more about my work and experience.";
         }
     };
@@ -114,7 +115,11 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`rounded-lg px-4 py-2 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                           {msg.text}
+                           <div className="prose prose-sm max-w-none dark:prose-invert" 
+                                dangerouslySetInnerHTML={{ 
+                                    __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                    .replace(/\n/g, '<br/>') 
+                                }} />
                         </div>
                     </div>
                 ))}
