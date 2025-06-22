@@ -1,48 +1,17 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Brain, Send } from 'lucide-react';
 import content from '@/data/content.json';
 import { Project } from '@/types/content';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 type Message = {
     sender: 'user' | 'ai';
     text: string;
 }
-
-const generateAiResponse = (message: string, projects: Project[]): string => {
-    const lowerCaseMessage = message.toLowerCase();
-
-    if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
-        return "Hello! I'm a virtual version of this portfolio's creator. You can ask me about their work, skills, or design philosophy.";
-    }
-
-    if (lowerCaseMessage.includes('project') || lowerCaseMessage.includes('work')) {
-        const projectList = projects.map(p => p.title).join(', ');
-        return `I've worked on several projects like ${projectList}. Which one would you like to know more about?`;
-    }
-    
-    const projectMentioned = projects.find(p => lowerCaseMessage.includes(p.title.toLowerCase().replace('project ','')));
-    if (projectMentioned) {
-        return `${projectMentioned.title}: ${projectMentioned.fullDescription}. It involves skills like ${projectMentioned.tags.join(', ')}.`;
-    }
-
-    if (lowerCaseMessage.includes('about') || lowerCaseMessage.includes('who are you')) {
-        return content.about.paragraph1;
-    }
-
-    if (lowerCaseMessage.includes('contact')) {
-        return "You can find contact links like Email, LinkedIn, and GitHub at the bottom of the page.";
-    }
-
-    if (lowerCaseMessage.includes('skill') || lowerCaseMessage.includes('tech')) {
-         const allTags = [...new Set(projects.flatMap((p) => p.tags))];
-         return `I have experience with various technologies and design principles, including: ${allTags.join(', ')}.`;
-    }
-
-    return "That's an interesting question. My knowledge is based on the projects and information on this site. Could you ask me something about the work you see here?";
-}
-
 
 const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const [messages, setMessages] = useState<Message[]>([
@@ -51,6 +20,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const scrollContainerRef = useRef<null | HTMLDivElement>(null);
+    const { toast } = useToast();
 
     useEffect(() => {
         if (scrollContainerRef.current) {
@@ -61,22 +31,77 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
         }
     }, [messages, isTyping]);
 
+    const generateAiResponse = async (message: string): Promise<string> => {
+        try {
+            console.log('Calling Gemini API through Supabase Edge Function...');
+            
+            // Create context from portfolio data
+            const portfolioContext = `
+                About: ${content.about.paragraph1}
+                
+                Projects: ${projects.map(p => `${p.title}: ${p.description} (Skills: ${p.tags.join(', ')})`).join('; ')}
+                
+                Design Philosophy: ${content.about.paragraph2}
+                
+                Companies worked with: ${content.workedWith.companies.join(', ')}
+            `;
 
-    const handleSubmit = (e: React.FormEvent) => {
+            const { data, error } = await supabase.functions.invoke('gemini-chat', {
+                body: { 
+                    message: message,
+                    context: portfolioContext
+                }
+            });
+
+            if (error) {
+                console.error('Supabase function error:', error);
+                throw new Error(error.message || 'Failed to get AI response');
+            }
+
+            if (data?.error) {
+                console.error('Gemini API error:', data.error);
+                throw new Error(data.error);
+            }
+
+            return data?.response || 'I apologize, but I encountered an issue. Please try again.';
+
+        } catch (error) {
+            console.error('Error generating AI response:', error);
+            toast({
+                title: "AI Response Error",
+                description: "Failed to get AI response. Please try again.",
+                variant: "destructive",
+            });
+            
+            // Fallback to a basic response
+            return "I'm experiencing some technical difficulties right now. Please try asking your question again, or feel free to explore the portfolio to learn more about my work and experience.";
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!inputValue.trim() || isTyping) return;
 
         const userMessage: Message = { sender: 'user', text: inputValue };
         setMessages(prev => [...prev, userMessage]);
+        const currentInput = inputValue;
         setInputValue('');
         setIsTyping(true);
 
-        setTimeout(() => {
-            const aiResponseText = generateAiResponse(inputValue, projects);
+        try {
+            const aiResponseText = await generateAiResponse(currentInput);
             const aiMessage: Message = { sender: 'ai', text: aiResponseText };
             setMessages(prev => [...prev, aiMessage]);
+        } catch (error) {
+            console.error('Chat error:', error);
+            const errorMessage: Message = { 
+                sender: 'ai', 
+                text: "I'm having trouble connecting right now. Please try again in a moment." 
+            };
+            setMessages(prev => [...prev, errorMessage]);
+        } finally {
             setIsTyping(false);
-        }, 1200); // Simulate thinking time
+        }
     };
 
     return (
@@ -96,7 +121,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 {isTyping && (
                     <div className="flex justify-start">
                          <div className="rounded-lg px-4 py-2 bg-muted">
-                            <span className="animate-pulse">...</span>
+                            <span className="animate-pulse">Thinking...</span>
                         </div>
                     </div>
                 )}
@@ -110,7 +135,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                     disabled={isTyping}
                     className="flex-grow"
                 />
-                <Button type="submit" size="icon" disabled={isTyping}>
+                <Button type="submit" size="icon" disabled={isTyping || !inputValue.trim()}>
                     <Send className="h-4 w-4" />
                 </Button>
             </form>
