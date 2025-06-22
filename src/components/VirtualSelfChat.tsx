@@ -14,11 +14,10 @@ type Message = {
 }
 
 const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
-    const [messages, setMessages] = useState<Message[]>([
-        { sender: 'ai', text: content.aiChat.greeting }
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [isFirstInteraction, setIsFirstInteraction] = useState(true);
     const scrollContainerRef = useRef<null | HTMLDivElement>(null);
     const { toast } = useToast();
 
@@ -51,7 +50,8 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 body: { 
                     message: message,
                     context: createPortfolioContext(),
-                    type: 'chat'
+                    type: 'chat',
+                    conversationHistory: messages
                 }
             });
 
@@ -93,6 +93,10 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
             const aiResponseText = await generateAiResponse(currentInput);
             const aiMessage: Message = { sender: 'ai', text: aiResponseText };
             setMessages(prev => [...prev, aiMessage]);
+            
+            if (isFirstInteraction) {
+                setIsFirstInteraction(false);
+            }
         } catch (error) {
             console.error('Chat error:', error);
             const errorMessage: Message = { 

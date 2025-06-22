@@ -27,14 +27,15 @@ const AIPhilosophyGrid = () => {
     `;
   };
 
-  const generatePhilosophy = async (): Promise<string> => {
+  const generatePhilosophy = async (cellIndex: number): Promise<string> => {
     try {
-      console.log('Generating AI philosophy through Supabase Edge Function...');
+      console.log(`Generating AI philosophy for cell ${cellIndex} through Supabase Edge Function...`);
 
       const { data, error } = await supabase.functions.invoke('gemini-chat', {
         body: { 
           context: createPortfolioContext(),
-          type: 'philosophy'
+          type: 'philosophy',
+          philosophyIndex: cellIndex
         }
       });
 
@@ -58,15 +59,26 @@ const AIPhilosophyGrid = () => {
         variant: "destructive",
       });
       
-      // Fallback philosophies
+      // Diverse fallback philosophies based on cell index
       const fallbacks = [
         'Design with purpose',
-        'Innovation through convergence',
-        'Technology meets humanity',
-        'Create meaningful experiences',
-        'Build bridges, not walls'
+        'Code bridges human gaps',
+        'Technology serves stories',
+        'Innovation through empathy',
+        'Human-centered creation',
+        'Digital experiences matter',
+        'Design thinking evolves',
+        'Technology amplifies humanity',
+        'Creative problem solving',
+        'Accessible design principles',
+        'Data-driven aesthetics',
+        'Cross-platform harmony',
+        'Sustainable design future',
+        'Experimental interaction design',
+        'Collaborative innovation',
+        'Meaningful digital craft'
       ];
-      return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+      return fallbacks[cellIndex % fallbacks.length];
     }
   };
 
@@ -80,7 +92,7 @@ const AIPhilosophyGrid = () => {
     });
 
     try {
-      const philosophy = await generatePhilosophy();
+      const philosophy = await generatePhilosophy(index);
       
       setCells(prevCells => {
         const newCells = [...prevCells];
