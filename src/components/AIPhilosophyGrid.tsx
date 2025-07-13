@@ -1,10 +1,9 @@
-
 import React, { useState, useCallback } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import content from '@/data/content.json';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { generateChatResponse } from '@/lib/gemini-client';
 
 type CellState = {
   content: string | null;
@@ -29,27 +28,18 @@ const AIPhilosophyGrid = () => {
 
   const generatePhilosophy = async (cellIndex: number): Promise<string> => {
     try {
-      console.log(`Generating AI philosophy for cell ${cellIndex} through Supabase Edge Function...`);
+      const context = createPortfolioContext();
+      const prompt = `
+        Context about me and my work: ${context}
+        
+        Based on this context, generate a short, impactful design/development philosophy statement (2-6 words).
+        Make it unique and different from other philosophies. This is philosophy number ${cellIndex + 1} out of 16.
+        The statement should reflect my approach to technology and design.
+        
+        Return only the philosophy statement, nothing else.`;
 
-      const { data, error } = await supabase.functions.invoke('gemini-chat', {
-        body: { 
-          context: createPortfolioContext(),
-          type: 'philosophy',
-          philosophyIndex: cellIndex
-        }
-      });
-
-      if (error) {
-        console.error('Supabase function error:', error);
-        throw new Error(error.message || 'Failed to generate philosophy');
-      }
-
-      if (data?.error) {
-        console.error('Gemini API error:', data.error);
-        throw new Error(data.error);
-      }
-
-      return data?.response || 'Design with purpose';
+      const response = await generateChatResponse(prompt);
+      return response.trim();
 
     } catch (error) {
       console.error('Error generating philosophy:', error);
