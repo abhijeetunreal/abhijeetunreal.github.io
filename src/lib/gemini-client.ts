@@ -3,7 +3,7 @@ if (!import.meta.env.VITE_GEMINI_API_KEY) {
 }
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent';
+const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 export async function generateChatResponse(prompt: string): Promise<string> {
   try {
