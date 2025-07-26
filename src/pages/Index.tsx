@@ -34,7 +34,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
         </section>
 
         <section id="ai-playground" className="mb-24 md:mb-32">
-            <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self.</p>
+            <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self</p>
             <div>
                 <VirtualSelfChat projects={projects} />
             </div>
