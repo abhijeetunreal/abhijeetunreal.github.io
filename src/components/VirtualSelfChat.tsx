@@ -18,17 +18,63 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [isFirstInteraction, setIsFirstInteraction] = useState(true);
+    const [isAnimating, setIsAnimating] = useState(false);
     const scrollContainerRef = useRef<null | HTMLDivElement>(null);
     const { toast } = useToast();
 
     useEffect(() => {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollTo({
-                top: scrollContainerRef.current.scrollHeight,
-                behavior: 'smooth'
-            });
+        const scrollToBottom = () => {
+            if (scrollContainerRef.current) {
+                const scrollElement = scrollContainerRef.current;
+                const scrollHeight = scrollElement.scrollHeight;
+                const clientHeight = scrollElement.clientHeight;
+                const currentScrollTop = scrollElement.scrollTop;
+                const maxScrollTop = scrollHeight - clientHeight;
+                
+                // Only scroll if content is going beyond the visible area
+                if (currentScrollTop < maxScrollTop - 50) {
+                    scrollElement.scrollTo({
+                        top: maxScrollTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        };
+
+        // Scroll immediately when messages change
+        scrollToBottom();
+        
+        // Check scroll position during animation
+        const timeouts = [
+            setTimeout(scrollToBottom, 100),
+            setTimeout(scrollToBottom, 250),
+            setTimeout(scrollToBottom, 500),
+            setTimeout(scrollToBottom, 800)
+        ];
+        
+        return () => timeouts.forEach(clearTimeout);
+    }, [messages, isTyping, isAnimating]);
+
+    // Continuous scroll during text animation
+    useEffect(() => {
+        if (isAnimating) {
+            const scrollInterval = setInterval(() => {
+                if (scrollContainerRef.current) {
+                    const scrollElement = scrollContainerRef.current;
+                    const scrollHeight = scrollElement.scrollHeight;
+                    const clientHeight = scrollElement.clientHeight;
+                    const maxScrollTop = scrollHeight - clientHeight;
+                    
+                    scrollElement.scrollTo({
+                        top: maxScrollTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 150); // Scroll every 150ms during animation
+
+            return () => clearInterval(scrollInterval);
         }
-    }, [messages, isTyping]);
+    }, [isAnimating]);
 
     const createPortfolioContext = () => {
         return `
@@ -47,13 +93,16 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
             console.log('Calling Gemini API...');
             const context = createPortfolioContext();
             const prompt = `
-                Context about me: ${context}
+                You are my digital self - a virtual representation of me based on my portfolio information. Respond directly and naturally as if you are me, speaking in first person.
+
+                My background and context: ${context}
                 
                 Previous conversation:
-                ${messages.map(m => `${m.sender}: ${m.text}`).join('\n')}
+                ${messages.map(m => `${m.sender === 'user' ? 'Visitor' : 'Me'}: ${m.text}`).join('\n')}
                 
-                User: ${message}
-                Assistant:`;
+                A visitor to my portfolio asks: ${message}
+                
+                Respond directly as me. Do not add any introductory phrases like "Okay, sure!" or "Here's my response". Just answer naturally and conversationally, drawing from my background information. Be authentic, professional, and helpful.`;
 
             const response = await generateChatResponse(prompt);
             return response;
@@ -84,6 +133,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
             const aiResponseText = await generateAiResponse(currentInput);
             const aiMessage: Message = { sender: 'ai', text: aiResponseText };
             setMessages(prev => [...prev, aiMessage]);
+            setIsAnimating(true);
             
             if (isFirstInteraction) {
                 setIsFirstInteraction(false);
@@ -111,7 +161,15 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`rounded-lg px-4 py-2 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
                            {msg.sender === 'ai' ? (
-                                <DecoderText text={msg.text} className="prose prose-sm max-w-none dark:prose-invert" />
+                                <DecoderText 
+                                    text={msg.text} 
+                                    className="prose prose-sm max-w-none dark:prose-invert"
+                                    onAnimationProgress={(progress) => {
+                                        if (progress >= 1) {
+                                            setIsAnimating(false);
+                                        }
+                                    }}
+                                />
                             ) : (
                                 <div className="prose prose-sm max-w-none dark:prose-invert" 
                                     dangerouslySetInnerHTML={{ 
