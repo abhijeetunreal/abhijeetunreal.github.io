@@ -1,12 +1,12 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Brain, Send } from 'lucide-react';
 import content from '@/data/content.json';
 import { Project } from '@/types/content';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { generateChatResponse } from '@/lib/gemini-client';
+import DecoderText from './ui/DecoderText';
 
 type Message = {
     sender: 'user' | 'ai';
@@ -44,28 +44,19 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
 
     const generateAiResponse = async (message: string): Promise<string> => {
         try {
-            console.log('Calling Gemini API through Supabase Edge Function...');
+            console.log('Calling Gemini API...');
+            const context = createPortfolioContext();
+            const prompt = `
+                Context about me: ${context}
+                
+                Previous conversation:
+                ${messages.map(m => `${m.sender}: ${m.text}`).join('\n')}
+                
+                User: ${message}
+                Assistant:`;
 
-            const { data, error } = await supabase.functions.invoke('gemini-chat', {
-                body: { 
-                    message: message,
-                    context: createPortfolioContext(),
-                    type: 'chat',
-                    conversationHistory: messages
-                }
-            });
-
-            if (error) {
-                console.error('Supabase function error:', error);
-                throw new Error(error.message || 'Failed to get AI response');
-            }
-
-            if (data?.error) {
-                console.error('Gemini API error:', data.error);
-                throw new Error(data.error);
-            }
-
-            return data?.response || 'I apologize, but I encountered an issue. Please try again.';
+            const response = await generateChatResponse(prompt);
+            return response;
 
         } catch (error) {
             console.error('Error generating AI response:', error);
@@ -119,11 +110,15 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`rounded-lg px-4 py-2 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                           <div className="prose prose-sm max-w-none dark:prose-invert" 
-                                dangerouslySetInnerHTML={{ 
-                                    __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                                    .replace(/\n/g, '<br/>') 
-                                }} />
+                           {msg.sender === 'ai' ? (
+                                <DecoderText text={msg.text} className="prose prose-sm max-w-none dark:prose-invert" />
+                            ) : (
+                                <div className="prose prose-sm max-w-none dark:prose-invert" 
+                                    dangerouslySetInnerHTML={{ 
+                                        __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                        .replace(/\n/g, '<br/>') 
+                                    }} />
+                            )}
                         </div>
                     </div>
                 ))}
