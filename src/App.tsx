@@ -35,7 +35,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <Logo customEnvLink="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/venice_sunset_1k.hdr" />
+        <Logo customEnvLink="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_puresky_1k.hdr" />
         {project ? (
           <ProjectDetail project={project} onBack={handleGoHome} />
         ) : (

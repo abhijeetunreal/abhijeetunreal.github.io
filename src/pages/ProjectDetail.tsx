@@ -19,7 +19,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 <div className="max-w-4xl mx-auto">
                     <div className="mb-8">
-                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-muted-foreground hover:text-foreground">
+                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to all projects
                         </Button>
@@ -31,7 +31,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                         </div>
                     </div>
     
-                    <div className="space-y-6 text-lg text-muted-foreground">
+                    <div className="space-y-6 text-lg text-foreground">
                         <p>{project.fullDescription}</p>
                         
                         <h3 className="text-2xl font-bold text-foreground pt-8">[DESIGN PROCESS]</h3>
@@ -56,7 +56,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                                                 </div>
                                             )}
                                             {section.type === 'paragraph' && section.content && (
-                                                <p className="text-muted-foreground leading-relaxed">
+                                                <p className="text-foreground leading-relaxed">
                                                     {section.content}
                                                 </p>
                                             )}
