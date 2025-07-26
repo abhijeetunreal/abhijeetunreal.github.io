@@ -101,7 +101,7 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
     
     // Check for scrambling effect first - these should always be very subtle
     if (displayed[i] !== '' && displayed[i] !== text[i]) {
-      gradientOpacity = 0.3; // 30% opacity for scrambling effect
+      gradientOpacity = 0.005; // 0.5% opacity for scrambling effect
     } else if (isDecoded) {
       gradientOpacity = 1; // Fully decoded characters
     } else if (lastDecodedIndex >= 0 && i > lastDecodedIndex) {
@@ -128,8 +128,8 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
         style={{
           animationDelay: isScrambling ? undefined : `${i * 0.0}s`,
           position: 'relative',
-          opacity: isScrambling ? 0.3 : gradientOpacity,
-          color: isDecoded ? undefined : (isScrambling ? '#999' : '#888'),
+          opacity: isScrambling ? 0.001 : gradientOpacity,
+          color: isDecoded ? undefined : (isScrambling ? '#f5f5f5' : '#888'),
           filter: isScrambling ? 'blur(0.5px)' : 'none',
           transition: 'opacity 0.2s ease-out, color 0.2s',
         }}

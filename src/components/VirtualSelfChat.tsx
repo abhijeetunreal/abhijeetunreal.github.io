@@ -5,7 +5,7 @@ import { Brain, Send } from 'lucide-react';
 import content from '@/data/content.json';
 import { Project } from '@/types/content';
 import { useToast } from '@/hooks/use-toast';
-import { generateChatResponse } from '@/lib/gemini-client';
+import { generateChatResponse, testGeminiConnection } from '@/lib/gemini-client';
 import DecoderText from './ui/DecoderText';
 
 type Message = {
@@ -19,8 +19,46 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const [isTyping, setIsTyping] = useState(false);
     const [isFirstInteraction, setIsFirstInteraction] = useState(true);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [isApiConnected, setIsApiConnected] = useState<boolean | null>(null);
     const scrollContainerRef = useRef<null | HTMLDivElement>(null);
     const { toast } = useToast();
+
+    // Test API connection on component mount
+    useEffect(() => {
+        const testConnection = async () => {
+            try {
+                const connected = await testGeminiConnection();
+                setIsApiConnected(connected);
+                if (!connected) {
+                    toast({
+                        title: "AI Service Limited",
+                        description: "API quota exceeded. Using fallback responses. Please try again tomorrow.",
+                        variant: "default",
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to test API connection:', error);
+                // If it's a quota error, we can still provide fallback responses
+                if (error instanceof Error && error.message.includes('429')) {
+                    setIsApiConnected(false);
+                    toast({
+                        title: "AI Service Limited",
+                        description: "Daily API limit reached. Using fallback responses.",
+                        variant: "default",
+                    });
+                } else {
+                    setIsApiConnected(false);
+                    toast({
+                        title: "AI Service Unavailable",
+                        description: "The AI chat service is currently unavailable. Please try again later.",
+                        variant: "destructive",
+                    });
+                }
+            }
+        };
+        
+        testConnection();
+    }, [toast]);
 
     useEffect(() => {
         const scrollToBottom = () => {
@@ -91,6 +129,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const generateAiResponse = async (message: string): Promise<string> => {
         try {
             console.log('Calling Gemini API...');
+            console.log('User message:', message);
             const context = createPortfolioContext();
             const prompt = `
                 You are my digital self - a virtual representation of me based on my portfolio information. Respond directly and naturally as if you are me, speaking in first person.
@@ -104,18 +143,50 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 
                 Respond directly as me. Do not add any introductory phrases like "Okay, sure!" or "Here's my response". Just answer naturally and conversationally, drawing from my background information. Be authentic, professional, and helpful.`;
 
+            console.log('Generated prompt length:', prompt.length);
             const response = await generateChatResponse(prompt);
+            console.log('AI Response received:', response);
             return response;
 
         } catch (error) {
             console.error('Error generating AI response:', error);
+            
+            // Provide fallback responses when API is unavailable
+            const fallbackResponses = [
+                "I'd be happy to help! Based on my portfolio, I'm a passionate developer with experience in modern web technologies. Feel free to explore my projects to learn more about my work.",
+                "Great question! I specialize in creating innovative digital experiences using cutting-edge technologies. You can check out my projects to see examples of my work.",
+                "That's an interesting question! I love working on challenging projects that push the boundaries of what's possible. My portfolio showcases some of my favorite work.",
+                "I'm excited to share more about my experience! I've worked with various companies and technologies, always focusing on creating impactful solutions.",
+                "Thanks for asking! I'm constantly learning and experimenting with new technologies. My projects reflect my passion for creating meaningful digital experiences."
+            ];
+            
+            // Select a random fallback response
+            const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+            
+            // Provide more specific error messages based on the error type
+            let errorMessage = randomResponse;
+            
+            if (error instanceof Error) {
+                if (error.message.includes('API request failed')) {
+                    if (error.message.includes('429')) {
+                        errorMessage = "I've reached my daily AI response limit, but I'd be happy to help! You can explore my portfolio to learn more about my work and experience. Feel free to ask me anything about my projects!";
+                    } else {
+                        errorMessage = "I'm having trouble connecting to my AI service. Please check your internet connection and try again.";
+                    }
+                } else if (error.message.includes('Content blocked')) {
+                    errorMessage = "I couldn't process that request due to content restrictions. Please try rephrasing your question.";
+                } else if (error.message.includes('VITE_GEMINI_API_KEY')) {
+                    errorMessage = "AI service is not properly configured. Please contact the developer.";
+                }
+            }
+            
             toast({
-                title: "AI Response Error",
-                description: "Failed to get AI response. Please try again.",
-                variant: "destructive",
+                title: "AI Service Limited",
+                description: "Using fallback responses due to API quota limits. Please try again tomorrow or explore the portfolio.",
+                variant: "default",
             });
             
-            return "I'm experiencing some technical difficulties right now. Please try asking your question again, or feel free to explore the portfolio to learn more about my work and experience.";
+            return errorMessage;
         }
     };
 
@@ -155,6 +226,18 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
             <div className="flex justify-center items-center gap-2 mb-4">
                 <Brain className="h-5 w-5 text-muted-foreground" />
                 <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
+                {isApiConnected === false && (
+                    <div className="flex items-center gap-1 text-xs text-orange-500">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                        <span>Limited</span>
+                    </div>
+                )}
+                {isApiConnected === true && (
+                    <div className="flex items-center gap-1 text-xs text-green-500">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span>Online</span>
+                    </div>
+                )}
             </div>
             <div ref={scrollContainerRef} className="flex-grow overflow-y-auto pr-4 mb-4 space-y-4">
                 {messages.map((msg, index) => (
@@ -193,7 +276,7 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder={content.aiChat.promptPlaceholder}
+                    placeholder={isApiConnected === false ? "Ask me anything (using fallback responses)" : content.aiChat.promptPlaceholder}
                     disabled={isTyping}
                     className="flex-grow"
                 />
