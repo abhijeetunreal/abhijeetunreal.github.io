@@ -13,7 +13,7 @@ function randomChar() {
   return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
 }
 
-export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', animationDelay = 10, onAnimationProgress }) => {
+export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', animationDelay = 9, onAnimationProgress }) => {
   const [displayed, setDisplayed] = useState<string[]>(() => Array(text.length).fill(''));
   const timeouts = useRef<NodeJS.Timeout[]>([]);
   const [animationProgress, setAnimationProgress] = useState(0);
