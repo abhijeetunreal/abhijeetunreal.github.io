@@ -11,12 +11,14 @@ type ProjectShowcaseProps = {
   onSelectProject: (slug: string) => void;
 };
 
-const PROJECTS_TO_SHOW_INITIALLY = 6;
-
 const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcaseProps) => {
   const [activeTag, setActiveTag] = useState<string>('All');
-  const [isExpanded, setIsExpanded] = useState(false);
   const tagScrollRef = useRef<HTMLDivElement>(null);
+  const projectsScrollRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<number | null>(null);
+  const isUserInteractingRef = useRef(false);
+  const scrollSpeed = 1; // pixels per frame
+  const pauseDelay = 3000; // ms to wait before resuming auto-scroll
 
   const filteredProjects = useMemo(() => {
     if (activeTag === 'All') {
@@ -25,14 +27,78 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     return projects.filter(p => p.tags.includes(activeTag));
   }, [activeTag, projects]);
 
-  const projectsToShow = useMemo(() => {
-    if (isExpanded) {
-      return filteredProjects;
-    }
-    return filteredProjects.slice(0, PROJECTS_TO_SHOW_INITIALLY);
-  }, [isExpanded, filteredProjects]);
-
   const allTagsWithAll = useMemo(() => ['All', ...tags], [tags]);
+
+  // Auto-scroll functionality
+  const startAutoScroll = () => {
+    if (autoScrollRef.current) return;
+    
+    const scrollContainer = projectsScrollRef.current;
+    if (!scrollContainer) return;
+
+    const animate = () => {
+      if (isUserInteractingRef.current) {
+        autoScrollRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      scrollContainer.scrollLeft += scrollSpeed;
+      
+      // Smooth infinite loop - reset when reaching the end of first set
+      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      const firstSetWidth = maxScroll / 3; // We have 3 sets now
+      
+      if (scrollContainer.scrollLeft >= firstSetWidth * 2) {
+        // Smoothly reset to the middle set (which is identical to the first set)
+        scrollContainer.scrollLeft = firstSetWidth;
+      }
+      
+      autoScrollRef.current = requestAnimationFrame(animate);
+    };
+    
+    autoScrollRef.current = requestAnimationFrame(animate);
+  };
+
+  const stopAutoScroll = () => {
+    if (autoScrollRef.current) {
+      cancelAnimationFrame(autoScrollRef.current);
+      autoScrollRef.current = null;
+    }
+  };
+
+  const handleUserInteraction = () => {
+    isUserInteractingRef.current = true;
+    stopAutoScroll();
+    
+    // Resume auto-scroll after delay
+    setTimeout(() => {
+      isUserInteractingRef.current = false;
+      startAutoScroll();
+    }, pauseDelay);
+  };
+
+  const handleScroll = () => {
+    const scrollContainer = projectsScrollRef.current;
+    if (!scrollContainer) return;
+
+    // Smooth infinite loop for manual scrolling
+    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    const firstSetWidth = maxScroll / 3; // We have 3 sets now
+    
+    if (scrollContainer.scrollLeft >= firstSetWidth * 2) {
+      // Reset to middle set for seamless loop
+      scrollContainer.scrollLeft = firstSetWidth;
+    } else if (scrollContainer.scrollLeft <= 0) {
+      // Reset to middle set when scrolling backwards
+      scrollContainer.scrollLeft = firstSetWidth;
+    }
+  };
+
+  // Start auto-scroll when component mounts or projects change
+  useEffect(() => {
+    startAutoScroll();
+    return () => stopAutoScroll();
+  }, [filteredProjects]);
 
   useEffect(() => {
     const el = tagScrollRef.current;
@@ -110,7 +176,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       className="block hover:no-underline group cursor-pointer"
       key={project.title}
     >
-      <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
+      <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden min-w-[300px]" style={{ animationDelay: `${index * 100}ms` }}>
         {project.cardImage && (
           <div
             className="h-48 bg-cover bg-center relative project-card-image"
@@ -153,18 +219,35 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
           </Button>
         ))}
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projectsToShow.map((project, index) => (
-          <ProjectCard project={project} onSelectProject={onSelectProject} index={index} key={project.title} />
-        ))}
-      </div>
-      {filteredProjects.length > PROJECTS_TO_SHOW_INITIALLY && (
-        <div className="mt-12 text-center">
-          <Button variant="outline" onClick={() => setIsExpanded(!isExpanded)}>
-            {isExpanded ? 'Show Less' : 'View More'}
-          </Button>
+      
+      {/* Horizontal scrolling projects container */}
+      <div className="horizontal-scroll-container">
+        <div 
+          ref={projectsScrollRef}
+          className="flex gap-6 overflow-x-auto hide-scrollbar pb-4 auto-scroll"
+          style={{ 
+            WebkitOverflowScrolling: 'touch',
+            scrollBehavior: 'smooth'
+          }}
+          onTouchStart={handleUserInteraction}
+          onMouseDown={handleUserInteraction}
+          onWheel={handleUserInteraction}
+          onScroll={(e) => {
+            handleUserInteraction();
+            handleScroll();
+          }}
+        >
+          {/* Triplicate projects for smooth infinite effect */}
+          {[...filteredProjects, ...filteredProjects, ...filteredProjects].map((project, index) => (
+            <ProjectCard 
+              project={project} 
+              onSelectProject={onSelectProject} 
+              index={index} 
+              key={`${project.title}-${index}`} 
+            />
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };

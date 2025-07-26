@@ -23,42 +23,10 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
     const scrollContainerRef = useRef<null | HTMLDivElement>(null);
     const { toast } = useToast();
 
-    // Test API connection on component mount
+    // Initialize API connection state as null (unknown) - will be tested on first user interaction
     useEffect(() => {
-        const testConnection = async () => {
-            try {
-                const connected = await testGeminiConnection();
-                setIsApiConnected(connected);
-                if (!connected) {
-                    toast({
-                        title: "AI Service Limited",
-                        description: "API quota exceeded. Using fallback responses. Please try again tomorrow.",
-                        variant: "default",
-                    });
-                }
-            } catch (error) {
-                console.error('Failed to test API connection:', error);
-                // If it's a quota error, we can still provide fallback responses
-                if (error instanceof Error && error.message.includes('429')) {
-                    setIsApiConnected(false);
-                    toast({
-                        title: "AI Service Limited",
-                        description: "Daily API limit reached. Using fallback responses.",
-                        variant: "default",
-                    });
-                } else {
-                    setIsApiConnected(false);
-                    toast({
-                        title: "AI Service Unavailable",
-                        description: "The AI chat service is currently unavailable. Please try again later.",
-                        variant: "destructive",
-                    });
-                }
-            }
-        };
-        
-        testConnection();
-    }, [toast]);
+        setIsApiConnected(null);
+    }, []);
 
     useEffect(() => {
         const scrollToBottom = () => {
@@ -128,8 +96,25 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
 
     const generateAiResponse = async (message: string): Promise<string> => {
         try {
-            console.log('Calling Gemini API...');
-            console.log('User message:', message);
+            // Test API connection on first user interaction only
+            if (isApiConnected === null) {
+                try {
+                    const connected = await testGeminiConnection();
+                    setIsApiConnected(connected);
+                    if (!connected) {
+                        throw new Error('API connection failed');
+                    }
+                } catch (error) {
+                    setIsApiConnected(false);
+                    throw error;
+                }
+            }
+
+            // If API is not connected, use fallback responses
+            if (isApiConnected === false) {
+                throw new Error('API not available');
+            }
+
             const context = createPortfolioContext();
             const prompt = `
                 You are my digital self - a virtual representation of me based on my portfolio information. Respond directly and naturally as if you are me, speaking in first person.
@@ -143,13 +128,10 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 
                 Respond directly as me. Do not add any introductory phrases like "Okay, sure!" or "Here's my response". Just answer naturally and conversationally, drawing from my background information. Be authentic, professional, and helpful.`;
 
-            console.log('Generated prompt length:', prompt.length);
             const response = await generateChatResponse(prompt);
-            console.log('AI Response received:', response);
             return response;
 
         } catch (error) {
-            console.error('Error generating AI response:', error);
             
             // Provide fallback responses when API is unavailable
             const fallbackResponses = [
@@ -210,7 +192,6 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 setIsFirstInteraction(false);
             }
         } catch (error) {
-            console.error('Chat error:', error);
             const errorMessage: Message = { 
                 sender: 'ai', 
                 text: "I'm having trouble connecting right now. Please try again in a moment." 
