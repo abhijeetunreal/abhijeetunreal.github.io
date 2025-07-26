@@ -26,7 +26,7 @@ const AIPhilosophyGrid = () => {
     `;
   };
 
-  const generatePhilosophy = async (cellIndex: number): Promise<string> => {
+  const generatePhilosophy = useCallback(async (cellIndex: number): Promise<string> => {
     try {
       const context = createPortfolioContext();
       const prompt = `
@@ -70,7 +70,7 @@ const AIPhilosophyGrid = () => {
       ];
       return fallbacks[cellIndex % fallbacks.length];
     }
-  };
+  }, [toast]);
 
   const handleClick = useCallback(async (index: number) => {
     if (cells[index].isLoading || cells[index].content) return;
@@ -97,7 +97,7 @@ const AIPhilosophyGrid = () => {
         return newCells;
       });
     }
-  }, [cells, toast]);
+  }, [cells, generatePhilosophy]);
 
   return (
     <div className="grid grid-cols-4 grid-rows-4 aspect-square border-2 border-border gap-px bg-border">

@@ -6,6 +6,7 @@ import content from '@/data/content.json';
 import { Project } from '@/types/content';
 import { useToast } from '@/hooks/use-toast';
 import { generateChatResponse } from '@/lib/gemini-client';
+import DecoderText from './ui/DecoderText';
 
 type Message = {
     sender: 'user' | 'ai';
@@ -109,11 +110,15 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
                 {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`rounded-lg px-4 py-2 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                           <div className="prose prose-sm max-w-none dark:prose-invert" 
-                                dangerouslySetInnerHTML={{ 
-                                    __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                                    .replace(/\n/g, '<br/>') 
-                                }} />
+                           {msg.sender === 'ai' ? (
+                                <DecoderText text={msg.text} className="prose prose-sm max-w-none dark:prose-invert" />
+                            ) : (
+                                <div className="prose prose-sm max-w-none dark:prose-invert" 
+                                    dangerouslySetInnerHTML={{ 
+                                        __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                        .replace(/\n/g, '<br/>') 
+                                    }} />
+                            )}
                         </div>
                     </div>
                 ))}
