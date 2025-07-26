@@ -125,4 +125,19 @@
     background: transparent;
     opacity: 0;
   }
+
+  /* Horizontal scroll container extending to full screen width */
+  .horizontal-scroll-container {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+  }
+
+  /* Smooth auto-scroll animation */
+  .auto-scroll {
+    transition: scroll-left 0.1s ease-out;
+  }
 }

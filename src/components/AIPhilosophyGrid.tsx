@@ -42,7 +42,6 @@ const AIPhilosophyGrid = () => {
       return response.trim();
 
     } catch (error) {
-      console.error('Error generating philosophy:', error);
       toast({
         title: "Philosophy Generation Error",
         description: "Failed to generate philosophy. Please try again.",
@@ -90,7 +89,6 @@ const AIPhilosophyGrid = () => {
         return newCells;
       });
     } catch (error) {
-      console.error("Failed to generate philosophy:", error);
       setCells(prevCells => {
         const newCells = [...prevCells];
         newCells[index] = { content: 'Design with purpose', isLoading: false };

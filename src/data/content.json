@@ -175,6 +175,39 @@
             "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
           }
         ]
-    }
+    },
+
+    {
+      "title": "Project Eta1",
+      "description": "A generative music system based on weather patterns.",
+      "tags": ["Generative Art", "Web App", "AI"],
+      "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
+      "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
+      "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
+      "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
+        }
+      ]
+    },
+
+    {
+      "title": "Project Eta2",
+      "description": "A generative music system based on weather patterns.",
+      "tags": ["Generative Art", "Web App", "AI"],
+      "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
+      "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
+      "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
+      "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
+        }
+      ]
+  }
+    
   ]
 }
