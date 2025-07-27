@@ -13,6 +13,26 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://abhijeet.codefrydev,in" />
 
+    <!-- Google Fonts - Inter (Google's modern sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Fallback font loading -->
+    <script>
+      // Force font loading
+      if ('fonts' in document) {
+        Promise.all([
+          document.fonts.load('400 1em Inter'),
+          document.fonts.load('500 1em Inter'),
+          document.fonts.load('600 1em Inter'),
+          document.fonts.load('700 1em Inter')
+        ]).then(() => {
+          document.documentElement.classList.add('fonts-loaded');
+        });
+      }
+    </script>
+
     <!-- Theme & Icons -->
     <meta name="theme-color" content="#139c91" />
     <meta name="msapplication-TileColor" content="#139c91" />

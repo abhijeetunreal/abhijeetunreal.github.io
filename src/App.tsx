@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
 import Logo from "./components/Logo";
 import ProjectDetail from "./pages/ProjectDetail";
+import SplashPage from "./components/SplashPage";
 import content from '@/data/content.json';
 import { slugify } from '@/lib/utils';
 import { Project } from "./types/content";
@@ -14,6 +15,15 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const [showSplash, setShowSplash] = useState(true);
+
+  // Force light mode for consistent experience
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("dark");
+    root.classList.add("light");
+    localStorage.setItem('theme', 'light');
+  }, []);
 
   const handleSelectProject = (slug: string) => {
     setSelectedSlug(slug);
@@ -23,6 +33,10 @@ const App = () => {
   const handleGoHome = () => {
     setSelectedSlug(null);
     window.scrollTo(0, 0);
+  };
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
   };
 
   const project = selectedSlug
@@ -35,12 +49,20 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <Logo customEnvLink="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_puresky_1k.hdr" />
-        {project ? (
-          <ProjectDetail project={project} onBack={handleGoHome} />
-        ) : (
-          <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} />
-        )}
+        <div data-splash={showSplash.toString()}>
+          {showSplash ? (
+            <SplashPage onComplete={handleSplashComplete} />
+          ) : (
+            <>
+              <Logo customEnvLink="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_puresky_1k.hdr" />
+              {project ? (
+                <ProjectDetail project={project} onBack={handleGoHome} />
+              ) : (
+                <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} />
+              )}
+            </>
+          )}
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );

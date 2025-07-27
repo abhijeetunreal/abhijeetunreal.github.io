@@ -128,7 +128,7 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
         style={{
           animationDelay: isScrambling ? undefined : `${i * 0.0}s`,
           position: 'relative',
-          opacity: isScrambling ? 0.001 : gradientOpacity,
+          opacity: isScrambling ? 1 : gradientOpacity,
           color: isDecoded ? undefined : (isScrambling ? '#f5f5f5' : '#888'),
           filter: isScrambling ? 'blur(0.5px)' : 'none',
           transition: 'opacity 0.2s ease-out, color 0.2s',

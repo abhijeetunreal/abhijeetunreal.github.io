@@ -4,7 +4,6 @@ import ProjectShowcase from '@/components/ProjectShowcase';
 import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
-import { useEffect } from 'react';
 
 interface IndexProps {
   onSelectProject: (slug: string) => void;
@@ -15,13 +14,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
   const { hero, work, about, workedWith, projects, contactLinks } = content;
   const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
 
-  useEffect(() => {
-    // Set light mode as default
-    if (typeof document !== 'undefined') {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
+
 
   return (
     <div className="text-foreground min-h-screen font-mono">
@@ -34,7 +27,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
         </section>
 
         <section id="ai-playground" className="mb-24 md:mb-32">
-            <p className="text-sm text-muted-foreground mb-8 text-center md:text-left">Interact with my digital self</p>
+            <p className="text-sm text-foreground mb-8 text-center md:text-left">Interact with my digital self</p>
             <div>
                 <VirtualSelfChat projects={projects} />
             </div>
@@ -44,7 +37,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-4">
               <h3 className="text-2xl font-bold shrink-0">{work.title}</h3>
-              <p className="text-sm text-muted-foreground hidden md:block">{work.subtitle}</p>
+              <p className="text-sm text-foreground hidden md:block">{work.subtitle}</p>
             </div>
           </div>
           <ProjectShowcase projects={projects} tags={allTags} onSelectProject={onSelectProject} />
@@ -53,10 +46,10 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
         <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-start">
             <div>
                 <h3 className="text-2xl font-bold mb-4">{about.title}</h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-foreground mb-4">
                     {about.paragraph1}
                 </p>
-                <p className="text-muted-foreground">{about.paragraph2}</p>
+                <p className="text-foreground">{about.paragraph2}</p>
             </div>
             <AIPhilosophyGrid />
         </section>
