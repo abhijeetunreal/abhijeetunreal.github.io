@@ -1,4 +1,140 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, Suspense, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
+import { Environment } from '@react-three/drei';
+
+
+const FluidSphere = React.memo(({ isDark }: { isDark: boolean }) => {
+  const meshRef = useRef<THREE.Mesh>(null!);
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const lastGeomUpdate = useRef(0);
+
+  useEffect(() => {
+    const updateMousePosition = (ev: PointerEvent) => {
+      mousePosition.current = { x: ev.clientX, y: ev.clientY };
+    };
+    window.addEventListener('pointermove', updateMousePosition);
+    return () => {
+      window.removeEventListener('pointermove', updateMousePosition);
+    };
+  }, []);
+
+  const vec = new THREE.Vector3();
+
+  useFrame((state, delta) => {
+    // Smooth position update based on delta
+    if (meshRef.current) {
+      const x = (mousePosition.current.x / state.size.width) * 2 - 1;
+      const y = -(mousePosition.current.y / state.size.height) * 2 + 1;
+      vec.set(
+        (x * state.viewport.width) / 2,
+        (y * state.viewport.height) / 2,
+        0
+      );
+      // Use delta for smooth interpolation
+      meshRef.current.position.lerp(vec, Math.min(1, delta * 6));
+      meshRef.current.scale.set(1.5, 1.5, 1.5);
+    }
+
+    // Geometry update at lower frequency (e.g., 20 FPS)
+    const now = state.clock.getElapsedTime();
+    if (now - lastGeomUpdate.current < 1 / 20) return;
+    lastGeomUpdate.current = now;
+
+    if (meshRef.current) {
+      const time = state.clock.getElapsedTime();
+      const geometry = meshRef.current.geometry;
+      const positions = geometry.attributes.position as THREE.BufferAttribute;
+      if (!geometry.userData.originalPositions) {
+        geometry.userData.originalPositions = positions.clone();
+      }
+      const originalPos = geometry.userData.originalPositions as THREE.BufferAttribute;
+      const cameraPosition = state.camera.position;
+      const normalMatrix = new THREE.Matrix3().getNormalMatrix(meshRef.current.matrixWorld);
+      for (let i = 0; i < positions.count; i++) {
+        const p = new THREE.Vector3().fromBufferAttribute(originalPos, i);
+        const pWorld = p.clone().applyMatrix4(meshRef.current.matrixWorld);
+        const viewVector = new THREE.Vector3().subVectors(cameraPosition, pWorld).normalize();
+        const normal = new THREE.Vector3().fromBufferAttribute(originalPos, i).normalize();
+        const worldNormal = normal.clone().applyMatrix3(normalMatrix).normalize();
+        const dotProduct = worldNormal.dot(viewVector);
+        const edgeFactor = Math.pow(1.0 - Math.abs(dotProduct), 3.0);
+        // Reduced the distortion by lowering the noise multiplier
+        const noise = Math.sin(p.x * 8 + time * 0.8) * Math.cos(p.y * 4 + time * 0.8) * 0.05;
+        p.addScaledVector(normal, noise * edgeFactor);
+        positions.setXYZ(i, p.x, p.y, p.z);
+      }
+      geometry.attributes.position.needsUpdate = true;
+      geometry.computeVertexNormals();
+    }
+  });
+
+  return (
+    <mesh
+      ref={meshRef}
+      scale={1.5}
+    >
+      <sphereGeometry args={[0.5, 48, 54]} />
+      <meshPhysicalMaterial
+        color={isDark ? '#9c9a9a' : '#e0e0e0'}
+        metalness={1}
+        roughness={isDark ? 0.8 : 0}
+        transmission={1.0}
+        thickness={0.5}
+        ior={1.4}
+        clearcoat={0}
+        clearcoatRoughness={0}
+      />
+    </mesh>
+  );
+});
+
+// Add support for both HDRI and image environments
+const getEnvType = (url?: string) => {
+  if (!url) return null;
+  const ext = url.split('.').pop()?.toLowerCase();
+  if (ext === 'hdr' || ext === 'exr') return 'hdr';
+  if (['jpg', 'jpeg', 'png', 'webp'].includes(ext || '')) return 'img';
+  return null;
+};
+
+// Custom Environment component that handles different environment types
+const CustomEnvironment = ({ customEnvLink, isDark }: { customEnvLink?: string; isDark: boolean }) => {
+  const envType = getEnvType(customEnvLink);
+
+  // Debug logging
+  console.log('CustomEnvironment:', { customEnvLink, isDark, envType });
+
+  // Don't show environment in dark mode
+  if (isDark) {
+    console.log('Environment hidden: dark mode');
+    return null;
+  }
+
+  // If we have a valid custom environment link, use it
+  if (customEnvLink && envType) {
+    console.log('Using custom environment:', customEnvLink);
+    return (
+      <Environment 
+        files={customEnvLink}
+        background={true} 
+        blur={0.5} 
+        environmentIntensity={3.0}
+      />
+    );
+  }
+
+  // Otherwise use the original working preset
+  console.log('Using fallback environment: park preset');
+  return (
+    <Environment 
+      preset="park" 
+      background={true} 
+      blur={0.5} 
+      environmentIntensity={3.0}
+    />
+  );
+};
 
 const Logo = React.memo(({ customEnvLink }: { customEnvLink?: string }) => {
   const [isDark, setIsDark] = useState(() => {
@@ -21,17 +157,26 @@ const Logo = React.memo(({ customEnvLink }: { customEnvLink?: string }) => {
     return () => observer.disconnect();
   }, []);
 
+  // Debug logging
+  console.log('Logo render:', { isDark, customEnvLink });
+
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
-      {/* Simple background gradient instead of 3D */}
-      <div 
-        className="w-full h-full"
-        style={{
-          background: isDark 
-            ? 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)'
-            : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
-        }}
-      />
+    <div className="fixed inset-0 z-50 pointer-events-none" style={{ backgroundColor: isDark ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.3)' }}>
+      <Canvas camera={{ position: [0, 0, 3], fov: 75 }} gl={{ alpha: true }}>
+        {/* Simple test lighting */}
+        <ambientLight intensity={1} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        
+        <Suspense fallback={null}>
+          
+          
+          {/* Then try the fluid sphere */}
+          <FluidSphere isDark={isDark} />
+          
+          {/* Custom Environment - only show in light mode */}
+          <CustomEnvironment customEnvLink={customEnvLink} isDark={isDark} />
+        </Suspense>
+      </Canvas>
     </div>
   );
 });

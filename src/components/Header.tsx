@@ -5,7 +5,7 @@ import content from '@/data/content.json';
 
 const Header = ({ onGoHome }: { onGoHome: () => void }) => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-10 bg-background/70 backdrop-blur-lg">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg">
       <div className="container mx-auto p-4 flex justify-between items-center">
         <button onClick={onGoHome} className="text-lg font-bold hover:no-underline bg-transparent border-none p-0 cursor-pointer">{content.name}</button>
         <div className="flex items-center gap-4">

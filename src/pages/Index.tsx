@@ -17,7 +17,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
 
 
   return (
-    <div className="text-foreground min-h-screen font-mono">
+    <div className="text-foreground min-h-screen font-mono relative z-[60]">
       <Header onGoHome={onGoHome} />
       <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
         <section id="hero" className="mb-24 md:mb-32">

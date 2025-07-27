@@ -45,6 +45,9 @@ export interface ContentData {
     hero: {
         title: string;
     };
+    environment?: {
+        customEnvLink?: string;
+    };
     aiChat: {
         greeting: string;
         promptPlaceholder: string;

@@ -52,7 +52,7 @@
 @layer base {
   :root {
     /* Dark theme by default (Apple-style) */
-    --background: 224 71.4% 4.1%;
+    --background: 0 0% 0%;
     --foreground: 210 20% 98%;
 
     --card: 224 71.4% 4.1%;
@@ -144,7 +144,7 @@
   }
 
   body {
-    @apply text-foreground;
+    @apply text-foreground bg-background;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -310,6 +310,16 @@
 
   .fonts-loaded * {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+  }
+
+  /* Fix scroll offset for fixed navigation */
+  html {
+    scroll-padding-top: 80px; /* Reduced to bring titles closer to navbar */
+  }
+
+  /* Alternative approach using scroll-margin-top on sections */
+  #work, #about, #contact {
+    scroll-margin-top: 80px;
   }
 
   /* Make font changes more visible for testing */

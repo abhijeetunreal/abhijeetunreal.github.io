@@ -17,14 +17,6 @@ const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [showSplash, setShowSplash] = useState(true);
 
-  // Force light mode for consistent experience
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("dark");
-    root.classList.add("light");
-    localStorage.setItem('theme', 'light');
-  }, []);
-
   const handleSelectProject = (slug: string) => {
     setSelectedSlug(slug);
     window.scrollTo(0, 0);
@@ -54,7 +46,7 @@ const App = () => {
             <SplashPage onComplete={handleSplashComplete} />
           ) : (
             <>
-              <Logo customEnvLink="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_puresky_1k.hdr" />
+              <Logo customEnvLink={content.environment?.customEnvLink} />
               {project ? (
                 <ProjectDetail project={project} onBack={handleGoHome} />
               ) : (
