@@ -234,13 +234,13 @@
     right: 0;
   }
 
-  /* Prevent default scroll behavior on project cards */
+  /* Allow vertical scrolling on mobile while keeping horizontal for cards */
   .project-card-container * {
     overscroll-behavior: none;
     touch-action: pan-x;
   }
 
-  /* Prevent page scrolling when interacting with cards */
+  /* Prevent page scrolling when interacting with cards - but allow vertical scroll on mobile */
   .project-card-container,
   .project-card-container * {
     overscroll-behavior: none;
@@ -248,26 +248,43 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  /* More aggressive scroll prevention */
-  .project-card-container {
-    overscroll-behavior: none !important;
-    touch-action: pan-x !important;
-    -webkit-overflow-scrolling: touch;
+  /* Mobile-specific adjustments to allow vertical scrolling */
+  @media (max-width: 768px) {
+    .project-card-container {
+      overscroll-behavior: auto;
+      touch-action: pan-x pan-y; /* Allow both horizontal and vertical scrolling on mobile */
+    }
+    
+    .project-card-container * {
+      overscroll-behavior: auto;
+      touch-action: pan-x pan-y;
+    }
+    
+    /* Ensure project cards are clickable on mobile */
+    .project-card {
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      touch-action: manipulation;
+    }
+    
+    .project-card button {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
   }
 
-  /* Prevent any scroll events from bubbling up */
-  .project-card-container * {
-    overscroll-behavior: none !important;
-    touch-action: pan-x !important;
-  }
+  /* Desktop-specific scroll prevention */
+  @media (min-width: 769px) {
+    .project-card-container {
+      overscroll-behavior: none !important;
+      touch-action: pan-x !important;
+      -webkit-overflow-scrolling: touch;
+    }
 
-  /* Specific prevention for wheel events */
-  .project-card-container {
-    overscroll-behavior: none !important;
-    touch-action: pan-x !important;
-    -webkit-overflow-scrolling: touch;
-    /* Prevent vertical scroll specifically */
-    overflow: hidden;
+    .project-card-container * {
+      overscroll-behavior: none !important;
+      touch-action: pan-x !important;
+    }
   }
 
   /* Interactive Grid Animations */

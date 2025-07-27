@@ -19,8 +19,10 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
   const isUserInteractingRef = useRef(false);
   const isPausedRef = useRef(false);
   const isDraggingRef = useRef(false);
-  const dragStartRef = useRef(0);
+  const dragStartRef = useRef({ x: 0, y: 0 });
   const scrollStartRef = useRef(0);
+  const touchStartTimeRef = useRef(0);
+  const hasMovedRef = useRef(false);
   const scrollSpeed = 0.5; // pixels per frame (reduced for smoother movement)
   const pauseDelay = 3000; // ms to wait before resuming auto-scroll
 
@@ -158,7 +160,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     e.preventDefault();
     e.stopPropagation();
     isDraggingRef.current = true;
-    dragStartRef.current = e.clientX;
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
     
     // Get current position from transform
     const container = projectsContainerRef.current;
@@ -183,7 +185,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     const container = projectsContainerRef.current;
     if (!container) return;
 
-    const deltaX = dragStartRef.current - e.clientX;
+    const deltaX = dragStartRef.current.x - e.clientX;
     const newPosition = scrollStartRef.current + deltaX;
     const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
     
@@ -220,10 +222,12 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
   // Touch handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault();
+    // Don't prevent default on mobile to allow vertical scrolling
     e.stopPropagation();
     isDraggingRef.current = true;
-    dragStartRef.current = e.touches[0].clientX;
+    hasMovedRef.current = false;
+    touchStartTimeRef.current = Date.now();
+    dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
     
     // Get current position from transform
     const container = projectsContainerRef.current;
@@ -236,38 +240,62 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDraggingRef.current) return;
-    e.preventDefault();
-    e.stopPropagation();
     
     const container = projectsContainerRef.current;
     if (!container) return;
 
-    const deltaX = dragStartRef.current - e.touches[0].clientX;
-    const newPosition = scrollStartRef.current + deltaX;
-    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    const deltaX = dragStartRef.current.x - e.touches[0].clientX;
+    const deltaY = Math.abs(e.touches[0].clientY - dragStartRef.current.y);
     
-    // Handle infinite scroll with truly seamless looping - no repositioning
-    let finalPosition = newPosition;
-    
-    // Use a much larger buffer to prevent any repositioning
-    const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
-    
-    // Only reposition if we go way beyond the buffer
-    if (newPosition >= maxScroll) {
-      // Jump back to the middle set (set 2) to continue seamless scrolling
-      finalPosition = newPosition - (containerWidth * 2);
-    } else if (newPosition < 0) {
-      // Jump to the middle set from the other direction
-      finalPosition = newPosition + (containerWidth * 2);
+    // Check if we've moved enough to consider it a drag
+    if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+      hasMovedRef.current = true;
     }
     
-    container.style.transform = `translateX(-${finalPosition}px)`;
+    // Only handle horizontal scrolling if the movement is more horizontal than vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const newPosition = scrollStartRef.current + deltaX;
+      const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+      
+      // Handle infinite scroll with truly seamless looping - no repositioning
+      let finalPosition = newPosition;
+      
+      // Use a much larger buffer to prevent any repositioning
+      const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
+      
+      // Only reposition if we go way beyond the buffer
+      if (newPosition >= maxScroll) {
+        // Jump back to the middle set (set 2) to continue seamless scrolling
+        finalPosition = newPosition - (containerWidth * 2);
+      } else if (newPosition < 0) {
+        // Jump to the middle set from the other direction
+        finalPosition = newPosition + (containerWidth * 2);
+      }
+      
+      container.style.transform = `translateX(-${finalPosition}px)`;
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    e.preventDefault();
     e.stopPropagation();
+    
+    // Check if this was a tap (not a drag)
+    const touchDuration = Date.now() - touchStartTimeRef.current;
+    const isTap = !hasMovedRef.current && touchDuration < 300;
+    
+    if (isTap) {
+      // Don't prevent default, let the click event fire naturally
+      // Just reset the dragging state
+      isDraggingRef.current = false;
+      hasMovedRef.current = false;
+      return;
+    }
+    
     isDraggingRef.current = false;
+    hasMovedRef.current = false;
   };
 
   // Start auto-scroll when component mounts or projects change
@@ -408,12 +436,20 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
   const MemoBadge = React.memo(Badge);
 
   // Memoized ProjectCard component for performance
-  const ProjectCard = React.memo(({ project, onSelectProject, index }: { project: Project, onSelectProject: (slug: string) => void, index: number }) => (
-    <div
-      onClick={() => onSelectProject(slugify(project.title))}
-      className="block hover:no-underline group cursor-pointer"
-      key={project.title}
-    >
+  const ProjectCard = React.memo(({ project, onSelectProject, index }: { project: Project, onSelectProject: (slug: string) => void, index: number }) => {
+    const handleCardClick = (e: React.MouseEvent) => {
+      // Only handle click if we haven't been dragging
+      if (!hasMovedRef.current) {
+        onSelectProject(slugify(project.title));
+      }
+    };
+
+    return (
+      <div
+        onClick={handleCardClick}
+        className="block hover:no-underline group cursor-pointer project-card"
+        key={project.title}
+      >
       <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden min-w-[300px] max-w-[300px] flex-shrink-0" style={{ animationDelay: `${index * 50}ms` }}>
         {project.cardImage && (
           <div
@@ -446,7 +482,8 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
         </CardContent>
       </Card>
     </div>
-  ));
+  );
+  });
 
   return (
     <div>
