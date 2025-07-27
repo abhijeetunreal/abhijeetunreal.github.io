@@ -23,9 +23,10 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
   const scrollStartRef = useRef(0);
   const touchStartTimeRef = useRef(0);
   const hasMovedRef = useRef(false);
-  const scrollSpeed = 0.3; // pixels per frame (reduced for smoother movement)
+  const scrollSpeed = 0.6; // pixels per frame (optimized for smooth movement)
   const pauseDelay = 3000; // ms to wait before resuming auto-scroll
   const repositionThreshold = 100; // pixels before repositioning
+  const frameRate = 60; // target 60fps for smooth animation
 
   const filteredProjects = useMemo(() => {
     if (activeTag === 'All') {
@@ -36,7 +37,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
   const allTagsWithAll = useMemo(() => ['All', ...tags], [tags]);
 
-  // Optimized auto-scroll functionality using CSS transforms
+  // Optimized auto-scroll functionality using CSS transforms with consistent frame rate
   const startAutoScroll = () => {
     if (autoScrollRef.current || isPausedRef.current) return;
     
@@ -46,14 +47,20 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     // Get current position from transform, or start from 0
     let currentPosition = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
     const containerWidth = container.scrollWidth / 4; // We now have 4 sets for optimized buffer
+    let lastTime = performance.now();
 
-    const animate = () => {
+    const animate = (currentTime: number) => {
       if (isUserInteractingRef.current || isPausedRef.current || isDraggingRef.current) {
         autoScrollRef.current = requestAnimationFrame(animate);
         return;
       }
 
-      currentPosition += scrollSpeed;
+      // Calculate delta time for consistent movement regardless of frame rate
+      const deltaTime = currentTime - lastTime;
+      const frameMultiplier = deltaTime / (1000 / frameRate); // Normalize to 60fps
+      
+      currentPosition += scrollSpeed * frameMultiplier;
+      lastTime = currentTime;
       
       // Smoother infinite loop with better repositioning
       const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before repositioning
@@ -124,7 +131,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     
     // Re-enable transitions for smooth future movements
     requestAnimationFrame(() => {
-      container.style.transition = 'transform 0.1s ease-out';
+      container.style.transition = 'transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     });
   };
 
@@ -239,7 +246,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     // Reset cursor and restore transitions
     if (projectsContainerRef.current) {
       projectsContainerRef.current.style.cursor = 'grab';
-      projectsContainerRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
+      projectsContainerRef.current.style.transition = 'transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     }
   };
 
@@ -321,7 +328,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     
     // Restore transitions after touch interaction
     if (projectsContainerRef.current) {
-      projectsContainerRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
+      projectsContainerRef.current.style.transition = 'transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     }
     
     isDraggingRef.current = false;
@@ -542,7 +549,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
           ref={projectsContainerRef}
           className="flex gap-6 pb-4 will-change-transform smooth-scroll cursor-grab select-none"
           style={{ 
-            transition: 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             width: 'fit-content'
           }}
           onWheel={handleWheel}

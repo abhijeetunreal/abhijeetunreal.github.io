@@ -198,6 +198,10 @@
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000px;
+    /* Additional optimizations for smoother frame rate */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform-style: preserve-3d;
   }
 
   /* Optimized project card animations */
@@ -222,8 +226,8 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
-    /* Improved smooth scrolling */
-    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Improved smooth scrolling with better easing */
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   /* Prevent layout shifts during animations */
@@ -238,6 +242,10 @@
     margin-left: calc(-50vw + 50%);
     left: 0;
     right: 0;
+    /* Optimizations for smoother frame rate */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
   }
 
   /* Allow vertical scrolling on mobile while keeping horizontal for cards */
