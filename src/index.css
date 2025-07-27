@@ -194,6 +194,10 @@
     transform: translateZ(0); /* Force hardware acceleration */
     backface-visibility: hidden;
     perspective: 1000px;
+    /* Improved performance for smoother animations */
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
   }
 
   /* Optimized project card animations */
@@ -218,6 +222,8 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
+    /* Improved smooth scrolling */
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Prevent layout shifts during animations */

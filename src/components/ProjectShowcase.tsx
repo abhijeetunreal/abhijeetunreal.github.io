@@ -23,8 +23,9 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
   const scrollStartRef = useRef(0);
   const touchStartTimeRef = useRef(0);
   const hasMovedRef = useRef(false);
-  const scrollSpeed = 0.5; // pixels per frame (reduced for smoother movement)
+  const scrollSpeed = 0.3; // pixels per frame (reduced for smoother movement)
   const pauseDelay = 3000; // ms to wait before resuming auto-scroll
+  const repositionThreshold = 100; // pixels before repositioning
 
   const filteredProjects = useMemo(() => {
     if (activeTag === 'All') {
@@ -44,7 +45,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
     // Get current position from transform, or start from 0
     let currentPosition = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
-    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    const containerWidth = container.scrollWidth / 4; // We now have 4 sets for optimized buffer
 
     const animate = () => {
       if (isUserInteractingRef.current || isPausedRef.current || isDraggingRef.current) {
@@ -54,15 +55,18 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
       currentPosition += scrollSpeed;
       
-      // Seamless infinite loop with much larger buffer
+      // Smoother infinite loop with better repositioning
       const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before repositioning
       
-      // Only reposition if we go way beyond the buffer
+      // Only reposition if we go way beyond the buffer - with smoother transition
       if (currentPosition >= maxScroll) {
         currentPosition = currentPosition - (containerWidth * 2);
+        // Use smooth repositioning helper
+        smoothReposition(container, currentPosition);
+      } else {
+        container.style.transform = `translateX(-${currentPosition}px)`;
       }
       
-      container.style.transform = `translateX(-${currentPosition}px)`;
       autoScrollRef.current = requestAnimationFrame(animate);
     };
     
@@ -98,15 +102,30 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     }, pauseDelay);
   };
 
-  // Helper function to handle infinite scroll position
+  // Helper function to handle infinite scroll position with smoother repositioning
   const getInfinitePosition = (position: number, containerWidth: number) => {
-    // Keep position within bounds without jumping
+    // Keep position within bounds with smoother repositioning
     if (position < 0) {
       return containerWidth * 3 + (position % containerWidth);
     } else if (position >= containerWidth * 4) {
       return position % containerWidth;
     }
     return position;
+  };
+
+  // Helper function for smooth repositioning
+  const smoothReposition = (container: HTMLElement, newPosition: number) => {
+    // Temporarily disable transitions for instant repositioning
+    container.style.transition = 'none';
+    container.style.transform = `translateX(-${newPosition}px)`;
+    
+    // Force reflow to ensure the change is applied
+    container.offsetHeight;
+    
+    // Re-enable transitions for smooth future movements
+    requestAnimationFrame(() => {
+      container.style.transition = 'transform 0.1s ease-out';
+    });
   };
 
   // Mouse wheel scroll handler using the same approach as tag chips
@@ -122,24 +141,24 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
     // Get current position
     const currentPosition = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
-    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    const containerWidth = container.scrollWidth / 4; // We now have 4 sets for optimized buffer
     
-    // Calculate new position based on wheel direction
+    // Calculate new position based on wheel direction with smoother movement
     let newPosition = currentPosition;
     
-    // Handle both vertical and horizontal wheel events
+    // Handle both vertical and horizontal wheel events with reduced sensitivity
     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      // Vertical wheel - convert to horizontal movement
-      newPosition = currentPosition - e.deltaY * 2;
+      // Vertical wheel - convert to horizontal movement with smoother scaling
+      newPosition = currentPosition - e.deltaY * 1.5;
     } else {
-      // Horizontal wheel (trackpad) - use directly
-      newPosition = currentPosition - e.deltaX * 2;
+      // Horizontal wheel (trackpad) - use directly with smoother scaling
+      newPosition = currentPosition - e.deltaX * 1.5;
     }
     
-    // Handle infinite scroll with truly seamless looping - no repositioning
+    // Handle infinite scroll with smoother repositioning
     let finalPosition = newPosition;
     
-    // Use a much larger buffer to prevent any repositioning
+    // Use a much larger buffer to prevent frequent repositioning
     const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
     
     // Only reposition if we go way beyond the buffer
@@ -151,7 +170,8 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       finalPosition = newPosition + (containerWidth * 2);
     }
     
-    // Apply the transform immediately
+    // Apply the transform with smooth transition
+    container.style.transition = 'transform 0.1s ease-out';
     container.style.transform = `translateX(-${finalPosition}px)`;
   };
 
@@ -187,12 +207,12 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
     const deltaX = dragStartRef.current.x - e.clientX;
     const newPosition = scrollStartRef.current + deltaX;
-    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    const containerWidth = container.scrollWidth / 4; // We now have 4 sets for optimized buffer
     
-    // Handle infinite scroll with truly seamless looping - no repositioning
+    // Handle infinite scroll with smoother repositioning
     let finalPosition = newPosition;
     
-    // Use a much larger buffer to prevent any repositioning
+    // Use a much larger buffer to prevent frequent repositioning
     const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
     
     // Only reposition if we go way beyond the buffer
@@ -204,6 +224,8 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       finalPosition = newPosition + (containerWidth * 2);
     }
     
+    // Apply transform without transition during drag for immediate response
+    container.style.transition = 'none';
     container.style.transform = `translateX(-${finalPosition}px)`;
   };
 
@@ -214,9 +236,10 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     }
     isDraggingRef.current = false;
     
-    // Reset cursor
+    // Reset cursor and restore transitions
     if (projectsContainerRef.current) {
       projectsContainerRef.current.style.cursor = 'grab';
+      projectsContainerRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
     }
   };
 
@@ -258,12 +281,12 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       e.stopPropagation();
       
       const newPosition = scrollStartRef.current + deltaX;
-      const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+      const containerWidth = container.scrollWidth / 4; // We now have 4 sets for optimized buffer
       
-      // Handle infinite scroll with truly seamless looping - no repositioning
+      // Handle infinite scroll with smoother repositioning
       let finalPosition = newPosition;
       
-      // Use a much larger buffer to prevent any repositioning
+      // Use a much larger buffer to prevent frequent repositioning
       const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
       
       // Only reposition if we go way beyond the buffer
@@ -275,6 +298,8 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
         finalPosition = newPosition + (containerWidth * 2);
       }
       
+      // Apply transform without transition during touch for immediate response
+      container.style.transition = 'none';
       container.style.transform = `translateX(-${finalPosition}px)`;
     }
   };
@@ -292,6 +317,11 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       isDraggingRef.current = false;
       hasMovedRef.current = false;
       return;
+    }
+    
+    // Restore transitions after touch interaction
+    if (projectsContainerRef.current) {
+      projectsContainerRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
     }
     
     isDraggingRef.current = false;
@@ -512,7 +542,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
           ref={projectsContainerRef}
           className="flex gap-6 pb-4 will-change-transform smooth-scroll cursor-grab select-none"
           style={{ 
-            transition: 'transform 0.1s ease-out',
+            transition: 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
             width: 'fit-content'
           }}
           onWheel={handleWheel}
@@ -527,8 +557,8 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Duplicate projects for smooth infinite effect (reduced from 3 to 2 sets) */}
-          {[...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects].map((project, index) => (
+          {/* Duplicate projects for smooth infinite effect (optimized for smoother experience) */}
+          {[...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects].map((project, index) => (
             <ProjectCard 
               project={project} 
               onSelectProject={onSelectProject} 
