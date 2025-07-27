@@ -133,7 +133,7 @@ const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
             >
               {showText4 && (
                 <DecoderText 
-                  text="INTERACTION"
+                  text=" INTERACTION"
                   className="text-lg md:text-xl lg:text-2xl font-bold text-black tracking-wider"
                   animationDelay={20}
                 />

@@ -151,11 +151,26 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
 
   // Render text using individual character spans for proper opacity control
   const renderText = () => {
+    // Split text into words and spaces, preserving indices
+    const words: { chars: string[]; start: number; end: number }[] = [];
+    let wordStart = 0;
+    for (let i = 0; i <= text.length; i++) {
+      if (i === text.length || text[i] === ' ' || text[i] === '\n') {
+        if (i > wordStart) {
+          words.push({ chars: Array.from({ length: i - wordStart }, (_, k) => ''), start: wordStart, end: i });
+        }
+        if (i < text.length && (text[i] === ' ' || text[i] === '\n')) {
+          words.push({ chars: [text[i]], start: i, end: i + 1 });
+        }
+        wordStart = i + 1;
+      }
+    }
+
     return (
-      <div 
+      <div
         ref={containerRef}
-        className={className} 
-        style={{ 
+        className={className}
+        style={{
           minHeight: '1em',
           height: 'auto',
           overflow: 'visible',
@@ -165,12 +180,24 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
           maxWidth: '100%'
         }}
       >
-        {displayed.map((char, i) => {
-          // Only render characters that have been processed or are currently being processed
-          if (char !== '' || i <= animationProgress * text.length) {
-            return renderChar(char, i);
+        {words.map((word, wIdx) => {
+          // If this is a space or newline, render as is
+          if (word.chars.length === 1 && (text[word.start] === ' ' || text[word.start] === '\n')) {
+            if (text[word.start] === ' ') return <span key={wIdx} style={{ whiteSpace: 'pre' }}>&nbsp;</span>;
+            if (text[word.start] === '\n') return <br key={wIdx} />;
           }
-          return null;
+          // Otherwise, render the word as a group of chars
+          return (
+            <span key={wIdx} style={{ whiteSpace: 'pre' }}>
+              {Array.from({ length: word.end - word.start }, (_, k) => {
+                const i = word.start + k;
+                if (displayed[i] !== '' || i <= animationProgress * text.length) {
+                  return renderChar(text[i], i);
+                }
+                return null;
+              })}
+            </span>
+          );
         })}
       </div>
     );

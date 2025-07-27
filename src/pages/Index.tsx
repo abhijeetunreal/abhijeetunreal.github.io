@@ -4,6 +4,7 @@ import ProjectShowcase from '@/components/ProjectShowcase';
 import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
+import { DecoderText } from '@/components/ui/DecoderText';
 
 interface IndexProps {
   onSelectProject: (slug: string) => void;
@@ -22,7 +23,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
       <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
         <section id="hero" className="mb-24 md:mb-32">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-            {hero.title}
+            <DecoderText text={hero.title} animationDelay={24} />
           </h2>
         </section>
 
