@@ -11,7 +11,7 @@ export function ThemeToggle() {
       if (storedTheme === 'dark' || storedTheme === 'light') {
         return storedTheme;
       }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      return 'light' // Default to light mode
     }
     return 'light'
   })

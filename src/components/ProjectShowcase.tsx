@@ -14,10 +14,14 @@ type ProjectShowcaseProps = {
 const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcaseProps) => {
   const [activeTag, setActiveTag] = useState<string>('All');
   const tagScrollRef = useRef<HTMLDivElement>(null);
-  const projectsScrollRef = useRef<HTMLDivElement>(null);
+  const projectsContainerRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<number | null>(null);
   const isUserInteractingRef = useRef(false);
-  const scrollSpeed = 1; // pixels per frame
+  const isPausedRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const dragStartRef = useRef(0);
+  const scrollStartRef = useRef(0);
+  const scrollSpeed = 0.5; // pixels per frame (reduced for smoother movement)
   const pauseDelay = 3000; // ms to wait before resuming auto-scroll
 
   const filteredProjects = useMemo(() => {
@@ -29,30 +33,34 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
 
   const allTagsWithAll = useMemo(() => ['All', ...tags], [tags]);
 
-  // Auto-scroll functionality
+  // Optimized auto-scroll functionality using CSS transforms
   const startAutoScroll = () => {
-    if (autoScrollRef.current) return;
+    if (autoScrollRef.current || isPausedRef.current) return;
     
-    const scrollContainer = projectsScrollRef.current;
-    if (!scrollContainer) return;
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    // Get current position from transform, or start from 0
+    let currentPosition = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
+    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
 
     const animate = () => {
-      if (isUserInteractingRef.current) {
+      if (isUserInteractingRef.current || isPausedRef.current || isDraggingRef.current) {
         autoScrollRef.current = requestAnimationFrame(animate);
         return;
       }
 
-      scrollContainer.scrollLeft += scrollSpeed;
+      currentPosition += scrollSpeed;
       
-      // Smooth infinite loop - reset when reaching the end of first set
-      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-      const firstSetWidth = maxScroll / 3; // We have 3 sets now
+      // Seamless infinite loop with much larger buffer
+      const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before repositioning
       
-      if (scrollContainer.scrollLeft >= firstSetWidth * 2) {
-        // Smoothly reset to the middle set (which is identical to the first set)
-        scrollContainer.scrollLeft = firstSetWidth;
+      // Only reposition if we go way beyond the buffer
+      if (currentPosition >= maxScroll) {
+        currentPosition = currentPosition - (containerWidth * 2);
       }
       
+      container.style.transform = `translateX(-${currentPosition}px)`;
       autoScrollRef.current = requestAnimationFrame(animate);
     };
     
@@ -66,45 +74,274 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     }
   };
 
+  const pauseAutoScroll = () => {
+    isPausedRef.current = true;
+    stopAutoScroll();
+  };
+
+  const resumeAutoScroll = () => {
+    isPausedRef.current = false;
+    // Don't reset position, just start auto-scroll from current position
+    startAutoScroll();
+  };
+
   const handleUserInteraction = () => {
     isUserInteractingRef.current = true;
-    stopAutoScroll();
+    pauseAutoScroll();
     
     // Resume auto-scroll after delay
     setTimeout(() => {
       isUserInteractingRef.current = false;
-      startAutoScroll();
+      resumeAutoScroll();
     }, pauseDelay);
   };
 
-  const handleScroll = () => {
-    const scrollContainer = projectsScrollRef.current;
-    if (!scrollContainer) return;
-
-    // Smooth infinite loop for manual scrolling
-    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-    const firstSetWidth = maxScroll / 3; // We have 3 sets now
-    
-    if (scrollContainer.scrollLeft >= firstSetWidth * 2) {
-      // Reset to middle set for seamless loop
-      scrollContainer.scrollLeft = firstSetWidth;
-    } else if (scrollContainer.scrollLeft <= 0) {
-      // Reset to middle set when scrolling backwards
-      scrollContainer.scrollLeft = firstSetWidth;
+  // Helper function to handle infinite scroll position
+  const getInfinitePosition = (position: number, containerWidth: number) => {
+    // Keep position within bounds without jumping
+    if (position < 0) {
+      return containerWidth * 3 + (position % containerWidth);
+    } else if (position >= containerWidth * 4) {
+      return position % containerWidth;
     }
+    return position;
+  };
+
+  // Mouse wheel scroll handler using the same approach as tag chips
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    // Pause auto-scroll and mark user interaction
+    handleUserInteraction();
+
+    // Get current position
+    const currentPosition = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
+    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    
+    // Calculate new position based on wheel direction
+    let newPosition = currentPosition;
+    
+    // Handle both vertical and horizontal wheel events
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      // Vertical wheel - convert to horizontal movement
+      newPosition = currentPosition - e.deltaY * 2;
+    } else {
+      // Horizontal wheel (trackpad) - use directly
+      newPosition = currentPosition - e.deltaX * 2;
+    }
+    
+    // Handle infinite scroll with truly seamless looping - no repositioning
+    let finalPosition = newPosition;
+    
+    // Use a much larger buffer to prevent any repositioning
+    const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
+    
+    // Only reposition if we go way beyond the buffer
+    if (newPosition >= maxScroll) {
+      // Jump back to the middle set (set 2) to continue seamless scrolling
+      finalPosition = newPosition - (containerWidth * 2);
+    } else if (newPosition < 0) {
+      // Jump to the middle set from the other direction
+      finalPosition = newPosition + (containerWidth * 2);
+    }
+    
+    // Apply the transform immediately
+    container.style.transform = `translateX(-${finalPosition}px)`;
+  };
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isDraggingRef.current = true;
+    dragStartRef.current = e.clientX;
+    
+    // Get current position from transform
+    const container = projectsContainerRef.current;
+    if (container) {
+      scrollStartRef.current = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
+    }
+    
+    // Change cursor to grabbing
+    if (projectsContainerRef.current) {
+      projectsContainerRef.current.style.cursor = 'grabbing';
+    }
+    
+    handleUserInteraction();
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current) return;
+    
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    const deltaX = dragStartRef.current - e.clientX;
+    const newPosition = scrollStartRef.current + deltaX;
+    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    
+    // Handle infinite scroll with truly seamless looping - no repositioning
+    let finalPosition = newPosition;
+    
+    // Use a much larger buffer to prevent any repositioning
+    const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
+    
+    // Only reposition if we go way beyond the buffer
+    if (newPosition >= maxScroll) {
+      // Jump back to the middle set (set 2) to continue seamless scrolling
+      finalPosition = newPosition - (containerWidth * 2);
+    } else if (newPosition < 0) {
+      // Jump to the middle set from the other direction
+      finalPosition = newPosition + (containerWidth * 2);
+    }
+    
+    container.style.transform = `translateX(-${finalPosition}px)`;
+  };
+
+  const handleMouseUp = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    isDraggingRef.current = false;
+    
+    // Reset cursor
+    if (projectsContainerRef.current) {
+      projectsContainerRef.current.style.cursor = 'grab';
+    }
+  };
+
+  // Touch handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isDraggingRef.current = true;
+    dragStartRef.current = e.touches[0].clientX;
+    
+    // Get current position from transform
+    const container = projectsContainerRef.current;
+    if (container) {
+      scrollStartRef.current = parseFloat(container.style.transform.replace('translateX(-', '').replace('px)', '') || '0');
+    }
+    
+    handleUserInteraction();
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingRef.current) return;
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    const deltaX = dragStartRef.current - e.touches[0].clientX;
+    const newPosition = scrollStartRef.current + deltaX;
+    const containerWidth = container.scrollWidth / 6; // We now have 6 sets for much larger buffer
+    
+    // Handle infinite scroll with truly seamless looping - no repositioning
+    let finalPosition = newPosition;
+    
+    // Use a much larger buffer to prevent any repositioning
+    const maxScroll = containerWidth * 4; // Allow scrolling through 4 sets before any repositioning
+    
+    // Only reposition if we go way beyond the buffer
+    if (newPosition >= maxScroll) {
+      // Jump back to the middle set (set 2) to continue seamless scrolling
+      finalPosition = newPosition - (containerWidth * 2);
+    } else if (newPosition < 0) {
+      // Jump to the middle set from the other direction
+      finalPosition = newPosition + (containerWidth * 2);
+    }
+    
+    container.style.transform = `translateX(-${finalPosition}px)`;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isDraggingRef.current = false;
   };
 
   // Start auto-scroll when component mounts or projects change
   useEffect(() => {
-    startAutoScroll();
-    return () => stopAutoScroll();
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      startAutoScroll();
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+      stopAutoScroll();
+    };
   }, [filteredProjects]);
+
+  // Add aggressive event prevention
+  useEffect(() => {
+    const container = projectsContainerRef.current;
+    if (!container) return;
+
+    const handleWheelEvent = (e: WheelEvent) => {
+      // Only handle if it's a vertical scroll
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Trigger the React wheel handler
+        const reactEvent = {
+          preventDefault: () => e.preventDefault(),
+          stopPropagation: () => e.stopPropagation(),
+          deltaY: e.deltaY,
+          deltaX: e.deltaX
+        } as React.WheelEvent;
+        
+        handleWheel(reactEvent);
+      }
+    };
+
+    // Add wheel event listener with passive: false
+    container.addEventListener('wheel', handleWheelEvent, { passive: false });
+
+    return () => {
+      container.removeEventListener('wheel', handleWheelEvent);
+    };
+  }, []);
+
+  // Global mouse up listener for drag
+  useEffect(() => {
+    const handleGlobalMouseUp = () => {
+      if (isDraggingRef.current) {
+        handleMouseUp();
+      }
+    };
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (isDraggingRef.current) {
+        handleMouseMove(e as any);
+      }
+    };
+
+    document.addEventListener('mouseup', handleGlobalMouseUp);
+    document.addEventListener('mousemove', handleGlobalMouseMove);
+    
+    return () => {
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+    };
+  }, []);
 
   useEffect(() => {
     const el = tagScrollRef.current;
     if (!el) return;
 
-    // Preload all images in the project cards for smoother experience
+    // Preload images for smoother experience
     const preloadImages = () => {
       const images = Array.from(document.querySelectorAll('.project-card-image'));
       images.forEach((img: any) => {
@@ -116,11 +353,12 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
     };
     setTimeout(preloadImages, 0);
 
+    // Smooth tag scrolling with momentum
     let animationFrame: number;
     let startTime: number | null = null;
     let startScroll: number = 0;
     let targetScroll: number = 0;
-    let duration: number = 600; // ms, adjust for more/less inertia
+    let duration: number = 600;
     let isAnimating = false;
 
     function easeOutCubic(t: number) {
@@ -145,9 +383,8 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       if (el.scrollWidth > el.clientWidth && e.deltaY !== 0) {
         e.preventDefault();
         if (isAnimating) {
-          // If animating, use current scroll as new start
           startScroll = el.scrollLeft;
-          targetScroll += e.deltaY * 2; // adjust multiplier for sensitivity
+          targetScroll += e.deltaY * 2;
         } else {
           startScroll = el.scrollLeft;
           targetScroll = el.scrollLeft + e.deltaY * 2;
@@ -159,6 +396,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
         animationFrame = requestAnimationFrame(animate);
       }
     };
+    
     el.addEventListener('wheel', onWheel, { passive: false });
     return () => {
       el.removeEventListener('wheel', onWheel);
@@ -176,26 +414,35 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       className="block hover:no-underline group cursor-pointer"
       key={project.title}
     >
-      <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden min-w-[300px]" style={{ animationDelay: `${index * 100}ms` }}>
+      <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden min-w-[300px] max-w-[300px] flex-shrink-0" style={{ animationDelay: `${index * 50}ms` }}>
         {project.cardImage && (
           <div
-            className="h-48 bg-cover bg-center relative project-card-image"
+            className="h-64 bg-cover bg-center relative project-card-image"
             style={{ backgroundImage: `url(${project.cardImage})` }}
             data-src={project.cardImage}
           >
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
           </div>
         )}
-        <CardHeader>
-          <CardTitle>{project.title}</CardTitle>
-          <CardDescription>{project.description}</CardDescription>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg font-test">{project.title}</CardTitle>
         </CardHeader>
-        <CardContent className="mt-auto pt-4">
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map(tag => (
-              <MemoBadge key={tag} variant="secondary">{tag}</MemoBadge>
-            ))}
-          </div>
+        <CardContent className="mt-auto pt-0">
+          <CardDescription className="text-sm mb-4 text-foreground">
+            {project.description.length > 100 
+              ? `${project.description.substring(0, 100)}...` 
+              : project.description
+            }
+          </CardDescription>
+          <Button 
+            className="w-full"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelectProject(slugify(project.title));
+            }}
+          >
+            Learn More
+          </Button>
         </CardContent>
       </Card>
     </div>
@@ -220,25 +467,31 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
         ))}
       </div>
       
-      {/* Horizontal scrolling projects container */}
-      <div className="horizontal-scroll-container">
+      {/* Optimized horizontal scrolling projects container */}
+      <div 
+        className="relative overflow-hidden project-card-container"
+      >
         <div 
-          ref={projectsScrollRef}
-          className="flex gap-6 overflow-x-auto hide-scrollbar pb-4 auto-scroll"
+          ref={projectsContainerRef}
+          className="flex gap-6 pb-4 will-change-transform smooth-scroll cursor-grab select-none"
           style={{ 
-            WebkitOverflowScrolling: 'touch',
-            scrollBehavior: 'smooth'
+            transition: 'transform 0.1s ease-out',
+            width: 'fit-content'
           }}
-          onTouchStart={handleUserInteraction}
-          onMouseDown={handleUserInteraction}
-          onWheel={handleUserInteraction}
-          onScroll={(e) => {
-            handleUserInteraction();
-            handleScroll();
+          onWheel={handleWheel}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseEnter={handleUserInteraction}
+          onMouseLeave={() => {
+            // Don't immediately resume, let the timeout handle it for smoother transition
+            isUserInteractingRef.current = false;
           }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
-          {/* Triplicate projects for smooth infinite effect */}
-          {[...filteredProjects, ...filteredProjects, ...filteredProjects].map((project, index) => (
+          {/* Duplicate projects for smooth infinite effect (reduced from 3 to 2 sets) */}
+          {[...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects, ...filteredProjects].map((project, index) => (
             <ProjectCard 
               project={project} 
               onSelectProject={onSelectProject} 

@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font face declarations for Inter */
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer utilities {
   @keyframes marquee {
     from {
@@ -106,8 +139,22 @@
     @apply border-border;
   }
 
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-weight: 400;
+  }
+
+  /* Force Inter font on all text elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
   }
 
   /* Hide horizontal scrollbar for elements with .hide-scrollbar */
@@ -139,5 +186,137 @@
   /* Smooth auto-scroll animation */
   .auto-scroll {
     transition: scroll-left 0.1s ease-out;
+  }
+
+  /* Performance optimizations for smooth scrolling */
+  .will-change-transform {
+    will-change: transform;
+    transform: translateZ(0); /* Force hardware acceleration */
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimized project card animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Smooth scrolling optimizations */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  /* Prevent layout shifts during animations */
+  .project-card-container {
+    contain: layout style paint;
+    overscroll-behavior: none;
+    touch-action: pan-x; /* Only allow horizontal touch gestures */
+    position: relative;
+    z-index: 10;
+    /* Extend to full screen width like horizontal scroll container */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+  }
+
+  /* Prevent default scroll behavior on project cards */
+  .project-card-container * {
+    overscroll-behavior: none;
+    touch-action: pan-x;
+  }
+
+  /* Prevent page scrolling when interacting with cards */
+  .project-card-container,
+  .project-card-container * {
+    overscroll-behavior: none;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* More aggressive scroll prevention */
+  .project-card-container {
+    overscroll-behavior: none !important;
+    touch-action: pan-x !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent any scroll events from bubbling up */
+  .project-card-container * {
+    overscroll-behavior: none !important;
+    touch-action: pan-x !important;
+  }
+
+  /* Specific prevention for wheel events */
+  .project-card-container {
+    overscroll-behavior: none !important;
+    touch-action: pan-x !important;
+    -webkit-overflow-scrolling: touch;
+    /* Prevent vertical scroll specifically */
+    overflow: hidden;
+  }
+
+  /* Interactive Grid Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-scale-102 {
+    transform: scale(1.02);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Test class to verify Inter font is working */
+  .font-inter {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+    font-weight: 400;
+  }
+
+  /* Force Inter on specific elements for testing */
+  .test-inter-font {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+
+  /* Font loading indicator */
+  .fonts-loaded {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+  }
+
+  .fonts-loaded * {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+  }
+
+  /* Make font changes more visible for testing */
+  .font-test {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 }
