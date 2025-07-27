@@ -27,13 +27,6 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
           </h2>
         </section>
 
-        <section id="ai-playground" className="mb-24 md:mb-32">
-            <p className="text-sm text-foreground mb-8 text-center md:text-left">Interact with my digital self</p>
-            <div>
-                <VirtualSelfChat projects={projects} />
-            </div>
-        </section>
-
         <section id="work" className="mb-24 md:mb-32">
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-4">
@@ -42,6 +35,12 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
             </div>
           </div>
           <ProjectShowcase projects={projects} tags={allTags} onSelectProject={onSelectProject} />
+        </section>
+
+        <section id="ai-playground" className="mb-24 md:mb-32">
+            <div>
+                <VirtualSelfChat projects={projects} />
+            </div>
         </section>
 
         <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-start">
