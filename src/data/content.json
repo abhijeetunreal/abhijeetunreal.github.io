@@ -22,8 +22,8 @@
       "promptPlaceholder": "Ask about my work, skills, philosophy..."
   },
   "work": {
-      "title": "[SELECTED WORKS]",
-      "subtitle": "Click a category to filter the projects."
+      "title": " ",
+      "subtitle": ""
   },
   "about": {
     "title": "[ABOUT ME]",

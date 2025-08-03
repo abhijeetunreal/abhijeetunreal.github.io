@@ -99,28 +99,28 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
         className="block hover:no-underline group cursor-pointer project-card"
         key={project.title}
       >
-        <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden min-w-[300px] max-w-[300px] flex-shrink-0" style={{ animationDelay: `${index * 50}ms` }}>
+        <Card className="h-full flex flex-col animate-fade-in border-accent group-hover:border-primary transition-colors overflow-hidden min-w-[200px] max-w-[200px] md:min-w-[250px] md:max-w-[250px] flex-shrink-0" style={{ animationDelay: `${index * 50}ms` }}>
           {project.cardImage && (
             <div
-              className="h-64 bg-cover bg-center relative project-card-image"
+              className="h-32 md:h-40 bg-cover bg-center relative project-card-image"
               style={{ backgroundImage: `url(${project.cardImage})` }}
               data-src={project.cardImage}
             >
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
             </div>
           )}
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg font-test">{project.title}</CardTitle>
+          <CardHeader className="pb-2 px-3 pt-3">
+            <CardTitle className="text-sm md:text-base font-test">{project.title}</CardTitle>
           </CardHeader>
-          <CardContent className="mt-auto pt-0">
-            <CardDescription className="text-sm mb-4 text-foreground">
-              {project.description.length > 100 
-                ? `${project.description.substring(0, 100)}...` 
+          <CardContent className="mt-auto pt-0 px-3 pb-3">
+            <CardDescription className="text-xs md:text-sm mb-3 text-foreground">
+              {project.description.length > 60 
+                ? `${project.description.substring(0, 60)}...` 
                 : project.description
               }
             </CardDescription>
             <Button 
-              className="w-full"
+              className="w-full text-xs md:text-sm py-1 md:py-2"
               onClick={(e) => {
                 e.stopPropagation();
                 onSelectProject(slugify(project.title));
@@ -135,10 +135,10 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
   });
 
   return (
-    <div>
+    <div className="mx-4 md:mx-6 lg:mx-8">
       <div
         ref={tagScrollRef}
-        className="flex items-center gap-2 mb-8 overflow-x-auto hide-scrollbar px-2 -mx-2 whitespace-nowrap"
+        className="flex items-center gap-2 mb-4 overflow-x-auto hide-scrollbar px-2 -mx-2 whitespace-nowrap"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {allTagsWithAll.map(tag => (
@@ -146,7 +146,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
             key={tag}
             variant={activeTag === tag ? 'default' : 'outline'}
             onClick={() => setActiveTag(tag)}
-            className="rounded-full px-4 py-2 text-sm mx-1 whitespace-nowrap"
+            className="rounded-full px-3 py-1 text-xs md:text-sm mx-1 whitespace-nowrap"
           >
             {tag}
           </Button>
@@ -156,7 +156,7 @@ const ProjectShowcase = ({ projects, tags, onSelectProject }: ProjectShowcasePro
       <div className="relative overflow-x-auto project-card-container" style={{ WebkitOverflowScrolling: 'touch' }}>
         <div
           ref={projectsContainerRef}
-          className="flex gap-6 pb-4 cursor-grab select-none"
+          className="flex gap-4 pb-2 cursor-grab select-none"
           style={{ width: 'fit-content' }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}

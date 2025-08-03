@@ -15,14 +15,12 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
   const { hero, work, about, workedWith, projects, contactLinks } = content;
   const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
 
-
-
   return (
     <div className="text-foreground min-h-screen font-mono relative z-[60]">
       <Header onGoHome={onGoHome} />
       <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
         <section id="hero" className="mb-24 md:mb-32">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">
             <DecoderText text={hero.title} animationDelay={24} />
           </h2>
         </section>
