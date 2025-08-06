@@ -12,9 +12,11 @@ interface IndexProps {
   onGoHome: () => void;
 }
 
+const homeLabel = (content.navLinks && content.navLinks[0]?.label) || 'HOME';
+
 const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
   const { hero, about, workedWith, projects, contactLinks } = content;
-  const [currentSection, setCurrentSection] = useState<'HOME' | 'ABOUT' | 'CONTACT'>('HOME');
+  const [currentSection, setCurrentSection] = useState<string>(homeLabel);
 
   useEffect(() => {
     function onScroll() {
@@ -37,7 +39,7 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
         }
       }
       if (!found) {
-        setCurrentSection('HOME');
+        setCurrentSection(homeLabel);
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true });

@@ -285,7 +285,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
           className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter text-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={onGoHome}
         >
-          {content.name}<sup className="text-2xl sm:text-3xl md:text-4xl -top-8 sm:-top-12">&reg;</sup>
+            {content.name}<sup className="text-2xl sm:text-3xl md:text-4xl -top-8 sm:-top-20  ">▲</sup>
         </h1>
       </main>
 

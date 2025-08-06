@@ -16,6 +16,29 @@ const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [showSplash, setShowSplash] = useState(true);
 
+  useEffect(() => {
+    // When a project is selected, push a new state to the history stack
+    if (selectedSlug) {
+      window.history.pushState({ project: selectedSlug }, "", `#project/${selectedSlug}`);
+    }
+  }, [selectedSlug]);
+
+  useEffect(() => {
+    const onPopState = (event: PopStateEvent) => {
+      // If we are in ProjectDetail, go back to home when popstate occurs
+      if (selectedSlug) {
+        setSelectedSlug(null);
+        window.scrollTo(0, 0);
+      }
+    };
+    if (selectedSlug) {
+      window.addEventListener("popstate", onPopState);
+      return () => {
+        window.removeEventListener("popstate", onPopState);
+      };
+    }
+  }, [selectedSlug]);
+
   const handleSelectProject = (slug: string) => {
     setSelectedSlug(slug);
     window.scrollTo(0, 0);

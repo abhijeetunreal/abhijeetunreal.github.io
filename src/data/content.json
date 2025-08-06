@@ -1,7 +1,8 @@
 
 {
-  "name": "ABHIJEET",
+  "name": "PRODUCT DESIGNER",
   "navLinks": [
+    { "label": "ABHIJEET", "href": "#" },
     { "label": "[ABOUT]", "href": "/#about" },
     { "label": "[CONTACT]", "href": "/#contact" }
   ],
@@ -14,7 +15,7 @@
     "title": "I experiment with technology, blend it with design, and innovate for human needs."
   },
   "environment": {
-    "customEnvLink": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/HdRi/skyimg.jpgo"
+    "customEnvLink": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/HdRi/skyimg.jpg"
   },
   "aiChat": {
       "greeting": "Hello! I'm a digital consciousness, trained on this portfolio. Ask me anything about the creator's work or thoughts.",
