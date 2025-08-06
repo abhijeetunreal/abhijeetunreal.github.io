@@ -1,8 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
+interface Company {
+  name: string;
+  logo: string;
+}
+
 interface MarqueeProps {
-  items: string[];
+  items: (string | Company)[];
   className?: string;
   debug?: boolean; // Add debug prop for development
 }
@@ -22,7 +27,7 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
     const calculateOptimalSpacing = () => {
       const containerWidth = containerRef.current!.offsetWidth;
       
-      // Create a temporary element to measure text width
+      // Create a temporary element to measure item width
       const tempElement = document.createElement('div');
       tempElement.className = 'text-2xl font-semibold whitespace-nowrap absolute invisible';
       document.body.appendChild(tempElement);
@@ -31,7 +36,13 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
       let totalItemWidth = 0;
       const itemWidths: number[] = [];
       items.forEach(item => {
-        tempElement.textContent = item;
+        if (typeof item === 'string') {
+          tempElement.textContent = item;
+        } else {
+          // For company objects, use a fixed width for logos
+          tempElement.style.width = '200px';
+          tempElement.style.height = '80px';
+        }
         const width = tempElement.offsetWidth;
         itemWidths.push(width);
         totalItemWidth += width;
@@ -89,6 +100,47 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
   // Repeat items as needed
   const repeatedItems = Array.from({ length: repeatCount }, () => items).flat();
 
+  const renderItem = (item: string | Company, index: number) => {
+    if (typeof item === 'string') {
+      return (
+        <div 
+          key={index} 
+          className="flex-shrink-0 text-2xl font-semibold text-foreground whitespace-nowrap"
+        >
+          {item}
+        </div>
+      );
+    } else {
+      return (
+        <div 
+          key={`${item.name}-${index}`} 
+          className="flex-shrink-0 flex items-center justify-center bg-white/5 rounded-lg p-4"
+          style={{ width: '200px', height: '80px', minWidth: '200px' }}
+        >
+          <img 
+            src={item.logo} 
+            alt={item.name}
+            className="max-w-full max-h-full object-contain"
+            style={{ maxWidth: '180px', maxHeight: '60px' }}
+            onError={(e) => {
+              // Fallback to text if image fails to load
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const fallback = target.parentElement?.querySelector('.fallback-text') as HTMLElement;
+              if (fallback) {
+                fallback.style.display = 'block';
+                fallback.textContent = item.name;
+              }
+            }}
+          />
+          <div className="fallback-text text-lg font-semibold text-foreground whitespace-nowrap hidden">
+            {item.name}
+          </div>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="space-y-2">
       {debug && (
@@ -124,14 +176,7 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
             animationPlayState: isPaused ? 'paused' : 'running'
           }}
         >
-          {repeatedItems.map((item, index) => (
-            <div 
-              key={index} 
-                              className="flex-shrink-0 text-2xl font-semibold text-foreground whitespace-nowrap"
-            >
-              {item}
-            </div>
-          ))}
+          {repeatedItems.map((item, index) => renderItem(item, index))}
         </div>
       </div>
     </div>

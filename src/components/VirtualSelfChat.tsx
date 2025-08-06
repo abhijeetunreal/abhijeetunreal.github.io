@@ -290,7 +290,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
     if (isSticky) {
         return isOpen ? (
             <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-                <div className="w-full max-w-2xl bg-card/20 backdrop-blur-md border border-foreground/10 rounded-3xl p-6 flex flex-col h-[60vh] max-h-[500px]">
+                <div className="w-full max-w-2xl">
                     {chatContent}
                 </div>
             </div>

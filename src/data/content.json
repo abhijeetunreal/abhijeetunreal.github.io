@@ -3,13 +3,13 @@
   "name": "PRODUCT DESIGNER",
   "navLinks": [
     { "label": "ABHIJEET", "href": "#" },
-    { "label": "[ABOUT]", "href": "/#about" },
-    { "label": "[CONTACT]", "href": "/#contact" }
+    { "label": "ABOUT", "href": "/#about" },
+    { "label": "CONTACT", "href": "/#contact" }
   ],
   "contactLinks": [
-      { "label": "[EMAIL]", "href": "mailto:your.email@example.com" },
-      { "label": "[LINKEDIN]", "href": "#" },
-      { "label": "[GITHUB]", "href": "#" }
+      { "label": "EMAIL", "href": "mailto:your.email@example.com" },
+      { "label": "LINKEDIN", "href": "#" },
+      { "label": "GITHUB", "href": "#" }
   ],
   "hero": {
     "title": "I experiment with technology, blend it with design, and innovate for human needs."
@@ -23,7 +23,7 @@
   },
 
   "about": {
-    "title": "[ABOUT ME]",
+    "title": "ABOUT ME",
     "paragraph1": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities.",
     "paragraph2": "Click on a cell in the grid to generate a unique design philosophy statement, powered by a simple AI model trained on my work and ethos.",
     "philosophies": [
@@ -50,8 +50,21 @@
     "promptTemplate": "Generate a concise design philosophy statement (under 15 words) based on the following context: {context}. The statement should feel insightful and unique."
   },
   "workedWith": {
-      "title": "[PREVIOUSLY WORKED WITH]",
-      "companies": ["Airbus" ,"CodeFryDev", "Lost Pixels"]
+      "title": "PREVIOUSLY WORKED WITH",
+      "companies": [
+        {
+          "name": "Airbus",
+          "logo": "https://cdn.cookielaw.org/logos/67f35096-f18a-45a1-84a2-a83e00bd9540/2daa8fb4-3fd2-41bc-94b8-fe6ad3972f18/2d433c6f-80fd-4564-95cc-4a5bc829c0c3/AIRBUS_Blue.png"
+        },
+        {
+          "name": "CodeFryDev",
+          "logo": "https://avatars.githubusercontent.com/u/53683289?v=4"
+        },
+        {
+          "name": "Lost Pixels",
+          "logo": "https://img.itch.zone/aW1nLzcwMTg0MjMucG5n/original/XtSXbF.png"
+        }
+      ]
   },
   "projects": [
     {

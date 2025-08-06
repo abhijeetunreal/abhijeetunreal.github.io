@@ -28,7 +28,7 @@ const ProjectDetail = ({
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
             <Header onGoHome={onBack} currentSection="HOME" />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
-                <div className="max-w-4xl mx-auto">
+                <div>
                     <div className="mb-8">
                         <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground">
                             <ArrowLeft className="mr-2 h-4 w-4" />
