@@ -3,15 +3,26 @@ import content from '@/data/content.json';
 import Header from '@/components/Header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 
 interface ProjectDetailProps {
     project: Project;
     onBack: () => void;
+    onNextProject?: () => void;
+    onPreviousProject?: () => void;
+    hasNextProject?: boolean;
+    hasPreviousProject?: boolean;
 }
 
-const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
+const ProjectDetail = ({ 
+    project, 
+    onBack, 
+    onNextProject, 
+    onPreviousProject, 
+    hasNextProject = false, 
+    hasPreviousProject = false 
+}: ProjectDetailProps) => {
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
@@ -66,6 +77,39 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
                             </>
                         )}
                     </div>
+
+                    {/* Project Navigation */}
+                    {(hasNextProject || hasPreviousProject) && (
+                        <div className="mt-16 pt-8 border-t border-border">
+                            <div className="flex justify-between items-center">
+                                {hasPreviousProject && onPreviousProject ? (
+                                    <Button 
+                                        onClick={onPreviousProject} 
+                                        variant="ghost" 
+                                        className="flex items-center gap-2 hover:bg-transparent text-foreground"
+                                    >
+                                        <ChevronLeft className="h-4 w-4" />
+                                        <span className="hidden sm:inline">Previous Project</span>
+                                    </Button>
+                                ) : (
+                                    <div></div>
+                                )}
+                                
+                                {hasNextProject && onNextProject ? (
+                                    <Button 
+                                        onClick={onNextProject} 
+                                        variant="ghost" 
+                                        className="flex items-center gap-2 hover:bg-transparent text-foreground"
+                                    >
+                                        <span className="hidden sm:inline">Next Project</span>
+                                        <ChevronRight className="h-4 w-4" />
+                                    </Button>
+                                ) : (
+                                    <div></div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </main>
              <footer id="contact" className="container mx-auto p-4 border-t-2 border-border text-center">

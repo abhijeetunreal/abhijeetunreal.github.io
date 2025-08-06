@@ -16,6 +16,52 @@ const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [showSplash, setShowSplash] = useState(true);
 
+  const handleSelectProject = (slug: string) => {
+    setSelectedSlug(slug);
+    window.scrollTo(0, 0);
+  };
+
+  const handleGoHome = () => {
+    setSelectedSlug(null);
+    window.scrollTo(0, 0);
+  };
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
+
+  // Get current project and its index
+  const project = selectedSlug
+    ? content.projects.find((p) => slugify(p.title) === selectedSlug) as Project | undefined
+    : null;
+  
+  const currentProjectIndex = project 
+    ? content.projects.findIndex((p) => slugify(p.title) === selectedSlug)
+    : -1;
+
+  // Determine next and previous projects
+  const nextProject = currentProjectIndex >= 0 && currentProjectIndex < content.projects.length - 1
+    ? content.projects[currentProjectIndex + 1] as Project
+    : null;
+  
+  const previousProject = currentProjectIndex > 0
+    ? content.projects[currentProjectIndex - 1] as Project
+    : null;
+
+  const handleNextProject = () => {
+    if (nextProject) {
+      setSelectedSlug(slugify(nextProject.title));
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handlePreviousProject = () => {
+    if (previousProject) {
+      setSelectedSlug(slugify(previousProject.title));
+      window.scrollTo(0, 0);
+    }
+  };
+
   useEffect(() => {
     // When a project is selected, push a new state to the history stack
     if (selectedSlug) {
@@ -39,24 +85,6 @@ const App = () => {
     }
   }, [selectedSlug]);
 
-  const handleSelectProject = (slug: string) => {
-    setSelectedSlug(slug);
-    window.scrollTo(0, 0);
-  };
-
-  const handleGoHome = () => {
-    setSelectedSlug(null);
-    window.scrollTo(0, 0);
-  };
-
-  const handleSplashComplete = () => {
-    setShowSplash(false);
-  };
-
-  const project = selectedSlug
-    ? content.projects.find((p) => slugify(p.title) === selectedSlug)
-    : null;
-  
   // The theme is now handled by ThemeToggle.tsx
   return (
     <QueryClientProvider client={queryClient}>
@@ -69,7 +97,14 @@ const App = () => {
           ) : (
             <>
               {project ? (
-                <ProjectDetail project={project} onBack={handleGoHome} />
+                <ProjectDetail 
+                  project={project} 
+                  onBack={handleGoHome}
+                  onNextProject={handleNextProject}
+                  onPreviousProject={handlePreviousProject}
+                  hasNextProject={!!nextProject}
+                  hasPreviousProject={!!previousProject}
+                />
               ) : (
                 <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} />
               )}
