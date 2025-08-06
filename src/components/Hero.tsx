@@ -27,6 +27,10 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
   const isAutoScrollingRef = useRef(true);
   const interactionTimeoutRef = useRef<NodeJS.Timeout>();
   const animationRef = useRef<number>();
+  const velocityRef = useRef(0); // Track velocity for inertia
+  const lastXRef = useRef(0); // Track last X position
+  const lastTimeRef = useRef(0); // Track last time for velocity
+  const inertiaAnimRef = useRef<number>(); // For inertia animation
 
   // Convert projects from content.json to card data format
   const cardData: CardData[] = content.projects.map(project => ({
@@ -111,6 +115,32 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       animationRef.current = requestAnimationFrame(scrollLoop);
     };
 
+    // --- INERTIA ANIMATION ---
+    const startInertia = () => {
+      cancelInertia();
+      let velocity = velocityRef.current;
+      const friction = 0.95; // Friction factor
+      const minVelocity = 0.2; // Stop threshold
+      function inertiaStep() {
+        if (Math.abs(velocity) > minVelocity) {
+          scroller.scrollLeft -= velocity;
+          velocity *= friction;
+          inertiaAnimRef.current = requestAnimationFrame(inertiaStep);
+        } else {
+          velocityRef.current = 0;
+          inertiaAnimRef.current = undefined;
+        }
+      }
+      inertiaStep();
+    };
+    const cancelInertia = () => {
+      if (inertiaAnimRef.current) {
+        cancelAnimationFrame(inertiaAnimRef.current);
+        inertiaAnimRef.current = undefined;
+      }
+    };
+
+    // --- INTERACTION HANDLERS ---
     const startInteraction = (e: MouseEvent | TouchEvent) => {
       isAutoScrollingRef.current = false;
       isDownRef.current = true;
@@ -119,6 +149,10 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
       startXRef.current = pageX - scroller.offsetLeft;
       initialScrollLeftRef.current = scroller.scrollLeft;
+      lastXRef.current = pageX;
+      lastTimeRef.current = performance.now();
+      velocityRef.current = 0;
+      cancelInertia();
       if (interactionTimeoutRef.current) {
         clearTimeout(interactionTimeoutRef.current);
       }
@@ -135,6 +169,14 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       if (isDraggingRef.current) {
         if (e.cancelable) e.preventDefault();
         scroller.scrollLeft = initialScrollLeftRef.current - walk;
+        // --- Velocity calculation ---
+        const now = performance.now();
+        const dt = now - lastTimeRef.current;
+        if (dt > 0) {
+          velocityRef.current = (pageX - lastXRef.current) / dt * 16; // px per frame (assuming 60fps)
+        }
+        lastXRef.current = pageX;
+        lastTimeRef.current = now;
       }
     };
 
@@ -142,6 +184,9 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       if (!isDownRef.current) return;
       isDownRef.current = false;
       scroller.classList.remove('active');
+      if (isDraggingRef.current && Math.abs(velocityRef.current) > 0.5) {
+        startInertia();
+      }
       interactionTimeoutRef.current = setTimeout(() => {
         isAutoScrollingRef.current = true;
       }, 2000);
@@ -187,6 +232,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       if (interactionTimeoutRef.current) {
         clearTimeout(interactionTimeoutRef.current);
       }
+      cancelInertia();
     };
   }, []); // Empty dependency array since we're using refs
 
