@@ -2,7 +2,6 @@
 {
   "name": "ABHIJEET",
   "navLinks": [
-    { "label": "[WORK]", "href": "/#work" },
     { "label": "[ABOUT]", "href": "/#about" },
     { "label": "[CONTACT]", "href": "/#contact" }
   ],
@@ -21,10 +20,7 @@
       "greeting": "Hello! I'm a digital consciousness, trained on this portfolio. Ask me anything about the creator's work or thoughts.",
       "promptPlaceholder": "Ask about my work, skills, philosophy..."
   },
-  "work": {
-      "title": " ",
-      "subtitle": ""
-  },
+
   "about": {
     "title": "[ABOUT ME]",
     "paragraph1": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities.",

@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import VirtualSelfChat from '@/components/VirtualSelfChat';
-import ProjectShowcase from '@/components/ProjectShowcase';
 import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
@@ -13,41 +12,30 @@ interface IndexProps {
 }
 
 const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
-  const { hero, work, about, workedWith, projects, contactLinks } = content;
-  const allTags = [...new Set(projects.flatMap((p) => p.tags))].sort();
+  const { hero, about, workedWith, projects, contactLinks } = content;
 
   return (
     <div className="text-foreground min-h-screen font-mono relative z-[60]">
       <Header onGoHome={onGoHome} />
       <Hero onGoHome={onGoHome} onSelectProject={onSelectProject} />
-      <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
+             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
 
-        <section id="work" className="mb-24 md:mb-32">
-          <div className="mb-8">
-            <div className="flex items-center gap-4 mb-4">
-              <h3 className="text-2xl font-bold shrink-0">{work.title}</h3>
-              <p className="text-sm text-foreground hidden md:block">{work.subtitle}</p>
-            </div>
-          </div>
-          <ProjectShowcase projects={projects} tags={allTags} onSelectProject={onSelectProject} />
-        </section>
-
-        <section id="ai-playground" className="mb-24 md:mb-32">
-            <div>
-                <VirtualSelfChat projects={projects} />
-            </div>
-        </section>
-
-        <section id="about" className="mb-24 md:mb-32 grid md:grid-cols-2 gap-8 items-start">
-            <div>
-                <h3 className="text-2xl font-bold mb-4">{about.title}</h3>
-                <p className="text-foreground mb-4">
-                    {about.paragraph1}
-                </p>
-                <p className="text-foreground">{about.paragraph2}</p>
-            </div>
-            <AIPhilosophyGrid />
-        </section>
+         <section id="about" className="mb-24 md:mb-32">
+           <div className="grid md:grid-cols-2 gap-8 items-start mb-12">
+             <div>
+                 <h3 className="text-2xl font-bold mb-4">{about.title}</h3>
+                 <p className="text-foreground mb-4">
+                     {about.paragraph1}
+                 </p>
+                 <p className="text-foreground">{about.paragraph2}</p>
+             </div>
+             <AIPhilosophyGrid />
+           </div>
+           
+           <div className="mt-16">
+             <VirtualSelfChat projects={projects} />
+           </div>
+         </section>
 
         <section id="worked-with" className="mb-24 md:mb-32">
           <h3 className="text-2xl font-bold text-center mb-8">{workedWith.title}</h3>

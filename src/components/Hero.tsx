@@ -197,7 +197,6 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
         <nav className="flex justify-center sm:justify-end">
           <ul className="flex items-center space-x-6 md:space-x-8 text-sm font-bold tracking-wider">
             <li><a href="#" onClick={onGoHome} className="hover:text-gray-400 transition-colors duration-300">HOME</a></li>
-            <li><a href="#work" className="hover:text-gray-400 transition-colors duration-300">WORK</a></li>
             <li><a href="#about" className="hover:text-gray-400 transition-colors duration-300">ABOUT</a></li>
             <li><a href="#contact" className="hover:text-gray-400 transition-colors duration-300">CONTACT</a></li>
             <li><ThemeToggle /></li>
