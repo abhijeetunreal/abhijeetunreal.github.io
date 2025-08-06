@@ -376,7 +376,7 @@
   /* Mobile-specific scroller adjustments */
   @media (max-width: 640px) {
     .scroller {
-      margin-bottom: 1rem;
+      margin-bottom: 6rem;
     }
     
     .scroller__inner {
