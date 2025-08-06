@@ -5,6 +5,7 @@ import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
 import { DecoderText } from '@/components/ui/DecoderText';
+import Hero from '@/components/Hero';
 
 interface IndexProps {
   onSelectProject: (slug: string) => void;
@@ -18,12 +19,8 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
   return (
     <div className="text-foreground min-h-screen font-mono relative z-[60]">
       <Header onGoHome={onGoHome} />
+      <Hero onGoHome={onGoHome} onSelectProject={onSelectProject} />
       <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
-        <section id="hero" className="mb-24 md:mb-32">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">
-            <DecoderText text={hero.title} animationDelay={24} />
-          </h2>
-        </section>
 
         <section id="work" className="mb-24 md:mb-32">
           <div className="mb-8">
