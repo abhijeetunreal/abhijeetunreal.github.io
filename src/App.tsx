@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
-import Logo from "./components/Logo";
 import ProjectDetail from "./pages/ProjectDetail";
 import SplashPage from "./components/SplashPage";
 import content from '@/data/content.json';
@@ -46,7 +45,6 @@ const App = () => {
             <SplashPage onComplete={handleSplashComplete} />
           ) : (
             <>
-              <Logo customEnvLink={content.environment?.customEnvLink} />
               {project ? (
                 <ProjectDetail project={project} onBack={handleGoHome} />
               ) : (
