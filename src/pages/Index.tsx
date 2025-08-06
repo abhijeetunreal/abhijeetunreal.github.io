@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import VirtualSelfChat from '@/components/VirtualSelfChat';
 import Marquee from '@/components/Marquee';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
@@ -62,9 +61,6 @@ const Index = ({ onSelectProject, onGoHome }: IndexProps) => {
               <p className="text-foreground">{about.paragraph2}</p>
             </div>
             <AIPhilosophyGrid />
-          </div>
-          <div className="mt-16">
-            <VirtualSelfChat projects={projects} />
           </div>
         </section>
         <section id="worked-with" className="mb-24 md:mb-32">

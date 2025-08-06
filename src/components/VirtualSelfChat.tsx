@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Brain, Send } from 'lucide-react';
+import { Brain, Send, X } from 'lucide-react';
 import content from '@/data/content.json';
 import { Project } from '@/types/content';
 import { useToast } from '@/hooks/use-toast';
@@ -13,7 +13,14 @@ type Message = {
     text: string;
 }
 
-const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
+interface VirtualSelfChatProps {
+    projects: Project[];
+    isOpen?: boolean;
+    onClose?: () => void;
+    isSticky?: boolean;
+}
+
+const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }: VirtualSelfChatProps) => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -202,22 +209,34 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
         }
     };
 
-    return (
+    const chatContent = (
         <div className="bg-card/20 backdrop-blur-md border border-foreground/10 rounded-3xl p-6 flex flex-col h-[60vh] max-h-[500px]">
-            <div className="flex justify-center items-center gap-2 mb-4">
-                <Brain className="h-5 w-5 text-muted-foreground" />
-                <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
-                {isApiConnected === false && (
-                    <div className="flex items-center gap-1 text-xs text-orange-500">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                        <span>Limited</span>
-                    </div>
-                )}
-                {isApiConnected === true && (
-                    <div className="flex items-center gap-1 text-xs text-green-500">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>Online</span>
-                    </div>
+            <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-center items-center gap-2">
+                    <Brain className="h-5 w-5 text-muted-foreground" />
+                    <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
+                    {isApiConnected === false && (
+                        <div className="flex items-center gap-1 text-xs text-orange-500">
+                            <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                            <span>Limited</span>
+                        </div>
+                    )}
+                    {isApiConnected === true && (
+                        <div className="flex items-center gap-1 text-xs text-green-500">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span>Online</span>
+                        </div>
+                    )}
+                </div>
+                {isSticky && onClose && (
+                    <Button
+                        onClick={onClose}
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 hover:bg-transparent text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        <X className="h-4 w-4" />
+                    </Button>
                 )}
             </div>
             <div ref={scrollContainerRef} className="flex-grow overflow-y-auto pr-4 mb-4 space-y-4">
@@ -267,6 +286,18 @@ const VirtualSelfChat = ({ projects }: { projects: Project[] }) => {
             </form>
         </div>
     );
+
+    if (isSticky) {
+        return isOpen ? (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                <div className="w-full max-w-2xl bg-card/20 backdrop-blur-md border border-foreground/10 rounded-3xl p-6 flex flex-col h-[60vh] max-h-[500px]">
+                    {chatContent}
+                </div>
+            </div>
+        ) : null;
+    }
+
+    return chatContent;
 };
 
 export default VirtualSelfChat;

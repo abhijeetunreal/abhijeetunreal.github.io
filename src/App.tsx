@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import SplashPage from "./components/SplashPage";
+import StickyChat from "./components/StickyChat";
 import content from '@/data/content.json';
 import { slugify } from '@/lib/utils';
 import { Project } from "./types/content";
@@ -108,6 +109,7 @@ const App = () => {
               ) : (
                 <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} />
               )}
+              <StickyChat projects={content.projects as Project[]} />
             </>
           )}
         </div>
