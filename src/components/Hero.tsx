@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import content from '@/data/content.json';
 import { ThemeToggle } from './ThemeToggle';
+import { slugify } from '@/lib/utils';
 
 interface CardData {
   title: string;
@@ -32,13 +33,14 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
   const lastTimeRef = useRef(0); // Track last time for velocity
   const inertiaAnimRef = useRef<number>(); // For inertia animation
 
+  // State for current navigation item
   // Convert projects from content.json to card data format
   const cardData: CardData[] = content.projects.map(project => ({
     title: project.title.toUpperCase(),
     imageUrl: project.cardImage,
     alt: project.description,
     link: '#',
-    slug: project.title.toLowerCase().replace(/\s+/g, '-')
+    slug: slugify(project.title)
   }));
 
   const createCard = (item: CardData) => (
@@ -242,9 +244,36 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       <header className="w-full p-6 sm:p-8">
         <nav className="flex justify-center sm:justify-end">
           <ul className="flex items-center space-x-6 md:space-x-8 text-sm font-bold tracking-wider">
-            <li><a href="#" onClick={onGoHome} className="hover:text-gray-400 transition-colors duration-300">HOME</a></li>
-            <li><a href="#about" className="hover:text-gray-400 transition-colors duration-300">ABOUT</a></li>
-            <li><a href="#contact" className="hover:text-gray-400 transition-colors duration-300">CONTACT</a></li>
+            <li>
+              <a 
+                href="#" 
+                onClick={() => {
+                  // setCurrentNav('HOME'); // Removed as per edit hint
+                  onGoHome?.();
+                }} 
+                className={`hover:text-gray-400 transition-colors duration-300 ${/* currentNav === 'HOME' ? 'underline font-bold' : */ ''}`}
+              >
+                HOME
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#about" 
+                // onClick={() => setCurrentNav('ABOUT')} // Removed as per edit hint
+                className={`hover:text-gray-400 transition-colors duration-300 ${/* currentNav === 'ABOUT' ? 'underline font-bold' : */ ''}`}
+              >
+                ABOUT
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                // onClick={() => setCurrentNav('CONTACT')} // Removed as per edit hint
+                className={`hover:text-gray-400 transition-colors duration-300 ${/* currentNav === 'CONTACT' ? 'underline font-bold' : */ ''}`}
+              >
+                CONTACT
+              </a>
+            </li>
             <li><ThemeToggle /></li>
           </ul>
         </nav>

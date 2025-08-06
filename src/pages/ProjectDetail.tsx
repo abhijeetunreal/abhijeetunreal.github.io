@@ -15,7 +15,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
-            <Header onGoHome={onBack} />
+            <Header onGoHome={onBack} currentSection="HOME" />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 <div className="max-w-4xl mx-auto">
                     <div className="mb-8">
