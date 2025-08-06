@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
         }
       }}
     >
-      <div className="flex-shrink-0 w-64 md:w-80">
+      <div className="flex-shrink-0 w-48 sm:w-56 md:w-64 lg:w-80">
         <p className="text-xs font-bold mb-2 tracking-wider">{item.title}</p>
         <div className="aspect-[3/4] rounded-lg overflow-hidden">
           <img 
@@ -206,7 +206,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       </header>
 
       {/* Main Content (Logo) */}
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-8">
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-8 pb-4 sm:pb-0">
         <h1 
           className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter text-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={onGoHome}
@@ -218,7 +218,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       {/* Infinite Scroller Section */}
       <div 
         ref={scrollerRef}
-        className="scroller pb-8 w-full max-w-full overflow-hidden cursor-grab select-none"
+        className="scroller pb-4 sm:pb-6 md:pb-8 w-full max-w-full overflow-hidden cursor-grab select-none"
         style={{
           WebkitMask: 'linear-gradient(90deg, transparent, white 20%, white 80%, transparent)',
           mask: 'linear-gradient(90deg, transparent, white 20%, white 80%, transparent)'

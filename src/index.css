@@ -373,6 +373,17 @@
     -webkit-transform: translateZ(0);
   }
 
+  /* Mobile-specific scroller adjustments */
+  @media (max-width: 640px) {
+    .scroller {
+      margin-bottom: 1rem;
+    }
+    
+    .scroller__inner {
+      gap: 0.75rem;
+    }
+  }
+
   .scroller.active {
     cursor: grabbing;
   }
