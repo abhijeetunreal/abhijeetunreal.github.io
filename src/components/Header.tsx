@@ -6,26 +6,39 @@ import { DecoderText } from './ui/DecoderText';
 
 interface HeaderProps {
   onGoHome: () => void;
+  onGoToAbout?: () => void;
   currentSection: string;
 }
 
-const Header = ({ onGoHome, currentSection }: HeaderProps) => {
+const Header = ({ onGoHome, onGoToAbout, currentSection }: HeaderProps) => {
   const navLinks = content.navLinks || [];
   const navRefs = navLinks.map(() => useRef<HTMLAnchorElement | null>(null));
   const underlineRef = useRef<HTMLDivElement | null>(null);
-  const [underlineStyle, setUnderlineStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
+  const [underlineStyle, setUnderlineStyle] = useState<{ left: number; width: number }>({ left: -100, width: 0 });
 
   useEffect(() => {
-    const idx = navLinks.findIndex(link => link.label.replace(/\[|\]/g, '').toUpperCase() === currentSection);
-    const ref = navRefs[idx]?.current;
-    if (ref) {
-      const rect = ref.getBoundingClientRect();
-      const parentRect = ref.parentElement?.parentElement?.getBoundingClientRect();
-      if (parentRect) {
-        setUnderlineStyle({ left: rect.left - parentRect.left, width: rect.width });
+    const updateUnderline = () => {
+      const idx = navLinks.findIndex(link => link.label.replace(/\[|\]/g, '').toUpperCase() === currentSection.toUpperCase());
+      const ref = navRefs[idx]?.current;
+      if (ref) {
+        const rect = ref.getBoundingClientRect();
+        const parentRect = ref.parentElement?.parentElement?.getBoundingClientRect();
+        if (parentRect) {
+          setUnderlineStyle({ left: rect.left - parentRect.left, width: rect.width });
+        }
+      } else {
+        // If no match found, don't show underline
+        setUnderlineStyle({ left: 0, width: 0 });
       }
-    }
-  }, [currentSection, navLinks]);
+    };
+
+    // Update immediately
+    updateUnderline();
+    
+    // Also update after a short delay to ensure DOM is ready
+    const timer = setTimeout(updateUnderline, 50);
+    return () => clearTimeout(timer);
+  }, [currentSection, navLinks, navRefs]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg">
@@ -38,8 +51,18 @@ const Header = ({ onGoHome, currentSection }: HeaderProps) => {
                   <a
                     ref={navRefs[i] as React.RefObject<HTMLAnchorElement>}
                     href={link.href}
-                    onClick={link.href === '#' ? onGoHome : undefined}
-                    className={`hover:text-gray-400 transition-colors duration-300 ${link.label.replace(/\[|\]/g, '').toUpperCase() === currentSection ? 'font-bold' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (link.href === '#') {
+                        onGoHome();
+                      } else if (link.href === '/#about' && onGoToAbout) {
+                        onGoToAbout();
+                      } else if (link.href === '/#contact') {
+                        // Handle contact navigation if needed
+                        window.location.hash = 'contact';
+                      }
+                    }}
+                    className={`hover:text-gray-400 transition-colors duration-300 ${link.label.replace(/\[|\]/g, '').toUpperCase() === currentSection.toUpperCase() ? 'font-bold' : ''}`}
                   >
                     <DecoderText text={link.label} animationDelay={18} />
                   </a>

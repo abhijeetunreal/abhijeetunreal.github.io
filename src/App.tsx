@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
+import About from "./pages/About";
 import SplashPage from "./components/SplashPage";
 import StickyChat from "./components/StickyChat";
 import content from '@/data/content.json';
@@ -15,6 +16,7 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<string>("home");
   const [showSplash, setShowSplash] = useState(true);
 
   const handleSelectProject = (slug: string) => {
@@ -24,6 +26,13 @@ const App = () => {
 
   const handleGoHome = () => {
     setSelectedSlug(null);
+    setCurrentPage("home");
+    window.scrollTo(0, 0);
+  };
+
+  const handleGoToAbout = () => {
+    setSelectedSlug(null);
+    setCurrentPage("about");
     window.scrollTo(0, 0);
   };
 
@@ -67,24 +76,32 @@ const App = () => {
     // When a project is selected, push a new state to the history stack
     if (selectedSlug) {
       window.history.pushState({ project: selectedSlug }, "", `#project/${selectedSlug}`);
+    } else if (currentPage === "about") {
+      window.history.pushState({ page: "about" }, "", `#about`);
+    } else {
+      window.history.pushState({ page: "home" }, "", `#`);
     }
-  }, [selectedSlug]);
+  }, [selectedSlug, currentPage]);
 
   useEffect(() => {
     const onPopState = (event: PopStateEvent) => {
-      // If we are in ProjectDetail, go back to home when popstate occurs
+      // Handle navigation back
       if (selectedSlug) {
         setSelectedSlug(null);
+        setCurrentPage("home");
+        window.scrollTo(0, 0);
+      } else if (currentPage === "about") {
+        setCurrentPage("home");
         window.scrollTo(0, 0);
       }
     };
-    if (selectedSlug) {
+    if (selectedSlug || currentPage === "about") {
       window.addEventListener("popstate", onPopState);
       return () => {
         window.removeEventListener("popstate", onPopState);
       };
     }
-  }, [selectedSlug]);
+  }, [selectedSlug, currentPage]);
 
   // The theme is now handled by ThemeToggle.tsx
   return (
@@ -106,8 +123,10 @@ const App = () => {
                   hasNextProject={!!nextProject}
                   hasPreviousProject={!!previousProject}
                 />
+              ) : currentPage === "about" ? (
+                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} />
               ) : (
-                <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} />
+                <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} />
               )}
               <StickyChat projects={content.projects as Project[]} />
             </>

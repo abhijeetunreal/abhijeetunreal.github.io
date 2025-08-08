@@ -45,6 +45,115 @@
       { "statement": "The future of design is collaborative and inclusive." }
     ]
   },
+  "aboutPage": {
+    "title": "ABOUT ME",
+    "subtitle": "Designer, Innovator, Technologist",
+    "bio": {
+      "intro": "I'm a passionate product designer and technologist who believes in the power of interdisciplinary collaboration to solve complex human problems. With a background spanning design, technology, and innovation, I create experiences that bridge the gap between human needs and technological possibilities.",
+      "mission": "My mission is to design products and experiences that not only solve problems but also inspire and empower people to achieve their full potential. I believe in creating technology that serves humanity, not the other way around.",
+      "approach": "I approach design as a conversation between constraints and creativity, between user needs and technological capabilities. Every project is an opportunity to learn, iterate, and push the boundaries of what's possible."
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Design",
+        "institution": "National Institute of Design",
+        "year": "2020-2024",
+        "description": "Specialized in Product Design with focus on Human-Computer Interaction and Digital Innovation"
+      },
+      {
+        "degree": "UX Design Certification",
+        "institution": "Google UX Design",
+        "year": "2023",
+        "description": "Comprehensive UX design program covering research, prototyping, and user testing methodologies"
+      },
+      {
+        "degree": "Frontend Development",
+        "institution": "Meta Frontend Development",
+        "year": "2023",
+        "description": "Advanced frontend development skills including React, TypeScript, and modern web technologies"
+      }
+    ],
+    "experience": [
+      {
+        "role": "Product Designer",
+        "company": "Airbus",
+        "duration": "2023 - Present",
+        "description": "Leading design initiatives for aerospace technology interfaces, focusing on safety and user experience in high-stakes environments."
+      },
+      {
+        "role": "UX Designer",
+        "company": "CodeFryDev",
+        "duration": "2022 - 2023",
+        "description": "Designed user experiences for web applications and mobile apps, collaborating with development teams to implement design solutions."
+      },
+      {
+        "role": "Design Intern",
+        "company": "Lost Pixels",
+        "duration": "2021 - 2022",
+        "description": "Worked on game design and interactive experiences, learning the fundamentals of user-centered design and rapid prototyping."
+      }
+    ],
+    "skills": {
+      "design": [
+        "User Experience Design",
+        "User Interface Design",
+        "Design Systems",
+        "Prototyping",
+        "User Research",
+        "Information Architecture",
+        "Wireframing",
+        "Visual Design",
+        "Interaction Design",
+        "Design Thinking"
+      ],
+      "technology": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML/CSS",
+        "Figma",
+        "Adobe Creative Suite",
+        "Three.js",
+        "WebGL",
+        "Node.js",
+        "Git"
+      ],
+      "tools": [
+        "Figma",
+        "Adobe XD",
+        "Sketch",
+        "InVision",
+        "Principle",
+        "Framer",
+        "Miro",
+        "Notion",
+        "Slack",
+        "Jira"
+      ]
+    },
+    "interests": [
+      "Emerging Technologies",
+      "AI/ML in Design",
+      "Sustainable Design",
+      "Accessibility",
+      "Human-Computer Interaction",
+      "Generative Art",
+      "Data Visualization",
+      "Interactive Installations"
+    ],
+    "awards": [
+      {
+        "title": "Best UX Design",
+        "organization": "Design Awards 2023",
+        "description": "Recognized for innovative user experience design in healthcare applications"
+      },
+      {
+        "title": "Innovation Award",
+        "organization": "Tech Innovation Summit",
+        "description": "Awarded for breakthrough design solutions in aerospace technology"
+      }
+    ]
+  },
   "aiPhilosophy": {
     "context": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities. I believe design is a medium for conversation, technology should be an extension of human capability, ambiguity should be embraced, and collaboration is key.",
     "promptTemplate": "Generate a concise design philosophy statement (under 15 words) based on the following context: {context}. The statement should feel insightful and unique."

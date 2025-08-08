@@ -1,6 +1,7 @@
 
 import content from '@/data/content.json';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -112,13 +113,7 @@ const ProjectDetail = ({
                     )}
                 </div>
             </main>
-             <footer id="contact" className="container mx-auto p-4 border-t-2 border-border text-center">
-                <div className="flex justify-center gap-6 font-bold text-sm">
-                    {content.contactLinks.map(link => (
-                        <a href={link.href} key={link.label} className="hover:text-primary transition-colors">{link.label}</a>
-                    ))}
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };
