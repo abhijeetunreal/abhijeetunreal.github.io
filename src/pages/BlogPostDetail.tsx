@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
+import { useEffect } from 'react';
 
 interface BlogPostDetailProps {
     post: Project;
@@ -30,15 +31,34 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
     onNavigateToBlog
 }) => {
 
+    // Add keyboard shortcut for back button (Alt + Left Arrow)
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.altKey && event.key === 'ArrowLeft') {
+                event.preventDefault();
+                onBack();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onBack]);
+
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
             <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="BLOG" />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 <div>
                     <div className="mb-8">
-                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground">
-                            <ArrowLeft className="mr-2 h-4 w-4" />
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                            <span>Blog</span>
+                            <span>/</span>
+                            <span className="text-foreground">{post.title}</span>
+                        </div>
+                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground group" title="Back to blog (Alt + ←)">
+                            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                             Back to blog
+                            <span className="ml-2 text-xs text-muted-foreground hidden sm:inline">(Alt + ←)</span>
                         </Button>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">{post.title}</h1>
                         <div className="flex flex-wrap gap-2 mb-8">

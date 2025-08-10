@@ -42,6 +42,7 @@ const App = () => {
     setSelectedBlogSlug(slug);
     setSelectedSlug(null);
     setSelectedExperimentalSlug(null);
+    setCurrentPage("blog"); // Keep current page as blog when viewing a post
     window.scrollTo(0, 0);
   };
 
@@ -71,6 +72,16 @@ const App = () => {
     setSelectedBlogSlug(null);
     setCurrentPage("blog");
     window.scrollTo(0, 0);
+  };
+
+  const handleBackFromBlogPost = () => {
+    // Ensure we properly navigate back from blog post detail
+    setSelectedBlogSlug(null);
+    setCurrentPage("blog");
+    window.scrollTo(0, 0);
+    
+    // Update browser history to reflect the blog list page
+    window.history.pushState({ page: "blog" }, "", `#blog`);
   };
 
   const handleSplashComplete = () => {
@@ -218,13 +229,22 @@ const App = () => {
         window.scrollTo(0, 0);
       }
     };
-    if (selectedSlug || selectedExperimentalSlug || selectedBlogSlug || currentPage === "about" || currentPage === "experimental" || currentPage === "blog") {
-      window.addEventListener("popstate", onPopState);
-      return () => {
-        window.removeEventListener("popstate", onPopState);
-      };
+
+    // Add event listener for browser back/forward buttons
+    window.addEventListener("popstate", onPopState);
+    
+    return () => {
+      window.removeEventListener("popstate", onPopState);
+    };
+  }, [selectedSlug, selectedExperimentalSlug, selectedBlogSlug, currentPage]);
+
+  // Initialize browser history on component mount
+  useEffect(() => {
+    // Set initial history state
+    if (!selectedSlug && !selectedExperimentalSlug && !selectedBlogSlug && currentPage === "home") {
+      window.history.replaceState({ page: "home" }, "", `#`);
     }
-  }, [selectedSlug, selectedExperimentalSlug, currentPage]);
+  }, []);
 
   // The theme is now handled by ThemeToggle.tsx
   return (
@@ -263,7 +283,7 @@ const App = () => {
               ) : blogPost ? (
                 <BlogPostDetail 
                   post={blogPost} 
-                  onBack={handleGoToBlog}
+                  onBack={handleBackFromBlogPost}
                   onNextPost={handleNextBlogPost}
                   onPreviousPost={handlePreviousBlogPost}
                   hasNextPost={!!nextBlogPost}

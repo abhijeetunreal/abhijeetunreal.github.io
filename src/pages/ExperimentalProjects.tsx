@@ -24,7 +24,7 @@ const ExperimentalProjects: React.FC<ExperimentalProjectsProps> = ({ onGoHome, o
       <main className="container mx-auto px-4 py-12">
         {/* Page Description */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6"><br></br>
             Experimental & Conceptual Work
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed">
