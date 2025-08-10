@@ -154,6 +154,7 @@ interface StickyChatProps {
 
 const StickyChat = ({ projects }: StickyChatProps) => {
     const [isChatOpen, setIsChatOpen] = useState(false);
+    const [messages, setMessages] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
     const iconRef = useRef<HTMLButtonElement>(null);
 
     const toggleChat = () => {
@@ -184,6 +185,8 @@ const StickyChat = ({ projects }: StickyChatProps) => {
                 isOpen={isChatOpen}
                 onClose={closeChat}
                 isSticky={true}
+                messages={messages}
+                setMessages={setMessages}
             />
         </>
     );

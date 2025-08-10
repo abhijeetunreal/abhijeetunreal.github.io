@@ -5,6 +5,7 @@ interface DecoderTextProps {
   className?: string;
   animationDelay?: number; // ms per character
   onAnimationProgress?: (progress: number) => void;
+  shouldAnimate?: boolean; // New prop to control when to animate
 }
 
 const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:<>,.?/~";
@@ -13,15 +14,29 @@ function randomChar() {
   return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
 }
 
-export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', animationDelay = 10, onAnimationProgress }) => {
+export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', animationDelay = 10, onAnimationProgress, shouldAnimate = true }) => {
   const [displayed, setDisplayed] = useState<string[]>(() => Array(text.length).fill(''));
   const timeouts = useRef<NodeJS.Timeout[]>([]);
   const [animationProgress, setAnimationProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationKey = useRef<string>('');
 
   useEffect(() => {
+    // Create a unique key for this text animation
+    const currentKey = `${text.length}-${text.substring(0, 20)}`;
+    
+    // If we shouldn't animate or have already animated this exact text, just set the final text
+    if (!shouldAnimate || animationKey.current === currentKey) {
+      setDisplayed(text.split(''));
+      setAnimationProgress(1);
+      onAnimationProgress?.(1);
+      return;
+    }
+
+    // Reset for new animation
     setDisplayed(Array(text.length).fill(''));
     setAnimationProgress(0);
+    animationKey.current = currentKey;
     
     text.split('').forEach((finalChar, index) => {
       let frame = 0;
@@ -51,7 +66,7 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
     return () => {
       timeouts.current.forEach(clearTimeout);
     };
-  }, [text, animationDelay]);
+  }, [text, animationDelay, shouldAnimate]);
 
   // Helper to preserve whitespace and line breaks
   const renderChar = (char: string, i: number) => {
@@ -101,16 +116,16 @@ export const DecoderText: React.FC<DecoderTextProps> = ({ text, className = '', 
     
     // Check for scrambling effect first - these should always be very subtle
     if (displayed[i] !== '' && displayed[i] !== text[i]) {
-      gradientOpacity = 0.005; // 0.5% opacity for scrambling effect
+      gradientOpacity = 0.002; // 0.2% opacity for scrambling effect (reduced from 0.5%)
     } else if (isDecoded) {
       gradientOpacity = 1; // Fully decoded characters
     } else if (lastDecodedIndex >= 0 && i > lastDecodedIndex) {
-      // Characters after the last decoded position get gradient opacity from 10% to 0%
+      // Characters after the last decoded position get gradient opacity from 3% to 0%
       const distance = i - lastDecodedIndex;
-      gradientOpacity = Math.max(0, 0.1 - (distance * 0.02));
+      gradientOpacity = Math.max(0, 0.03 - (distance * 0.01));
     } else if (i <= lastDecodedIndex) {
       // Characters before or at the last decoded position
-      gradientOpacity = 0.1; // Base opacity for undecoded characters (10%)
+      gradientOpacity = 0.03; // Base opacity for undecoded characters (3% - reduced from 10%)
     }
     
     const isScrambling = displayed[i] !== '' && displayed[i] !== text[i];

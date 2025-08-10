@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Send, X } from 'lucide-react';
 import content from '@/data/content.json';
@@ -163,23 +163,50 @@ interface VirtualSelfChatProps {
     isOpen?: boolean;
     onClose?: () => void;
     isSticky?: boolean;
+    messages: Message[];
+    setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
 }
 
-const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }: VirtualSelfChatProps) => {
-    const [messages, setMessages] = useState<Message[]>([]);
+const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false, messages, setMessages }: VirtualSelfChatProps) => {
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [isFirstInteraction, setIsFirstInteraction] = useState(true);
     const [isAnimating, setIsAnimating] = useState(false);
     const [isApiConnected, setIsApiConnected] = useState<boolean | null>(null);
     const scrollContainerRef = useRef<null | HTMLDivElement>(null);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
     const { toast } = useToast();
+    const [newMessageIds, setNewMessageIds] = useState<Set<number>>(new Set());
 
     // Initialize API connection state as null (unknown) - will be tested on first user interaction
     useEffect(() => {
         setIsApiConnected(null);
     }, []);
 
+    // Track new messages when they're added
+    useEffect(() => {
+        if (messages.length > 0) {
+            const lastMessageIndex = messages.length - 1;
+            setNewMessageIds(prev => new Set([...prev, lastMessageIndex]));
+        }
+    }, [messages.length]);
+
+    // Clear new message tracking when chat is opened
+    useEffect(() => {
+        if (isOpen) {
+            setNewMessageIds(new Set());
+        }
+    }, [isOpen]);
+
+    // Auto-resize textarea based on content
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto';
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+        }
+    }, [inputValue]);
+
+    // Enhanced scroll to bottom functionality
     useEffect(() => {
         const scrollToBottom = () => {
             if (scrollContainerRef.current) {
@@ -189,20 +216,18 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
                 const currentScrollTop = scrollElement.scrollTop;
                 const maxScrollTop = scrollHeight - clientHeight;
                 
-                // Only scroll if content is going beyond the visible area
-                if (currentScrollTop < maxScrollTop - 50) {
-                    scrollElement.scrollTo({
-                        top: maxScrollTop,
-                        behavior: 'smooth'
-                    });
-                }
+                // Always scroll to bottom for new messages
+                scrollElement.scrollTo({
+                    top: maxScrollTop,
+                    behavior: 'smooth'
+                });
             }
         };
 
         // Scroll immediately when messages change
         scrollToBottom();
         
-        // Check scroll position during animation
+        // Additional scroll checks during animation
         const timeouts = [
             setTimeout(scrollToBottom, 100),
             setTimeout(scrollToBottom, 250),
@@ -213,7 +238,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
         return () => timeouts.forEach(clearTimeout);
     }, [messages, isTyping, isAnimating]);
 
-    // Continuous scroll during text animation
+    // Continuous scroll during text animation for better user experience
     useEffect(() => {
         if (isAnimating) {
             const scrollInterval = setInterval(() => {
@@ -228,11 +253,21 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
                         behavior: 'smooth'
                     });
                 }
-            }, 150); // Scroll every 150ms during animation
+            }, 100); // More frequent scrolling during animation
 
             return () => clearInterval(scrollInterval);
         }
     }, [isAnimating]);
+
+    // Handle keydown events for the textarea
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            if (inputValue.trim() && !isTyping) {
+                handleSubmit(e as any);
+            }
+        }
+    };
 
     const createPortfolioContext = () => {
         return `
@@ -455,6 +490,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
                                             setIsAnimating(false);
                                         }
                                     }}
+                                    shouldAnimate={newMessageIds.has(index)}
                                 />
                             ) : (
                                 <div className="prose prose-sm max-w-none dark:prose-invert" 
@@ -475,13 +511,18 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
                 )}
             </div>
             <form onSubmit={handleSubmit} className="flex gap-2">
-                <Input
-                    type="text"
+                <Textarea
+                    ref={textareaRef}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     placeholder={isApiConnected === false ? "Ask me anything (using fallback responses)" : "Ask about my projects, blog posts, skills, experience, or philosophy..."}
                     disabled={isTyping}
-                    className="flex-grow"
+                    className="flex-grow min-h-[40px] max-h-[120px] resize-none overflow-hidden border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md px-3 py-2"
+                    style={{
+                        transition: 'height 0.1s ease-out',
+                        fontFamily: 'inherit'
+                    }}
                 />
                 <Button type="submit" size="icon" disabled={isTyping || !inputValue.trim()}>
                     <Send className="h-4 w-4" />
