@@ -184,7 +184,7 @@
       "title": "Prism",
       "description": "An immersive data narrative exploring climate change through generative visuals.",
       "tags": ["Data Visualization", "Web GL", "Storytelling"],
-      "cardImage": "https://abhijeetunreal.github.io/assets/img/projects/prism%20watch.png",
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/Make_product_showcasing_202508102007.gif",
       "fullDescription": "Prism (Present Resonance Interface for Sensory Mindfulness) is a stylish, minimalist wearable device designed to gently nudge users back to the present moment through subtle sensory cues. It combines haptic feedback, soft light, and a companion app to cultivate mindfulness without screen dependency.",
       "designProcess": "This project was a six-week sprint from idea to a fully functional mindfulness product, designed to help users stay present in the moment by addressing chronic digital distraction and cognitive overload. \nThroughout the development process, I tackled multiple challenges, including rapid prototyping, user testing, marketing, and financial constraints. With a strict budget of ₹400,I focused on cost-effective materials, minimalistic yet engaging design, and creative marketing strategies to ensure accessibility and scalability.\nFrom initial research and ideation to final product execution and promotional planning, every stage was optimized for efficiency, proving that impactful design doesn’t require a high budget—just the right vision and execution.",
       "technicalDetails": "An explanation of the technology stack and implementation details. For example, discussing the use of WebGL for generative visuals in Project Alpha. The core of this project is built with Three.js and a custom GLSL shader pipeline for performance. Data is fetched from a public API and processed on the client-side.",
@@ -200,7 +200,21 @@
         },
         {
           "type": "image",
-          "src": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=600&fit=crop",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/concept_drawings.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "paragraph",
+          "content": "The technical architecture leverages WebGL shaders for real-time rendering, enabling smooth animations even with thousands of data points. Custom algorithms interpolate between data states, creating fluid transitions that help users understand temporal changes in climate patterns."
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/embodiement1.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://github.com/abhijeetunreal/IMGDB/raw/refs/heads/main/Portfolio/Products/Prism/Make_product_showcasing_202508102000.mp4",
           "alt": "Data processing workflow"
         },
         {
@@ -213,7 +227,7 @@
       "title": "Project Beta",
       "description": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation.",
       "tags": ["AI", "UX Design", "Mobile App", "Wellness", "Data Visualization"],
-      "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
+      "cardImage": "https://ngdblog.africa/wp-content/uploads/2023/01/Wow-gif.gif",
       "fullDescription": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation. By analyzing user input and biometric data (with permission), the app generates ambient audio tailored to the user's current state.",
       "designProcess": "The design process was heavily focused on user experience and creating a calming, intuitive interface. We conducted user interviews with people who use focus apps and identified key pain points. Iterative prototyping and testing were crucial to refining the sound generation algorithm and UI.",
       "technicalDetails": "The app is built using React Native. The AI component is a custom-trained neural network hosted on a cloud service, which processes user data to generate sound parameters. We also integrated with health APIs to optionally use data like heart rate variability.",
