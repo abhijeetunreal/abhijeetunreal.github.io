@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
 import ExperimentalProjects from "./pages/ExperimentalProjects";
+import ExperimentalProjectDetail from "./pages/ExperimentalProjectDetail";
 import SplashPage from "./components/SplashPage";
 import StickyChat from "./components/StickyChat";
 import content from '@/data/content.json';
@@ -17,11 +18,19 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const [selectedExperimentalSlug, setSelectedExperimentalSlug] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<string>("home");
   const [showSplash, setShowSplash] = useState(true);
 
   const handleSelectProject = (slug: string) => {
     setSelectedSlug(slug);
+    setSelectedExperimentalSlug(null);
+    window.scrollTo(0, 0);
+  };
+
+  const handleSelectExperimentalProject = (slug: string) => {
+    setSelectedExperimentalSlug(slug);
+    setSelectedSlug(null);
     window.scrollTo(0, 0);
   };
 
@@ -39,6 +48,7 @@ const App = () => {
 
   const handleGoToExperimental = () => {
     setSelectedSlug(null);
+    setSelectedExperimentalSlug(null);
     setCurrentPage("experimental");
     window.scrollTo(0, 0);
   };
@@ -65,6 +75,24 @@ const App = () => {
     ? content.projects[currentProjectIndex - 1] as Project
     : null;
 
+  // Get current experimental project and its index
+  const experimentalProject = selectedExperimentalSlug
+    ? content.experimentalProjects.find((p) => slugify(p.title) === selectedExperimentalSlug) as Project | undefined
+    : null;
+  
+  const currentExperimentalProjectIndex = experimentalProject 
+    ? content.experimentalProjects.findIndex((p) => slugify(p.title) === selectedExperimentalSlug)
+    : -1;
+
+  // Determine next and previous experimental projects
+  const nextExperimentalProject = currentExperimentalProjectIndex >= 0 && currentExperimentalProjectIndex < content.experimentalProjects.length - 1
+    ? content.experimentalProjects[currentExperimentalProjectIndex + 1] as Project
+    : null;
+  
+  const previousExperimentalProject = currentExperimentalProjectIndex > 0
+    ? content.experimentalProjects[currentExperimentalProjectIndex - 1] as Project
+    : null;
+
   const handleNextProject = () => {
     if (nextProject) {
       setSelectedSlug(slugify(nextProject.title));
@@ -79,10 +107,26 @@ const App = () => {
     }
   };
 
+  const handleNextExperimentalProject = () => {
+    if (nextExperimentalProject) {
+      setSelectedExperimentalSlug(slugify(nextExperimentalProject.title));
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handlePreviousExperimentalProject = () => {
+    if (previousExperimentalProject) {
+      setSelectedExperimentalSlug(slugify(previousExperimentalProject.title));
+      window.scrollTo(0, 0);
+    }
+  };
+
   useEffect(() => {
     // When a project is selected, push a new state to the history stack
     if (selectedSlug) {
       window.history.pushState({ project: selectedSlug }, "", `#project/${selectedSlug}`);
+    } else if (selectedExperimentalSlug) {
+      window.history.pushState({ experimentalProject: selectedExperimentalSlug }, "", `#experimental-project/${selectedExperimentalSlug}`);
     } else if (currentPage === "about") {
       window.history.pushState({ page: "about" }, "", `#about`);
     } else if (currentPage === "experimental") {
@@ -90,7 +134,7 @@ const App = () => {
     } else {
       window.history.pushState({ page: "home" }, "", `#`);
     }
-  }, [selectedSlug, currentPage]);
+  }, [selectedSlug, selectedExperimentalSlug, currentPage]);
 
   useEffect(() => {
     const onPopState = (event: PopStateEvent) => {
@@ -98,6 +142,10 @@ const App = () => {
       if (selectedSlug) {
         setSelectedSlug(null);
         setCurrentPage("home");
+        window.scrollTo(0, 0);
+      } else if (selectedExperimentalSlug) {
+        setSelectedExperimentalSlug(null);
+        setCurrentPage("experimental");
         window.scrollTo(0, 0);
       } else if (currentPage === "about") {
         setCurrentPage("home");
@@ -107,13 +155,13 @@ const App = () => {
         window.scrollTo(0, 0);
       }
     };
-    if (selectedSlug || currentPage === "about" || currentPage === "experimental") {
+    if (selectedSlug || selectedExperimentalSlug || currentPage === "about" || currentPage === "experimental") {
       window.addEventListener("popstate", onPopState);
       return () => {
         window.removeEventListener("popstate", onPopState);
       };
     }
-  }, [selectedSlug, currentPage]);
+  }, [selectedSlug, selectedExperimentalSlug, currentPage]);
 
   // The theme is now handled by ThemeToggle.tsx
   return (
@@ -135,11 +183,22 @@ const App = () => {
                   hasNextProject={!!nextProject}
                   hasPreviousProject={!!previousProject}
                   onNavigateToExperimental={handleGoToExperimental}
+                  onGoToAbout={handleGoToAbout}
+                />
+              ) : experimentalProject ? (
+                <ExperimentalProjectDetail 
+                  project={experimentalProject} 
+                  onBack={handleGoToExperimental}
+                  onNextProject={handleNextExperimentalProject}
+                  onPreviousProject={handlePreviousExperimentalProject}
+                  hasNextProject={!!nextExperimentalProject}
+                  hasPreviousProject={!!previousExperimentalProject}
+                  onNavigateToAbout={handleGoToAbout}
                 />
               ) : currentPage === "about" ? (
                 <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onNavigateToExperimental={handleGoToExperimental} />
               ) : currentPage === "experimental" ? (
-                <ExperimentalProjects onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} />
+                <ExperimentalProjects onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onSelectExperimentalProject={handleSelectExperimentalProject} />
               ) : (
                 <Index 
                   onSelectProject={handleSelectProject} 

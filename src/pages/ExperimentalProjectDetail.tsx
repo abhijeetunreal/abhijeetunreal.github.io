@@ -1,4 +1,3 @@
-
 import content from '@/data/content.json';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,37 +6,35 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 
-interface ProjectDetailProps {
+interface ExperimentalProjectDetailProps {
     project: Project;
     onBack: () => void;
     onNextProject?: () => void;
     onPreviousProject?: () => void;
     hasNextProject?: boolean;
     hasPreviousProject?: boolean;
-    onNavigateToExperimental: () => void;
-    onGoToAbout: () => void;
+    onNavigateToAbout: () => void;
 }
 
-const ProjectDetail: React.FC<ProjectDetailProps> = ({ 
+const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({ 
     project, 
     onBack, 
     onNextProject, 
     onPreviousProject, 
     hasNextProject = false, 
     hasPreviousProject = false,
-    onNavigateToExperimental,
-    onGoToAbout
+    onNavigateToAbout
 }) => {
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
-            <Header onGoHome={onBack} onGoToAbout={onGoToAbout} currentSection="HOME" />
+            <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="EXPERIMENTAL" />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 <div>
                     <div className="mb-8">
                         <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground">
                             <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back to all projects
+                            Back to experimental projects
                         </Button>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">{project.title}</h1>
                         <div className="flex flex-wrap gap-2 mb-8">
@@ -117,9 +114,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     )}
                 </div>
             </main>
-            <Footer onNavigateToExperimental={onNavigateToExperimental} />
+            <Footer onNavigateToExperimental={onNavigateToAbout} />
         </div>
     );
 };
 
-export default ProjectDetail;
+export default ExperimentalProjectDetail;

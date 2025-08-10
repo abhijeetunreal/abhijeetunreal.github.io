@@ -4,32 +4,19 @@ import { Card } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
 import content from '@/data/content.json';
 import { slugify } from '@/lib/utils';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface ExperimentalProjectsProps {
   onGoHome: () => void;
   onGoToAbout: () => void;
+  onSelectExperimentalProject: (slug: string) => void;
 }
 
-const ExperimentalProjects: React.FC<ExperimentalProjectsProps> = ({ onGoHome }) => {
+const ExperimentalProjects: React.FC<ExperimentalProjectsProps> = ({ onGoHome, onSelectExperimentalProject, onGoToAbout }) => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={onGoHome}
-              className="flex items-center gap-2 hover:bg-accent"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Button>
-            <h1 className="text-2xl font-bold">EXPERIMENTAL PROJECTS</h1>
-            <div className="w-24"></div> {/* Spacer for centering */}
-          </div>
-        </div>
-      </header>
+      <Header onGoHome={onGoHome} onGoToAbout={onGoToAbout} currentSection="EXPERIMENTAL" />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
@@ -50,6 +37,7 @@ const ExperimentalProjects: React.FC<ExperimentalProjectsProps> = ({ onGoHome })
             <div
               key={index}
               className="group cursor-pointer project-card"
+              onClick={() => onSelectExperimentalProject(slugify(project.title))}
             >
               {/* Title above the card */}
               <h3 className="text-xs md:text-sm font-test mb-0 text-left">
@@ -82,6 +70,7 @@ const ExperimentalProjects: React.FC<ExperimentalProjectsProps> = ({ onGoHome })
           </Button>
         </div>
       </main>
+      <Footer onNavigateToExperimental={onGoToAbout} />
     </div>
   );
 };
