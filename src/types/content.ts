@@ -38,6 +38,12 @@ export interface AiPhilosophy {
     promptTemplate: string;
 }
 
+export interface Company {
+    name: string;
+    logo: string;
+    darkLogo?: string; // Optional dark mode logo
+}
+
 export interface ContentData {
     name: string;
     navLinks: NavLink[];
@@ -59,7 +65,7 @@ export interface ContentData {
     about: About;
     workedWith: {
         title: string;
-        companies: string[];
+        companies: Company[];
     };
     projects: Project[];
     aiPhilosophy: AiPhilosophy;

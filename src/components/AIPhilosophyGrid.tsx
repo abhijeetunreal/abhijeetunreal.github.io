@@ -67,7 +67,7 @@ const AIPhilosophyGrid = () => {
         
         Design Philosophy: ${content.about.paragraph2}
         
-        Companies worked with: ${content.workedWith.companies.join(', ')}
+        Companies worked with: ${content.workedWith.companies.map(c => c.name).join(', ')}
     `;
   };
 

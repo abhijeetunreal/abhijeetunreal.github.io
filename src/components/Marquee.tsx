@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 interface Company {
   name: string;
   logo: string;
+  darkLogo?: string; // Optional dark mode logo
 }
 
 interface MarqueeProps {
@@ -20,6 +21,27 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
   const [animationDuration, setAnimationDuration] = useState(40); // Default duration in seconds
   const [isPaused, setIsPaused] = useState(false);
   const [debugInfo, setDebugInfo] = useState<any>({});
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Check for dark mode
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setIsDarkMode(isDark);
+    };
+
+    // Initial check
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current || items.length === 0) return;
@@ -111,16 +133,19 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
         </div>
       );
     } else {
+      // Determine which logo to use based on theme
+      const logoUrl = isDarkMode && item.darkLogo ? item.darkLogo : item.logo;
+      
       return (
         <div 
           key={`${item.name}-${index}`} 
-          className="flex-shrink-0 flex items-center justify-center bg-white/5 rounded-lg p-4"
+          className="flex-shrink-0 flex items-center justify-center p-4"
           style={{ width: '200px', height: '80px', minWidth: '200px' }}
         >
           <img 
-            src={item.logo} 
+            src={logoUrl} 
             alt={item.name}
-            className="max-w-full max-h-full object-contain"
+            className="max-w-full max-h-full object-contain marquee-logo"
             style={{ maxWidth: '180px', maxHeight: '60px' }}
             onError={(e) => {
               // Fallback to text if image fails to load
@@ -155,6 +180,7 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
           <div>Repeats: {debugInfo.repeatCount}</div>
           <div>Duration: {debugInfo.animationDuration}s</div>
           <div>Paused: {isPaused ? 'Yes' : 'No'}</div>
+          <div>Theme: {isDarkMode ? 'Dark' : 'Light'}</div>
         </div>
       )}
       

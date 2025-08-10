@@ -97,7 +97,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
             
             Design Philosophy: ${content.about.paragraph2}
             
-            Companies worked with: ${content.workedWith.companies.join(', ')}
+            Companies worked with: ${content.workedWith.companies.map(c => c.name).join(', ')}
         `;
     };
 
@@ -213,8 +213,8 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
         <div className="bg-card/20 backdrop-blur-md border border-foreground/10 rounded-3xl p-6 flex flex-col h-[60vh] max-h-[500px]">
             <div className="flex justify-between items-center mb-4">
                 <div className="flex justify-center items-center gap-2">
-                    <Brain className="h-5 w-5 text-muted-foreground" />
-                    <h3 className="text-sm uppercase font-bold text-muted-foreground">[Ask My Digital Self]</h3>
+                    <Brain className="h-5 w-5 " />
+                    <h3 className="text-sm uppercase font-bold ">[Ask My Digital Self]</h3>
                     {isApiConnected === false && (
                         <div className="flex items-center gap-1 text-xs text-orange-500">
                             <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
@@ -233,7 +233,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
                         onClick={onClose}
                         variant="ghost"
                         size="icon"
-                        className="h-6 w-6 hover:bg-transparent text-muted-foreground hover:text-foreground transition-colors"
+                        className="h-6 w-6 hover:bg-transparent  hover:text-foreground transition-colors"
                     >
                         <X className="h-4 w-4" />
                     </Button>

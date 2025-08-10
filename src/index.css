@@ -48,6 +48,21 @@
     animation: marquee 40s linear infinite;
   }
   
+  /* Marquee logo improvements */
+  .marquee-logo {
+    transition: all 0.3s ease;
+    filter: grayscale(0);
+  }
+  
+  .marquee-logo:hover {
+    filter: grayscale(0);
+    transform: scale(1.05);
+  }
+  
+  .dark .marquee-logo {
+    filter: grayscale(0);
+  }
+  
   @keyframes scroll {
     from {
       transform: translateX(0);

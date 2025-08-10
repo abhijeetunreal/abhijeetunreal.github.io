@@ -163,16 +163,20 @@
       "companies": [
         {
           "name": "Airbus",
-          "logo": "https://cdn.cookielaw.org/logos/67f35096-f18a-45a1-84a2-a83e00bd9540/2daa8fb4-3fd2-41bc-94b8-fe6ad3972f18/2d433c6f-80fd-4564-95cc-4a5bc829c0c3/AIRBUS_Blue.png"
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Airbus_Logo_2017.svg/2560px-Airbus_Logo_2017.svg.png",
+          "darkLogo": "https://www.alamos-gmbh.com/wp-content/uploads/2017/05/AIRBUS_WHITE.png"
         },
         {
           "name": "CodeFryDev",
-          "logo": "https://avatars.githubusercontent.com/u/53683289?v=4"
+          "logo": "https://avatars.githubusercontent.com/u/53683289?v=4",
+          "darkLogo": "https://avatars.githubusercontent.com/u/53683289?v=4"
         },
         {
           "name": "Lost Pixels",
-          "logo": "https://img.itch.zone/aW1nLzcwMTg0MjMucG5n/original/XtSXbF.png"
+          "logo": "https://img.itch.zone/aW1nLzcwMTg0MjMucG5n/original/XtSXbF.png",
+          "darkLogo": "https://img.itch.zone/aW1nLzcwMTg0MjMucG5n/original/XtSXbF.png"
         }
+        
       ]
   },
   "projects": [
@@ -180,7 +184,7 @@
       "title": "Prism",
       "description": "An immersive data narrative exploring climate change through generative visuals.",
       "tags": ["Data Visualization", "Web GL", "Storytelling"],
-      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismThumbnail.png",
+      "cardImage": "https://abhijeetunreal.github.io/assets/img/projects/prism%20watch.png",
       "fullDescription": "Prism (Present Resonance Interface for Sensory Mindfulness) is a stylish, minimalist wearable device designed to gently nudge users back to the present moment through subtle sensory cues. It combines haptic feedback, soft light, and a companion app to cultivate mindfulness without screen dependency.",
       "designProcess": "This project was a six-week sprint from idea to a fully functional mindfulness product, designed to help users stay present in the moment by addressing chronic digital distraction and cognitive overload. \nThroughout the development process, I tackled multiple challenges, including rapid prototyping, user testing, marketing, and financial constraints. With a strict budget of ₹400,I focused on cost-effective materials, minimalistic yet engaging design, and creative marketing strategies to ensure accessibility and scalability.\nFrom initial research and ideation to final product execution and promotional planning, every stage was optimized for efficiency, proving that impactful design doesn’t require a high budget—just the right vision and execution.",
       "technicalDetails": "An explanation of the technology stack and implementation details. For example, discussing the use of WebGL for generative visuals in Project Alpha. The core of this project is built with Three.js and a custom GLSL shader pipeline for performance. Data is fetched from a public API and processed on the client-side.",
