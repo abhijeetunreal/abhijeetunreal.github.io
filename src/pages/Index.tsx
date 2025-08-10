@@ -9,11 +9,12 @@ interface IndexProps {
   onSelectProject: (slug: string) => void;
   onGoHome: () => void;
   onGoToAbout: () => void;
+  onNavigateToExperimental: () => void;
 }
 
 const homeLabel = (content.navLinks && content.navLinks[0]?.label) || 'HOME';
 
-const Index = ({ onSelectProject, onGoHome, onGoToAbout }: IndexProps) => {
+const Index = ({ onSelectProject, onGoHome, onGoToAbout, onNavigateToExperimental }: IndexProps) => {
   const { hero, workedWith, projects, contactLinks } = content;
   const [currentSection, setCurrentSection] = useState<string>(homeLabel);
 
@@ -48,7 +49,7 @@ const Index = ({ onSelectProject, onGoHome, onGoToAbout }: IndexProps) => {
           <Marquee items={workedWith.companies} />
         </section>
       </main>
-      <Footer />
+      <Footer onNavigateToExperimental={onNavigateToExperimental} />
     </div>
   );
 };

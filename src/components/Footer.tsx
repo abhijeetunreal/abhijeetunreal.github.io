@@ -3,7 +3,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowLeft, ArrowLeftSquare, ArrowRight, ArrowRightCircle } from 'lucide-react';
 
-const Footer = () => {
+interface FooterProps {
+  onNavigateToExperimental: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigateToExperimental }) => {
   return (
     <footer id="contact" className="bg-background text-foreground py-8 md:py-24 border-t border-border">
       <div className="container mx-auto px-4">
@@ -29,7 +33,10 @@ const Footer = () => {
           <div className="space-y-0">
             <h1 className="text-muted-foreground text-2xl font-bold ">Connect with me</h1>
             <div className="space-y-0">
-              <div className="flex items-center text-foreground hover:text-blue-400 transition-colors cursor-pointer">
+              <div 
+                className="flex items-center text-foreground hover:text-blue-400 transition-colors cursor-pointer"
+                onClick={onNavigateToExperimental}
+              >
                 <ArrowRight className="h-6 w-6 mr-2" />
                 <span className="text-2xl font-bold" >Discover my other Projects</span>
               </div>

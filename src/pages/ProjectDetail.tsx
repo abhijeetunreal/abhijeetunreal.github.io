@@ -14,16 +14,18 @@ interface ProjectDetailProps {
     onPreviousProject?: () => void;
     hasNextProject?: boolean;
     hasPreviousProject?: boolean;
+    onNavigateToExperimental: () => void;
 }
 
-const ProjectDetail = ({ 
+const ProjectDetail: React.FC<ProjectDetailProps> = ({ 
     project, 
     onBack, 
     onNextProject, 
     onPreviousProject, 
     hasNextProject = false, 
-    hasPreviousProject = false 
-}: ProjectDetailProps) => {
+    hasPreviousProject = false,
+    onNavigateToExperimental
+}) => {
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
@@ -113,7 +115,7 @@ const ProjectDetail = ({
                     )}
                 </div>
             </main>
-            <Footer />
+            <Footer onNavigateToExperimental={onNavigateToExperimental} />
         </div>
     );
 };

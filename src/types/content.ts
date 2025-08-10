@@ -68,5 +68,6 @@ export interface ContentData {
         companies: Company[];
     };
     projects: Project[];
+    experimentalProjects: Project[];
     aiPhilosophy: AiPhilosophy;
 }

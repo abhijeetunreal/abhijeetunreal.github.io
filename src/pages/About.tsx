@@ -9,9 +9,10 @@ import Footer from '@/components/Footer';
 interface AboutProps {
   onGoHome: () => void;
   onGoToAbout: () => void;
+  onNavigateToExperimental: () => void;
 }
 
-const About = ({ onGoHome, onGoToAbout }: AboutProps) => {
+const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperimental }) => {
   const { aboutPage } = content;
 
   return (
@@ -159,7 +160,7 @@ const About = ({ onGoHome, onGoToAbout }: AboutProps) => {
           <AIPhilosophyGrid />
         </section>
       </main>
-      <Footer />
+      <Footer onNavigateToExperimental={onNavigateToExperimental} />
     </div>
   );
 };

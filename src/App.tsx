@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
+import ExperimentalProjects from "./pages/ExperimentalProjects";
 import SplashPage from "./components/SplashPage";
 import StickyChat from "./components/StickyChat";
 import content from '@/data/content.json';
@@ -33,6 +34,12 @@ const App = () => {
   const handleGoToAbout = () => {
     setSelectedSlug(null);
     setCurrentPage("about");
+    window.scrollTo(0, 0);
+  };
+
+  const handleGoToExperimental = () => {
+    setSelectedSlug(null);
+    setCurrentPage("experimental");
     window.scrollTo(0, 0);
   };
 
@@ -78,6 +85,8 @@ const App = () => {
       window.history.pushState({ project: selectedSlug }, "", `#project/${selectedSlug}`);
     } else if (currentPage === "about") {
       window.history.pushState({ page: "about" }, "", `#about`);
+    } else if (currentPage === "experimental") {
+      window.history.pushState({ page: "experimental" }, "", `#experimental`);
     } else {
       window.history.pushState({ page: "home" }, "", `#`);
     }
@@ -93,9 +102,12 @@ const App = () => {
       } else if (currentPage === "about") {
         setCurrentPage("home");
         window.scrollTo(0, 0);
+      } else if (currentPage === "experimental") {
+        setCurrentPage("home");
+        window.scrollTo(0, 0);
       }
     };
-    if (selectedSlug || currentPage === "about") {
+    if (selectedSlug || currentPage === "about" || currentPage === "experimental") {
       window.addEventListener("popstate", onPopState);
       return () => {
         window.removeEventListener("popstate", onPopState);
@@ -122,11 +134,19 @@ const App = () => {
                   onPreviousProject={handlePreviousProject}
                   hasNextProject={!!nextProject}
                   hasPreviousProject={!!previousProject}
+                  onNavigateToExperimental={handleGoToExperimental}
                 />
               ) : currentPage === "about" ? (
-                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} />
+                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onNavigateToExperimental={handleGoToExperimental} />
+              ) : currentPage === "experimental" ? (
+                <ExperimentalProjects onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} />
               ) : (
-                <Index onSelectProject={handleSelectProject} onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} />
+                <Index 
+                  onSelectProject={handleSelectProject} 
+                  onGoHome={handleGoHome} 
+                  onGoToAbout={handleGoToAbout}
+                  onNavigateToExperimental={handleGoToExperimental}
+                />
               )}
               <StickyChat projects={content.projects as Project[]} />
             </>

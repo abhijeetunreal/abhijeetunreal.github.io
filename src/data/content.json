@@ -347,5 +347,127 @@
       ]
   }
     
+  ],
+  "experimentalProjects": [
+    {
+      "title": "OTTOLY SAVINGS",
+      "description": "A mobile app for smart savings and financial planning with AI-powered insights.",
+      "tags": ["Mobile App", "FinTech", "AI", "UX Design"],
+      "cardImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=533&fit=crop",
+      "fullDescription": "OTTOLY SAVINGS is an innovative mobile application designed to revolutionize personal finance management. The app combines AI-powered insights with intuitive user experience to help users save money intelligently and achieve their financial goals.",
+      "designProcess": "The design process focused on creating a trustworthy and engaging financial app that users would want to use daily. We conducted extensive user research with people from various financial backgrounds to understand pain points in money management.",
+      "technicalDetails": "Built with React Native and integrated with machine learning algorithms for spending pattern analysis. The app uses secure APIs for bank integration and implements advanced encryption for financial data protection.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=600&fit=crop",
+          "alt": "OTTOLY SAVINGS mobile app interface"
+        },
+        {
+          "type": "paragraph",
+          "content": "The app's AI engine analyzes spending patterns and provides personalized recommendations for saving money. Users can set financial goals, track progress, and receive intelligent suggestions for optimizing their spending habits."
+        }
+      ]
+    },
+    {
+      "title": "WELLNEST DOCUMENTS",
+      "description": "Digital document management system that eliminates paperwork and streamlines workflows.",
+      "tags": ["Web App", "Document Management", "Workflow Automation", "UX Design"],
+      "cardImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=533&fit=crop",
+      "fullDescription": "WELLNEST DOCUMENTS is a comprehensive digital document management platform designed to eliminate the need for physical paperwork in modern businesses. The system streamlines document workflows, automates approval processes, and ensures secure storage and retrieval.",
+      "designProcess": "Our design approach focused on creating an intuitive interface that would make the transition from paper to digital seamless for users. We prioritized user experience to ensure high adoption rates across different age groups and technical skill levels.",
+      "technicalDetails": "Built with React and Node.js, featuring real-time collaboration tools, advanced search capabilities, and integration with popular business software. The platform uses cloud storage with enterprise-grade security measures.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
+          "alt": "WELLNEST DOCUMENTS dashboard interface"
+        },
+        {
+          "type": "paragraph",
+          "content": "The platform transforms how organizations handle documents, from creation to archiving. Features include automated workflow routing, digital signatures, version control, and comprehensive audit trails for compliance purposes."
+        }
+      ]
+    },
+    {
+      "title": "PATHFINDER MENTORS",
+      "description": "A mentorship platform connecting students with industry professionals for career guidance.",
+      "tags": ["Web Platform", "Mentorship", "Career Development", "Social Networking"],
+      "cardImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=533&fit=crop",
+      "fullDescription": "PATHFINDER MENTORS is a digital platform that bridges the gap between students and industry professionals. The platform facilitates meaningful mentorship relationships, helping students navigate their career paths with guidance from experienced professionals.",
+      "designProcess": "The design process centered around creating a warm, welcoming environment that would encourage both mentors and mentees to engage actively. We focused on building trust through transparent profiles and structured communication channels.",
+      "technicalDetails": "Developed using React and Firebase, featuring real-time messaging, video calling capabilities, and intelligent matching algorithms. The platform includes comprehensive profile management and scheduling tools.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop",
+          "alt": "PATHFINDER MENTORS platform interface"
+        },
+        {
+          "type": "paragraph",
+          "content": "The platform creates meaningful connections between mentors and mentees through intelligent matching algorithms and structured programs. Features include goal setting, progress tracking, and community building tools."
+        }
+      ]
+    },
+    {
+      "title": "REKORDER MUSIC",
+      "description": "Professional music recording and production software with AI-assisted mixing capabilities.",
+      "tags": ["Desktop App", "Music Production", "AI", "Audio Engineering"],
+      "cardImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=533&fit=crop",
+      "fullDescription": "REKORDER MUSIC is a professional-grade music production software that combines traditional recording tools with cutting-edge AI technology. The platform assists musicians and producers in creating high-quality recordings with intelligent mixing and mastering suggestions.",
+      "designProcess": "The design process focused on creating an interface that would be intuitive for both beginners and professional audio engineers. We prioritized workflow efficiency and visual feedback for complex audio operations.",
+      "technicalDetails": "Built with Electron and Web Audio API, featuring real-time audio processing, VST plugin support, and AI-powered mixing algorithms. The software includes advanced audio analysis tools and automated mastering capabilities.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop",
+          "alt": "REKORDER MUSIC software interface"
+        },
+        {
+          "type": "paragraph",
+          "content": "The AI engine analyzes audio tracks and provides intelligent suggestions for mixing, EQ, compression, and effects. This helps both novice and experienced producers achieve professional-quality results more efficiently."
+        }
+      ]
+    },
+    {
+      "title": "NEURAL CANVAS",
+      "description": "AI-powered digital art creation tool that generates unique artworks based on user prompts.",
+      "tags": ["Web App", "AI Art", "Creative Tools", "Machine Learning"],
+      "cardImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=400&h=533&fit=crop",
+      "fullDescription": "NEURAL CANVAS is an innovative digital art platform that leverages artificial intelligence to help artists and creators generate unique artworks. Users can input text descriptions, upload reference images, or combine multiple styles to create original pieces.",
+      "designProcess": "The design process focused on creating an intuitive interface that would make AI art generation accessible to users of all skill levels. We prioritized creative freedom while maintaining ease of use and clear visual feedback.",
+      "technicalDetails": "Built with React and TensorFlow.js, featuring multiple AI models for different art styles and techniques. The platform includes real-time preview generation, style transfer capabilities, and collaborative features.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
+          "alt": "NEURAL CANVAS art generation interface"
+        },
+        {
+          "type": "paragraph",
+          "content": "The AI models are trained on diverse artistic styles and can generate everything from realistic portraits to abstract compositions. Users can fine-tune parameters, blend multiple styles, and export high-resolution artwork for various purposes."
+        }
+      ]
+    },
+    {
+      "title": "QUANTUM DASHBOARD",
+      "description": "Real-time data visualization platform for complex datasets with interactive 3D representations.",
+      "tags": ["Web App", "Data Visualization", "3D Graphics", "Real-time Analytics"],
+      "cardImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=533&fit=crop",
+      "fullDescription": "QUANTUM DASHBOARD is a cutting-edge data visualization platform that transforms complex datasets into intuitive, interactive 3D representations. The platform is designed for data scientists, researchers, and business analysts who need to explore and present complex information.",
+      "designProcess": "The design process focused on creating an interface that would make complex data accessible and engaging. We prioritized performance, interactivity, and the ability to handle large datasets without compromising user experience.",
+      "technicalDetails": "Built with Three.js and WebGL for 3D graphics, featuring real-time data processing, interactive visualizations, and support for multiple data formats. The platform includes advanced filtering, zooming, and collaboration tools.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
+          "alt": "QUANTUM DASHBOARD 3D visualization interface"
+        },
+        {
+          "type": "paragraph",
+          "content": "The platform can handle millions of data points in real-time, providing smooth 3D navigation and interactive exploration. Users can create custom visualizations, share insights, and collaborate on data analysis projects."
+        }
+      ]
+    }
   ]
 }
