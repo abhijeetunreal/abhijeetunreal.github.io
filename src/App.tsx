@@ -8,6 +8,8 @@ import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
 import ExperimentalProjects from "./pages/ExperimentalProjects";
 import ExperimentalProjectDetail from "./pages/ExperimentalProjectDetail";
+import Blog from "./pages/Blog";
+import BlogPostDetail from "./pages/BlogPostDetail";
 import SplashPage from "./components/SplashPage";
 import StickyChat from "./components/StickyChat";
 import content from '@/data/content.json';
@@ -19,6 +21,7 @@ const queryClient = new QueryClient();
 const App = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [selectedExperimentalSlug, setSelectedExperimentalSlug] = useState<string | null>(null);
+  const [selectedBlogSlug, setSelectedBlogSlug] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<string>("home");
   const [showSplash, setShowSplash] = useState(true);
 
@@ -31,6 +34,14 @@ const App = () => {
   const handleSelectExperimentalProject = (slug: string) => {
     setSelectedExperimentalSlug(slug);
     setSelectedSlug(null);
+    setSelectedBlogSlug(null);
+    window.scrollTo(0, 0);
+  };
+
+  const handleSelectBlogPost = (slug: string) => {
+    setSelectedBlogSlug(slug);
+    setSelectedSlug(null);
+    setSelectedExperimentalSlug(null);
     window.scrollTo(0, 0);
   };
 
@@ -49,7 +60,16 @@ const App = () => {
   const handleGoToExperimental = () => {
     setSelectedSlug(null);
     setSelectedExperimentalSlug(null);
+    setSelectedBlogSlug(null);
     setCurrentPage("experimental");
+    window.scrollTo(0, 0);
+  };
+
+  const handleGoToBlog = () => {
+    setSelectedSlug(null);
+    setSelectedExperimentalSlug(null);
+    setSelectedBlogSlug(null);
+    setCurrentPage("blog");
     window.scrollTo(0, 0);
   };
 
@@ -93,6 +113,24 @@ const App = () => {
     ? content.experimentalProjects[currentExperimentalProjectIndex - 1] as Project
     : null;
 
+  // Get current blog post and its index
+  const blogPost = selectedBlogSlug
+    ? content.blogPosts.find((p) => slugify(p.title) === selectedBlogSlug) as Project | undefined
+    : null;
+  
+  const currentBlogPostIndex = blogPost 
+    ? content.blogPosts.findIndex((p) => slugify(p.title) === selectedBlogSlug)
+    : -1;
+
+  // Determine next and previous blog posts
+  const nextBlogPost = currentBlogPostIndex >= 0 && currentBlogPostIndex < content.blogPosts.length - 1
+    ? content.blogPosts[currentBlogPostIndex + 1] as Project
+    : null;
+  
+  const previousBlogPost = currentBlogPostIndex > 0
+    ? content.blogPosts[currentBlogPostIndex - 1] as Project
+    : null;
+
   const handleNextProject = () => {
     if (nextProject) {
       setSelectedSlug(slugify(nextProject.title));
@@ -121,20 +159,38 @@ const App = () => {
     }
   };
 
+  const handleNextBlogPost = () => {
+    if (nextBlogPost) {
+      setSelectedBlogSlug(slugify(nextBlogPost.title));
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handlePreviousBlogPost = () => {
+    if (previousBlogPost) {
+      setSelectedBlogSlug(slugify(previousBlogPost.title));
+      window.scrollTo(0, 0);
+    }
+  };
+
   useEffect(() => {
     // When a project is selected, push a new state to the history stack
     if (selectedSlug) {
       window.history.pushState({ project: selectedSlug }, "", `#project/${selectedSlug}`);
     } else if (selectedExperimentalSlug) {
       window.history.pushState({ experimentalProject: selectedExperimentalSlug }, "", `#experimental-project/${selectedExperimentalSlug}`);
+    } else if (selectedBlogSlug) {
+      window.history.pushState({ blogPost: selectedBlogSlug }, "", `#blog-post/${selectedBlogSlug}`);
     } else if (currentPage === "about") {
       window.history.pushState({ page: "about" }, "", `#about`);
     } else if (currentPage === "experimental") {
       window.history.pushState({ page: "experimental" }, "", `#experimental`);
+    } else if (currentPage === "blog") {
+      window.history.pushState({ page: "blog" }, "", `#blog`);
     } else {
       window.history.pushState({ page: "home" }, "", `#`);
     }
-  }, [selectedSlug, selectedExperimentalSlug, currentPage]);
+  }, [selectedSlug, selectedExperimentalSlug, selectedBlogSlug, currentPage]);
 
   useEffect(() => {
     const onPopState = (event: PopStateEvent) => {
@@ -147,15 +203,22 @@ const App = () => {
         setSelectedExperimentalSlug(null);
         setCurrentPage("experimental");
         window.scrollTo(0, 0);
+      } else if (selectedBlogSlug) {
+        setSelectedBlogSlug(null);
+        setCurrentPage("blog");
+        window.scrollTo(0, 0);
       } else if (currentPage === "about") {
         setCurrentPage("home");
         window.scrollTo(0, 0);
       } else if (currentPage === "experimental") {
         setCurrentPage("home");
         window.scrollTo(0, 0);
+      } else if (currentPage === "blog") {
+        setCurrentPage("home");
+        window.scrollTo(0, 0);
       }
     };
-    if (selectedSlug || selectedExperimentalSlug || currentPage === "about" || currentPage === "experimental") {
+    if (selectedSlug || selectedExperimentalSlug || selectedBlogSlug || currentPage === "about" || currentPage === "experimental" || currentPage === "blog") {
       window.addEventListener("popstate", onPopState);
       return () => {
         window.removeEventListener("popstate", onPopState);
@@ -194,17 +257,34 @@ const App = () => {
                   hasNextProject={!!nextExperimentalProject}
                   hasPreviousProject={!!previousExperimentalProject}
                   onNavigateToAbout={handleGoToAbout}
+                  onNavigateToExperimental={handleGoToExperimental}
+                  onNavigateToBlog={handleGoToBlog}
+                />
+              ) : blogPost ? (
+                <BlogPostDetail 
+                  post={blogPost} 
+                  onBack={handleGoToBlog}
+                  onNextPost={handleNextBlogPost}
+                  onPreviousPost={handlePreviousBlogPost}
+                  hasNextPost={!!nextBlogPost}
+                  hasPreviousPost={!!previousBlogPost}
+                  onNavigateToAbout={handleGoToAbout}
+                  onNavigateToExperimental={handleGoToExperimental}
+                  onNavigateToBlog={handleGoToBlog}
                 />
               ) : currentPage === "about" ? (
-                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onNavigateToExperimental={handleGoToExperimental} />
+                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onNavigateToExperimental={handleGoToExperimental} onNavigateToBlog={handleGoToBlog} />
               ) : currentPage === "experimental" ? (
-                <ExperimentalProjects onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onSelectExperimentalProject={handleSelectExperimentalProject} />
+                <ExperimentalProjects onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onSelectExperimentalProject={handleSelectExperimentalProject} onNavigateToExperimental={handleGoToExperimental} onNavigateToBlog={handleGoToBlog} />
+              ) : currentPage === "blog" ? (
+                <Blog onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onSelectBlogPost={handleSelectBlogPost} onNavigateToExperimental={handleGoToExperimental} onNavigateToBlog={handleGoToBlog} />
               ) : (
-                <Index 
+                                <Index 
                   onSelectProject={handleSelectProject} 
                   onGoHome={handleGoHome} 
-                  onGoToAbout={handleGoToAbout}
-                  onNavigateToExperimental={handleGoToExperimental}
+                  onGoToAbout={handleGoToAbout} 
+                  onNavigateToExperimental={handleGoToExperimental} 
+                  onNavigateToBlog={handleGoToBlog}
                 />
               )}
               <StickyChat projects={content.projects as Project[]} />

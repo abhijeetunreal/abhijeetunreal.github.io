@@ -14,6 +14,8 @@ interface ExperimentalProjectDetailProps {
     hasNextProject?: boolean;
     hasPreviousProject?: boolean;
     onNavigateToAbout: () => void;
+    onNavigateToExperimental: () => void;
+    onNavigateToBlog: () => void;
 }
 
 const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({ 
@@ -23,7 +25,9 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
     onPreviousProject, 
     hasNextProject = false, 
     hasPreviousProject = false,
-    onNavigateToAbout
+    onNavigateToAbout,
+    onNavigateToExperimental,
+    onNavigateToBlog
 }) => {
 
     return (
@@ -114,7 +118,7 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
                     )}
                 </div>
             </main>
-            <Footer onNavigateToExperimental={onNavigateToAbout} />
+            <Footer onNavigateToExperimental={onNavigateToExperimental} onNavigateToBlog={onNavigateToBlog} />
         </div>
     );
 };

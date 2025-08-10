@@ -10,9 +10,10 @@ interface AboutProps {
   onGoHome: () => void;
   onGoToAbout: () => void;
   onNavigateToExperimental: () => void;
+  onNavigateToBlog: () => void;
 }
 
-const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperimental }) => {
+const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperimental, onNavigateToBlog }) => {
   const { aboutPage } = content;
 
   return (
@@ -160,7 +161,7 @@ const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperi
           <AIPhilosophyGrid />
         </section>
       </main>
-      <Footer onNavigateToExperimental={onNavigateToExperimental} />
+      <Footer onNavigateToExperimental={onNavigateToExperimental} onNavigateToBlog={onNavigateToBlog} />
     </div>
   );
 };

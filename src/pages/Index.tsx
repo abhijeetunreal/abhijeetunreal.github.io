@@ -10,11 +10,12 @@ interface IndexProps {
   onGoHome: () => void;
   onGoToAbout: () => void;
   onNavigateToExperimental: () => void;
+  onNavigateToBlog: () => void;
 }
 
 const homeLabel = (content.navLinks && content.navLinks[0]?.label) || 'HOME';
 
-const Index = ({ onSelectProject, onGoHome, onGoToAbout, onNavigateToExperimental }: IndexProps) => {
+const Index = ({ onSelectProject, onGoHome, onGoToAbout, onNavigateToExperimental, onNavigateToBlog }: IndexProps) => {
   const { hero, workedWith, projects, contactLinks } = content;
   const [currentSection, setCurrentSection] = useState<string>(homeLabel);
 
@@ -49,7 +50,7 @@ const Index = ({ onSelectProject, onGoHome, onGoToAbout, onNavigateToExperimenta
           <Marquee items={workedWith.companies} />
         </section>
       </main>
-      <Footer onNavigateToExperimental={onNavigateToExperimental} />
+      <Footer onNavigateToExperimental={onNavigateToExperimental} onNavigateToBlog={onNavigateToBlog} />
     </div>
   );
 };

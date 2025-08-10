@@ -5,9 +5,10 @@ import { ArrowDown, ArrowLeft, ArrowLeftSquare, ArrowRight, ArrowRightCircle } f
 
 interface FooterProps {
   onNavigateToExperimental: () => void;
+  onNavigateToBlog?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onNavigateToExperimental }) => {
+const Footer: React.FC<FooterProps> = ({ onNavigateToExperimental, onNavigateToBlog }) => {
   return (
     <footer id="contact" className="bg-background text-foreground py-8 md:py-24 border-t border-border">
       <div className="container mx-auto px-4">
@@ -40,9 +41,12 @@ const Footer: React.FC<FooterProps> = ({ onNavigateToExperimental }) => {
                 <ArrowRight className="h-6 w-6 mr-2" />
                 <span className="text-2xl font-bold" >Discover my other Projects</span>
               </div>
-              <div className="flex items-center text-foreground hover:text-blue-400 transition-colors cursor-pointer">
+              <div 
+                className="flex items-center text-foreground hover:text-blue-400 transition-colors cursor-pointer"
+                onClick={onNavigateToBlog}
+              >
                 <ArrowRight className="h-6 w-6 mr-2" />
-                <span className="text-2xl font-bold">Kickstart your project</span>
+                <span className="text-2xl font-bold">Read my Blog</span>
               </div>
             </div>
           </div>

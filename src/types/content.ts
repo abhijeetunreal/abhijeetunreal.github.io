@@ -69,5 +69,6 @@ export interface ContentData {
     };
     projects: Project[];
     experimentalProjects: Project[];
+    blogPosts: Project[];
     aiPhilosophy: AiPhilosophy;
 }
