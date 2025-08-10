@@ -452,7 +452,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false, m
             <div className="flex justify-between items-center mb-4">
                 <div className="flex justify-center items-center gap-2">
                     <NeuralNetworkIcon />
-                    <h3 className="text-sm uppercase font-bold ">[Ask My Digital Self - Knows Everything]</h3>
+                    <h3 className="text-sm uppercase font-bold ">   Ask My Digital Self</h3>
                     {isApiConnected === false && (
                         <div className="flex items-center gap-1 text-xs text-orange-500">
                             <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
