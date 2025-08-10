@@ -267,6 +267,7 @@ const App = () => {
                   hasPreviousProject={!!previousProject}
                   onNavigateToExperimental={handleGoToExperimental}
                   onGoToAbout={handleGoToAbout}
+                  onNavigateToBlog={handleGoToBlog}
                 />
               ) : experimentalProject ? (
                 <ExperimentalProjectDetail 

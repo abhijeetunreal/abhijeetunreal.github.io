@@ -16,6 +16,7 @@ interface ProjectDetailProps {
     hasPreviousProject?: boolean;
     onNavigateToExperimental: () => void;
     onGoToAbout: () => void;
+    onNavigateToBlog: () => void;
 }
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ 
@@ -26,7 +27,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
     hasNextProject = false, 
     hasPreviousProject = false,
     onNavigateToExperimental,
-    onGoToAbout
+    onGoToAbout,
+    onNavigateToBlog
 }) => {
 
     return (
@@ -117,7 +119,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     )}
                 </div>
             </main>
-            <Footer onNavigateToExperimental={onNavigateToExperimental} onNavigateToBlog={onGoToAbout} />
+            <Footer onNavigateToExperimental={onNavigateToExperimental} onNavigateToBlog={onNavigateToBlog} />
         </div>
     );
 };
