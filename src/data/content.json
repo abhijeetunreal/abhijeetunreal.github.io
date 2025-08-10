@@ -214,12 +214,17 @@
         },
         {
           "type": "image",
-          "src": "https://github.com/abhijeetunreal/IMGDB/raw/refs/heads/main/Portfolio/Products/Prism/Make_product_showcasing_202508102000.mp4",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/final_embodiment.png",
           "alt": "Data processing workflow"
         },
         {
           "type": "paragraph",
           "content": "The technical architecture leverages WebGL shaders for real-time rendering, enabling smooth animations even with thousands of data points. Custom algorithms interpolate between data states, creating fluid transitions that help users understand temporal changes in climate patterns."
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/OPEN%20DAY%20TEST.png",
+          "alt": "Data processing workflow"
         }
       ]
     },
