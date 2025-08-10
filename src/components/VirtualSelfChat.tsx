@@ -91,13 +91,61 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
 
     const createPortfolioContext = () => {
         return `
-            About: ${content.about.paragraph1}
+            PERSONAL BACKGROUND:
+            - Name: ${content.name}
+            - Hero Statement: ${content.hero.title}
             
-            Projects: ${projects.map(p => `${p.title}: ${p.description} (Skills: ${p.tags.join(', ')})`).join('; ')}
+            ABOUT ME:
+            - Main Description: ${content.about.paragraph1}
+            - Design Philosophy: ${content.about.paragraph2}
+            - Design Philosophies: ${content.about.philosophies.map(p => p.statement).join('; ')}
             
-            Design Philosophy: ${content.about.paragraph2}
+            EDUCATION:
+            ${content.aboutPage.education.map(edu => 
+                `- ${edu.degree} from ${edu.institution} (${edu.year}): ${edu.description}`
+            ).join('\n')}
             
-            Companies worked with: ${content.workedWith.companies.map(c => c.name).join(', ')}
+            EXPERIENCE:
+            ${content.aboutPage.experience.map(exp => 
+                `- ${exp.role} at ${exp.company} (${exp.duration}): ${exp.description}`
+            ).join('\n')}
+            
+            SKILLS:
+            - Design Skills: ${content.aboutPage.skills.design.join(', ')}
+            - Technology Skills: ${content.aboutPage.skills.technology.join(', ')}
+            - Tools: ${content.aboutPage.skills.tools.join(', ')}
+            
+            INTERESTS:
+            ${content.aboutPage.interests.join(', ')}
+            
+            AWARDS:
+            ${content.aboutPage.awards.map(award => 
+                `- ${award.title} from ${award.organization}: ${award.description}`
+            ).join('\n')}
+            
+            MAIN PROJECTS:
+            ${content.projects.map(p => 
+                `- ${p.title}: ${p.description}. Full Description: ${p.fullDescription}. Design Process: ${p.designProcess}. Technical Details: ${p.technicalDetails}. Skills Used: ${p.tags.join(', ')}`
+            ).join('\n\n')}
+            
+            EXPERIMENTAL PROJECTS:
+            ${content.experimentalProjects.map(p => 
+                `- ${p.title}: ${p.description}. Full Description: ${p.fullDescription}. Design Process: ${p.designProcess}. Technical Details: ${p.technicalDetails}. Skills Used: ${p.tags.join(', ')}`
+            ).join('\n\n')}
+            
+            BLOG POSTS:
+            ${content.blogPosts.map(blog => 
+                `- ${blog.title}: ${blog.description}. Full Description: ${blog.fullDescription}. Design Process: ${blog.designProcess}. Technical Details: ${blog.technicalDetails}. Topics: ${blog.tags.join(', ')}`
+            ).join('\n\n')}
+            
+            COMPANIES WORKED WITH:
+            ${content.workedWith.companies.map(c => c.name).join(', ')}
+            
+            AI PHILOSOPHY CONTEXT:
+            ${content.aiPhilosophy.context}
+            
+            CURRENT PROJECTS (from props):
+            ${projects.map(p => `${p.title}: ${p.description} (Skills: ${p.tags.join(', ')})`).join('; ')}
         `;
     };
 
@@ -124,16 +172,26 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
 
             const context = createPortfolioContext();
             const prompt = `
-                You are my digital self - a virtual representation of me based on my portfolio information. Respond directly and naturally as if you are me, speaking in first person.
+                You are my digital self - a virtual representation of me based on my comprehensive portfolio information. Respond directly and naturally as if you are me, speaking in first person.
 
-                My background and context: ${context}
+                I have extensive knowledge about:
+                - My personal background, education, and experience
+                - All my projects (main projects and experimental projects)
+                - My blog posts and articles
+                - My skills, tools, and technologies
+                - My design philosophy and approach
+                - Companies I've worked with
+                - My awards and achievements
+                - My interests and specializations
+
+                My complete background and context: ${context}
                 
                 Previous conversation:
                 ${messages.map(m => `${m.sender === 'user' ? 'Visitor' : 'Me'}: ${m.text}`).join('\n')}
                 
                 A visitor to my portfolio asks: ${message}
                 
-                Respond directly as me. Do not add any introductory phrases like "Okay, sure!" or "Here's my response". Just answer naturally and conversationally, drawing from my background information. Be authentic, professional, and helpful.`;
+                Respond directly as me, drawing from my comprehensive knowledge. You can discuss any of my projects, blog posts, skills, experience, or philosophy. Be specific and detailed when discussing my work. Do not add any introductory phrases like "Okay, sure!" or "Here's my response". Just answer naturally and conversationally. Be authentic, professional, and helpful.`;
 
             const response = await generateChatResponse(prompt);
             return response;
@@ -142,11 +200,11 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
             
             // Provide fallback responses when API is unavailable
             const fallbackResponses = [
-                "I'd be happy to help! Based on my portfolio, I'm a passionate developer with experience in modern web technologies. Feel free to explore my projects to learn more about my work.",
-                "Great question! I specialize in creating innovative digital experiences using cutting-edge technologies. You can check out my projects to see examples of my work.",
-                "That's an interesting question! I love working on challenging projects that push the boundaries of what's possible. My portfolio showcases some of my favorite work.",
-                "I'm excited to share more about my experience! I've worked with various companies and technologies, always focusing on creating impactful solutions.",
-                "Thanks for asking! I'm constantly learning and experimenting with new technologies. My projects reflect my passion for creating meaningful digital experiences."
+                "I'd be happy to help! I'm a passionate product designer and technologist with extensive experience in UX design, AI integration, and emerging technologies. I've worked on projects ranging from aerospace interfaces to AI-powered creative tools. Feel free to ask me about any of my projects, blog posts, or experience!",
+                "Great question! I specialize in creating innovative digital experiences and have worked on everything from mindfulness wearables to AI art platforms. I've written about AI in design, metaverse experiences, and sustainable digital design. What would you like to know about my work?",
+                "That's an interesting question! I love working on challenging projects that push boundaries - from brain-computer interfaces to climate data visualization. I've worked with companies like Airbus and have expertise in React, Three.js, and AI technologies. My portfolio showcases my diverse range of work.",
+                "I'm excited to share more about my experience! I've worked with various companies and technologies, always focusing on creating impactful solutions. I have projects in fintech, document management, mentorship platforms, and AI-powered tools. What interests you most?",
+                "Thanks for asking! I'm constantly learning and experimenting with new technologies. I have a Bachelor's in Design from NID, experience at Airbus, and have created projects spanning from mobile apps to interactive installations. My blog covers topics from AI in design to sustainable digital practices."
             ];
             
             // Select a random fallback response
@@ -214,7 +272,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
             <div className="flex justify-between items-center mb-4">
                 <div className="flex justify-center items-center gap-2">
                     <Brain className="h-5 w-5 " />
-                    <h3 className="text-sm uppercase font-bold ">[Ask My Digital Self]</h3>
+                    <h3 className="text-sm uppercase font-bold ">[Ask My Digital Self - Knows Everything]</h3>
                     {isApiConnected === false && (
                         <div className="flex items-center gap-1 text-xs text-orange-500">
                             <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
@@ -276,7 +334,7 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false }:
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder={isApiConnected === false ? "Ask me anything (using fallback responses)" : content.aiChat.promptPlaceholder}
+                    placeholder={isApiConnected === false ? "Ask me anything (using fallback responses)" : "Ask about my projects, blog posts, skills, experience, or philosophy..."}
                     disabled={isTyping}
                     className="flex-grow"
                 />
