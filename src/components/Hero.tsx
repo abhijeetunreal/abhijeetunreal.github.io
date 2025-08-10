@@ -293,10 +293,6 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       <div 
         ref={scrollerRef}
         className="scroller pb-4 sm:pb-6 md:pb-8 w-full max-w-full overflow-hidden cursor-grab select-none"
-        style={{
-          WebkitMask: 'linear-gradient(90deg, transparent, white 20%, white 80%, transparent)',
-          mask: 'linear-gradient(90deg, transparent, white 20%, white 80%, transparent)'
-        }}
       >
         <div 
           ref={scrollerInnerRef}
