@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '@/components/Header';
 import content from '@/data/content.json';
 import AIPhilosophyGrid from '@/components/AIPhilosophyGrid';
-import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Footer from '@/components/Footer';
 
@@ -66,9 +65,9 @@ const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperi
                     <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
                     <p className="text-lg text-primary">{exp.company}</p>
                   </div>
-                  <Badge variant="secondary" className="text-sm">
+                  <span className="text-sm text-muted-foreground font-medium">
                     {exp.duration}
-                  </Badge>
+                  </span>
                 </div>
                 <p className="text-base leading-relaxed">{exp.description}</p>
               </div>
@@ -78,59 +77,72 @@ const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperi
 
         <Separator className="my-16" />
 
-        {/* Skills Section */}
+        {/* Skills & Interests Quadrant Section */}
         <section className="mb-24 md:mb-32">
-          <h2 className="text-3xl font-bold mb-8 text-center">Skills</h2>
-          <div className="space-y-8 max-w-4xl mx-auto">
-            {/* Design Skills */}
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-center">Design</h3>
-              <div className="flex flex-wrap justify-center gap-3">
-                {aboutPage.skills.design.map((skill, index) => (
-                  <Badge key={index} variant="outline" className="text-sm px-4 py-2">
-                    {skill}
-                  </Badge>
-                ))}
+          <h2 className="text-3xl font-bold mb-8 text-center">Skills & Interests</h2>
+          <div className="max-w-6xl mx-auto">
+            {/* Quadrant Container */}
+            <div className="relative aspect-square max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto">
+              {/* Central Axis Lines */}
+              <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-foreground/20 to-transparent transform -translate-x-1/2"></div>
+              <div className="absolute left-0 top-1/2 w-full h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent transform -translate-y-1/2"></div>
+              
+              {/* Technology Quadrant (Top Right: x, y) */}
+              <div className="absolute top-0 right-0 w-1/2 h-1/2 p-2 sm:p-3 md:p-4">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-2 sm:mb-3 text-center text-foreground">Technology</h3>
+                <div className="h-[calc(100%-theme(spacing.8))] sm:h-[calc(100%-theme(spacing.12))] md:h-[calc(100%-theme(spacing.16))] overflow-y-auto space-y-1 pr-1 sm:pr-2">
+                  {aboutPage.skills.technology.map((skill, index) => (
+                    <div key={index} className="text-foreground/80 hover:text-foreground transition-colors cursor-default text-xs sm:text-sm">
+                      {skill}
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {/* Design Quadrant (Top Left: -x, y) */}
+              <div className="absolute top-0 left-0 w-1/2 h-1/2 p-2 sm:p-3 md:p-4">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-2 sm:mb-3 text-center text-foreground">Design</h3>
+                <div className="h-[calc(100%-theme(spacing.8))] sm:h-[calc(100%-theme(spacing.12))] md:h-[calc(100%-theme(spacing.16))] overflow-y-auto space-y-1 pr-1 sm:pr-2">
+                  {aboutPage.skills.design.map((skill, index) => (
+                    <div key={index} className="text-foreground/80 hover:text-foreground transition-colors cursor-default text-xs sm:text-sm">
+                      {skill}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tools Quadrant (Bottom Left: -x, -y) */}
+              <div className="absolute bottom-0 left-0 w-1/2 h-1/2 p-2 sm:p-3 md:p-4">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-2 sm:mb-3 text-center text-foreground">Tools</h3>
+                <div className="h-[calc(100%-theme(spacing.8))] sm:h-[calc(100%-theme(spacing.12))] md:h-[calc(100%-theme(spacing.16))] overflow-y-auto space-y-1 pr-1 sm:pr-2">
+                  {aboutPage.skills.tools.map((tool, index) => (
+                    <div key={index} className="text-foreground/80 hover:text-foreground transition-colors cursor-default text-xs sm:text-sm">
+                      {tool}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Interests Quadrant (Bottom Right: x, -y) */}
+              <div className="absolute bottom-0 right-0 w-1/2 h-1/2 p-2 sm:p-3 md:p-4">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-2 sm:mb-3 text-center text-foreground">Interests</h3>
+                <div className="h-[calc(100%-theme(spacing.8))] sm:h-[calc(100%-theme(spacing.16))] md:h-[calc(100%-theme(spacing.20))] overflow-y-auto space-y-1 pr-1 sm:pr-2">
+                  {aboutPage.interests.map((interest, index) => (
+                    <div key={index} className="text-foreground/80 hover:text-foreground transition-colors cursor-default text-xs sm:text-sm">
+                      {interest}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Center Point */}
+              <div className="absolute top-1/2 left-1/2 w-2 sm:w-3 h-2 sm:h-3 bg-foreground/40 rounded-full transform -translate-x-1/2 -translate-y-1/2 border border-background sm:border-2"></div>
             </div>
 
-            {/* Technology Skills */}
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-center">Technology</h3>
-              <div className="flex flex-wrap justify-center gap-3">
-                {aboutPage.skills.technology.map((skill, index) => (
-                  <Badge key={index} variant="outline" className="text-sm px-4 py-2">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
+            {/* Legend */}
+            <div className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-muted-foreground">
+              <p>Each quadrant represents a different category of expertise and interests</p>
             </div>
-
-            {/* Tools */}
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-center">Tools</h3>
-              <div className="flex flex-wrap justify-center gap-3">
-                {aboutPage.skills.tools.map((tool, index) => (
-                  <Badge key={index} variant="outline" className="text-sm px-4 py-2">
-                    {tool}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Separator className="my-16" />
-
-        {/* Interests Section */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="text-3xl font-bold mb-8 text-center">Interests</h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {aboutPage.interests.map((interest, index) => (
-              <Badge key={index} variant="secondary" className="text-sm px-4 py-2">
-                {interest}
-              </Badge>
-            ))}
           </div>
         </section>
 
