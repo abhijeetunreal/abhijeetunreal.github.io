@@ -168,13 +168,18 @@
         },
         {
           "name": "CodeFryDev",
-          "logo": "https://avatars.githubusercontent.com/u/53683289?v=4",
-          "darkLogo": "https://avatars.githubusercontent.com/u/53683289?v=4"
+          "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdw.png",
+          "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdb.png"
+        },
+        {
+          "name": "Stevescob Projects",
+          "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/StevecobProjectW.png",
+          "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/7d01463a8a9ab3ae68aed8b25868c1d3f8f7dd00/Portfolio/Company/StevDark.svg"
         },
         {
           "name": "Lost Pixels",
-          "logo": "https://img.itch.zone/aW1nLzcwMTg0MjMucG5n/original/XtSXbF.png",
-          "darkLogo": "https://img.itch.zone/aW1nLzcwMTg0MjMucG5n/original/XtSXbF.png"
+          "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsw.png",
+          "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsb.png"
         }
         
       ]
