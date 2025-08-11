@@ -16,12 +16,27 @@ interface MarqueeProps {
 const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [repeatCount, setRepeatCount] = useState(2);
-  const [itemSpacing, setItemSpacing] = useState(24); // Default spacing in pixels
-  const [animationDuration, setAnimationDuration] = useState(40); // Default duration in seconds
-  const [isPaused, setIsPaused] = useState(false);
-  const [debugInfo, setDebugInfo] = useState<any>({});
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [debugInfo, setDebugInfo] = useState<{
+    containerWidth?: number;
+    itemsCount?: number;
+    isAutoScrolling?: boolean;
+    isDragging?: boolean;
+    velocity?: number;
+  }>({});
+
+  // Use refs for interaction variables to prevent re-renders (same as ProjectShowcase)
+  const isDownRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const initialScrollLeftRef = useRef(0);
+  const isAutoScrollingRef = useRef(true);
+  const interactionTimeoutRef = useRef<NodeJS.Timeout>();
+  const animationRef = useRef<number>();
+  const velocityRef = useRef(0); // Track velocity for inertia
+  const lastXRef = useRef(0); // Track last X position
+  const lastTimeRef = useRef(0); // Track last time for velocity
+  const inertiaAnimRef = useRef<number>(); // For inertia animation
 
   // Check for dark mode
   useEffect(() => {
@@ -44,83 +59,180 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
   }, []);
 
   useEffect(() => {
-    if (!containerRef.current || items.length === 0) return;
+    const container = containerRef.current;
+    const content = contentRef.current;
     
-    const calculateOptimalSpacing = () => {
-      const containerWidth = containerRef.current!.offsetWidth;
-      
-      // Create a temporary element to measure item width
-      const tempElement = document.createElement('div');
-      tempElement.className = 'text-2xl font-semibold whitespace-nowrap absolute invisible';
-      document.body.appendChild(tempElement);
-      
-      // Calculate total width of all items
-      let totalItemWidth = 0;
-      const itemWidths: number[] = [];
-      items.forEach(item => {
-        if (typeof item === 'string') {
-          tempElement.textContent = item;
-        } else {
-          // For company objects, use a fixed width for logos
-          tempElement.style.width = '200px';
-          tempElement.style.height = '80px';
+    if (!container || !content || items.length === 0) return;
+
+    const gap = 24; // 24px gap between items
+
+    const scrollLoop = () => {
+      if (isAutoScrollingRef.current && !isDownRef.current) {
+        container.scrollLeft += 0.5;
+      }
+
+      // Check boundaries and reposition items for infinite loop (same as ProjectShowcase)
+      const firstItem = content.children[0] as HTMLElement;
+      if (firstItem) {
+        const firstItemWidth = firstItem.offsetWidth + gap;
+        if (container.scrollLeft >= firstItemWidth) {
+          content.appendChild(firstItem);
+          container.scrollLeft -= firstItemWidth;
+          if (isDownRef.current) {
+            initialScrollLeftRef.current -= firstItemWidth;
+          }
         }
-        const width = tempElement.offsetWidth;
-        itemWidths.push(width);
-        totalItemWidth += width;
-      });
+      }
+
+      const lastItem = content.children[content.children.length - 1] as HTMLElement;
+      if (lastItem) {
+        const lastItemWidth = lastItem.offsetWidth + gap;
+        if (container.scrollLeft <= 0) {
+          content.insertBefore(lastItem, content.firstChild);
+          container.scrollLeft += lastItemWidth;
+          if (isDownRef.current) {
+            initialScrollLeftRef.current += lastItemWidth;
+          }
+        }
+      }
       
-      // Remove temporary element
-      document.body.removeChild(tempElement);
-      
-      // Calculate optimal spacing to fill the container
-      const availableSpace = containerWidth - totalItemWidth;
-      const spacingBetweenItems = Math.max(24, availableSpace / (items.length + 1)); // Minimum 24px spacing
-      
-      setItemSpacing(spacingBetweenItems);
-      
-      // Calculate how many times to repeat so content overflows container
-      const totalContentWidth = totalItemWidth + (spacingBetweenItems * (items.length - 1));
-      const minRepeats = Math.ceil((containerWidth * 2) / totalContentWidth) + 1;
-      setRepeatCount(Math.max(2, minRepeats));
-      
-      // Calculate animation duration based on content length
-      // Base duration of 40s for a full screen width, adjust based on content length
-      const baseDuration = 40;
-      const contentRatio = totalContentWidth / containerWidth;
-      const adjustedDuration = Math.max(20, Math.min(60, baseDuration * contentRatio));
-      setAnimationDuration(adjustedDuration);
-      
-      // Store debug information
-      if (debug) {
-        setDebugInfo({
-          containerWidth,
-          totalItemWidth,
-          itemWidths,
-          availableSpace,
-          spacingBetweenItems,
-          totalContentWidth,
-          repeatCount: Math.max(2, minRepeats),
-          animationDuration: adjustedDuration,
-          contentRatio
-        });
+      animationRef.current = requestAnimationFrame(scrollLoop);
+    };
+
+    // --- INERTIA ANIMATION (same as ProjectShowcase) ---
+    const startInertia = () => {
+      cancelInertia();
+      let velocity = velocityRef.current;
+      const friction = 0.95; // Friction factor
+      const minVelocity = 0.2; // Stop threshold
+      function inertiaStep() {
+        if (Math.abs(velocity) > minVelocity) {
+          container.scrollLeft -= velocity;
+          velocity *= friction;
+          inertiaAnimRef.current = requestAnimationFrame(inertiaStep);
+        } else {
+          velocityRef.current = 0;
+          inertiaAnimRef.current = undefined;
+        }
+      }
+      inertiaStep();
+    };
+    const cancelInertia = () => {
+      if (inertiaAnimRef.current) {
+        cancelAnimationFrame(inertiaAnimRef.current);
+        inertiaAnimRef.current = undefined;
       }
     };
 
-    // Initial calculation
-    calculateOptimalSpacing();
-    
-    // Recalculate on window resize
-    const handleResize = () => {
-      calculateOptimalSpacing();
+    // --- INTERACTION HANDLERS (same as ProjectShowcase) ---
+    const startInteraction = (e: MouseEvent | TouchEvent) => {
+      isAutoScrollingRef.current = false;
+      isDownRef.current = true;
+      isDraggingRef.current = false;
+      container.style.cursor = 'grabbing';
+      const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+      startXRef.current = pageX - container.offsetLeft;
+      initialScrollLeftRef.current = container.scrollLeft;
+      lastXRef.current = pageX;
+      lastTimeRef.current = performance.now();
+      velocityRef.current = 0;
+      cancelInertia();
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+      }
     };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [items, debug]);
 
-  // Repeat items as needed
-  const repeatedItems = Array.from({ length: repeatCount }, () => items).flat();
+    const moveInteraction = (e: MouseEvent | TouchEvent) => {
+      if (!isDownRef.current) return;
+      const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+      const x = pageX - container.offsetLeft;
+      const walk = x - startXRef.current;
+      if (Math.abs(walk) > 5) {
+        isDraggingRef.current = true;
+      }
+      if (isDraggingRef.current) {
+        if (e.cancelable) e.preventDefault();
+        container.scrollLeft = initialScrollLeftRef.current - walk;
+        // --- Velocity calculation ---
+        const now = performance.now();
+        const dt = now - lastTimeRef.current;
+        if (dt > 0) {
+          velocityRef.current = (pageX - lastXRef.current) / dt * 16; // px per frame (assuming 60fps)
+        }
+        lastXRef.current = pageX;
+        lastTimeRef.current = now;
+      }
+    };
+
+    const endInteraction = () => {
+      if (!isDownRef.current) return;
+      isDownRef.current = false;
+      container.style.cursor = 'grab';
+      if (isDraggingRef.current && Math.abs(velocityRef.current) > 0.5) {
+        startInertia();
+      }
+      interactionTimeoutRef.current = setTimeout(() => {
+        isAutoScrollingRef.current = true;
+      }, 2000);
+    };
+
+    const handleClick = (e: Event) => {
+      if (isDraggingRef.current) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    // Mouse event listeners (same as ProjectShowcase)
+    container.addEventListener('mousedown', startInteraction);
+    container.addEventListener('mousemove', moveInteraction);
+    container.addEventListener('mouseup', endInteraction);
+    container.addEventListener('mouseleave', () => {
+      endInteraction();
+      container.style.cursor = 'grab';
+    });
+
+    // Touch event listeners (same as ProjectShowcase)
+    container.addEventListener('touchstart', startInteraction, { passive: true });
+    container.addEventListener('touchmove', moveInteraction, { passive: false });
+    container.addEventListener('touchend', endInteraction);
+    container.addEventListener('touchcancel', endInteraction);
+
+    content.addEventListener('click', handleClick);
+
+    // Start the continuous loop
+    animationRef.current = requestAnimationFrame(scrollLoop);
+
+    // Store debug information
+    if (debug) {
+      setDebugInfo({
+        containerWidth: container.offsetWidth,
+        itemsCount: items.length,
+        isAutoScrolling: isAutoScrollingRef.current,
+        isDragging: isDraggingRef.current,
+        velocity: velocityRef.current
+      });
+    }
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      container.removeEventListener('mousedown', startInteraction);
+      container.removeEventListener('mousemove', moveInteraction);
+      container.removeEventListener('mouseup', endInteraction);
+      container.removeEventListener('mouseleave', endInteraction);
+      container.removeEventListener('touchstart', startInteraction);
+      container.removeEventListener('touchmove', moveInteraction);
+      container.removeEventListener('touchend', endInteraction);
+      container.removeEventListener('touchcancel', endInteraction);
+      content.removeEventListener('click', handleClick);
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+      }
+      cancelInertia();
+    };
+  }, [items, debug]); // Empty dependency array since we're using refs
 
   const renderItem = (item: string | Company, index: number) => {
     if (typeof item === 'string') {
@@ -166,41 +278,37 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
     }
   };
 
+  // Repeat items for infinite scroll (same as ProjectShowcase approach)
+  const repeatedItems = Array.from({ length: 3 }, () => items).flat();
+
   return (
     <div className="space-y-2">
       {debug && (
         <div className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded">
           <div><strong>Debug Info:</strong></div>
           <div>Container: {debugInfo.containerWidth}px</div>
-          <div>Items: {debugInfo.itemWidths?.join(', ')}px</div>
-          <div>Total Items: {debugInfo.totalItemWidth}px</div>
-          <div>Available Space: {debugInfo.availableSpace}px</div>
-          <div>Spacing: {debugInfo.spacingBetweenItems}px</div>
-          <div>Total Content: {debugInfo.totalContentWidth}px</div>
-          <div>Repeats: {debugInfo.repeatCount}</div>
-          <div>Duration: {debugInfo.animationDuration}s</div>
-          <div>Paused: {isPaused ? 'Yes' : 'No'}</div>
+          <div>Items Count: {debugInfo.itemsCount}</div>
+          <div>Auto Scrolling: {debugInfo.isAutoScrolling ? 'Yes' : 'No'}</div>
+          <div>Dragging: {debugInfo.isDragging ? 'Yes' : 'No'}</div>
+          <div>Velocity: {debugInfo.velocity?.toFixed(2)}</div>
           <div>Theme: {isDarkMode ? 'Dark' : 'Light'}</div>
         </div>
       )}
       
       <div 
         ref={containerRef} 
-        className={cn("relative w-full overflow-hidden", className)}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        className={cn("relative w-full overflow-hidden cursor-grab select-none", className)}
+        onMouseEnter={() => {
+          isAutoScrollingRef.current = false;
+        }}
+        onMouseLeave={() => {
+          isAutoScrollingRef.current = true;
+        }}
       >
         <div
-          className="flex w-max py-4"
           ref={contentRef}
-          style={{
-            gap: `${itemSpacing}px`,
-            animationName: 'marquee',
-            animationDuration: `${animationDuration}s`,
-            animationTimingFunction: 'linear',
-            animationIterationCount: 'infinite',
-            animationPlayState: isPaused ? 'paused' : 'running'
-          }}
+          className="flex w-max py-4 gap-6"
+          style={{ width: 'fit-content' }}
         >
           {repeatedItems.map((item, index) => renderItem(item, index))}
         </div>

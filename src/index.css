@@ -415,6 +415,15 @@
     cursor: grabbing;
   }
 
+  /* Marquee cursor states for infinite scrolling */
+  .cursor-grab {
+    cursor: grab;
+  }
+
+  .cursor-grabbing {
+    cursor: grabbing;
+  }
+
   .scroller__inner {
     display: flex;
     flex-wrap: nowrap;
