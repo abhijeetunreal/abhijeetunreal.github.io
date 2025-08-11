@@ -5,10 +5,12 @@ export interface NavLink {
 }
 
 export interface ProjectSection {
-    type: 'image' | 'paragraph';
+    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links';
     src?: string;
     alt?: string;
     content?: string;
+    youtubeUrl?: string;
+    externalLinks?: NavLink[];
 }
 
 export interface Project {
