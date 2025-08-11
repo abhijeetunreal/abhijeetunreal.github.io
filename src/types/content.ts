@@ -16,6 +16,7 @@ export interface Project {
     description: string;
     tags: string[];
     cardImage?: string;
+    heroImage?: string;
     fullDescription: string;
     designProcess: string;
     technicalDetails: string;

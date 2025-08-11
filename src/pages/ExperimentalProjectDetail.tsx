@@ -34,12 +34,29 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
             <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="EXPERIMENTAL" />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
+                
+                
                 <div>
                     <div className="mb-8">
                         <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to experimental projects
                         </Button>
+
+
+                        {/* Hero Image Section */}
+                {(project.heroImage || project.cardImage) && (
+                    <div className="mb-12">
+                        <div className="rounded-lg overflow-hidden shadow-2xl">
+                            <img 
+                                src={project.heroImage || project.cardImage} 
+                                alt={`${project.title} hero image`}
+                                className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
+                            />
+                        </div>
+                    </div>
+                )}
+                        
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">{project.title}</h1>
                         <div className="flex flex-wrap gap-2 mb-8">
                             {project.tags.map(tag => (

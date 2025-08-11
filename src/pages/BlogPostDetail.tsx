@@ -48,18 +48,31 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
             <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="BLOG" />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
+                
+                
                 <div>
                     <div className="mb-8">
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                            <span>Blog</span>
-                            <span>/</span>
-                            <span className="text-foreground">{post.title}</span>
-                        </div>
-                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground group" title="Back to blog (Alt + ←)">
+                        
+                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground group" title="Back to blog">
                             <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                             Back to blog
-                            <span className="ml-2 text-xs text-muted-foreground hidden sm:inline">(Alt + ←)</span>
                         </Button>
+
+
+                        {/* Hero Image Section */}
+                {(post.heroImage || post.cardImage) && (
+                    <div className="mb-12">
+                        <div className="rounded-lg overflow-hidden shadow-2xl">
+                            <img 
+                                src={post.heroImage || post.cardImage} 
+                                alt={`${post.title} hero image`}
+                                className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
+                            />
+                        </div>
+                    </div>
+                )}
+
+
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">{post.title}</h1>
                         <div className="flex flex-wrap gap-2 mb-8">
                             {post.tags.map(tag => (
