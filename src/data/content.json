@@ -228,25 +228,118 @@
       ]
     },
     {
-      "title": "Project Beta",
+      "title": "Old Projects",
       "description": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation.",
-      "tags": ["AI", "UX Design", "Mobile App", "Wellness", "Data Visualization"],
-      "cardImage": "https://ngdblog.africa/wp-content/uploads/2023/01/Wow-gif.gif",
-      "heroImage": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop",
-      "designProcessImage": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop",
-      "fullDescription": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation. By analyzing user input and biometric data (with permission), the app generates ambient audio tailored to the user's current state.",
-      "designProcess": "The design process was heavily focused on user experience and creating a calming, intuitive interface. We conducted user interviews with people who use focus apps and identified key pain points. Iterative prototyping and testing were crucial to refining the sound generation algorithm and UI.",
-      "technicalDetails": "The app is built using React Native. The AI component is a custom-trained neural network hosted on a cloud service, which processes user data to generate sound parameters. We also integrated with health APIs to optionally use data like heart rate variability.",
+      "tags": ["Product design","UI Design", "UX Design", "UX Research", "Mobile App", "Wellness"],
+      "cardImage": "https://media.tenor.com/14SGy65zclAAAAAM/fnaf-fnaf-movie.gif",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/3.png",
+      "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/DesignProcess.png",
+      "fullDescription": "This project contains a collection of old projects that I worked on. I have included some of the projects that I am proud of and some that I am not. But all of them are a part of my journey and I am grateful for the experience.",
+      "designProcess": "Design process was a mix of learning and experimenting. Different projects had different design processes and I have included some of the processes in this project.",
+      "technicalDetails": "Some of the project based on Internet data and some were based on my own ideas. I have included some of the technical details in this project.",
       "sections": [
         {
           "type": "image",
-          "src": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=600&fit=crop",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/4.png",
           "alt": "Mobile app interface design"
         },
         {
-          "type": "paragraph",
-          "content": "The app's neural network analyzes patterns in user behavior, heart rate variability, and environmental factors to generate personalized soundscapes. Machine learning models trained on thousands of audio samples create unique compositions that adapt to individual preferences and physiological responses."
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/5.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/6.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/7.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/8.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/9.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/10.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/11.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/12.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/13.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/14.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/15.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/16.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/17.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/18.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/19.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/20.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/21.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/22.png",
+          "alt": "Mobile app interface design"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/23.png",
+          "alt": "Mobile app interface design"
         }
+        
+      
       ]
     },
     {
