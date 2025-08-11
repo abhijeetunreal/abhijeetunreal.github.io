@@ -343,25 +343,33 @@
       ]
     },
     {
-      "title": "Project Gamma",
+      "title": "3D Renders",
       "description": "A speculative design project imagining future interfaces for brain-computer interaction.",
-      "tags": ["Speculative Design", "HCI", "Prototyping", "AI"],
-      "cardImage": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&h=600&fit=crop",
-      "designProcessImage": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&h=600&fit=crop",
-      "fullDescription": "A speculative design project imagining future interfaces for brain-computer interaction. This project doesn't aim to build a working product, but to provoke thought and discussion about the future of human-computer interfaces and their ethical implications.",
-      "designProcess": "This project was driven by 'what if' scenarios. We created a series of design fictions, including concept videos and physical prototypes, to illustrate how BCI might integrate into daily life. The process involved world-building and narrative creation as much as traditional design work.",
-      "technicalDetails": "While no real BCI was used, we prototyped the interface concepts using Figma and Framer, simulating the experience of a thought-controlled UI. The prototypes were used in user workshops to gather feedback on the concepts.",
+      "tags": ["3D Modelling", "3D Design", "Product Render", "Photogrammetry"],
+      "cardImage": "https://media4.giphy.com/avatars/dlgnce/TlT2eiSgtRAu.gif",
+      "heroImage": "https://abhijeetunreal.github.io/assets/img/articles/photogrammetry/ruin.gif",
+      "designProcessImage": "",
+      "fullDescription": "This page contains some of my past 3D renders of 3D model which I created in past. ",
+      "designProcess": "These 3D renders are the result of continious learnign and gaining exprience in 3D softwares some renders are from my initial day of learning different 3D softwares, here I am not listing all of my 3D creation you can explore other model on my Sketchfab account where I have posted my other 3D models",
+      "technicalDetails": "To create 3D model I used different softwares like Blender, Rhino, Fusion 360 etc. for texturing I used Substance 3D Painter, Photoshop etc",
       "sections": [
         {
           "type": "image",
-          "src": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&h=600&fit=crop",
+          "src": "https://abhijeetunreal.github.io/assets/img/articles/renders/chessis.png",
           "alt": "Futuristic brain-computer interface concept"
         },
         {
-          "type": "paragraph",
-          "content": "Through speculative design methods, we explored the intersection of neurotechnology and human experience. The project examines not just what's technically possible, but what's ethically desirable in a future where thoughts directly control digital interfaces."
+          "type": "image",
+          "src": "https://abhijeetunreal.github.io/assets/img/articles/renders/onyx%20camera.png",
+          "alt": "Futuristic brain-computer interface concept"
+        },
+        {
+          "type": "image",
+          "src": "https://abhijeetunreal.github.io/assets/img/articles/link/link2.png",
+          "alt": "Futuristic brain-computer interface concept"
         }
+        
+      
       ]
     },
     {
