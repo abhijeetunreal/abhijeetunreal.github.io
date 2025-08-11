@@ -43,15 +43,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to all projects
                         </Button>
-                        
+
                         {/* Hero Image Section */}
                         {(project.heroImage || project.cardImage) && (
                         <div className="mb-12">
-                         <div className="rounded-lg overflow-hidden shadow-2xl">
+                         <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
                             <img 
                                 src={project.heroImage || project.cardImage} 
-                                alt={`${project.title} hero image`}
-                                className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
+                                alt={project.title}
+                                className="w-full h-auto object-cover"
                             />
                          </div>
                      </div>
@@ -69,6 +69,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                         <p>{project.fullDescription}</p>
                         
                         <h3 className="text-2xl font-bold text-foreground pt-8">DESIGN PROCESS</h3>
+
+                        {/* Additional Image after Design Process Title */}
+                        {project.designProcessImage && (
+                            <div className="w-full overflow-hidden rounded-lg shadow-lg my-8">
+                                <img 
+                                    src={project.designProcessImage} 
+                                    alt={`${project.title} Design Process`}
+                                    className="w-full h-auto object-cover"
+                                />
+                            </div>
+                        )}
+
                         <p>{project.designProcess}</p>
                         
                         <h3 className="text-2xl font-bold text-foreground pt-8">TECHNICAL DETAILS</h3>
@@ -76,7 +88,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
                         {project.sections && project.sections.length > 0 && (
                             <>
-                                <h3 className="text-2xl font-bold text-foreground pt-8">PROJECT SHOWCASE</h3>
+                                <h3 className="text-2xl font-bold text-foreground pt-8">DESIGN JOURNEY</h3>
                                 <div className="space-y-8">
                                     {project.sections.map((section, index) => (
                                         <div key={index}>

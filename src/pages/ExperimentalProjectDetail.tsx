@@ -47,11 +47,11 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
                         {/* Hero Image Section */}
                 {(project.heroImage || project.cardImage) && (
                     <div className="mb-12">
-                        <div className="rounded-lg overflow-hidden shadow-2xl">
-                            <img 
-                                src={project.heroImage || project.cardImage} 
-                                alt={`${project.title} hero image`}
-                                className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
+                        <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
+                            <img
+                                src={project.heroImage || project.cardImage}
+                                alt={project.title}
+                                className="w-full h-auto object-cover"
                             />
                         </div>
                     </div>
@@ -69,6 +69,18 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
                         <p>{project.fullDescription}</p>
                         
                         <h3 className="text-2xl font-bold text-foreground pt-8">[DESIGN PROCESS]</h3>
+
+                        {/* Additional Image after Design Process Title */}
+                        {project.designProcessImage && (
+                            <div className="w-full overflow-hidden rounded-lg shadow-lg my-8">
+                                <img
+                                    src={project.designProcessImage}
+                                    alt={`${project.title} Design Process`}
+                                    className="w-full h-auto object-cover"
+                                />
+                            </div>
+                        )}
+
                         <p>{project.designProcess}</p>
                         
                         <h3 className="text-2xl font-bold text-foreground pt-8">[TECHNICAL DETAILS]</h3>
