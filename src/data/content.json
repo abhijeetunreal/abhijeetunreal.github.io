@@ -427,7 +427,8 @@
           "type": "external-links",
           "externalLinks": [
             { "label": "Interview Data", "href": "https://docs.google.com/spreadsheets/d/1i5yEY5_r_fBWFe9UmZMvYssf1KWdNgDJAUnFXzngv-c/edit?gid=1989788202#gid=1989788202" },
-            { "label": "Detailed Study & Works Cited", "href": "https://docs.google.com/document/d/1WY3H5efr5-sDCpdMzWEsUOwzbNf53CHMGieFn-mJypQ/edit?tab=t.0" }
+            { "label": "Detailed Study & Works Cited", "href": "https://docs.google.com/document/d/1WY3H5efr5-sDCpdMzWEsUOwzbNf53CHMGieFn-mJypQ/edit?tab=t.0" },
+            { "label": "Product Page", "href": "https://bengaluru-batcraft.vercel.app/" }
            
           ]
         },
