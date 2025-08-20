@@ -411,38 +411,157 @@
       ]
     },
     {
-      "title": "Project Delta",
-      "description": "An interactive installation about AI ethics.",
-      "tags": ["AI", "Storytelling", "Data Visualization"],
-      "cardImage": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=600&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=1200&h=600&fit=crop",
-      "designProcessImage": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=1200&h=600&fit=crop",
+      "title": "Bengaluru Bat Craft",
+      "description": "The Cricket Bat in Bengaluru: A Semiotic Study of Meaning, Emotion, and Socioeconomic Context Among Non-Professional Players",
+      "tags": ["Semiotics", "Product design", "CMF", "Research"],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/b_bcraft.gif",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/batPoster.png",
+      "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/1.png",
 
-      "fullDescription": "An interactive installation about AI ethics. This physical installation presents users with ethical dilemmas related to AI and visualizes the collective choices of all participants.",
-      "designProcess": "The core of the design process was crafting compelling and nuanced ethical scenarios. We worked with ethicists and AI researchers to ensure the content was accurate and thought-provoking. The physical design of the installation was meant to be both inviting and slightly unsettling, to match the theme.",
-      "technicalDetails": "The installation uses a combination of projection mapping, custom-built hardware with sensors (Arduino), and a backend server (Node.js) to collect and process user responses. The visualizations are created with p5.js.",
+      "fullDescription": "The Cricket Bat in Bengaluru: A Semiotic Study of Meaning, Emotion, and Socioeconomic Context Among Non-Professional Players",
+      "designProcess": "This study uses a qualitative, multi-stage approach to uncover the meanings of the cricket bat among non-professional players in Bengaluru. It begins with literature review and contextual research, followed by field observations of amateur cricket across economic groups. Then, semi-structured interviews explore personal stories and emotional attachments, while artifact analysis examines the physical bats themselves. The data is then coded through thematic analysis, deepened using semiotic square analysis to map symbolic oppositions, and finally compared across groups in a cross-case analysis to reveal how socioeconomic context shapes the bat’s meanings.",
+      "technicalDetails": "The research is grounded in semiotic theory (Saussurean and Peircean traditions, denotation/connotation, Greimas’ semiotic square) and material culture studies. It applies qualitative techniques such as thematic analysis (reflexive coding, inductive and deductive approaches), artifact analysis of cricket bats, and cross-case comparison. These methods enable decoding of symbolic meanings, emotional associations, and socioeconomic markers embedded in the cricket bat.",
       "sections": [
-        {
-          "type": "image",
-          "src": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=1200&h=600&fit=crop",
-          "alt": "Interactive installation setup"
-        },
-        {
-          "type": "paragraph",
-          "content": "The installation challenges visitors to confront complex ethical scenarios in AI development. Real-time data visualization shows how collective human responses shift as more people interact with the system, creating a living reflection of our societal values around artificial intelligence."
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example4"
-        },
+        
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Installation Video", "href": "https://vimeo.com/username/project-delta" },
-            { "label": "Research Paper", "href": "https://arxiv.org/abs/example" },
-            { "label": "Interactive Demo", "href": "https://project-delta-demo.example.com" }
+            { "label": "Interview Data", "href": "https://docs.google.com/spreadsheets/d/1i5yEY5_r_fBWFe9UmZMvYssf1KWdNgDJAUnFXzngv-c/edit?gid=1989788202#gid=1989788202" },
+            { "label": "Detailed Study & Works Cited", "href": "https://docs.google.com/document/d/1WY3H5efr5-sDCpdMzWEsUOwzbNf53CHMGieFn-mJypQ/edit?tab=t.0" }
+           
           ]
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/2.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/3.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/4.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/5.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/6.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/7.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/8.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/9.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/10.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/11.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/12.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/13.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/14.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/15.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/16.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/17.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/18.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/19.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/20.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/21.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/22.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/23.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/24.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/25.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/26.png",
+          "alt": "Interactive installation setup"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/27.png",
+          "alt": "Interactive installation setup"
         }
+        
       ]
     },
     {
