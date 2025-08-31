@@ -48,6 +48,49 @@ export interface Company {
     darkLogo?: string; // Optional dark mode logo
 }
 
+export interface Experience {
+    role: string;
+    company: string;
+    companyLogo?: string;
+    companyDarkLogo?: string;
+    duration: string;
+    description: string;
+}
+
+export interface Education {
+    degree: string;
+    institution: string;
+    year: string;
+    description: string;
+}
+
+export interface Skills {
+    design: string[];
+    technology: string[];
+    tools: string[];
+}
+
+export interface Award {
+    title: string;
+    organization: string;
+    description: string;
+}
+
+export interface AboutPage {
+    title: string;
+    subtitle: string;
+    bio: {
+        intro: string;
+        mission: string;
+        approach: string;
+    };
+    education: Education[];
+    experience: Experience[];
+    skills: Skills;
+    interests: string[];
+    awards: Award[];
+}
+
 export interface ContentData {
     name: string;
     navLinks: NavLink[];
@@ -67,6 +110,7 @@ export interface ContentData {
         subtitle: string;
     };
     about: About;
+    aboutPage: AboutPage;
     workedWith: {
         title: string;
         companies: Company[];

@@ -55,43 +55,58 @@
     },
     "education": [
       {
-        "degree": "Bachelor of Design",
-        "institution": "National Institute of Design",
-        "year": "2020-2024",
-        "description": "Specialized in Product Design with focus on Human-Computer Interaction and Digital Innovation"
+        "degree": "Master of Design",
+        "institution": "Indian Institute of Science (IISc)",
+        "year": "2024-2026",
+        "description": "Specialized in Product Design Development and Management"
       },
       {
-        "degree": "UX Design Certification",
-        "institution": "Google UX Design",
-        "year": "2023",
-        "description": "Comprehensive UX design program covering research, prototyping, and user testing methodologies"
-      },
-      {
-        "degree": "Frontend Development",
-        "institution": "Meta Frontend Development",
-        "year": "2023",
-        "description": "Advanced frontend development skills including React, TypeScript, and modern web technologies"
+        "degree": "Bachelor of Technology",
+        "institution": "MIT Muzaffarpur",
+        "year": "2019-2023",
+        "description": "Specialized in Mechanical Engineering"
       }
     ],
     "experience": [
       {
-        "role": "Product Designer",
+        "role": "UI/UX Developement",
         "company": "Airbus",
-        "duration": "2023 - Present",
+        "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Airbus_Logo_2017.svg/2560px-Airbus_Logo_2017.svg.png",
+        "companyDarkLogo": "https://www.alamos-gmbh.com/wp-content/uploads/2017/05/AIRBUS_WHITE.png",
+        "duration": "May, 2025 - July, 2025",
         "description": "Leading design initiatives for aerospace technology interfaces, focusing on safety and user experience in high-stakes environments."
       },
       {
-        "role": "UX Designer",
+        "role": "Co-Creator & Designer",
         "company": "CodeFryDev",
-        "duration": "2022 - 2023",
+        "companyLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdw.png",
+        "companyDarkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdb.png",
+        "duration": "June, 2023 - Present",
         "description": "Designed user experiences for web applications and mobile apps, collaborating with development teams to implement design solutions."
       },
       {
-        "role": "Design Intern",
+        "role": "3D Content Creator",
         "company": "Lost Pixels",
-        "duration": "2021 - 2022",
+        "companyLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsw.png",
+        "companyDarkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsb.png",
+        "duration": "Feb, 2022 - May, 2025",
         "description": "Worked on game design and interactive experiences, learning the fundamentals of user-centered design and rapid prototyping."
+      },
+
+      {
+        "role": "Mechanical Engineer Intern",
+        "company": "Rail Wheel Plant, Bela, India",
+        "duration": "Nov, 2023 - Dec, 2023",
+        "description": "Manufacturing of Wheels and Axles"
+      },
+      {
+        "role": "Manufacturing Engineer Intern",
+        "company": "East Central Railways, India",
+        "duration": "Nov, 2021 - Jan, 2022",
+        "description": "Manufacturing and Repair of BOXNHL Wagons"
       }
+     
+      
     ],
     "skills": {
       "design": [

@@ -61,10 +61,49 @@ const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperi
             {aboutPage.experience.map((exp, index) => (
               <div key={index} className="border-l-4 border-primary pl-6">
                 <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
-                    <p className="text-lg text-primary">{exp.company}</p>
-                  </div>
+                                     <div>
+                     <div className="flex items-center gap-3 mb-2">
+                                                                       <div className="h-8 w-auto min-w-24 flex items-center justify-start">
+                          {exp.companyLogo ? (
+                            <>
+                              <img 
+                                src={exp.companyLogo} 
+                                alt={exp.company}
+                                className="h-6 w-auto max-w-full object-contain dark:hidden"
+                                onError={(e) => {
+                                  // Fallback to text if image fails to load
+                                  const target = e.target as HTMLImageElement;
+                                  target.style.display = 'none';
+                                  const fallback = target.nextElementSibling as HTMLElement;
+                                  if (fallback) {
+                                    fallback.style.display = 'block';
+                                  }
+                                }}
+                              />
+                              {exp.companyDarkLogo && (
+                                <img 
+                                  src={exp.companyDarkLogo} 
+                                  alt={exp.company}
+                                  className="h-6 w-auto max-w-full object-contain hidden dark:block"
+                                  onError={(e) => {
+                                    // Fallback to text if image fails to load
+                                    const target = e.target as HTMLImageElement;
+                                    target.style.display = 'none';
+                                    const fallback = target.nextElementSibling as HTMLElement;
+                                    if (fallback) {
+                                      fallback.style.display = 'block';
+                                    }
+                                  }}
+                                />
+                              )}
+                            </>
+                                                     ) : (
+                             <p className="text-lg text-primary font-medium">{exp.company}</p>
+                           )}
+                        </div>
+                     </div>
+                     <h3 className="text-xl font-semibold">{exp.role}</h3>
+                   </div>
                   <span className="text-sm text-muted-foreground font-medium">
                     {exp.duration}
                   </span>
