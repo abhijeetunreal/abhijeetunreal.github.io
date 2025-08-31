@@ -8,147 +8,38 @@ import { useToast } from '@/hooks/use-toast';
 import { generateChatResponse, testGeminiConnection } from '@/lib/gemini-client';
 import DecoderText from './ui/DecoderText';
 
-// Custom Neural Network Icon Component
+// Eye Icon Component - Matches the animated eye from StickyChat
 const NeuralNetworkIcon = () => {
     return (
-        <div className="relative h-5 w-5">
-            {/* Neural Network Nodes */}
-            <div className="absolute inset-0 flex items-center justify-center">
-                {/* Central Node */}
-                <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse" 
-                     style={{ animationDuration: '3s' }} />
+        <div className="relative h-5 w-5 flex items-center justify-center">
+            {/* Eye Container */}
+            <div className="relative w-4 h-4">
+                {/* Eye White */}
+                <div className="w-4 h-4 bg-white rounded-full shadow-md border border-gray-200 relative overflow-hidden">
+                    {/* Eye Shine */}
+                    <div className="absolute top-0.5 left-0.5 w-1 h-1 bg-white rounded-full opacity-80" />
+                    
+                    {/* Iris */}
+                    <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-500 rounded-full transform -translate-x-1/2 -translate-y-1/2">
+                        {/* Pupil */}
+                        <div className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-black rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+                        
+                        {/* Iris Detail */}
+                        <div className="absolute inset-0 rounded-full border border-emerald-400/30" />
+                        <div className="absolute top-0.5 left-0.5 w-0.5 h-0.5 bg-white rounded-full opacity-60" />
+                    </div>
+                    
+                    {/* Eyelid */}
+                    <div className="absolute top-0 left-0 w-4 h-4 bg-gradient-to-b from-transparent via-transparent to-white/20 rounded-full" />
+                </div>
                 
-                {/* Orbiting Nodes */}
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '8s',
-                         top: '-2px',
-                         left: '50%',
-                         transform: 'translateX(-50%)'
-                     }} />
-                
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '12s',
-                         animationDirection: 'reverse',
-                         bottom: '-2px',
-                         left: '50%',
-                         transform: 'translateX(-50%)'
-                     }} />
-                
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-green-400 to-cyan-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '10s',
-                         right: '-2px',
-                         top: '50%',
-                         transform: 'translateY(-50%)'
-                     }} />
-                
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-orange-400 to-red-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '15s',
-                         animationDirection: 'reverse',
-                         left: '-2px',
-                         top: '50%',
-                         transform: 'translateY(-50%)'
-                     }} />
-                
-                {/* Diagonal Nodes */}
-                <div className="absolute w-1 h-1 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '4s',
-                         top: '-1px',
-                         right: '-1px'
-                     }} />
-                
-                <div className="absolute w-1 h-1 bg-gradient-to-r from-teal-400 to-green-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '5s',
-                         bottom: '-1px',
-                         right: '-1px'
-                     }} />
-                
-                <div className="absolute w-1 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '6s',
-                         bottom: '-1px',
-                         left: '-1px'
-                     }} />
-                
-                <div className="absolute w-1 h-1 bg-gradient-to-r from-pink-400 to-red-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '7s',
-                         top: '-1px',
-                         left: '-1px'
-                     }} />
+                {/* Eyelashes */}
+                <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-3 h-0.5">
+                    <div className="absolute top-0 left-0 w-0.5 h-0.5 bg-gray-600 transform rotate-12" />
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-0.5 bg-gray-600" />
+                    <div className="absolute top-0 right-0 w-0.5 h-0.5 bg-gray-600 transform -rotate-12" />
+                </div>
             </div>
-            
-            {/* Neural Connections - Subtle Lines */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 20 20">
-                {/* Central connections */}
-                <line x1="10" y1="10" x2="10" y2="2" stroke="url(#gradient1)" strokeWidth="0.5" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite" />
-                </line>
-                <line x1="10" y1="10" x2="10" y2="18" stroke="url(#gradient2)" strokeWidth="0.5" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="6s" repeatCount="indefinite" />
-                </line>
-                <line x1="10" y1="10" x2="18" y2="10" stroke="url(#gradient3)" strokeWidth="0.5" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="5s" repeatCount="indefinite" />
-                </line>
-                <line x1="10" y1="10" x2="2" y2="10" stroke="url(#gradient4)" strokeWidth="0.5" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="7s" repeatCount="indefinite" />
-                </line>
-                
-                {/* Diagonal connections */}
-                <line x1="10" y1="10" x2="18" y2="2" stroke="url(#gradient5)" strokeWidth="0.3" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="8s" repeatCount="indefinite" />
-                </line>
-                <line x1="10" y1="10" x2="18" y2="18" stroke="url(#gradient6)" strokeWidth="0.3" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="9s" repeatCount="indefinite" />
-                </line>
-                <line x1="10" y1="10" x2="2" y2="18" stroke="url(#gradient7)" strokeWidth="0.3" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="10s" repeatCount="indefinite" />
-                </line>
-                <line x1="10" y1="10" x2="2" y2="2" stroke="url(#gradient8)" strokeWidth="0.3" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="11s" repeatCount="indefinite" />
-                </line>
-                
-                {/* Gradient definitions */}
-                <defs>
-                    <linearGradient id="gradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#34d399" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#34d399" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="gradient7" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="gradient8" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#34d399" stopOpacity="0.4" />
-                    </linearGradient>
-                </defs>
-            </svg>
         </div>
     );
 };

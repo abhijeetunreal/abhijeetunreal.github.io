@@ -1,149 +1,187 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import VirtualSelfChat from './VirtualSelfChat';
 import { Project } from '@/types/content';
 
-// Custom Neural Network Icon Component (same as in VirtualSelfChat)
-const NeuralNetworkIcon = () => {
-    return (
-        <div className="relative h-6 w-6">
-            {/* Neural Network Nodes */}
-            <div className="absolute inset-0 flex items-center justify-center">
-                {/* Central Node */}
-                <div className="w-2.5 h-2.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse" 
-                     style={{ animationDuration: '3s' }} />
-                
-                {/* Orbiting Nodes */}
-                <div className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '8s',
-                         top: '-3px',
-                         left: '50%',
-                         transform: 'translateX(-50%)'
-                     }} />
-                
-                <div className="absolute w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '12s',
-                         animationDirection: 'reverse',
-                         bottom: '-3px',
-                         left: '50%',
-                         transform: 'translateX(-50%)'
-                     }} />
-                
-                <div className="absolute w-2 h-2 bg-gradient-to-r from-green-400 to-cyan-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '10s',
-                         right: '-3px',
-                         top: '50%',
-                         transform: 'translateY(-50%)'
-                     }} />
-                
-                <div className="absolute w-2 h-2 bg-gradient-to-r from-orange-400 to-red-500 rounded-full animate-spin"
-                     style={{ 
-                         animationDuration: '15s',
-                         animationDirection: 'reverse',
-                         left: '-3px',
-                         top: '50%',
-                         transform: 'translateY(-50%)'
-                     }} />
-                
-                {/* Diagonal Nodes */}
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '4s',
-                         top: '-1.5px',
-                         right: '-1.5px'
-                     }} />
-                
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-teal-400 to-green-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '5s',
-                         bottom: '-1.5px',
-                         right: '-1.5px'
-                     }} />
-                
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '6s',
-                         bottom: '-1.5px',
-                         left: '-1.5px'
-                     }} />
-                
-                <div className="absolute w-1.5 h-1.5 bg-gradient-to-r from-pink-400 to-red-500 rounded-full animate-pulse"
-                     style={{ 
-                         animationDuration: '7s',
-                         top: '-1.5px',
-                         left: '-1.5px'
-                     }} />
-            </div>
+// Animated Eye Component - Follows mouse cursor like watching with 3D effects and realistic blinking
+const AnimatedEye = ({ eyePosition }: { eyePosition: { x: number; y: number } }) => {
+    const [isBlinking, setIsBlinking] = useState(false);
+    const [blinkCount, setBlinkCount] = useState(0);
+    const blinkTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        const blink = () => {
+            setIsBlinking(true);
+            // Natural blink duration between 150-300ms
+            const blinkDuration = Math.random() * 150 + 150;
+            setTimeout(() => setIsBlinking(false), blinkDuration);
+        };
+
+        const performBlinkSequence = () => {
+            // Determine blink pattern based on natural probabilities
+            const patternRoll = Math.random();
             
-            {/* Neural Connections - Subtle Lines */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 24 24">
-                {/* Central connections */}
-                <line x1="12" y1="12" x2="12" y2="3" stroke="url(#gradient1)" strokeWidth="0.6" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite" />
-                </line>
-                <line x1="12" y1="12" x2="12" y2="21" stroke="url(#gradient2)" strokeWidth="0.6" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="6s" repeatCount="indefinite" />
-                </line>
-                <line x1="12" y1="12" x2="21" y2="12" stroke="url(#gradient3)" strokeWidth="0.6" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="5s" repeatCount="indefinite" />
-                </line>
-                <line x1="12" y1="12" x2="3" y2="12" stroke="url(#gradient4)" strokeWidth="0.6" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.4;0.1" dur="7s" repeatCount="indefinite" />
-                </line>
+            if (patternRoll < 0.65) {
+                // 65% chance: Single blink
+                blink();
+                setBlinkCount(prev => prev + 1);
+            } else if (patternRoll < 0.85) {
+                // 20% chance: Double blink (like when thinking or processing)
+                blink();
+                setBlinkCount(prev => prev + 1);
+                setTimeout(() => {
+                    blink();
+                    setBlinkCount(prev => prev + 1);
+                }, 200 + Math.random() * 150);
+            } else if (patternRoll < 0.95) {
+                // 10% chance: Triple blink (like when surprised or adjusting)
+                blink();
+                setBlinkCount(prev => prev + 1);
+                setTimeout(() => {
+                    blink();
+                    setBlinkCount(prev => prev + 1);
+                }, 180 + Math.random() * 120);
+                setTimeout(() => {
+                    blink();
+                    setBlinkCount(prev => prev + 1);
+                }, 400 + Math.random() * 200);
+            } else {
+                // 5% chance: Rapid flutter (like when tired or distracted)
+                for (let i = 0; i < 4; i++) {
+                    setTimeout(() => {
+                        blink();
+                        setBlinkCount(prev => prev + 1);
+                    }, i * (100 + Math.random() * 50));
+                }
+            }
+        };
+
+        const scheduleNextBlink = () => {
+            // Clear any existing timer
+            if (blinkTimerRef.current) {
+                clearTimeout(blinkTimerRef.current);
+            }
+
+            // Natural blinking intervals with variation
+            let randomDelay;
+            
+            // 50% chance: Normal interval (2-3 seconds)
+            if (Math.random() < 0.5) {
+                randomDelay = Math.random() * 1000 + 2000;
+            } 
+            // 25% chance: Slightly longer (3-4 seconds)
+            else if (Math.random() < 0.75) {
+                randomDelay = Math.random() * 1000 + 3000;
+            } 
+            // 15% chance: Longer pause (4-6 seconds)
+            else if (Math.random() < 0.9) {
+                randomDelay = Math.random() * 2000 + 4000;
+            } 
+            // 10% chance: Extended pause (6-8 seconds) - like when focused
+            else {
+                randomDelay = Math.random() * 2000 + 6000;
+            }
+
+            blinkTimerRef.current = setTimeout(() => {
+                performBlinkSequence();
                 
-                {/* Diagonal connections */}
-                <line x1="12" y1="12" x2="21" y2="3" stroke="url(#gradient5)" strokeWidth="0.4" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="8s" repeatCount="indefinite" />
-                </line>
-                <line x1="12" y1="12" x2="21" y2="21" stroke="url(#gradient6)" strokeWidth="0.4" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="9s" repeatCount="indefinite" />
-                </line>
-                <line x1="12" y1="12" x2="3" y2="21" stroke="url(#gradient7)" strokeWidth="0.4" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="10s" repeatCount="indefinite" />
-                </line>
-                <line x1="12" y1="12" x2="3" y2="3" stroke="url(#gradient8)" strokeWidth="0.4" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.3;0.05" dur="11s" repeatCount="indefinite" />
-                </line>
+                // Schedule the next blink after this sequence completes
+                scheduleNextBlink();
+            }, randomDelay);
+        };
+
+        // Start the blinking cycle
+        scheduleNextBlink();
+
+        return () => {
+            // Clean up the timer when component unmounts
+            if (blinkTimerRef.current) {
+                clearTimeout(blinkTimerRef.current);
+            }
+        };
+    }, []); // Empty dependency array ensures this only runs once
+
+    return (
+        <div className="relative h-16 w-16 flex items-center justify-center">
+            {/* Eye Container */}
+            <div className="relative w-14 h-14">
+                {/* Eye Socket Shadow */}
+                <div className="absolute inset-0 w-14 h-14 bg-gradient-to-br from-gray-800/40 to-gray-600/20 rounded-full blur-md" />
                 
-                {/* Gradient definitions */}
-                <defs>
-                    <linearGradient id="gradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#34d399" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="0.6" />
-                    </linearGradient>
-                    <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#34d399" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="gradient7" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="gradient8" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#34d399" stopOpacity="0.4" />
-                    </linearGradient>
-                </defs>
-            </svg>
+                {/* Eye White with 3D depth */}
+                <div className="w-14 h-14 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full shadow-2xl border-2 border-gray-300 relative overflow-hidden">
+                    {/* Eye Shine/Reflection */}
+                    <div className="absolute top-1 left-1 w-4 h-4 bg-gradient-to-br from-white via-blue-50 to-transparent rounded-full opacity-90" />
+                    <div className="absolute top-2 left-2 w-2 h-2 bg-white rounded-full opacity-100" />
+                    
+                    {/* Secondary reflection */}
+                    <div className="absolute top-3 right-2 w-2 h-2 bg-gradient-to-br from-white to-transparent rounded-full opacity-60" />
+                    
+                    {/* Iris with 3D depth */}
+                    <div 
+                        className="absolute top-1/2 left-1/2 w-9 h-9 bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-200 ease-out shadow-inner"
+                        style={{ 
+                            transform: `translate(calc(-50% + ${eyePosition.x}px), calc(-50% + ${eyePosition.y}px))` 
+                        }}
+                    >
+                        {/* Iris texture and depth */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-400" />
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500/80 via-transparent to-cyan-300/80" />
+                        
+                        {/* Iris rings for depth */}
+                        <div className="absolute inset-1 rounded-full border border-emerald-400/40" />
+                        <div className="absolute inset-2 rounded-full border border-emerald-300/30" />
+                        
+                        {/* Pupil with depth */}
+                        <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-gradient-to-br from-black via-gray-900 to-black rounded-full transform -translate-x-1/2 -translate-y-1/2 shadow-inner" />
+                        
+                        {/* Pupil highlight */}
+                        <div className="absolute top-0.5 left-0.5 w-1 h-1 bg-white rounded-full opacity-80" />
+                        
+                        {/* Iris highlight */}
+                        <div className="absolute top-1 left-1 w-2 h-2 bg-gradient-to-br from-white via-emerald-100 to-transparent rounded-full opacity-70" />
+                    </div>
+                    
+                    {/* Eyelid with 3D effect */}
+                    <div className="absolute top-0 left-0 w-14 h-14 bg-gradient-to-b from-transparent via-gray-50/30 to-gray-200/40 rounded-full" />
+                    <div className="absolute top-0 left-0 w-14 h-14 bg-gradient-to-b from-transparent via-transparent to-white/20 rounded-full" />
+                    
+                    {/* Eye corner shadows */}
+                    <div className="absolute top-1 left-1 w-3 h-3 bg-gradient-to-br from-gray-300/40 to-transparent rounded-full" />
+                    <div className="absolute top-1 right-1 w-3 h-3 bg-gradient-to-bl from-gray-300/40 to-transparent rounded-full" />
+                </div>
+                
+                {/* Blinking Eyelid - Animated */}
+                <div 
+                    className={`absolute top-0 left-0 w-14 h-14 bg-gradient-to-b from-gray-100/90 via-gray-200/80 to-gray-300/70 rounded-full transition-all duration-100 ease-out ${
+                        isBlinking ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'
+                    }`}
+                    style={{ 
+                        transformOrigin: 'top',
+                        transform: isBlinking ? 'scaleY(1)' : 'scaleY(0)'
+                    }}
+                />
+                
+                {/* Eyelashes with 3D effect */}
+                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-6 h-2">
+                    <div className="absolute top-0 left-0 w-1 h-2 bg-gradient-to-b from-gray-800 to-gray-600 transform rotate-12 shadow-lg" />
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-gradient-to-b from-gray-800 to-gray-600 shadow-lg" />
+                    <div className="absolute top-0 right-0 w-1 h-2 bg-gradient-to-b from-gray-800 to-gray-600 transform -rotate-12 shadow-lg" />
+                </div>
+                
+                {/* Bottom eyelashes */}
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-2">
+                    <div className="absolute bottom-0 left-0 w-1 h-2 bg-gradient-to-t from-gray-800 to-gray-600 transform -rotate-12 shadow-lg" />
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-gradient-to-t from-gray-800 to-gray-600 shadow-lg" />
+                    <div className="absolute bottom-0 right-0 w-1 h-2 bg-gradient-to-t from-gray-800 to-gray-600 transform rotate-12 shadow-lg" />
+                </div>
+                
+                {/* 3D shadow under eye */}
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-8 h-2 bg-gradient-to-t from-gray-400/40 via-gray-300/20 to-transparent rounded-full blur-md" />
+                
+                {/* Eye socket highlight */}
+                <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-b from-white/30 via-transparent to-transparent rounded-full blur-sm" />
+            </div>
         </div>
     );
 };
@@ -155,7 +193,37 @@ interface StickyChatProps {
 const StickyChat = ({ projects }: StickyChatProps) => {
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [messages, setMessages] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
+    const [eyePosition, setEyePosition] = useState({ x: 0, y: 0 });
     const iconRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!iconRef.current) return;
+            
+            const rect = iconRef.current.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Calculate distance from center
+            const deltaX = e.clientX - centerX;
+            const deltaY = e.clientY - centerY;
+            
+            // Realistic eye movement constraints - iris gets masked at edges
+            // The iris can only move so far before it gets clipped by the eye socket
+            const maxMove = 4; // Reduced for more realistic masking effect
+            const moveX = Math.max(-maxMove, Math.min(maxMove, deltaX * 0.08));
+            const moveY = Math.max(-maxMove, Math.min(maxMove, deltaY * 0.08));
+            
+            setEyePosition({ x: moveX, y: moveY });
+        };
+
+        // Always track mouse movement across the entire screen
+        document.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
 
     const toggleChat = () => {
         setIsChatOpen(!isChatOpen);
@@ -171,12 +239,14 @@ const StickyChat = ({ projects }: StickyChatProps) => {
             <Button
                 ref={iconRef}
                 onClick={toggleChat}
-                className={`fixed bottom-6 right-6 z-[90] h-14 w-14 rounded-full bg-transparent text-primary-foreground shadow-lg hover:bg-transparent/90 transition-all duration-200 hover:scale-110 ${
-                    isChatOpen ? 'scale-110' : ''
+                className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[90] h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-transparent backdrop-blur-sm text-foreground shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-110 ${
+                    isChatOpen ? 'scale-110 shadow-emerald-500/40 ring-2 ring-emerald-300/50' : ''
                 }`}
                 size="icon"
+                title="Chat with AI Assistant"
+                aria-label="Open AI chat assistant"
             >
-                <NeuralNetworkIcon />
+                <AnimatedEye eyePosition={eyePosition} />
             </Button>
 
             {/* Chat Modal */}
