@@ -4,13 +4,23 @@ export interface NavLink {
     href: string;
 }
 
+export type ProjectSectionMarqueeItem = string | { image: string };
+
 export interface ProjectSection {
-    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links';
+    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline';
+    position?: 'top' | 'after-description' | 'between-design-and-technical' | 'journey';
     src?: string;
     alt?: string;
     content?: string;
     youtubeUrl?: string;
     externalLinks?: NavLink[];
+    // Opt-in marquee data: when present and type === 'marquee' we render DetailMarquee
+    marqueeLeftImage?: string;
+    marqueeLeftAlt?: string;
+    marqueeItems?: ProjectSectionMarqueeItem[];
+    // For inline marquee, allows optional left image override (if omitted, no left image used)
+    marqueeInlineLeftImage?: string;
+    marqueeInlineItems?: ProjectSectionMarqueeItem[];
 }
 
 export interface Project {

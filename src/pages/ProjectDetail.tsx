@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
+import DetailMarquee from '@/components/DetailMarquee';
 
 interface ProjectDetailProps {
     project: Project;
@@ -66,7 +67,29 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     </div>
     
                     <div className="space-y-6 text-lg text-foreground">
+                        {/* Inline marquee inserted right after hero image and before full description */}
+                        {project.sections && project.sections.filter(s => s.type === 'marquee-inline' && s.position === 'top').map((section, idx) => (
+                            section.marqueeInlineItems && section.marqueeInlineItems.length > 0 ? (
+                                <DetailMarquee
+                                    key={`top-inline-${idx}`}
+                                    leftImage={section.marqueeInlineLeftImage || project.heroImage || project.cardImage || ''}
+                                    leftAlt={project.title}
+                                    items={section.marqueeInlineItems}
+                                />
+                            ) : null
+                        ))}
                         <p>{project.fullDescription}</p>
+                        {/* Inline marquee after description */}
+                        {project.sections && project.sections.filter(s => s.type === 'marquee-inline' && s.position === 'after-description').map((section, idx) => (
+                            section.marqueeInlineItems && section.marqueeInlineItems.length > 0 ? (
+                                <DetailMarquee
+                                    key={`after-desc-inline-${idx}`}
+                                    leftImage={section.marqueeInlineLeftImage || project.heroImage || project.cardImage || ''}
+                                    leftAlt={project.title}
+                                    items={section.marqueeInlineItems}
+                                />
+                            ) : null
+                        ))}
                         
                         <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designProcess || content.labels?.designProcess || 'DESIGN PROCESS'}</h3>
 
@@ -83,6 +106,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
                         <p>{project.designProcess}</p>
                         
+                        {/* Inline marquee between design and technical */}
+                        {project.sections && project.sections.filter(s => s.type === 'marquee-inline' && s.position === 'between-design-and-technical').map((section, idx) => (
+                            section.marqueeInlineItems && section.marqueeInlineItems.length > 0 ? (
+                                <DetailMarquee
+                                    key={`between-inline-${idx}`}
+                                    leftImage={section.marqueeInlineLeftImage || project.heroImage || project.cardImage || ''}
+                                    leftAlt={project.title}
+                                    items={section.marqueeInlineItems}
+                                />
+                            ) : null
+                        ))}
+
                         <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.technicalDetails || content.labels?.technicalDetails || 'TECHNICAL DETAILS'}</h3>
                         <p>{project.technicalDetails}</p>
 
@@ -117,6 +152,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                                     />
                                                 </div>
                                             )}
+                                            {section.type === 'marquee' && section.marqueeItems && section.marqueeItems.length > 0 && (
+                                                <DetailMarquee
+                                                    leftImage={section.marqueeLeftImage || project.heroImage || project.cardImage || ''}
+                                                    leftAlt={section.marqueeLeftAlt || project.title}
+                                                    items={section.marqueeItems}
+                                                />
+                                            )}
                                             {section.type === 'external-links' && section.externalLinks && (
                                                 <div className="space-y-3">
                                                     <h4 className="text-xl font-semibold text-foreground">External Resources</h4>
@@ -133,6 +175,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                                             </a>
                                                         ))}
                                                     </div>
+                                                </div>
+                                            )}
+                                            {section.type === 'marquee-inline' && (!section.position || section.position === 'journey') && section.marqueeInlineItems && section.marqueeInlineItems.length > 0 && (
+                                                <div className="my-8">
+                                                    <DetailMarquee
+                                                        leftImage={section.marqueeInlineLeftImage || project.heroImage || project.cardImage || ''}
+                                                        leftAlt={project.title}
+                                                        items={section.marqueeInlineItems}
+                                                    />
                                                 </div>
                                             )}
                                         </div>

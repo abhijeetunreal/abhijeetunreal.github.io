@@ -11,9 +11,10 @@ interface MarqueeProps {
   items: (string | Company)[];
   className?: string;
   debug?: boolean; // Add debug prop for development
+  variant?: 'logo' | 'card';
 }
 
-const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) => {
+const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false, variant = 'logo' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -64,7 +65,7 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
     
     if (!container || !content || items.length === 0) return;
 
-    const gap = 24; // 24px gap between items
+    const gap = 16; // match hero scroller gap (1rem)
 
     const scrollLoop = () => {
       if (isAutoScrollingRef.current && !isDownRef.current) {
@@ -236,6 +237,17 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
 
   const renderItem = (item: string | Company, index: number) => {
     if (typeof item === 'string') {
+      // If variant is card and the string looks like a URL, render as image card
+      const isUrl = /^(https?:)?\/\//.test(item);
+      if (variant === 'card' && isUrl) {
+        return (
+          <div key={`img-${index}`} className="flex-shrink-0 w-36 sm:w-48 md:w-64 lg:w-80">
+            <div className="aspect-[3/4] rounded-none overflow-hidden">
+              <img src={item} alt={`item-${index}`} className="w-full h-full object-cover" />
+            </div>
+          </div>
+        );
+      }
       return (
         <div 
           key={index} 
@@ -248,19 +260,24 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
       // Determine which logo to use based on theme
       const logoUrl = isDarkMode && item.darkLogo ? item.darkLogo : item.logo;
       
-      return (
+      return variant === 'card' ? (
+        <div key={`${item.name}-${index}`} className="flex-shrink-0 w-36 sm:w-48 md:w-64 lg:w-80">
+          <div className="aspect-[3/4] rounded-none overflow-hidden">
+            <img src={logoUrl} alt={item.name} className="w-full h-full object-cover" />
+          </div>
+        </div>
+      ) : (
         <div 
           key={`${item.name}-${index}`} 
-          className="flex-shrink-0 flex items-center justify-center p-4"
+          className={`flex-shrink-0 flex items-center justify-center p-4`}
           style={{ width: '200px', height: '80px', minWidth: '200px' }}
         >
           <img 
             src={logoUrl} 
             alt={item.name}
-            className="max-w-full max-h-full object-contain marquee-logo"
+            className={'max-w-full max-h-full object-contain marquee-logo'}
             style={{ maxWidth: '180px', maxHeight: '60px' }}
             onError={(e) => {
-              // Fallback to text if image fails to load
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
               const fallback = target.parentElement?.querySelector('.fallback-text') as HTMLElement;
@@ -278,8 +295,8 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
     }
   };
 
-  // Repeat items for infinite scroll (same as ProjectShowcase approach)
-  const repeatedItems = Array.from({ length: 3 }, () => items).flat();
+  // Repeat items for infinite scroll (increase repetitions to avoid visible loops on wide screens)
+  const repeatedItems = Array.from({ length: 8 }, () => items).flat();
 
   return (
     <div className="space-y-2">
@@ -307,7 +324,7 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false }) =>
       >
         <div
           ref={contentRef}
-          className="flex w-max py-4 gap-6"
+          className="flex items-center w-max py-4 gap-6"
           style={{ width: 'fit-content' }}
         >
           {repeatedItems.map((item, index) => renderItem(item, index))}
