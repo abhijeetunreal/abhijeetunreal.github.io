@@ -1,15 +1,32 @@
-
 {
   "name": "PRODUCT DESIGNER",
   "navLinks": [
-    { "label": "ABHIJEET", "href": "#" },
-    { "label": "ABOUT", "href": "/#about" },
-    { "label": "CONTACT", "href": "/#contact" }
+    {
+      "label": "ABHIJEET",
+      "href": "#"
+    },
+    {
+      "label": "ABOUT",
+      "href": "/#about"
+    },
+    {
+      "label": "CONTACT",
+      "href": "/#contact"
+    }
   ],
   "contactLinks": [
-      { "label": "EMAIL", "href": "mailto:your.email@example.com" },
-      { "label": "LINKEDIN", "href": "#" },
-      { "label": "GITHUB", "href": "#" }
+    {
+      "label": "EMAIL",
+      "href": "mailto:your.email@example.com"
+    },
+    {
+      "label": "LINKEDIN",
+      "href": "#"
+    },
+    {
+      "label": "GITHUB",
+      "href": "#"
+    }
   ],
   "hero": {
     "title": "I experiment with technology, blend it with design, and innovate for human needs."
@@ -18,31 +35,62 @@
     "customEnvLink": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/HdRi/skyimg.jpg"
   },
   "aiChat": {
-      "greeting": "Hello! I'm a digital consciousness, trained on this portfolio. Ask me anything about the creator's work or thoughts.",
-      "promptPlaceholder": "Ask about my work, skills, philosophy..."
+    "greeting": "Hello! I'm a digital consciousness, trained on this portfolio. Ask me anything about the creator's work or thoughts.",
+    "promptPlaceholder": "Ask about my work, skills, philosophy..."
   },
-
   "about": {
     "title": "ABOUT ME",
     "paragraph1": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities.",
     "paragraph2": "Click on a cell in the grid to generate a unique design philosophy statement, powered by a simple AI model trained on my work and ethos.",
     "philosophies": [
-      { "statement": "Design is a medium for conversation, not just a solution." },
-      { "statement": "Technology should be an extension of human capability, not a replacement." },
-      { "statement": "Embrace ambiguity and complexity to find novel insights." },
-      { "statement": "The most powerful experiences are born from interdisciplinary collaboration." },
-      { "statement": "Simplicity is the ultimate sophistication in digital experiences." },
-      { "statement": "Every pixel should serve a purpose beyond aesthetics." },
-      { "statement": "Innovation happens at the intersection of constraints and creativity." },
-      { "statement": "Human-centered design begins with empathy and ends with impact." },
-      { "statement": "The best interfaces disappear, leaving only the experience." },
-      { "statement": "Data-driven decisions, human-driven design." },
-      { "statement": "Accessibility is not a feature, it's a fundamental right." },
-      { "statement": "Sustainable design considers both user needs and planetary impact." },
-      { "statement": "Micro-interactions create macro-impressions." },
-      { "statement": "Failure is the best teacher in the design process." },
-      { "statement": "Context is king in user experience design." },
-      { "statement": "The future of design is collaborative and inclusive." }
+      {
+        "statement": "Design is a medium for conversation, not just a solution."
+      },
+      {
+        "statement": "Technology should be an extension of human capability, not a replacement."
+      },
+      {
+        "statement": "Embrace ambiguity and complexity to find novel insights."
+      },
+      {
+        "statement": "The most powerful experiences are born from interdisciplinary collaboration."
+      },
+      {
+        "statement": "Simplicity is the ultimate sophistication in digital experiences."
+      },
+      {
+        "statement": "Every pixel should serve a purpose beyond aesthetics."
+      },
+      {
+        "statement": "Innovation happens at the intersection of constraints and creativity."
+      },
+      {
+        "statement": "Human-centered design begins with empathy and ends with impact."
+      },
+      {
+        "statement": "The best interfaces disappear, leaving only the experience."
+      },
+      {
+        "statement": "Data-driven decisions, human-driven design."
+      },
+      {
+        "statement": "Accessibility is not a feature, it's a fundamental right."
+      },
+      {
+        "statement": "Sustainable design considers both user needs and planetary impact."
+      },
+      {
+        "statement": "Micro-interactions create macro-impressions."
+      },
+      {
+        "statement": "Failure is the best teacher in the design process."
+      },
+      {
+        "statement": "Context is king in user experience design."
+      },
+      {
+        "statement": "The future of design is collaborative and inclusive."
+      }
     ]
   },
   "aboutPage": {
@@ -92,7 +140,6 @@
         "duration": "Feb, 2022 - May, 2025",
         "description": "Worked on game design and interactive experiences, learning the fundamentals of user-centered design and rapid prototyping."
       },
-
       {
         "role": "Mechanical Engineer Intern",
         "company": "Rail Wheel Plant, Bela, India",
@@ -105,8 +152,6 @@
         "duration": "Nov, 2021 - Jan, 2022",
         "description": "Manufacturing and Repair of BOXNHL Wagons"
       }
-     
-      
     ],
     "skills": {
       "design": [
@@ -174,57 +219,80 @@
     "promptTemplate": "Generate a concise design philosophy statement (under 15 words) based on the following context: {context}. The statement should feel insightful and unique."
   },
   "workedWith": {
-      "title": "WORKED WITH",
-      "companies": [
-        {
-          "name": "Airbus",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Airbus_Logo_2017.svg/2560px-Airbus_Logo_2017.svg.png",
-          "darkLogo": "https://www.alamos-gmbh.com/wp-content/uploads/2017/05/AIRBUS_WHITE.png"
-        },
-        {
-          "name": "CodeFryDev",
-          "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdw.png",
-          "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdb.png"
-        },
-        {
-          "name": "Stevescob Projects",
-          "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/StevecobProjectW.png",
-          "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/7d01463a8a9ab3ae68aed8b25868c1d3f8f7dd00/Portfolio/Company/StevDark.svg"
-        },
-        {
-          "name": "Lost Pixels",
-          "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsw.png",
-          "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsb.png"
-        },
-        {
-          "name": "East Central Railways, India",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/East_Central_Railway_Zone.svg/1024px-East_Central_Railway_Zone.svg.png",
-          "darkLogo": "https://media.licdn.com/dms/image/v2/D560BAQGuqO87Bn_61g/company-logo_200_200/company-logo_200_200/0/1683205862697?e=2147483647&v=beta&t=-R4cIalY4zw7lzltGVUUL81N0ydrCY4DsC4-DK93_o4"
-        }
-        
-      ]
+    "title": "WORKED WITH",
+    "companies": [
+      {
+        "name": "Airbus",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Airbus_Logo_2017.svg/2560px-Airbus_Logo_2017.svg.png",
+        "darkLogo": "https://www.alamos-gmbh.com/wp-content/uploads/2017/05/AIRBUS_WHITE.png"
+      },
+      {
+        "name": "CodeFryDev",
+        "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdw.png",
+        "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/cfdb.png"
+      },
+      {
+        "name": "Stevescob Projects",
+        "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/StevecobProjectW.png",
+        "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/7d01463a8a9ab3ae68aed8b25868c1d3f8f7dd00/Portfolio/Company/StevDark.svg"
+      },
+      {
+        "name": "Lost Pixels",
+        "logo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsw.png",
+        "darkLogo": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/LostPixelsb.png"
+      },
+      {
+        "name": "East Central Railways, India",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/East_Central_Railway_Zone.svg/1024px-East_Central_Railway_Zone.svg.png",
+        "darkLogo": "https://media.licdn.com/dms/image/v2/D560BAQGuqO87Bn_61g/company-logo_200_200/company-logo_200_200/0/1683205862697?e=2147483647&v=beta&t=-R4cIalY4zw7lzltGVUUL81N0ydrCY4DsC4-DK93_o4"
+      }
+    ]
   },
   "projects": [
     {
+      "title": "Recall",
+      "description": "A tool for collaborative world-building for writers and game designers.",
+      "tags": [
+        "Collaboration",
+        "UX Design",
+        "Web App"
+      ],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallCard.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallMainPage.png",
+      "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
+      "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
+      "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
+      "sections": [
+        {
+          "type": "external-links",
+          "externalLinks": [
+            {
+              "label": "Try Recall",
+              "href": "https://appsuit.codefrydev.in/apps/visualnoteai/"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "Prism",
       "description": "An immersive data narrative exploring climate change through generative visuals.",
-      "tags": ["Product Design Development and Management", "CMF"],
+      "tags": [
+        "Product Design Development and Management",
+        "CMF"
+      ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/prismthumbnail.gif",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismHeroThumbnail.png",
       "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismDesignStages.png",
-
       "fullDescription": "Prism (Present Resonance Interface for Sensory Mindfulness) is a stylish, minimalist wearable device designed to gently nudge users back to the present moment through subtle sensory cues. It combines haptic feedback, soft light, and a companion app to cultivate mindfulness without screen dependency.",
       "designProcess": "This project was a six-week sprint from idea to a fully functional mindfulness product, designed to help users stay present in the moment by addressing chronic digital distraction and cognitive overload.\nFrom initial research and ideation to final product execution and promotional planning, every stage was optimized for efficiency, proving that impactful design doesn’t require a high budget—just the right vision and execution.",
       "technicalDetails": " Throughout the development process, I tackled multiple challenges, including rapid prototyping, user testing, marketing, and financial constraints. With a strict budget of ₹400,I focused on cost-effective materials, minimalistic yet engaging design, and creative marketing strategies to ensure accessibility and scalability.",
       "sections": [
-       
-      
         {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/concept_drawings.png",
           "alt": "Data processing workflow"
         },
-       
         {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/embodiement1.png",
@@ -240,7 +308,6 @@
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/logo%20exploration.png",
           "alt": "Data processing workflow"
         },
-        
         {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/OPEN%20DAY%20TEST.png",
@@ -253,9 +320,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Live Demo", "href": "https://prism-demo.example.com" },
-            { "label": "GitHub Repository", "href": "https://github.com/username/prism" },
-            { "label": "Case Study", "href": "https://medium.com/@username/prism-case-study" }
+            {
+              "label": "Live Demo",
+              "href": "https://prism-demo.example.com"
+            },
+            {
+              "label": "GitHub Repository",
+              "href": "https://github.com/username/prism"
+            },
+            {
+              "label": "Case Study",
+              "href": "https://medium.com/@username/prism-case-study"
+            }
           ]
         }
       ]
@@ -263,11 +339,17 @@
     {
       "title": "Old Projects",
       "description": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation.",
-      "tags": ["Product design","UI Design", "UX Design", "UX Research", "Mobile App", "Wellness"],
+      "tags": [
+        "Product design",
+        "UI Design",
+        "UX Design",
+        "UX Research",
+        "Mobile App",
+        "Wellness"
+      ],
       "cardImage": "https://media.tenor.com/14SGy65zclAAAAAM/fnaf-fnaf-movie.gif",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/3.png",
       "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/DesignProcess.png",
-
       "fullDescription": "This project contains a collection of old projects that I worked on. I have included some of the projects that I am proud of and some that I am not. But all of them are a part of my journey and I am grateful for the experience.",
       "designProcess": "Design process was a mix of learning and experimenting. Different projects had different design processes and I have included some of the processes in this project.",
       "technicalDetails": "Some of the project based on Internet data and some were based on my own ideas. I have included some of the technical details in this project.",
@@ -379,22 +461,30 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Portfolio Collection", "href": "https://behance.net/username/old-projects" },
-            { "label": "Design Process Blog", "href": "https://medium.com/@username/design-journey" }
+            {
+              "label": "Portfolio Collection",
+              "href": "https://behance.net/username/old-projects"
+            },
+            {
+              "label": "Design Process Blog",
+              "href": "https://medium.com/@username/design-journey"
+            }
           ]
         }
-        
-      
       ]
     },
     {
       "title": "3D Renders",
       "description": "A speculative design project imagining future interfaces for brain-computer interaction.",
-      "tags": ["3D Modelling", "3D Design", "Product Render", "Photogrammetry"],
+      "tags": [
+        "3D Modelling",
+        "3D Design",
+        "Product Render",
+        "Photogrammetry"
+      ],
       "cardImage": "https://media4.giphy.com/avatars/dlgnce/TlT2eiSgtRAu.gif",
       "heroImage": "https://abhijeetunreal.github.io/assets/img/articles/photogrammetry/ruin.gif",
       "designProcessImage": "",
-
       "fullDescription": "This page contains some of my past 3D renders of 3D model which I created in past. ",
       "designProcess": "These 3D renders are the result of continious learnign and gaining exprience in 3D softwares some renders are from my initial day of learning different 3D softwares, here I am not listing all of my 3D creation you can explore other model on my Sketchfab account where I have posted my other 3D models",
       "technicalDetails": "To create 3D model I used different softwares like Blender, Rhino, Fusion 360 etc. for texturing I used Substance 3D Painter, Photoshop etc",
@@ -421,35 +511,53 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Sketchfab Profile", "href": "https://sketchfab.com/username" },
-            { "label": "3D Portfolio", "href": "https://artstation.com/username" },
-            { "label": "Blender Community", "href": "https://blenderartists.org/u/username" }
+            {
+              "label": "Sketchfab Profile",
+              "href": "https://sketchfab.com/username"
+            },
+            {
+              "label": "3D Portfolio",
+              "href": "https://artstation.com/username"
+            },
+            {
+              "label": "Blender Community",
+              "href": "https://blenderartists.org/u/username"
+            }
           ]
         }
-        
-      
       ]
     },
     {
       "title": "Bengaluru Bat Craft",
       "description": "The Cricket Bat in Bengaluru: A Semiotic Study of Meaning, Emotion, and Socioeconomic Context Among Non-Professional Players",
-      "tags": ["Semiotics", "Product design", "CMF", "Research"],
+      "tags": [
+        "Semiotics",
+        "Product design",
+        "CMF",
+        "Research"
+      ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/b_bcraft.gif",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/batPoster.png",
       "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/1.png",
-
       "fullDescription": "The Cricket Bat in Bengaluru: A Semiotic Study of Meaning, Emotion, and Socioeconomic Context Among Non-Professional Players",
       "designProcess": "This study uses a qualitative, multi-stage approach to uncover the meanings of the cricket bat among non-professional players in Bengaluru. It begins with literature review and contextual research, followed by field observations of amateur cricket across economic groups. Then, semi-structured interviews explore personal stories and emotional attachments, while artifact analysis examines the physical bats themselves. The data is then coded through thematic analysis, deepened using semiotic square analysis to map symbolic oppositions, and finally compared across groups in a cross-case analysis to reveal how socioeconomic context shapes the bat’s meanings.",
       "technicalDetails": "The research is grounded in semiotic theory (Saussurean and Peircean traditions, denotation/connotation, Greimas’ semiotic square) and material culture studies. It applies qualitative techniques such as thematic analysis (reflexive coding, inductive and deductive approaches), artifact analysis of cricket bats, and cross-case comparison. These methods enable decoding of symbolic meanings, emotional associations, and socioeconomic markers embedded in the cricket bat.",
       "sections": [
-        
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Interview Data", "href": "https://docs.google.com/spreadsheets/d/1i5yEY5_r_fBWFe9UmZMvYssf1KWdNgDJAUnFXzngv-c/edit?gid=1989788202#gid=1989788202" },
-            { "label": "Detailed Study & Works Cited", "href": "https://docs.google.com/document/d/1WY3H5efr5-sDCpdMzWEsUOwzbNf53CHMGieFn-mJypQ/edit?tab=t.0" },
-            { "label": "Product Page", "href": "https://bengaluru-batcraft.vercel.app/" }
-           
+            {
+              "label": "Interview Data",
+              "href": "https://docs.google.com/spreadsheets/d/1i5yEY5_r_fBWFe9UmZMvYssf1KWdNgDJAUnFXzngv-c/edit?gid=1989788202#gid=1989788202"
+            },
+            {
+              "label": "Detailed Study & Works Cited",
+              "href": "https://docs.google.com/document/d/1WY3H5efr5-sDCpdMzWEsUOwzbNf53CHMGieFn-mJypQ/edit?tab=t.0"
+            },
+            {
+              "label": "Product Page",
+              "href": "https://bengaluru-batcraft.vercel.app/"
+            }
           ]
         },
         {
@@ -582,92 +690,75 @@
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/27.png",
           "alt": "Interactive installation setup"
         }
-        
       ]
     },
     {
-        "title": "Project Epsilon",
-        "description": "A tool for collaborative world-building for writers and game designers.",
-        "tags": ["Collaboration", "UX Design", "Web App"],
-        "cardImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop",
-        "heroImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-              "designProcessImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-
-      "fullDescription": "A web-based platform that enables multiple users to collaboratively create and manage fictional worlds. It includes tools for map making, character development, and timeline creation.",
-        "designProcess": "The project started from identifying the needs of creative teams. We interviewed Dungeons & Dragons groups, novelists, and indie game developers. The design focuses on flexible data structures and a non-linear creative process.",
-        "technicalDetails": "Built with React and a real-time database (Firebase) to allow for seamless collaboration. The map-making tool uses Leaflet.js with custom overlays.",
-        "sections": [
-                  {
-          "type": "paragraph",
-          "content": "Collaborative storytelling requires tools that adapt to creative chaos. This platform provides structured flexibility, allowing teams to build complex fictional worlds while maintaining narrative coherence across multiple contributors."
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example5"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            { "label": "Live Platform", "href": "https://worldbuilder.example.com" },
-            { "label": "Documentation", "href": "https://docs.worldbuilder.example.com" },
-            { "label": "Community Forum", "href": "https://forum.worldbuilder.example.com" }
-          ]
-        }
-        ]
-    },
-    {
-        "title": "Project Zeta",
-        "description": "An AR experience that reveals the hidden histories of city landmarks.",
-        "tags": ["AR", "Mobile App", "Storytelling"],
-        "cardImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop",
-        "heroImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
-              "designProcessImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
-
+      "title": "Project Zeta",
+      "description": "An AR experience that reveals the hidden histories of city landmarks.",
+      "tags": [
+        "AR",
+        "Mobile App",
+        "Storytelling"
+      ],
+      "cardImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop",
+      "heroImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
+      "designProcessImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
       "fullDescription": "An augmented reality mobile app that overlays historical photos and information onto real-world buildings and locations as you view them through your phone's camera.",
-        "designProcess": "We partnered with local historians to gather archival content. The UX challenge was to present this information in an engaging way without overwhelming the user. We used narrative threads to guide users on historical walks.",
-        "technicalDetails": "The app uses ARKit for iOS and ARCore for Android. 3D models of historical scenes were created in Blender and optimized for mobile performance.",
-        "sections": [
-                  {
+      "designProcess": "We partnered with local historians to gather archival content. The UX challenge was to present this information in an engaging way without overwhelming the user. We used narrative threads to guide users on historical walks.",
+      "technicalDetails": "The app uses ARKit for iOS and ARCore for Android. 3D models of historical scenes were created in Blender and optimized for mobile performance.",
+      "sections": [
+        {
           "type": "paragraph",
           "content": "Augmented reality becomes a time machine, revealing layers of history embedded in familiar spaces. The app transforms everyday walks into immersive historical journeys, connecting past and present through digital storytelling."
         },
         {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example6"
-        },
-        {
           "type": "external-links",
           "externalLinks": [
-            { "label": "App Store", "href": "https://apps.apple.com/app/history-ar/id123456789" },
-            { "label": "Google Play", "href": "https://play.google.com/store/apps/details?id=com.historyar" },
-            { "label": "Historical Database", "href": "https://historydb.example.com" }
+            {
+              "label": "App Store",
+              "href": "https://apps.apple.com/app/history-ar/id123456789"
+            },
+            {
+              "label": "Google Play",
+              "href": "https://play.google.com/store/apps/details?id=com.historyar"
+            },
+            {
+              "label": "Historical Database",
+              "href": "https://historydb.example.com"
+            }
           ]
         }
-        ]
+      ]
     },
     {
-        "title": "Project Eta",
-        "description": "A generative music system based on weather patterns.",
-        "tags": ["Generative Art", "Web App", "AI"],
-        "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
-        "heroImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
-              "designProcessImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
-
+      "title": "Project Eta",
+      "description": "A generative music system based on weather patterns.",
+      "tags": [
+        "Generative Art",
+        "Web App",
+        "AI"
+      ],
+      "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
+      "heroImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
+      "designProcessImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
       "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
-        "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
-        "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
-        "sections": [
-          {
-            "type": "paragraph",
-            "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
-          }
-        ]
+      "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
+      "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
+        }
+      ]
     },
-
     {
       "title": "Project Eta1",
       "description": "A generative music system based on weather patterns.",
-      "tags": ["Generative Art", "Web App", "AI"],
+      "tags": [
+        "Generative Art",
+        "Web App",
+        "AI"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
       "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
@@ -685,21 +776,32 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Live App", "href": "https://weather-music.example.com" },
-            { "label": "API Documentation", "href": "https://docs.weather-music.example.com" },
-            { "label": "SoundCloud", "href": "https://soundcloud.com/username/weather-music" }
+            {
+              "label": "Live App",
+              "href": "https://weather-music.example.com"
+            },
+            {
+              "label": "API Documentation",
+              "href": "https://docs.weather-music.example.com"
+            },
+            {
+              "label": "SoundCloud",
+              "href": "https://soundcloud.com/username/weather-music"
+            }
           ]
         }
       ]
     },
-
     {
       "title": "Project Eta2",
       "description": "A generative music system based on weather patterns.",
-      "tags": ["Generative Art", "Web App", "AI"],
+      "tags": [
+        "Generative Art",
+        "Web App",
+        "AI"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
-
       "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
       "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
       "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
@@ -715,24 +817,36 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Live App", "href": "https://weather-music-eta2.example.com" },
-            { "label": "Source Code", "href": "https://github.com/username/weather-music-eta2" },
-            { "label": "API Docs", "href": "https://docs.weather-music-eta2.example.com" }
+            {
+              "label": "Live App",
+              "href": "https://weather-music-eta2.example.com"
+            },
+            {
+              "label": "Source Code",
+              "href": "https://github.com/username/weather-music-eta2"
+            },
+            {
+              "label": "API Docs",
+              "href": "https://docs.weather-music-eta2.example.com"
+            }
           ]
         }
       ]
-  }
-    
+    }
   ],
   "experimentalProjects": [
     {
       "title": "OTTOLY SAVINGS",
       "description": "A mobile app for smart savings and financial planning with AI-powered insights.",
-      "tags": ["Mobile App", "FinTech", "AI", "UX Design"],
+      "tags": [
+        "Mobile App",
+        "FinTech",
+        "AI",
+        "UX Design"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=600&fit=crop",
-
       "fullDescription": "OTTOLY SAVINGS is an innovative mobile application designed to revolutionize personal finance management. The app combines AI-powered insights with intuitive user experience to help users save money intelligently and achieve their financial goals.",
       "designProcess": "The design process focused on creating a trustworthy and engaging financial app that users would want to use daily. We conducted extensive user research with people from various financial backgrounds to understand pain points in money management.",
       "technicalDetails": "Built with React Native and integrated with machine learning algorithms for spending pattern analysis. The app uses secure APIs for bank integration and implements advanced encryption for financial data protection.",
@@ -753,9 +867,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "App Store", "href": "https://apps.apple.com/app/ottoly-savings/id987654321" },
-            { "label": "Google Play", "href": "https://play.google.com/store/apps/details?id=com.ottolysavings" },
-            { "label": "Financial Blog", "href": "https://blog.ottoly.com/savings-tips" }
+            {
+              "label": "App Store",
+              "href": "https://apps.apple.com/app/ottoly-savings/id987654321"
+            },
+            {
+              "label": "Google Play",
+              "href": "https://play.google.com/store/apps/details?id=com.ottolysavings"
+            },
+            {
+              "label": "Financial Blog",
+              "href": "https://blog.ottoly.com/savings-tips"
+            }
           ]
         }
       ]
@@ -763,11 +886,15 @@
     {
       "title": "WELLNEST DOCUMENTS",
       "description": "Digital document management system that eliminates paperwork and streamlines workflows.",
-      "tags": ["Web App", "Document Management", "Workflow Automation", "UX Design"],
+      "tags": [
+        "Web App",
+        "Document Management",
+        "Workflow Automation",
+        "UX Design"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-
       "fullDescription": "WELLNEST DOCUMENTS is a comprehensive digital document management platform designed to eliminate the need for physical paperwork in modern businesses. The system streamlines document workflows, automates approval processes, and ensures secure storage and retrieval.",
       "designProcess": "Our design approach focused on creating an intuitive interface that would make the transition from paper to digital seamless for users. We prioritized user experience to ensure high adoption rates across different age groups and technical skill levels.",
       "technicalDetails": "Built with React and Node.js, featuring real-time collaboration tools, advanced search capabilities, and integration with popular business software. The platform uses cloud storage with enterprise-grade security measures.",
@@ -788,9 +915,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Live Demo", "href": "https://demo.wellnest.com" },
-            { "label": "Enterprise Pricing", "href": "https://wellnest.com/pricing" },
-            { "label": "API Documentation", "href": "https://docs.wellnest.com" }
+            {
+              "label": "Live Demo",
+              "href": "https://demo.wellnest.com"
+            },
+            {
+              "label": "Enterprise Pricing",
+              "href": "https://wellnest.com/pricing"
+            },
+            {
+              "label": "API Documentation",
+              "href": "https://docs.wellnest.com"
+            }
           ]
         }
       ]
@@ -798,11 +934,15 @@
     {
       "title": "PATHFINDER MENTORS",
       "description": "A mentorship platform connecting students with industry professionals for career guidance.",
-      "tags": ["Web Platform", "Mentorship", "Career Development", "Social Networking"],
+      "tags": [
+        "Web Platform",
+        "Mentorship",
+        "Career Development",
+        "Social Networking"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop",
-
       "fullDescription": "PATHFINDER MENTORS is a digital platform that bridges the gap between students and industry professionals. The platform facilitates meaningful mentorship relationships, helping students navigate their career paths with guidance from experienced professionals.",
       "designProcess": "The design process centered around creating a warm, welcoming environment that would encourage both mentors and mentees to engage actively. We focused on building trust through transparent profiles and structured communication channels.",
       "technicalDetails": "Developed using React and Firebase, featuring real-time messaging, video calling capabilities, and intelligent matching algorithms. The platform includes comprehensive profile management and scheduling tools.",
@@ -823,9 +963,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Join Platform", "href": "https://pathfinder-mentors.com/join" },
-            { "label": "Success Stories", "href": "https://pathfinder-mentors.com/stories" },
-            { "label": "Mentor Directory", "href": "https://pathfinder-mentors.com/mentors" }
+            {
+              "label": "Join Platform",
+              "href": "https://pathfinder-mentors.com/join"
+            },
+            {
+              "label": "Success Stories",
+              "href": "https://pathfinder-mentors.com/stories"
+            },
+            {
+              "label": "Mentor Directory",
+              "href": "https://pathfinder-mentors.com/mentors"
+            }
           ]
         }
       ]
@@ -833,11 +982,15 @@
     {
       "title": "REKORDER MUSIC",
       "description": "Professional music recording and production software with AI-assisted mixing capabilities.",
-      "tags": ["Desktop App", "Music Production", "AI", "Audio Engineering"],
+      "tags": [
+        "Desktop App",
+        "Music Production",
+        "AI",
+        "Audio Engineering"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop",
-
       "fullDescription": "REKORDER MUSIC is a professional-grade music production software that combines traditional recording tools with cutting-edge AI technology. The platform assists musicians and producers in creating high-quality recordings with intelligent mixing and mastering suggestions.",
       "designProcess": "The design process focused on creating an interface that would be intuitive for both beginners and professional audio engineers. We prioritized workflow efficiency and visual feedback for complex audio operations.",
       "technicalDetails": "Built with Electron and Web Audio API, featuring real-time audio processing, VST plugin support, and AI-powered mixing algorithms. The software includes advanced audio analysis tools and automated mastering capabilities.",
@@ -858,9 +1011,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Download Trial", "href": "https://rekorder-music.com/trial" },
-            { "label": "Plugin Store", "href": "https://plugins.rekorder-music.com" },
-            { "label": "User Manual", "href": "https://docs.rekorder-music.com" }
+            {
+              "label": "Download Trial",
+              "href": "https://rekorder-music.com/trial"
+            },
+            {
+              "label": "Plugin Store",
+              "href": "https://plugins.rekorder-music.com"
+            },
+            {
+              "label": "User Manual",
+              "href": "https://docs.rekorder-music.com"
+            }
           ]
         }
       ]
@@ -868,11 +1030,15 @@
     {
       "title": "NEURAL CANVAS",
       "description": "AI-powered digital art creation tool that generates unique artworks based on user prompts.",
-      "tags": ["Web App", "AI Art", "Creative Tools", "Machine Learning"],
+      "tags": [
+        "Web App",
+        "AI Art",
+        "Creative Tools",
+        "Machine Learning"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
-
       "fullDescription": "NEURAL CANVAS is an innovative digital art platform that leverages artificial intelligence to help artists and creators generate unique artworks. Users can input text descriptions, upload reference images, or combine multiple styles to create original pieces.",
       "designProcess": "The design process focused on creating an intuitive interface that would make AI art generation accessible to users of all skill levels. We prioritized creative freedom while maintaining ease of use and clear visual feedback.",
       "technicalDetails": "Built with React and TensorFlow.js, featuring multiple AI models for different art styles and techniques. The platform includes real-time preview generation, style transfer capabilities, and collaborative features.",
@@ -893,9 +1059,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Create Art", "href": "https://neural-canvas.com/create" },
-            { "label": "Gallery", "href": "https://neural-canvas.com/gallery" },
-            { "label": "Style Library", "href": "https://neural-canvas.com/styles" }
+            {
+              "label": "Create Art",
+              "href": "https://neural-canvas.com/create"
+            },
+            {
+              "label": "Gallery",
+              "href": "https://neural-canvas.com/gallery"
+            },
+            {
+              "label": "Style Library",
+              "href": "https://neural-canvas.com/styles"
+            }
           ]
         }
       ]
@@ -903,10 +1078,14 @@
     {
       "title": "QUANTUM DASHBOARD",
       "description": "Real-time data visualization platform for complex datasets with interactive 3D representations.",
-      "tags": ["Web App", "Data Visualization", "3D Graphics", "Real-time Analytics"],
+      "tags": [
+        "Web App",
+        "Data Visualization",
+        "3D Graphics",
+        "Real-time Analytics"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
-
       "fullDescription": "QUANTUM DASHBOARD is a cutting-edge data visualization platform that transforms complex datasets into intuitive, interactive 3D representations. The platform is designed for data scientists, researchers, and business analysts who need to explore and present complex information.",
       "designProcess": "The design process focused on creating an interface that would make complex data accessible and engaging. We prioritized performance, interactivity, and the ability to handle large datasets without compromising user experience.",
       "technicalDetails": "Built with Three.js and WebGL for 3D graphics, featuring real-time data processing, interactive visualizations, and support for multiple data formats. The platform includes advanced filtering, zooming, and collaboration tools.",
@@ -927,9 +1106,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Live Demo", "href": "https://quantum-dashboard.example.com" },
-            { "label": "Enterprise Version", "href": "https://enterprise.quantum-dashboard.com" },
-            { "label": "API Reference", "href": "https://api.quantum-dashboard.com" }
+            {
+              "label": "Live Demo",
+              "href": "https://quantum-dashboard.example.com"
+            },
+            {
+              "label": "Enterprise Version",
+              "href": "https://enterprise.quantum-dashboard.com"
+            },
+            {
+              "label": "API Reference",
+              "href": "https://api.quantum-dashboard.com"
+            }
           ]
         }
       ]
@@ -939,11 +1127,15 @@
     {
       "title": "The Future of AI in Design",
       "description": "Exploring how artificial intelligence is reshaping the design landscape and what it means for designers.",
-      "tags": ["AI", "Design", "Technology", "Future Trends"],
+      "tags": [
+        "AI",
+        "Design",
+        "Technology",
+        "Future Trends"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
-
       "fullDescription": "Artificial intelligence is fundamentally changing how we approach design. From automated layout generation to intelligent user research analysis, AI tools are becoming an integral part of the modern designer's toolkit. But what does this mean for the future of design as a human-centered discipline?",
       "designProcess": "This article explores the intersection of AI and design through research, case studies, and personal experimentation. I've spent months testing various AI design tools and analyzing their impact on creative workflows and outcomes.",
       "technicalDetails": "The research covers tools like Midjourney, DALL-E, and various AI-powered design assistants. I've documented the technical capabilities, limitations, and practical applications of these technologies in real design projects.",
@@ -964,9 +1156,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Full Article", "href": "https://medium.com/@username/future-of-ai-in-design" },
-            { "label": "AI Tools List", "href": "https://github.com/username/ai-design-tools" },
-            { "label": "Research Data", "href": "https://figma.com/community/file/ai-design-research" }
+            {
+              "label": "Full Article",
+              "href": "https://medium.com/@username/future-of-ai-in-design"
+            },
+            {
+              "label": "AI Tools List",
+              "href": "https://github.com/username/ai-design-tools"
+            },
+            {
+              "label": "Research Data",
+              "href": "https://figma.com/community/file/ai-design-research"
+            }
           ]
         }
       ]
@@ -974,11 +1175,15 @@
     {
       "title": "Designing for the Metaverse",
       "description": "A deep dive into the unique challenges and opportunities of designing immersive 3D experiences.",
-      "tags": ["Metaverse", "3D Design", "VR/AR", "Immersive Experiences"],
+      "tags": [
+        "Metaverse",
+        "3D Design",
+        "VR/AR",
+        "Immersive Experiences"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
-
       "fullDescription": "As we move towards a more immersive digital future, designers are facing new challenges in creating experiences that exist in three-dimensional space. The metaverse represents a fundamental shift from 2D interfaces to spatial computing, requiring new design principles and methodologies.",
       "designProcess": "This exploration involved creating several 3D prototypes and testing them in VR environments. I focused on understanding how traditional design principles translate to spatial interfaces and what new considerations emerge in 3D design.",
       "technicalDetails": "The research utilized Unity and Unreal Engine for prototyping, along with various VR headsets for testing. I documented the technical challenges of 3D interface design and the solutions that emerged from iterative testing.",
@@ -999,9 +1204,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "VR Prototypes", "href": "https://github.com/username/metaverse-prototypes" },
-            { "label": "3D Design Guide", "href": "https://notion.so/metaverse-design-guide" },
-            { "label": "Community Discussion", "href": "https://discord.gg/metaverse-design" }
+            {
+              "label": "VR Prototypes",
+              "href": "https://github.com/username/metaverse-prototypes"
+            },
+            {
+              "label": "3D Design Guide",
+              "href": "https://notion.so/metaverse-design-guide"
+            },
+            {
+              "label": "Community Discussion",
+              "href": "https://discord.gg/metaverse-design"
+            }
           ]
         }
       ]
@@ -1009,11 +1223,15 @@
     {
       "title": "Sustainable Design in the Digital Age",
       "description": "How digital designers can contribute to environmental sustainability through thoughtful design decisions.",
-      "tags": ["Sustainability", "Digital Design", "Environmental Impact", "Green Tech"],
+      "tags": [
+        "Sustainability",
+        "Digital Design",
+        "Environmental Impact",
+        "Green Tech"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
-
       "fullDescription": "Digital design might seem disconnected from environmental concerns, but our design choices have real environmental impacts. From energy-efficient code to sustainable hosting solutions, designers have numerous opportunities to reduce the carbon footprint of digital products.",
       "designProcess": "This research involved analyzing the environmental impact of various digital products and services. I examined energy consumption, server efficiency, and the lifecycle of digital assets to understand how design decisions affect sustainability.",
       "technicalDetails": "The study covered topics like green hosting, energy-efficient algorithms, and sustainable design practices. I documented specific techniques and tools that designers can use to create more environmentally friendly digital experiences.",
@@ -1034,9 +1252,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Carbon Calculator", "href": "https://websitecarbon.com" },
-            { "label": "Green Hosting Guide", "href": "https://github.com/username/green-hosting-guide" },
-            { "label": "Sustainability Metrics", "href": "https://sustainable-web-design.org" }
+            {
+              "label": "Carbon Calculator",
+              "href": "https://websitecarbon.com"
+            },
+            {
+              "label": "Green Hosting Guide",
+              "href": "https://github.com/username/green-hosting-guide"
+            },
+            {
+              "label": "Sustainability Metrics",
+              "href": "https://sustainable-web-design.org"
+            }
           ]
         }
       ]
@@ -1044,11 +1271,15 @@
     {
       "title": "The Psychology of Color in Digital Interfaces",
       "description": "Understanding how color choices affect user behavior and emotional responses in digital products.",
-      "tags": ["Color Theory", "Psychology", "UX Design", "Visual Design"],
+      "tags": [
+        "Color Theory",
+        "Psychology",
+        "UX Design",
+        "Visual Design"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop",
-
       "fullDescription": "Color is one of the most powerful tools in a designer's arsenal, capable of influencing user emotions, behavior, and perception. Understanding the psychological impact of color choices is crucial for creating effective digital interfaces that resonate with users on an emotional level.",
       "designProcess": "This research involved extensive user testing with different color schemes and analyzing behavioral data. I focused on understanding how color affects user engagement, conversion rates, and overall user satisfaction across different contexts and cultures.",
       "technicalDetails": "The study utilized eye-tracking technology, user surveys, and A/B testing to gather data on color preferences and their impact on user behavior. I documented specific color combinations and their psychological effects.",
@@ -1069,9 +1300,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Color Palette Generator", "href": "https://coolors.co" },
-            { "label": "Eye-tracking Study", "href": "https://github.com/username/color-psychology-study" },
-            { "label": "Cultural Color Guide", "href": "https://notion.so/cultural-colors" }
+            {
+              "label": "Color Palette Generator",
+              "href": "https://coolors.co"
+            },
+            {
+              "label": "Eye-tracking Study",
+              "href": "https://github.com/username/color-psychology-study"
+            },
+            {
+              "label": "Cultural Color Guide",
+              "href": "https://notion.so/cultural-colors"
+            }
           ]
         }
       ]
@@ -1079,11 +1319,15 @@
     {
       "title": "Micro-interactions: The Secret to Delightful UX",
       "description": "How small, thoughtful interactions can transform user experience from functional to delightful.",
-      "tags": ["Micro-interactions", "UX Design", "Animation", "User Delight"],
+      "tags": [
+        "Micro-interactions",
+        "UX Design",
+        "Animation",
+        "User Delight"
+      ],
       "cardImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=533&fit=crop",
       "heroImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
       "designProcessImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-
       "fullDescription": "Micro-interactions are the small, often overlooked details that make digital experiences feel polished and delightful. From button hover states to loading animations, these tiny interactions can significantly impact user satisfaction and engagement.",
       "designProcess": "This exploration involved creating and testing various micro-interaction patterns across different digital products. I focused on understanding the balance between functionality and delight, ensuring that animations enhance rather than hinder user experience.",
       "technicalDetails": "The research covered CSS animations, JavaScript libraries, and various prototyping tools. I documented specific micro-interaction patterns and their implementation details, along with performance considerations and accessibility requirements.",
@@ -1104,9 +1348,18 @@
         {
           "type": "external-links",
           "externalLinks": [
-            { "label": "Animation Library", "href": "https://github.com/username/micro-interactions" },
-            { "label": "Interactive Examples", "href": "https://codepen.io/username/micro-interactions" },
-            { "label": "Performance Guide", "href": "https://web.dev/animation-performance" }
+            {
+              "label": "Animation Library",
+              "href": "https://github.com/username/micro-interactions"
+            },
+            {
+              "label": "Interactive Examples",
+              "href": "https://codepen.io/username/micro-interactions"
+            },
+            {
+              "label": "Performance Guide",
+              "href": "https://web.dev/animation-performance"
+            }
           ]
         }
       ]
