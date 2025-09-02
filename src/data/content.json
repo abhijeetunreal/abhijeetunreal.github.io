@@ -260,16 +260,37 @@
       "title": "Recall",
       "description": "A tool for collaborative world-building for writers and game designers.",
       "tags": [
-        "Collaboration",
-        "UX Design",
+        "UI/UX Design",
+        "AI",
         "Web App"
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallCard.png",
-      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallMainPage.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallHero.png",
       "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
       "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
       "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
       "sections": [
+        {
+          "type": "marquee-inline",
+          "position": "top",
+          "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/ML.png",
+          "marqueeInlineItems": [
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M1.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M2.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M3.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M4.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M5.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M6.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M7.png"
+         
+          ]
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
+          "alt": "Data processing workflow"
+        },
+        
         
         {
           "type": "external-links",
