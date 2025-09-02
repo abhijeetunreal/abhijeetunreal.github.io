@@ -31,6 +31,13 @@
   "hero": {
     "title": "I experiment with technology, blend it with design, and innovate for human needs."
   },
+  "labels": {
+    "designProcess": "DESIGN PROCESS",
+    "technicalDetails": "TECHNICAL DETAILS",
+    "designJourney": "DESIGN JOURNEY",
+    "researchApproach": "[RESEARCH APPROACH]",
+    "keyFindings": "[KEY FINDINGS]"
+  },
   "environment": {
     "customEnvLink": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/HdRi/skyimg.jpg"
   },
@@ -263,6 +270,7 @@
       "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
       "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
       "sections": [
+        
         {
           "type": "external-links",
           "externalLinks": [

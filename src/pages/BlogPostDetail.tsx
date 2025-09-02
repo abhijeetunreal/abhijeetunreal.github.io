@@ -84,7 +84,7 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                     <div className="space-y-6 text-lg text-foreground">
                         <p>{post.fullDescription}</p>
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">[RESEARCH APPROACH]</h3>
+                        <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.researchApproach || content.labels?.researchApproach || '[RESEARCH APPROACH]'}</h3>
 
                         {/* Additional Image after Research Approach Title */}
                         {post.designProcessImage && (
@@ -99,7 +99,7 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
 
                         <p>{post.designProcess}</p>
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">[KEY FINDINGS]</h3>
+                        <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.keyFindings || content.labels?.keyFindings || '[KEY FINDINGS]'}</h3>
                         <p>{post.technicalDetails}</p>
 
                         {post.sections && post.sections.length > 0 && (

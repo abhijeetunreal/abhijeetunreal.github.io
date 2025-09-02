@@ -68,7 +68,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     <div className="space-y-6 text-lg text-foreground">
                         <p>{project.fullDescription}</p>
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">DESIGN PROCESS</h3>
+                        <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designProcess || content.labels?.designProcess || 'DESIGN PROCESS'}</h3>
 
                         {/* Additional Image after Design Process Title */}
                         {project.designProcessImage && (
@@ -83,12 +83,12 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
                         <p>{project.designProcess}</p>
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">TECHNICAL DETAILS</h3>
+                        <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.technicalDetails || content.labels?.technicalDetails || 'TECHNICAL DETAILS'}</h3>
                         <p>{project.technicalDetails}</p>
 
                         {project.sections && project.sections.length > 0 && (
                             <>
-                                <h3 className="text-2xl font-bold text-foreground pt-8">DESIGN JOURNEY</h3>
+                                <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designJourney || content.labels?.designJourney || 'DESIGN JOURNEY'}</h3>
                                 <div className="space-y-8">
                                     {project.sections.map((section, index) => (
                                         <div key={index}>

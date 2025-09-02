@@ -24,6 +24,13 @@ export interface Project {
     designProcess: string;
     technicalDetails: string;
     sections?: ProjectSection[];
+    labels?: {
+        designProcess?: string;
+        technicalDetails?: string;
+        designJourney?: string;
+        researchApproach?: string;
+        keyFindings?: string;
+    };
 }
 
 export interface Philosophy {
@@ -97,6 +104,13 @@ export interface ContentData {
     contactLinks: NavLink[];
     hero: {
         title: string;
+    };
+    labels?: {
+        designProcess?: string;
+        technicalDetails?: string;
+        designJourney?: string;
+        researchApproach?: string;
+        keyFindings?: string;
     };
     environment?: {
         customEnvLink?: string;
