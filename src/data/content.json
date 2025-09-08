@@ -264,7 +264,7 @@
         "AI",
         "Web App"
       ],
-      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallCard.png",
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/recallcardf.png",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallHero.png",
       "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
       "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
@@ -521,7 +521,7 @@
         "Mobile App",
         "Wellness"
       ],
-      "cardImage": "https://media.tenor.com/14SGy65zclAAAAAM/fnaf-fnaf-movie.gif",
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/oldprojectscard.png",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/3.png",
       "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/DesignProcess.png",
       "fullDescription": "This project contains a collection of old projects that I worked on. I have included some of the projects that I am proud of and some that I am not. But all of them are a part of my journey and I am grateful for the experience.",
@@ -627,23 +627,6 @@
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/23.png",
           "alt": "Mobile app interface design"
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example2"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Portfolio Collection",
-              "href": "https://behance.net/username/old-projects"
-            },
-            {
-              "label": "Design Process Blog",
-              "href": "https://medium.com/@username/design-journey"
-            }
-          ]
         }
       ]
     },
@@ -656,12 +639,23 @@
         "Product Render",
         "Photogrammetry"
       ],
-      "cardImage": "https://media4.giphy.com/avatars/dlgnce/TlT2eiSgtRAu.gif",
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/3drendercard.png",
       "heroImage": "https://abhijeetunreal.github.io/assets/img/articles/photogrammetry/ruin.gif",
       "designProcessImage": "",
       "fullDescription": "This page contains some of my past 3D renders of 3D model which I created in past. ",
       "designProcess": "These 3D renders are the result of continious learnign and gaining exprience in 3D softwares some renders are from my initial day of learning different 3D softwares, here I am not listing all of my 3D creation you can explore other model on my Sketchfab account where I have posted my other 3D models",
       "technicalDetails": "To create 3D model I used different softwares like Blender, Rhino, Fusion 360 etc. for texturing I used Substance 3D Painter, Photoshop etc",
+      "labels": {
+        "designProcess": "Design Process",
+        "technicalDetails": "Technology Used",
+        "designJourney": "3D Renders and Models",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": true,
+        "technicalDetails": true,
+        "designJourney": true
+      },
       "sections": [
         {
           "type": "image",
@@ -679,23 +673,11 @@
           "alt": "Futuristic brain-computer interface concept"
         },
         {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example3"
-        },
-        {
           "type": "external-links",
           "externalLinks": [
             {
               "label": "Sketchfab Profile",
-              "href": "https://sketchfab.com/username"
-            },
-            {
-              "label": "3D Portfolio",
-              "href": "https://artstation.com/username"
-            },
-            {
-              "label": "Blender Community",
-              "href": "https://blenderartists.org/u/username"
+              "href": "https://sketchfab.com/abhijeetunreal"
             }
           ]
         }
