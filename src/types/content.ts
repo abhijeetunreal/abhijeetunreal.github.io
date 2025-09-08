@@ -6,8 +6,17 @@ export interface NavLink {
 
 export type ProjectSectionMarqueeItem = string | { image: string };
 
+export interface ProjectAccordionItem {
+    title: string;
+    year?: string;
+    image?: string;
+    description?: string;
+    linkHref?: string;
+    linkLabel?: string;
+}
+
 export interface ProjectSection {
-    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline';
+    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects';
     position?: 'top' | 'after-description' | 'between-design-and-technical' | 'journey';
     src?: string;
     alt?: string;
@@ -21,6 +30,8 @@ export interface ProjectSection {
     // For inline marquee, allows optional left image override (if omitted, no left image used)
     marqueeInlineLeftImage?: string;
     marqueeInlineItems?: ProjectSectionMarqueeItem[];
+    // Optional accordion list of related/extra projects
+    accordionItems?: ProjectAccordionItem[];
 }
 
 export interface Project {

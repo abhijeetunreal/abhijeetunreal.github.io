@@ -286,6 +286,35 @@
           ]
         },
         {
+          "type": "accordion-projects",
+          "accordionItems": [
+            {
+              "title": "Supermodel",
+              "year": "2024",
+              "image": "https://i.ytimg.com/vi/aWfrfwm_cMw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDKcPrCb-GvHFsG44nhO_BHe0USsQ",
+              "description": "A conceptual website for a high-fashion modeling agency.",
+              "linkHref": "https://supermodel.com",
+              "linkLabel": "supermodel.com"
+            },
+            {
+              "title": "Rap Madness",
+              "year": "2024",
+              "image": "https://placehold.co/1200x675/1a1a1a/ffffff?text=Rap+Madness",
+              "description": "An interactive bracket-style music discovery platform for rap artists.",
+              "linkHref": "https://rapmadness.io",
+              "linkLabel": "rapmadness.io"
+            },
+            {
+              "title": "Condé Nast",
+              "year": "2023",
+              "image": "https://placehold.co/1200x675/ffffff/000000?text=COND%C3%89+NAST",
+              "description": "We created a new corporate website for Condé Nast.",
+              "linkHref": "https://condenast.com",
+              "linkLabel": "condenast.com"
+            }
+          ]
+        },
+        {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
           "alt": "Data processing workflow"
@@ -722,15 +751,15 @@
       ]
     },
     {
-      "title": "Project Zeta",
-      "description": "An AR experience that reveals the hidden histories of city landmarks.",
+      "title": "CodeFryDev",
+      "description": "CodeFryDev is your ultimate destination for diverse digital content and tools. Enjoy our extensive game collection, innovative productivity apps, ...",
       "tags": [
-        "AR",
+        "Digital Product",
         "Mobile App",
-        "Storytelling"
+        "Game"
       ],
-      "cardImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
+      "cardImage": "https://codefrydev.in/images/IconCodefrydev.svg",
+      "heroImage": "https://codefrydev.in/Updates/games/tinyfish/tinyfish.png",
       "designProcessImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
       "fullDescription": "An augmented reality mobile app that overlays historical photos and information onto real-world buildings and locations as you view them through your phone's camera.",
       "designProcess": "We partnered with local historians to gather archival content. The UX challenge was to present this information in an engaging way without overwhelming the user. We used narrative threads to guide users on historical walks.",
@@ -739,6 +768,35 @@
         {
           "type": "paragraph",
           "content": "Augmented reality becomes a time machine, revealing layers of history embedded in familiar spaces. The app transforms everyday walks into immersive historical journeys, connecting past and present through digital storytelling."
+        },
+        {
+          "type": "accordion-projects",
+          "accordionItems": [
+            {
+              "title": "Supermodel",
+              "year": "2024",
+              "image": "https://i.ytimg.com/vi/aWfrfwm_cMw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDKcPrCb-GvHFsG44nhO_BHe0USsQ",
+              "description": "A conceptual website for a high-fashion modeling agency.",
+              "linkHref": "https://supermodel.com",
+              "linkLabel": "supermodel.com"
+            },
+            {
+              "title": "Rap Madness",
+              "year": "2024",
+              "image": "https://placehold.co/1200x675/1a1a1a/ffffff?text=Rap+Madness",
+              "description": "An interactive bracket-style music discovery platform for rap artists.",
+              "linkHref": "https://rapmadness.io",
+              "linkLabel": "rapmadness.io"
+            },
+            {
+              "title": "Condé Nast",
+              "year": "2023",
+              "image": "https://placehold.co/1200x675/ffffff/000000?text=COND%C3%89+NAST",
+              "description": "We created a new corporate website for Condé Nast.",
+              "linkHref": "https://condenast.com",
+              "linkLabel": "condenast.com"
+            }
+          ]
         },
         {
           "type": "external-links",

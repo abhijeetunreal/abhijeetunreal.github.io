@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 import DetailMarquee from '@/components/DetailMarquee';
+import AccordionProjects from '@/components/AccordionProjects';
 
 interface ProjectDetailProps {
     project: Project;
@@ -158,6 +159,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                                     leftAlt={section.marqueeLeftAlt || project.title}
                                                     items={section.marqueeItems}
                                                 />
+                                            )}
+                                            {section.type === 'accordion-projects' && section.accordionItems && section.accordionItems.length > 0 && (
+                                                <AccordionProjects items={section.accordionItems} title={content?.labels?.designJourney} />
                                             )}
                                             {section.type === 'external-links' && section.externalLinks && (
                                                 <div className="space-y-3">
