@@ -13,9 +13,7 @@ const AccordionProjects: React.FC<AccordionProjectsProps> = ({ items, title }) =
 
     return (
         <div className="w-full">
-            {title && (
-                <h3 className="text-xl text-muted-foreground mb-4">{title}</h3>
-            )}
+            
             <div className="rounded-lg border border-border overflow-hidden">
                 {items.map((item, index) => {
                     const isOpen = openIndex === index;

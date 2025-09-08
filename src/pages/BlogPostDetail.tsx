@@ -84,7 +84,9 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                     <div className="space-y-6 text-lg text-foreground">
                         <p>{post.fullDescription}</p>
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.researchApproach || content.labels?.researchApproach || '[RESEARCH APPROACH]'}</h3>
+                        {post.visibility?.researchApproach !== false && (
+                            <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.researchApproach || content.labels?.researchApproach || '[RESEARCH APPROACH]'}</h3>
+                        )}
 
                         {/* Additional Image after Research Approach Title */}
                         {post.designProcessImage && (
@@ -97,17 +99,26 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                             </div>
                         )}
 
-                        <p>{post.designProcess}</p>
+                        {post.visibility?.researchApproach !== false && (
+                            <p>{post.designProcess}</p>
+                        )}
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.keyFindings || content.labels?.keyFindings || '[KEY FINDINGS]'}</h3>
-                        <p>{post.technicalDetails}</p>
-
-                        {post.sections && post.sections.length > 0 && (
+                        {post.visibility?.keyFindings !== false && (
                             <>
-                                <h3 className="text-2xl font-bold text-foreground pt-8">[ARTICLE CONTENT]</h3>
+                                <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.keyFindings || content.labels?.keyFindings || '[KEY FINDINGS]'}</h3>
+                                <p>{post.technicalDetails}</p>
+                            </>
+                        )}
+
+                        {post.visibility?.articleContent !== false && post.sections && post.sections.length > 0 && (
+                            <>
+                                <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.articleContent || content.labels?.articleContent || '[ARTICLE CONTENT]'}</h3>
                                 <div className="space-y-8">
-                                    {post.sections.map((section, index) => (
+                                    {post.sections.filter(s => !s.hidden).map((section, index) => (
                                         <div key={index}>
+                                            {section.title && (
+                                                <h4 className="text-xl font-semibold text-foreground">{section.title}</h4>
+                                            )}
                                             {section.type === 'image' && section.src && (
                                                 <div className="rounded-lg overflow-hidden">
                                                     <img 
@@ -135,7 +146,7 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                                             )}
                                             {section.type === 'external-links' && section.externalLinks && (
                                                 <div className="space-y-3">
-                                                    <h4 className="text-xl font-semibold text-foreground">External Resources</h4>
+                                                    <h4 className="text-xl font-semibold text-foreground">{section.title || post.labels?.externalResources || content.labels?.externalResources || 'External Resources'}</h4>
                                                     <div className="flex flex-wrap gap-3">
                                                         {section.externalLinks.map((link, linkIndex) => (
                                                             <a
@@ -150,6 +161,9 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                                                         ))}
                                                     </div>
                                                 </div>
+                                            )}
+                                            {section.type === 'custom' && section.customContent && (
+                                                <div dangerouslySetInnerHTML={{ __html: section.customContent }} />
                                             )}
                                         </div>
                                     ))}

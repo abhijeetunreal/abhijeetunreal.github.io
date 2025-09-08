@@ -256,82 +256,7 @@
     ]
   },
   "projects": [
-    {
-      "title": "Recall",
-      "description": "A tool for collaborative world-building for writers and game designers.",
-      "tags": [
-        "UI/UX Design",
-        "AI",
-        "Web App"
-      ],
-      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallCard.png",
-      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallHero.png",
-      "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
-      "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
-      "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
-      "sections": [
-        {
-          "type": "marquee-inline",
-          "position": "top",
-          "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/ML.png",
-          "marqueeInlineItems": [
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M1.png",
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M2.png",
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M3.png",
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M4.png",
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M5.png",
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M6.png",
-            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M7.png"
-         
-          ]
-        },
-        {
-          "type": "accordion-projects",
-          "accordionItems": [
-            {
-              "title": "Supermodel",
-              "year": "2024",
-              "image": "https://i.ytimg.com/vi/aWfrfwm_cMw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDKcPrCb-GvHFsG44nhO_BHe0USsQ",
-              "description": "A conceptual website for a high-fashion modeling agency.",
-              "linkHref": "https://supermodel.com",
-              "linkLabel": "supermodel.com"
-            },
-            {
-              "title": "Rap Madness",
-              "year": "2024",
-              "image": "https://placehold.co/1200x675/1a1a1a/ffffff?text=Rap+Madness",
-              "description": "An interactive bracket-style music discovery platform for rap artists.",
-              "linkHref": "https://rapmadness.io",
-              "linkLabel": "rapmadness.io"
-            },
-            {
-              "title": "Condé Nast",
-              "year": "2023",
-              "image": "https://placehold.co/1200x675/ffffff/000000?text=COND%C3%89+NAST",
-              "description": "We created a new corporate website for Condé Nast.",
-              "linkHref": "https://condenast.com",
-              "linkLabel": "condenast.com"
-            }
-          ]
-        },
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
-          "alt": "Data processing workflow"
-        },
-        
-        
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Try Recall",
-              "href": "https://appsuit.codefrydev.in/apps/visualnoteai/"
-            }
-          ]
-        }
-      ]
-    },
+    
     {
       "title": "Prism",
       "description": "An immersive data narrative exploring climate change through generative visuals.",
@@ -751,67 +676,191 @@
       ]
     },
     {
+      "title": "Recall",
+      "description": "A tool for collaborative world-building for writers and game designers.",
+      "tags": [
+        "UI/UX Design",
+        "AI",
+        "Web App"
+      ],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallCard.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallHero.png",
+      "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
+      "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
+      "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
+      "sections": [
+        {
+          "type": "marquee-inline",
+          "position": "top",
+          "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/ML.png",
+          "marqueeInlineItems": [
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M1.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M2.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M3.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M4.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M5.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M6.png",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M7.png"
+         
+          ]
+        },
+       
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
+          "alt": "Data processing workflow"
+        },
+        
+        
+        {
+          "type": "external-links",
+          "externalLinks": [
+            {
+              "label": "Try Recall",
+              "href": "https://appsuit.codefrydev.in/apps/visualnoteai/"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "CodeFryDev",
       "description": "CodeFryDev is your ultimate destination for diverse digital content and tools. Enjoy our extensive game collection, innovative productivity apps, ...",
       "tags": [
+        "Digital Strategy",
+        "Web and android Production",
         "Digital Product",
-        "Mobile App",
+        "Interface Design",
+        "Platform Development",
+        "Visual Identity",
         "Game"
       ],
-      "cardImage": "https://codefrydev.in/images/IconCodefrydev.svg",
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/codefrydevcard.png",
       "heroImage": "https://codefrydev.in/Updates/games/tinyfish/tinyfish.png",
-      "designProcessImage": "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=600&fit=crop",
-      "fullDescription": "An augmented reality mobile app that overlays historical photos and information onto real-world buildings and locations as you view them through your phone's camera.",
       "designProcess": "We partnered with local historians to gather archival content. The UX challenge was to present this information in an engaging way without overwhelming the user. We used narrative threads to guide users on historical walks.",
       "technicalDetails": "The app uses ARKit for iOS and ARCore for Android. 3D models of historical scenes were created in Blender and optimized for mobile performance.",
+      "labels": {
+        "designProcess": "Sonic Design Method",
+        "technicalDetails": "System Architecture",
+        "designJourney": "Projects",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": false,
+        "technicalDetails": false,
+        "designJourney": true
+      },
       "sections": [
         {
           "type": "paragraph",
-          "content": "Augmented reality becomes a time machine, revealing layers of history embedded in familiar spaces. The app transforms everyday walks into immersive historical journeys, connecting past and present through digital storytelling."
+          "content": "CodeFryDev specializing in producing a wide array of digital products. The company focuses on creating games, apps, and various tools, while also providing educational materials and tutorials. Their work spans projects in C# development, deep learning, and computer vision, and they offer a range of creative assets for other developers to utilize"
         },
         {
           "type": "accordion-projects",
           "accordionItems": [
             {
-              "title": "Supermodel",
+              "title": "Stevescob Projects",
               "year": "2024",
-              "image": "https://i.ytimg.com/vi/aWfrfwm_cMw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDKcPrCb-GvHFsG44nhO_BHe0USsQ",
-              "description": "A conceptual website for a high-fashion modeling agency.",
-              "linkHref": "https://supermodel.com",
-              "linkLabel": "supermodel.com"
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/stevscob.png",
+              "description": "Stevescob Projects specialize in the professional installation With a wide variety of products and services, ranging from engineering, procurement & construction of Curtain Wall of all types, Building Facades and Fenestration and installation of doors.",
+              "linkHref": "https://stevescobprojects.com/",
+              "linkLabel": "stevescobprojects.com"
             },
             {
-              "title": "Rap Madness",
+              "title": "CFD Android",
               "year": "2024",
-              "image": "https://placehold.co/1200x675/1a1a1a/ffffff?text=Rap+Madness",
-              "description": "An interactive bracket-style music discovery platform for rap artists.",
-              "linkHref": "https://rapmadness.io",
-              "linkLabel": "rapmadness.io"
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/cfdandroid.png",
+              "description": "Tool to generate android assets for playstore.",
+              "linkHref": "https://android.codefrydev.in/",
+              "linkLabel": "android.codefrydev.in"
             },
             {
-              "title": "Condé Nast",
+              "title": "NoteBook",
               "year": "2023",
-              "image": "https://placehold.co/1200x675/ffffff/000000?text=COND%C3%89+NAST",
-              "description": "We created a new corporate website for Condé Nast.",
-              "linkHref": "https://condenast.com",
-              "linkLabel": "condenast.com"
-            }
-          ]
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "App Store",
-              "href": "https://apps.apple.com/app/history-ar/id123456789"
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/notebook.png",
+              "description": "Notebook lets Organize your thoughts, store your shortcuts, and keep everything private in your own secure database.",
+              "linkHref": "https://codefrydev.in/YourNoteBook/",
+              "linkLabel": "codefrydev.in/YourNoteBook"
             },
             {
-              "label": "Google Play",
-              "href": "https://play.google.com/store/apps/details?id=com.historyar"
+              "title": "SocialSnap",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/socialsnap.png",
+              "description": "A new app that lets you create and download custom social media posts.",
+              "linkHref": "https://socialsnap.codefrydev.in/",
+              "linkLabel": "socialsnap.codefrydev.in"
             },
             {
-              "label": "Historical Database",
-              "href": "https://historydb.example.com"
+              "title": "Tiny Fish",   
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/tinyfish.png",
+              "description": "Tiny Fish is a charming and tranquil mini-game designed to whisk players away into a serene underwater world.",
+              "linkHref": "https://play.google.com/store/apps/details?id=in.codefrydev.developer.abhijeet.tinyfish",
+              "linkLabel": "play.google.com/tinyfish"
+            },
+            {
+              "title": "Tom & Jerry", 
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/tomnjerry.png",
+              "description": "The Ultimate Cat & Mouse Showdown!",
+              "linkHref": "https://codefrydev.in/TomAndJerry/",
+              "linkLabel": "codefrydev.in/TomAndJerry"
+            },
+            {
+              "title": "DataViz",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/dataviz.png",
+              "description": "An interactive guide to learning and applying modern data visualization techniques. Explore, learn, and create stunning charts with ease.",
+              "linkHref": "https://dataviz.codefrydev.in/",
+              "linkLabel": "dataviz.codefrydev.in"
+            },
+            {
+              "title": "Haptic Design Studio",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/haptic.png",
+              "description": "Create delicious tactile feedback patterns for web and mobile. Feel the difference with our comprehensive vibrotactile library.",
+              "linkHref": "https://juicyhapticdesign.codefrydev.in/",
+              "linkLabel": "juicyhapticdesign.codefrydev.in"
+            },
+            {
+              "title": "Galactic Gunner",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/galacticgunner.png",
+              "description": "Galactic Gunner is a simple 2D space shooter game that will take you on an epic adventure across the galaxy.",
+              "linkHref": "https://play.google.com/store/apps/details?id=org.codefrydev.developer.abhijeet.galacticgunner",
+              "linkLabel": "play.google.com/galacticgunner"
+            },
+            {
+              "title": "CFD Meme Generator",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/meme.png",
+              "description": "Unleash your creativity with our powerful and intuitive meme editor. Go from idea to hilarious meme in seconds. No sign-up required.",
+              "linkHref": "https://meme.codefrydev.in/",
+              "linkLabel": "meme.codefrydev.in"
+            },
+            {
+              "title": "3D Music Visualizer",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/musilizer.png",
+              "description": "3D Music Visualizer for live party or art exhibition.",
+              "linkHref": "https://codefrydev.in/3DMUSILIZER/",
+              "linkLabel": "codefrydev.in/3DMUSILIZER"
+            },
+            {
+              "title": "Mausam Sphere",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/mausam.png",
+              "description": "Minimalist weather app with a focus on simplicity and usability.",
+              "linkHref": "https://codefrydev.in/Mausam/",
+              "linkLabel": "codefrydev.in/Mausam"
+            },
+            {
+              "title": "Meta Tag Generator & Extractor",
+              "year": "2023",
+              "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/metatag.png",
+              "description": "Create, preview, and extract essential meta tags for SEO and social media sharing. Perfect for developers and marketers to optimize web pages.",
+              "linkHref": "https://codefrydev.in/metatag/",
+              "linkLabel": "codefrydev.in/metatag"
             }
           ]
         }
@@ -831,10 +880,27 @@
       "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
       "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
       "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
+      "labels": {
+        "designProcess": "Sonic Design Method",
+        "technicalDetails": "System Architecture",
+        "designJourney": "Exploration & Outcomes",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": true,
+        "technicalDetails": true,
+        "designJourney": true
+      },
       "sections": [
         {
           "type": "paragraph",
+          "title": "Concept Overview",
           "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
+        },
+        {
+          "type": "custom",
+          "title": "Weather-to-Music Mapping",
+          "customContent": "<div class=\"space-y-2\"><p><strong>Inputs → Outputs</strong></p><ul class=\"list-disc pl-6\"><li>Temperature → Tempo (BPM)</li><li>Wind Speed → Modulation Depth</li><li>Humidity → Reverb Mix</li><li>Precipitation → Percussive Density</li><li>Pressure → Key/Scale Selection</li></ul><p>All parameters are smoothed over time for musical coherence.</p></div>"
         }
       ]
     },

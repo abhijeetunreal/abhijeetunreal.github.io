@@ -92,7 +92,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                             ) : null
                         ))}
                         
-                        <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designProcess || content.labels?.designProcess || 'DESIGN PROCESS'}</h3>
+                        {project.visibility?.designProcess !== false && (
+                            <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designProcess || content.labels?.designProcess || 'DESIGN PROCESS'}</h3>
+                        )}
 
                         {/* Additional Image after Design Process Title */}
                         {project.designProcessImage && (
@@ -105,7 +107,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                             </div>
                         )}
 
-                        <p>{project.designProcess}</p>
+                        {project.visibility?.designProcess !== false && (
+                            <p>{project.designProcess}</p>
+                        )}
                         
                         {/* Inline marquee between design and technical */}
                         {project.sections && project.sections.filter(s => s.type === 'marquee-inline' && s.position === 'between-design-and-technical').map((section, idx) => (
@@ -119,15 +123,22 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                             ) : null
                         ))}
 
-                        <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.technicalDetails || content.labels?.technicalDetails || 'TECHNICAL DETAILS'}</h3>
-                        <p>{project.technicalDetails}</p>
+                        {project.visibility?.technicalDetails !== false && (
+                            <>
+                                <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.technicalDetails || content.labels?.technicalDetails || 'TECHNICAL DETAILS'}</h3>
+                                <p>{project.technicalDetails}</p>
+                            </>
+                        )}
 
-                        {project.sections && project.sections.length > 0 && (
+                        {project.visibility?.designJourney !== false && project.sections && project.sections.length > 0 && (
                             <>
                                 <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designJourney || content.labels?.designJourney || 'DESIGN JOURNEY'}</h3>
                                 <div className="space-y-8">
-                                    {project.sections.map((section, index) => (
+                                    {project.sections.filter(s => !s.hidden).map((section, index) => (
                                         <div key={index}>
+                                            {section.title && (
+                                                <h4 className="text-xl font-semibold text-foreground">{section.title}</h4>
+                                            )}
                                             {section.type === 'image' && section.src && (
                                                 <div className="rounded-lg overflow-hidden">
                                                     <img 
@@ -161,11 +172,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                                 />
                                             )}
                                             {section.type === 'accordion-projects' && section.accordionItems && section.accordionItems.length > 0 && (
-                                                <AccordionProjects items={section.accordionItems} title={content?.labels?.designJourney} />
+                                                <AccordionProjects items={section.accordionItems} title={section.title || project.labels?.designJourney || content?.labels?.designJourney} />
                                             )}
                                             {section.type === 'external-links' && section.externalLinks && (
                                                 <div className="space-y-3">
-                                                    <h4 className="text-xl font-semibold text-foreground">External Resources</h4>
+                                                    <h4 className="text-xl font-semibold text-foreground">{section.title || project.labels?.externalResources || content.labels?.externalResources || 'External Resources'}</h4>
                                                     <div className="flex flex-wrap gap-3">
                                                         {section.externalLinks.map((link, linkIndex) => (
                                                             <a
@@ -180,6 +191,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                                         ))}
                                                     </div>
                                                 </div>
+                                            )}
+                                            {section.type === 'custom' && section.customContent && (
+                                                <div dangerouslySetInnerHTML={{ __html: section.customContent }} />
                                             )}
                                             {section.type === 'marquee-inline' && (!section.position || section.position === 'journey') && section.marqueeInlineItems && section.marqueeInlineItems.length > 0 && (
                                                 <div className="my-8">

@@ -173,3 +173,90 @@ Shape:
 
 That’s it — edit `content.json`, and the pages update automatically.
 
+---
+
+## Per-item Section Customization Guide (Projects, Experimental, Blog)
+
+You can customize section names, hide/show sections, and add custom blocks per item via `src/data/content.json`. Types live in `src/types/content.ts`.
+
+### Top-level headings per item
+- Projects and Experimental Projects:
+  - `labels.designProcess`, `labels.technicalDetails`, `labels.designJourney`, `labels.externalResources`
+- Blog Posts:
+  - `labels.researchApproach`, `labels.keyFindings`, `labels.articleContent`, `labels.externalResources`
+
+Example (project-level):
+```json
+{
+  "labels": {
+    "designProcess": "Sonic Design Method",
+    "technicalDetails": "System Architecture",
+    "designJourney": "Exploration & Outcomes",
+    "externalResources": "Resources"
+  }
+}
+```
+
+### Hide/show top-level sections per item
+- Projects/Experimental: `visibility.designProcess`, `visibility.technicalDetails`, `visibility.designJourney`
+- Blog Posts: `visibility.researchApproach`, `visibility.keyFindings`, `visibility.articleContent`
+
+All flags default to shown when omitted.
+
+Example:
+```json
+{
+  "visibility": {
+    "designProcess": false,
+    "technicalDetails": true,
+    "designJourney": true
+  }
+}
+```
+
+### Customize individual blocks in `sections`
+- Every section item can have:
+  - `title` (string): renders a heading above that block
+  - `hidden` (boolean): hide this block only
+
+Example:
+```json
+{
+  "sections": [
+    { "type": "paragraph", "title": "Context", "content": "Intro..." },
+    { "type": "image", "title": "Wireframes", "src": "/img/wf.png" },
+    { "type": "external-links", "title": "Further Reading", "externalLinks": [{ "label": "Spec", "href": "https://example.com" }] }
+  ]
+}
+```
+
+### Add arbitrary custom content blocks
+- Use `type: "custom"` with `customContent` (HTML string). Content is injected as HTML and should be trusted.
+
+Example:
+```json
+{
+  "sections": [
+    {
+      "type": "custom",
+      "title": "Appendix",
+      "customContent": "<div class=\"space-y-2\"><p><strong>Details</strong></p><ul class=\"list-disc pl-6\"><li>Point A</li><li>Point B</li></ul></div>"
+    }
+  ]
+}
+```
+
+### Inline marquees and positions (recap)
+- `marquee-inline` supports optional `position`: `top`, `after-description`, `between-design-and-technical`, or omitted/`journey` to render in the sections list.
+- Blocks with a `position` render only in their matching slot, not in the main journey list.
+
+### Where these render
+- Projects: `src/pages/ProjectDetail.tsx`
+- Experimental: `src/pages/ExperimentalProjectDetail.tsx`
+- Blog: `src/pages/BlogPostDetail.tsx`
+
+### Minimal checklist
+- Rename headings: set `labels` on the item
+- Hide a whole area: set `visibility` flags
+- Rename/hide a block: set `title`/`hidden` on that section item
+- Add a new block: push a `sections` item (including `custom` for HTML)

@@ -16,8 +16,12 @@ export interface ProjectAccordionItem {
 }
 
 export interface ProjectSection {
-    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects';
+    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects' | 'custom';
     position?: 'top' | 'after-description' | 'between-design-and-technical' | 'journey';
+    // Generic, per-section controls
+    title?: string; // Optional visible title for this section (overrides default headings where applicable)
+    hidden?: boolean; // If true, this section will not render
+    // Common content fields
     src?: string;
     alt?: string;
     content?: string;
@@ -32,6 +36,8 @@ export interface ProjectSection {
     marqueeInlineItems?: ProjectSectionMarqueeItem[];
     // Optional accordion list of related/extra projects
     accordionItems?: ProjectAccordionItem[];
+    // For custom section blocks
+    customContent?: string; // Optional HTML string for fully custom content
 }
 
 export interface Project {
@@ -51,6 +57,18 @@ export interface Project {
         designJourney?: string;
         researchApproach?: string;
         keyFindings?: string;
+        articleContent?: string;
+        externalResources?: string;
+    };
+    visibility?: {
+        // Project detail visibility toggles (default true)
+        designProcess?: boolean;
+        technicalDetails?: boolean;
+        designJourney?: boolean;
+        // Blog post visibility toggles (also default true when relevant)
+        researchApproach?: boolean;
+        keyFindings?: boolean;
+        articleContent?: boolean;
     };
 }
 
@@ -132,6 +150,8 @@ export interface ContentData {
         designJourney?: string;
         researchApproach?: string;
         keyFindings?: string;
+        articleContent?: string;
+        externalResources?: string;
     };
     environment?: {
         customEnvLink?: string;
