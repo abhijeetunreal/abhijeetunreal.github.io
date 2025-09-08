@@ -317,7 +317,7 @@
         "Game"
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/codefrydevcard.png",
-      "heroImage": "https://codefrydev.in/Updates/games/tinyfish/tinyfish.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/codefrydevhero.png",
       "designProcess": "We partnered with local historians to gather archival content. The UX challenge was to present this information in an engaging way without overwhelming the user. We used narrative threads to guide users on historical walks.",
       "technicalDetails": "The app uses ARKit for iOS and ARCore for Android. 3D models of historical scenes were created in Blender and optimized for mobile performance.",
       "labels": {
@@ -849,7 +849,7 @@
       ]
     },
     {
-      "title": "Project Eta1",
+      "title": "Airbus",
       "description": "A generative music system based on weather patterns.",
       "tags": [
         "Generative Art",
@@ -857,7 +857,7 @@
         "AI"
       ],
       "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop",
+      "heroImage": "https://mediaassets.airbus.com/medias/domain38/media102247/674215-psir70agh2-480.mp4",
       "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
       "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
       "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
