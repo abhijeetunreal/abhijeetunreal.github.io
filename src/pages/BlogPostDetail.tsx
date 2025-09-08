@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 import { useEffect } from 'react';
+import MediaDisplay from '@/components/ui/MediaDisplay';
 
 interface BlogPostDetailProps {
     post: Project;
@@ -119,11 +120,22 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                                             {section.title && (
                                                 <h4 className="text-xl font-semibold text-foreground">{section.title}</h4>
                                             )}
-                                            {section.type === 'image' && section.src && (
+                                            {section.type === 'image' && (section.src || section.videoUrl) && (
                                                 <div className="rounded-lg overflow-hidden">
-                                                    <img 
-                                                        src={section.src} 
+                                                    <MediaDisplay
+                                                        src={section.src}
+                                                        videoUrl={section.videoUrl}
                                                         alt={section.alt || `Article image ${index + 1}`}
+                                                        className="w-full h-auto object-cover"
+                                                    />
+                                                </div>
+                                            )}
+                                            {section.type === 'video' && (section.src || section.videoUrl) && (
+                                                <div className="rounded-lg overflow-hidden">
+                                                    <MediaDisplay
+                                                        src={section.src}
+                                                        videoUrl={section.videoUrl}
+                                                        alt={section.alt || `Article video ${index + 1}`}
                                                         className="w-full h-auto object-cover"
                                                     />
                                                 </div>

@@ -36,7 +36,8 @@
     "technicalDetails": "TECHNICAL DETAILS",
     "designJourney": "DESIGN JOURNEY",
     "researchApproach": "[RESEARCH APPROACH]",
-    "keyFindings": "[KEY FINDINGS]"
+    "keyFindings": "[KEY FINDINGS]",
+    "externalResources": "External Resources"
   },
   "environment": {
     "customEnvLink": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/HdRi/skyimg.jpg"
@@ -257,6 +258,46 @@
   },
   "projects": [
     {
+      "title": "Airbus",
+      "description": "A generative music system based on weather patterns.",
+      "tags": [
+        "UI/UX Development",
+        "Product Design",
+        "Gamification"
+      ],
+      "cardImage": "https://mediarenditions.airbus.com/8YvMmIBWLX44R5yQwppkwSB-q1uqKIRjgHzTTkYCxBU/resize?src=kpkp://airbus/38/563/563128-63ny9qcy5c.jpg&w=1920&h=960&t=fill&f=webp",
+      "heroImage": "https://mediarenditions.airbus.com/8YvMmIBWLX44R5yQwppkwSB-q1uqKIRjgHzTTkYCxBU/resize?src=kpkp://airbus/38/563/563128-63ny9qcy5c.jpg&w=1920&h=960&t=fill&f=webp",
+      "heroVideo": "https://mediaassets.airbus.com/medias/domain38/media102247/674215-psir70agh2-480.mp4",
+      "designProcess": "The project aims to create a gamified learning environment for new joiners in the Flight Physics department. The platform will use adaptive learning pathways to personalize training, ensuring each member upskills effectively while avoiding redundancy. Through interactive challenges, rewards, and real-world problem scenarios, the system will accelerate onboarding, build knowledge of cross-functional dependencies, and align learners with industry standards and Airbus’ business pipeline.",
+      "technicalDetails": " The objective of the project was to upscale processes to meet industry standards, while gaining exposure to cross-functional dependencies and developing a comprehensive understanding of the Airbus business pipeline.",
+      "labels": {
+        "designProcess": "Design Brief",
+        "technicalDetails": "Key Design Objectives",
+        "designJourney": "My Role",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": true,
+        "technicalDetails": true,
+        "designJourney": true
+      },
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "I was responsible for designing and developing the gamified system and user interface, working closely with engineering, business, and operations teams to understand their needs and create an engaging user experience for a wide range of users. My primary responsibility was the system-level design, building the complete ecosystem where departments such as aerodynamics, capabilities, operations, and business seamlessly integrate into a unified gamified environment—a crucial requirement of the project. To achieve this, I collaborated extensively with core Flight Physics engineers and programmers to ensure the system was both functional and impactful."
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Company/myrole.png",
+          "alt": "my role"
+        },
+        {
+          "type": "paragraph",
+          "content": "This project is still ongoing and comes under Airbus NDA policies, so I can’t share full details here. But I’d be happy to discuss it in more detail in a closed conversation. Let’s connect!"
+        }
+      ]
+    },
+    {
       "title": "Recall",
       "description": "A tool for collaborative world-building for writers and game designers.",
       "tags": [
@@ -266,6 +307,7 @@
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/recallcardf.png",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallHero.png",
+      
       "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
       "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
       "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
@@ -290,6 +332,11 @@
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
           "alt": "Data processing workflow"
+        },
+        {
+          "type": "video",
+          "videoUrl": "https://mediaassets.airbus.com/medias/domain38/media102247/674215-psir70agh2-480.mp4",
+          "alt": "Sample video demonstration"
         },
         
         
@@ -848,47 +895,7 @@
         }
       ]
     },
-    {
-      "title": "Airbus",
-      "description": "A generative music system based on weather patterns.",
-      "tags": [
-        "Generative Art",
-        "Web App",
-        "AI"
-      ],
-      "cardImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
-      "heroImage": "https://mediaassets.airbus.com/medias/domain38/media102247/674215-psir70agh2-480.mp4",
-      "fullDescription": "A web application that fetches real-time weather data for any location and translates it into a unique, ever-changing piece of ambient music.",
-      "designProcess": "The core of the project was mapping meteorological variables (temperature, wind speed, precipitation) to musical parameters (tempo, key, instrumentation). The UI is minimalist, focusing on the auditory experience.",
-      "technicalDetails": "Uses the Web Audio API for sound synthesis. A Node.js backend fetches data from a weather API. The musical logic is a custom algorithm that ensures consonant and pleasant-sounding output.",
-      "sections": [
-        {
-          "type": "paragraph",
-          "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example7"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Live App",
-              "href": "https://weather-music.example.com"
-            },
-            {
-              "label": "API Documentation",
-              "href": "https://docs.weather-music.example.com"
-            },
-            {
-              "label": "SoundCloud",
-              "href": "https://soundcloud.com/username/weather-music"
-            }
-          ]
-        }
-      ]
-    },
+    
     {
       "title": "Project Eta2",
       "description": "A generative music system based on weather patterns.",

@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import content from '@/data/content.json';
 import { ThemeToggle } from './ThemeToggle';
 import { slugify } from '@/lib/utils';
+import MediaDisplay from './ui/MediaDisplay';
 
 interface CardData {
   title: string;
   imageUrl: string;
+  videoUrl?: string;
   alt: string;
   link: string;
   slug: string;
@@ -38,6 +40,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
   const cardData: CardData[] = content.projects.map(project => ({
     title: project.title.toUpperCase(),
     imageUrl: project.cardImage,
+    videoUrl: project.cardVideo,
     alt: project.description,
     link: '#',
     slug: slugify(project.title)
@@ -60,14 +63,17 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       <div className="flex-shrink-0 w-48 sm:w-56 md:w-64 lg:w-80">
         <p className="text-xs font-bold mb-2 tracking-wider">{item.title}</p>
         <div className="aspect-[3/4] rounded-lg overflow-hidden">
-          <img 
-            src={item.imageUrl} 
-            alt={item.alt} 
-            className="w-full h-full object-cover" 
+          <MediaDisplay
+            src={item.imageUrl}
+            videoUrl={item.videoUrl}
+            alt={item.alt}
+            className="w-full h-full object-cover"
             onError={(e) => {
-              const target = e.target as HTMLImageElement;
+              const target = e.target as HTMLImageElement | HTMLVideoElement;
               target.onerror = null;
-              target.src = 'https://placehold.co/600x800/000000/FFFFFF?text=Image';
+              if ('src' in target) {
+                target.src = 'https://placehold.co/600x800/000000/FFFFFF?text=Image';
+              }
             }}
             draggable={false}
           />

@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 import DetailMarquee from '@/components/DetailMarquee';
 import AccordionProjects from '@/components/AccordionProjects';
+import MediaDisplay from '@/components/ui/MediaDisplay';
 
 interface ProjectDetailProps {
     project: Project;
@@ -46,12 +47,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                             Back to all projects
                         </Button>
 
-                        {/* Hero Image Section */}
-                        {(project.heroImage || project.cardImage) && (
+                        {/* Hero Media Section */}
+                        {(project.heroImage || project.cardImage || project.heroVideo || project.cardVideo) && (
                         <div className="mb-12">
                          <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
-                            <img 
-                                src={project.heroImage || project.cardImage} 
+                            <MediaDisplay
+                                src={project.heroImage || project.cardImage}
+                                videoUrl={project.heroVideo || project.cardVideo}
                                 alt={project.title}
                                 className="w-full h-auto object-cover"
                             />
@@ -139,11 +141,22 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                             {section.title && (
                                                 <h4 className="text-xl font-semibold text-foreground">{section.title}</h4>
                                             )}
-                                            {section.type === 'image' && section.src && (
+                                            {section.type === 'image' && (section.src || section.videoUrl) && (
                                                 <div className="rounded-lg overflow-hidden">
-                                                    <img 
-                                                        src={section.src} 
+                                                    <MediaDisplay
+                                                        src={section.src}
+                                                        videoUrl={section.videoUrl}
                                                         alt={section.alt || `Project image ${index + 1}`}
+                                                        className="w-full h-auto object-cover"
+                                                    />
+                                                </div>
+                                            )}
+                                            {section.type === 'video' && (section.src || section.videoUrl) && (
+                                                <div className="rounded-lg overflow-hidden">
+                                                    <MediaDisplay
+                                                        src={section.src}
+                                                        videoUrl={section.videoUrl}
+                                                        alt={section.alt || `Project video ${index + 1}`}
                                                         className="w-full h-auto object-cover"
                                                     />
                                                 </div>

@@ -16,7 +16,7 @@ export interface ProjectAccordionItem {
 }
 
 export interface ProjectSection {
-    type: 'image' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects' | 'custom';
+    type: 'image' | 'video' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects' | 'custom';
     position?: 'top' | 'after-description' | 'between-design-and-technical' | 'journey';
     // Generic, per-section controls
     title?: string; // Optional visible title for this section (overrides default headings where applicable)
@@ -26,6 +26,7 @@ export interface ProjectSection {
     alt?: string;
     content?: string;
     youtubeUrl?: string;
+    videoUrl?: string; // MP4 video URL
     externalLinks?: NavLink[];
     // Opt-in marquee data: when present and type === 'marquee' we render DetailMarquee
     marqueeLeftImage?: string;
@@ -47,6 +48,8 @@ export interface Project {
     cardImage?: string;
     heroImage?: string;
     designProcessImage?: string;
+    cardVideo?: string; // MP4 video URL for card
+    heroVideo?: string; // MP4 video URL for hero
     fullDescription: string;
     designProcess: string;
     technicalDetails: string;
