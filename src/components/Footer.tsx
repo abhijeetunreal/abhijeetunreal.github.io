@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowLeft, ArrowLeftSquare, ArrowRight, ArrowRightCircle } from 'lucide-react';
+import contentData from '@/data/content.json';
 
 interface FooterProps {
   onNavigateToExperimental: () => void;
@@ -54,27 +55,34 @@ const Footer: React.FC<FooterProps> = ({ onNavigateToExperimental, onNavigateToB
           {/* Middle Column - Social Links */}
           <div className="space-y-0">
             <div className="space-y-0">
-              <div className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm">
-                TWITTER
-              </div>
-              <div className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm">
-                INSTAGRAM
-              </div>
-              <div className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm">
-                PRESS KIT
-              </div>
+              {contentData.contactLinks.slice(0, 3).map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm block"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Right Column - Additional Links */}
           <div className="space-y-0">
             <div className="space-y-0">
-              <div className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm">
-                LINKEDIN
-              </div>
-              <div className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm">
-                READ.CV
-              </div>
+              {contentData.contactLinks.slice(3).map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-blue-400 transition-colors cursor-pointer text-sm block"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
             
           </div>

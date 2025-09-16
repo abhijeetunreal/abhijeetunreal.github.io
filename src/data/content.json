@@ -17,15 +17,28 @@
   "contactLinks": [
     {
       "label": "EMAIL",
-      "href": "mailto:your.email@example.com"
+      "href": "mailto:abhijeet88094@gmail.com"
     },
     {
       "label": "LINKEDIN",
-      "href": "#"
+      "href": "https://www.linkedin.com/in/abhijeetunreal/"
     },
     {
       "label": "GITHUB",
-      "href": "#"
+      "href": "https://github.com/abhijeetunreal"
+    },
+    
+    {
+      "label": "READ.CV",
+      "href": "https://drive.google.com/drive/folders/1YWvTXE33Xo12McbwRoxrmlCLWgdNQEjg?usp=sharing"
+    },
+    {
+      "label": "TWITTER",
+      "href": "https://twitter.com/abhijeetunreal"
+    },
+    {
+      "label": "INSTAGRAM",
+      "href": "https://instagram.com/abhijeetunreal"
     }
   ],
   "hero": {
@@ -333,11 +346,6 @@
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
           "alt": "Data processing workflow"
         },
-        {
-          "type": "video",
-          "videoUrl": "https://mediaassets.airbus.com/medias/domain38/media102247/674215-psir70agh2-480.mp4",
-          "alt": "Sample video demonstration"
-        },
         
         
         {
@@ -533,27 +541,6 @@
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/OPEN%20DAY%20TEST.png",
           "alt": "Data processing workflow"
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Live Demo",
-              "href": "https://prism-demo.example.com"
-            },
-            {
-              "label": "GitHub Repository",
-              "href": "https://github.com/username/prism"
-            },
-            {
-              "label": "Case Study",
-              "href": "https://medium.com/@username/prism-case-study"
-            }
-          ]
         }
       ]
     },
