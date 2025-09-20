@@ -27,7 +27,6 @@
       "label": "GITHUB",
       "href": "https://github.com/abhijeetunreal"
     },
-    
     {
       "label": "READ.CV",
       "href": "https://drive.google.com/drive/folders/1YWvTXE33Xo12McbwRoxrmlCLWgdNQEjg?usp=sharing"
@@ -288,7 +287,6 @@
         "technicalDetails": "Key Design Objectives",
         "designJourney": "My Role",
         "externalResources": "Resources"
-        
       },
       "visibility": {
         "designProcess": true,
@@ -321,7 +319,6 @@
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/recallcardf.png",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallHero.png",
-      
       "fullDescription": "Recall is an AI-powered app designed to help you capture, track, and cherish your memories in a unique and visually engaging way. It seamlessly blends AI note-taking with the creation of stunning visuals, allowing you to build a rich and personal timeline of your life's most precious moments.",
       "designProcess": "The design process for Recall began with a simple, yet profound, observation: memories are often fragmented, vivid in parts, and sometimes fade over time. We remember snippets, feelings, and key moments, but the full tapestry can be elusive. The initial spark was born from the desire to not just record information, but to genuinely re-experience life's moments.",
       "technicalDetails": "This application is a modern, serverless web app built with a fast Vite and TypeScript frontend and styled with Tailwind CSS. For the backend, it cleverly avoids traditional databases. User identity is managed securely through Google Authentication. All personal memories and notes are stored directly in the user's own Google Drive, making data storage free, private, and entirely under the user's control. This approach also provides automatic, seamless synchronization of all memories across any device where the user is logged into their Google account.",
@@ -338,33 +335,19 @@
             "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M5.png",
             "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M6.png",
             "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/M7.png"
-         
           ]
         },
-       
         {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Recall/RecallScreens.png",
           "alt": "Data processing workflow"
         },
-        
-        
         {
           "type": "external-links",
           "externalLinks": [
             {
               "label": "Try Recall",
               "href": "https://appsuit.codefrydev.in/apps/visualnoteai/"
-            }
-          ]
-        },
-        {
-          "type": "custom-section",
-          "title": "Project Insights & Learnings",
-          "customBlocks": [
-            {
-              "type": "paragraph",
-              "content": "One of the biggest challenges was creating an intuitive interface that could handle complex memory categorization while remaining simple enough for daily use. The AI integration required careful balance between automation and user control."
             }
           ]
         }
@@ -438,7 +421,7 @@
               "linkLabel": "socialsnap.codefrydev.in"
             },
             {
-              "title": "Tiny Fish",   
+              "title": "Tiny Fish",
               "year": "2023",
               "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/tinyfish.png",
               "description": "Tiny Fish is a charming and tranquil mini-game designed to whisk players away into a serene underwater world.",
@@ -446,7 +429,7 @@
               "linkLabel": "play.google.com/tinyfish"
             },
             {
-              "title": "Tom & Jerry", 
+              "title": "Tom & Jerry",
               "year": "2023",
               "image": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/codefrydev/tomnjerry.png",
               "description": "The Ultimate Cat & Mouse Showdown!",
@@ -513,7 +496,6 @@
         }
       ]
     },
-    
     {
       "title": "Prism",
       "description": "An immersive data narrative exploring climate change through generative visuals.",
@@ -893,7 +875,6 @@
         }
       ]
     },
-    
     {
       "title": "Phygital Projects",
       "description": " the strategic integration of the physical and digital worlds to create more engaging, immersive, and personalized customer experiences.",
@@ -913,32 +894,35 @@
           "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
         },
         {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=zAkwTGWPL4Y"
-        },
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo1.webp"
-        },
-        
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo2.webp"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
+          "type": "custom-section",
+          "title": "Robotic Arm Simulator",
+          "customBlocks": [
             {
-              "label": "Live App",
-              "href": "https://weather-music-eta2.example.com"
+              "type": "marquee-inline",
+              "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/rl.png",
+              "marqueeInlineItems": [
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/r1.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/r2.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/r3.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/r4.png"
+              ]
             },
             {
-              "label": "Source Code",
-              "href": "https://github.com/username/weather-music-eta2"
+              "type": "paragraph",
+              "content": "This project is an interactive simulation of a robotic arm controlled in 3D space by a custom-built, motion-sensing air mouse. The user physically moves the air mouse, and the on-screen robotic arm mimics the motion to perform tasks in a training game. The system is designed to be highly modular, allowing for easy customization of the arm's structure, controls, and game mechanics."
+            },
+            
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo1.webp"
             },
             {
-              "label": "API Docs",
-              "href": "https://docs.weather-music-eta2.example.com"
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo2.webp"
+            },
+            {
+              "type": "youtube-video",
+              "youtubeUrl": "https://www.youtube.com/watch?v=zAkwTGWPL4Y"
             }
           ]
         }

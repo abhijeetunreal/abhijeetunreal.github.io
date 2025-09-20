@@ -190,15 +190,17 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                                 {section.title && (
                                     <h3 className="text-2xl font-bold text-foreground mb-6">{section.title}</h3>
                                 )}
-                                {section.customBlocks && section.customBlocks.map((block, blockIndex) => (
-                                    <CustomSectionRenderer
-                                        key={`custom-block-${index}-${blockIndex}`}
-                                        section={block}
-                                        projectTitle={post.title}
-                                        projectHeroImage={post.heroImage}
-                                        projectCardImage={post.cardImage}
-                                    />
-                                ))}
+                                <div className="space-y-8">
+                                    {section.customBlocks && section.customBlocks.map((block, blockIndex) => (
+                                        <CustomSectionRenderer
+                                            key={`custom-block-${index}-${blockIndex}`}
+                                            section={block}
+                                            projectTitle={post.title}
+                                            projectHeroImage={post.heroImage}
+                                            projectCardImage={post.cardImage}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         ))}
                     </div>

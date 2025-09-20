@@ -196,7 +196,7 @@ const CustomSectionRenderer: React.FC<CustomSectionRendererProps> = ({
     };
 
     return (
-        <div className="space-y-4">
+        <div>
             {renderBlock()}
         </div>
     );

@@ -233,15 +233,17 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                 {section.title && (
                                     <h3 className="text-2xl font-bold text-foreground mb-6">{section.title}</h3>
                                 )}
-                                {section.customBlocks && section.customBlocks.map((block, blockIndex) => (
-                                    <CustomSectionRenderer
-                                        key={`custom-block-${index}-${blockIndex}`}
-                                        section={block}
-                                        projectTitle={project.title}
-                                        projectHeroImage={project.heroImage}
-                                        projectCardImage={project.cardImage}
-                                    />
-                                ))}
+                                <div className="space-y-8">
+                                    {section.customBlocks && section.customBlocks.map((block, blockIndex) => (
+                                        <CustomSectionRenderer
+                                            key={`custom-block-${index}-${blockIndex}`}
+                                            section={block}
+                                            projectTitle={project.title}
+                                            projectHeroImage={project.heroImage}
+                                            projectCardImage={project.cardImage}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         ))}
                     </div>
