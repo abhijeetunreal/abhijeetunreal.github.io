@@ -56,6 +56,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                                 videoUrl={project.heroVideo || project.cardVideo}
                                 alt={project.title}
                                 className="w-full h-auto object-cover"
+                                loop={true}
+                                autoPlay={true}
+                                muted={true}
                             />
                          </div>
                      </div>
