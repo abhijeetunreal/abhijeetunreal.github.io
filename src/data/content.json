@@ -906,6 +906,15 @@
           "youtubeUrl": "https://www.youtube.com/watch?v=zAkwTGWPL4Y"
         },
         {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo1.webp"
+        },
+        
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo2.webp"
+        },
+        {
           "type": "external-links",
           "externalLinks": [
             {
