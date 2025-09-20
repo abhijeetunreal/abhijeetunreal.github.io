@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 import DetailMarquee from '@/components/DetailMarquee';
 import MediaDisplay from '@/components/ui/MediaDisplay';
+import CustomSectionRenderer from '@/components/CustomSectionRenderer';
 
 interface ExperimentalProjectDetailProps {
     project: Project;
@@ -138,7 +139,7 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
                             <>
                                 <h3 className="text-2xl font-bold text-foreground pt-8">{project.labels?.designJourney || content.labels?.designJourney || '[PROJECT SHOWCASE]'}</h3>
                                 <div className="space-y-8">
-                                    {project.sections.filter(s => !s.hidden).map((section, index) => (
+                                    {project.sections.filter(s => !s.hidden && s.type !== 'custom-section').map((section, index) => (
                                         <div key={index}>
                                             {section.title && (
                                                 <h4 className="text-xl font-semibold text-foreground">{section.title}</h4>
@@ -221,6 +222,24 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
                                 </div>
                             </>
                         )}
+
+                        {/* Custom Sections */}
+                        {project.sections && project.sections.filter(s => s.type === 'custom-section' && !s.hidden).map((section, index) => (
+                            <div key={`custom-section-${index}`} className="pt-8">
+                                {section.title && (
+                                    <h3 className="text-2xl font-bold text-foreground mb-6">{section.title}</h3>
+                                )}
+                                {section.customBlocks && section.customBlocks.map((block, blockIndex) => (
+                                    <CustomSectionRenderer
+                                        key={`custom-block-${index}-${blockIndex}`}
+                                        section={block}
+                                        projectTitle={project.title}
+                                        projectHeroImage={project.heroImage}
+                                        projectCardImage={project.cardImage}
+                                    />
+                                ))}
+                            </div>
+                        ))}
                     </div>
 
                     {/* Project Navigation */}

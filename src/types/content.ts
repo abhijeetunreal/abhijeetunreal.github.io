@@ -16,8 +16,8 @@ export interface ProjectAccordionItem {
 }
 
 export interface ProjectSection {
-    type: 'image' | 'video' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects' | 'custom';
-    position?: 'top' | 'after-description' | 'between-design-and-technical' | 'journey';
+    type: 'image' | 'video' | 'paragraph' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects' | 'custom' | 'custom-section';
+    position?: 'top' | 'after-description' | 'between-design-and-technical' | 'journey' | 'after-technical' | 'before-journey' | 'after-journey';
     // Generic, per-section controls
     title?: string; // Optional visible title for this section (overrides default headings where applicable)
     hidden?: boolean; // If true, this section will not render
@@ -39,6 +39,26 @@ export interface ProjectSection {
     accordionItems?: ProjectAccordionItem[];
     // For custom section blocks
     customContent?: string; // Optional HTML string for fully custom content
+    // For custom-section type - allows multiple content blocks
+    customBlocks?: CustomSectionBlock[];
+}
+
+export interface CustomSectionBlock {
+    type: 'text' | 'paragraph' | 'image' | 'video' | 'youtube-video' | 'external-links' | 'marquee' | 'marquee-inline' | 'accordion-projects' | 'html';
+    title?: string;
+    content?: string;
+    src?: string;
+    alt?: string;
+    videoUrl?: string;
+    youtubeUrl?: string;
+    externalLinks?: NavLink[];
+    marqueeItems?: ProjectSectionMarqueeItem[];
+    marqueeLeftImage?: string;
+    marqueeLeftAlt?: string;
+    marqueeInlineItems?: ProjectSectionMarqueeItem[];
+    marqueeInlineLeftImage?: string;
+    accordionItems?: ProjectAccordionItem[];
+    htmlContent?: string; // For raw HTML content
 }
 
 export interface Project {

@@ -288,6 +288,7 @@
         "technicalDetails": "Key Design Objectives",
         "designJourney": "My Role",
         "externalResources": "Resources"
+        
       },
       "visibility": {
         "designProcess": true,
@@ -354,6 +355,16 @@
             {
               "label": "Try Recall",
               "href": "https://appsuit.codefrydev.in/apps/visualnoteai/"
+            }
+          ]
+        },
+        {
+          "type": "custom-section",
+          "title": "Project Insights & Learnings",
+          "customBlocks": [
+            {
+              "type": "paragraph",
+              "content": "One of the biggest challenges was creating an intuitive interface that could handle complex memory categorization while remaining simple enough for daily use. The AI integration required careful balance between automation and user control."
             }
           ]
         }

@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '@/types/content';
 import { useEffect } from 'react';
 import MediaDisplay from '@/components/ui/MediaDisplay';
+import CustomSectionRenderer from '@/components/CustomSectionRenderer';
 
 interface BlogPostDetailProps {
     post: Project;
@@ -115,7 +116,7 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                             <>
                                 <h3 className="text-2xl font-bold text-foreground pt-8">{post.labels?.articleContent || content.labels?.articleContent || '[ARTICLE CONTENT]'}</h3>
                                 <div className="space-y-8">
-                                    {post.sections.filter(s => !s.hidden).map((section, index) => (
+                                    {post.sections.filter(s => !s.hidden && s.type !== 'custom-section').map((section, index) => (
                                         <div key={index}>
                                             {section.title && (
                                                 <h4 className="text-xl font-semibold text-foreground">{section.title}</h4>
@@ -182,6 +183,24 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
                                 </div>
                             </>
                         )}
+
+                        {/* Custom Sections */}
+                        {post.sections && post.sections.filter(s => s.type === 'custom-section' && !s.hidden).map((section, index) => (
+                            <div key={`custom-section-${index}`} className="pt-8">
+                                {section.title && (
+                                    <h3 className="text-2xl font-bold text-foreground mb-6">{section.title}</h3>
+                                )}
+                                {section.customBlocks && section.customBlocks.map((block, blockIndex) => (
+                                    <CustomSectionRenderer
+                                        key={`custom-block-${index}-${blockIndex}`}
+                                        section={block}
+                                        projectTitle={post.title}
+                                        projectHeroImage={post.heroImage}
+                                        projectCardImage={post.cardImage}
+                                    />
+                                ))}
+                            </div>
+                        ))}
                     </div>
 
                     {/* Blog Post Navigation */}
