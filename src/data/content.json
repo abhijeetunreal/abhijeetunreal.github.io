@@ -1913,6 +1913,17 @@
       },
       "sections": [
         {
+          "type": "marquee-inline",
+          "position": "top",
+          "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/FallDetectionm1.png",
+          "marqueeInlineItems": [
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/ap1.webp",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/ap2.webp",
+            "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/ap3.webp"
+            
+          ]
+        },
+        {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/3.webp"
         },
