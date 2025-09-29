@@ -953,9 +953,9 @@
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CED/cedCard.png",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CED/cedHero.png",
-      "fullDescription": "This was a group project for Creative Engineering Design course at IISc Bangalore. Our project was to go outside and explore the city and find a habitat which could be a good for product opportunity. And then goal was to do habitat study and come up with products idea for that habitat. This project was a great learning experince as it was a real world problem and we had to do a lot of research and desing process to come up with the product idea. ",
-      "designProcess": "The design process focused on creating a trustworthy and engaging financial app that users would want to use daily. We conducted extensive user research with people from various financial backgrounds to understand pain points in money management.",
-      "technicalDetails": "Built with React Native and integrated with machine learning algorithms for spending pattern analysis. The app uses secure APIs for bank integration and implements advanced encryption for financial data protection.",
+      "fullDescription": "This was a group project for Creative Engineering Design course at IISc Bangalore. Our task was to go outside and explore the city and find a habitat which could be a good for product opportunity. And then goal was to do habitat study and come up with products idea for that habitat. This project was a great learning experince as it was a real world problem and we had to do a lot of research and desing process to come up with the product idea. ",
+      "designProcess": "Habitat study and applide creative engineering design process to come up with the product idea.",
+      "technicalDetails": "Creative Engineering Design process and habitat study.",
       "visibility": {
         "designProcess": false,
         "technicalDetails": false,
@@ -1681,51 +1681,210 @@
       ]
     },
     {
-      "title": "WELLNEST DOCUMENTS",
-      "description": "Digital document management system that eliminates paperwork and streamlines workflows.",
+      "title": "UPPER BODY MOTION ANALYSIS",
+      "description": "Ergonomics assessment of upper body motion.",
       "tags": [
-        "Web App",
-        "Document Management",
-        "Workflow Automation",
-        "UX Design"
+        "Ergonomics",
+        "Computer Vision",
+        "Data Analysis"
       ],
-      "cardImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=533&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-      "designProcessImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-      "fullDescription": "WELLNEST DOCUMENTS is a comprehensive digital document management platform designed to eliminate the need for physical paperwork in modern businesses. The system streamlines document workflows, automates approval processes, and ensures secure storage and retrieval.",
-      "designProcess": "Our design approach focused on creating an intuitive interface that would make the transition from paper to digital seamless for users. We prioritized user experience to ensure high adoption rates across different age groups and technical skill levels.",
-      "technicalDetails": "Built with React and Node.js, featuring real-time collaboration tools, advanced search capabilities, and integration with popular business software. The platform uses cloud storage with enterprise-grade security measures.",
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/UBMAcard.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/1.webp",
+      "fullDescription": "This was a ergonomics project for upper body motion analysis for assessing the posture and motion of the upper body. I used computer vision and machine learning to analyze the motion of the upper body and then used blender to retarget the tracking data to 3D model for assessing the posturen in 3D environment.",
+      "labels": {
+        "designProcess": "Process",
+        "technicalDetails": "Key Design Objectives",
+        "designJourney": "Process",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": false,
+        "technicalDetails": false,
+        "designJourney": true
+      },
       "sections": [
         {
           "type": "image",
-          "src": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=600&fit=crop",
-          "alt": "WELLNEST DOCUMENTS dashboard interface"
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/2.webp"
         },
         {
-          "type": "paragraph",
-          "content": "The platform transforms how organizations handle documents, from creation to archiving. Features include automated workflow routing, digital signatures, version control, and comprehensive audit trails for compliance purposes."
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/3.webp"
         },
         {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example9"
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/4.webp"
         },
         {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Live Demo",
-              "href": "https://demo.wellnest.com"
-            },
-            {
-              "label": "Enterprise Pricing",
-              "href": "https://wellnest.com/pricing"
-            },
-            {
-              "label": "API Documentation",
-              "href": "https://docs.wellnest.com"
-            }
-          ]
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/5.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/6.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/7.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/8.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/9.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/10.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/UpperBodyMA/11.webp"
         }
+        
+        
+      ]
+    },
+    {
+      "title": "CABLE SPAGHETTI MANAGEMENT",
+      "description": "Design and develop a proof of concept for a means of keeping wires un-entangled and easily trackable",
+      "tags": [
+        "Creative Engineering Design",
+        "Patent study",
+        "Conceptual Design"
+      ],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/cableCard.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/2.webp",
+      "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/MicroProject.png",
+      "fullDescription": "This was a micro project for Creative Engineering Design course at IISc Bangalore. The task was to design and develop a proof of concept for a means of keeping wires un-entangled and easily trackable (with a functional prototype if possible).",
+      "labels": {
+        "designProcess": "Process",
+        "technicalDetails": "Key Design Objectives",
+        "designJourney": "Process",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": false,
+        "technicalDetails": false,
+        "designJourney": true
+      },
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/3.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/4.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/5.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/6.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/7.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/8.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/9.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/10.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/11.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/12.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/13.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/14.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/15.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/16.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/17.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/18.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/19.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/20.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/21.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/22.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/23.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/24.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/25.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/26.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/27.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/28.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/29.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/CableSpaghetti/30.webp"
+        }
+        
+        
       ]
     },
     {
