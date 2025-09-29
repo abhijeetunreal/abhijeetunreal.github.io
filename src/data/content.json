@@ -1887,6 +1887,67 @@
         
       ]
     },
+
+    {
+      "title": "FALL DETECTION & PREVENTION",
+      "description": "Design and develop a proof of concept for a means of keeping wires un-entangled and easily trackable",
+      "tags": [
+        "Electronics",
+        "Prototyping",
+        "Electronics Product Design"
+      ],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/fallDetection.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/1.webp",
+      "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/2.webp",
+      "fullDescription": "This was a project for Electronics Product Design course at IISc Bangalore. The task was to design and develop a proof of concept for a means of detecting falls and preventing them with Deployable Mechanism to Protect Against Head Injuries",
+      "labels": {
+        "designProcess": "Process",
+        "technicalDetails": "Key Design Objectives",
+        "designJourney": "Process",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": false,
+        "technicalDetails": false,
+        "designJourney": true
+      },
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/3.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/4.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/5.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/6.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/7.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/8.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/9.webp"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/FallDetection/10.webp"
+        }
+        
+        
+      ]
+    },
     {
       "title": "PATHFINDER MENTORS",
       "description": "A mentorship platform connecting students with industry professionals for career guidance.",
