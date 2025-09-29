@@ -4,7 +4,7 @@ const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const isApiKeyAvailable = () => {
   return !!API_KEY;
 };
-const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 // Test function to verify API key and connection
 export async function testGeminiConnection(): Promise<boolean> {
@@ -18,10 +18,11 @@ export async function testGeminiConnection(): Promise<boolean> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
     
-    const response = await fetch(`${BASE_URL}?key=${API_KEY}`, {
+    const response = await fetch(`${BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-goog-api-key': API_KEY as string,
       },
       body: JSON.stringify({
         contents: [
@@ -107,10 +108,11 @@ export async function generateChatResponse(prompt: string): Promise<string> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
     
-    const response = await fetch(`${BASE_URL}?key=${API_KEY}`, {
+    const response = await fetch(`${BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-goog-api-key': API_KEY as string,
       },
       body: JSON.stringify(requestBody),
       signal: controller.signal
