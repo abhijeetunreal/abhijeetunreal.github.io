@@ -10,7 +10,7 @@ const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini
 export async function testGeminiConnection(): Promise<boolean> {
   try {
     if (!isApiKeyAvailable()) {
-      return false;
+      throw new Error('VITE_GEMINI_API_KEY not configured - please set up your Gemini API key');
     }
     
     const testPrompt = "Hello, this is a test message. Please respond with 'Connection successful' if you can read this.";
@@ -64,7 +64,7 @@ export async function testGeminiConnection(): Promise<boolean> {
 export async function generateChatResponse(prompt: string): Promise<string> {
   try {
     if (!isApiKeyAvailable()) {
-      throw new Error('API key not configured');
+      throw new Error('VITE_GEMINI_API_KEY not configured - please set up your Gemini API key');
     }
     
     const requestBody = {

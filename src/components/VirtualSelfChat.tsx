@@ -441,7 +441,9 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false, m
             let errorMessage = randomResponse;
             
             if (error instanceof Error) {
-                if (error.message.includes('API request failed')) {
+                if (error.message.includes('VITE_GEMINI_API_KEY not configured')) {
+                    errorMessage = "AI service is not configured yet. The developer needs to set up the Gemini API key. In the meantime, feel free to explore my portfolio and projects!";
+                } else if (error.message.includes('API request failed')) {
                     if (error.message.includes('429')) {
                         errorMessage = "I've reached my daily AI response limit, but I'd be happy to help! You can explore my portfolio to learn more about my work and experience. Feel free to ask me anything about my projects!";
                     } else {
@@ -454,11 +456,14 @@ const VirtualSelfChat = ({ projects, isOpen = true, onClose, isSticky = false, m
                 }
             }
             
-            toast({
-                title: "AI Service Limited",
-                description: "Using fallback responses due to API quota limits. Please try again tomorrow or explore the portfolio.",
-                variant: "default",
-            });
+            // Only show toast for API quota issues, not for configuration issues
+            if (error instanceof Error && !error.message.includes('VITE_GEMINI_API_KEY not configured')) {
+                toast({
+                    title: "AI Service Limited",
+                    description: "Using fallback responses due to API quota limits. Please try again tomorrow or explore the portfolio.",
+                    variant: "default",
+                });
+            }
             
             return errorMessage;
         }
