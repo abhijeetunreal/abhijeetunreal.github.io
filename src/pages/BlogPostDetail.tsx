@@ -48,17 +48,13 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
-            <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="BLOG" />
+            <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="BLOG" showBackButton={true} />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 
                 
                 <div>
                     <div className="mb-8">
                         
-                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground group" title="Back to blog">
-                            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                            Back to blog
-                        </Button>
 
 
                         {/* Hero Image Section */}

@@ -3,14 +3,16 @@ import React, { useRef, useEffect, useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import content from '@/data/content.json';
 import { DecoderText } from './ui/DecoderText';
+import { ArrowLeft } from 'lucide-react';
 
 interface HeaderProps {
   onGoHome: () => void;
   onGoToAbout?: () => void;
   currentSection: string;
+  showBackButton?: boolean;
 }
 
-const Header = ({ onGoHome, onGoToAbout, currentSection }: HeaderProps) => {
+const Header = ({ onGoHome, onGoToAbout, currentSection, showBackButton = false }: HeaderProps) => {
   const navLinks = content.navLinks || [];
   const navRefs = navLinks.map(() => useRef<HTMLAnchorElement | null>(null));
   const underlineRef = useRef<HTMLDivElement | null>(null);
@@ -43,8 +45,19 @@ const Header = ({ onGoHome, onGoToAbout, currentSection }: HeaderProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg">
       <div className="w-full p-6 sm:p-8">
-        <nav className="flex justify-center sm:justify-end">
-          <div className="relative">
+        <nav className="flex justify-between items-center">
+          {/* Back Button */}
+          {showBackButton && (
+            <button
+              onClick={onGoHome}
+              className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-background/20 transition-colors duration-200 group"
+              title="Go back"
+            >
+              <ArrowLeft className="h-5 w-5 group-hover:-translate-x-0.5 transition-transform duration-200" />
+            </button>
+          )}
+          
+          <div className={`relative ${showBackButton ? 'ml-auto' : 'mx-auto'}`}>
             <ul className="flex items-center space-x-6 md:space-x-8 text-sm font-bold tracking-wider relative">
               {navLinks.map((link, i) => (
                 <li key={link.label}>

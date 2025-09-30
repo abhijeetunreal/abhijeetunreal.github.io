@@ -37,16 +37,12 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
-            <Header onGoHome={onBack} onGoToAbout={onGoToAbout} currentSection="HOME" />
+            <Header onGoHome={onBack} onGoToAbout={onGoToAbout} currentSection="HOME" showBackButton={true} />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 
                 
                 <div>
                     <div className="mb-8">
-                        <Button onClick={onBack} variant="ghost" className="mb-8 px-0 hover:bg-transparent text-foreground">
-                            <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back to all projects
-                        </Button>
 
                         {/* Hero Media Section */}
                         {(project.heroImage || project.cardImage || project.heroVideo || project.cardVideo) && (
