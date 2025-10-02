@@ -556,6 +556,80 @@
             }
           ]
         },
+
+        {
+          "type": "custom-section",
+          "title": "Prism",
+          "customBlocks": [
+
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismHeroThumbnail.png",
+              "alt": "Data processing workflow"
+            },
+            {
+              "type": "paragraph",
+              "content": "Prism (Present Resonance Interface for Sensory Mindfulness) is a stylish, minimalist wearable device designed to gently nudge users back to the present moment through subtle sensory cues. It combines haptic feedback, soft light, and a companion app to cultivate mindfulness without screen dependency."
+            },
+            
+            {
+              "type": "marquee-inline",
+              "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Prism/1.png",
+              "marqueeInlineItems": [
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Prism/2.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Prism/3.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Prism/4.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Prism/5.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Prism/6.png"
+              ]
+            },
+            
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismDesignStages.png",
+              "alt": "Data processing workflow"
+            },
+            {
+              "type": "paragraph",
+              "content": "This project was a six-week sprint from idea to a fully functional mindfulness product, designed to help users stay present in the moment by addressing chronic digital distraction and cognitive overload.\nFrom initial research and ideation to final product execution and promotional planning, every stage was optimized for efficiency, proving that impactful design doesn’t require a high budget—just the right vision and execution."
+     
+            },
+
+            {
+              "type": "paragraph",
+              "content": "Throughout the development process, I tackled multiple challenges, including rapid prototyping, user testing, marketing, and financial constraints. With a strict budget of ₹400,I focused on cost-effective materials, minimalistic yet engaging design, and creative marketing strategies to ensure accessibility and scalability."
+            },
+            
+
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/concept_drawings.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/embodiement1.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/final_embodiment.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/logo%20exploration.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/OPEN%20DAY%20TEST.png",
+          "alt": "Data processing workflow"
+        }
+      
+            
+          ]
+        },
         {
           "type": "custom-section",
           "title": "ReactoSphere",
@@ -654,47 +728,7 @@
         }
       ]
     },
-    {
-      "title": "Prism",
-      "description": "An immersive data narrative exploring climate change through generative visuals.",
-      "tags": [
-        "Product Design Development and Management",
-        "CMF"
-      ],
-      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/prismthumbnail.gif",
-      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismHeroThumbnail.png",
-      "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismDesignStages.png",
-      "fullDescription": "Prism (Present Resonance Interface for Sensory Mindfulness) is a stylish, minimalist wearable device designed to gently nudge users back to the present moment through subtle sensory cues. It combines haptic feedback, soft light, and a companion app to cultivate mindfulness without screen dependency.",
-      "designProcess": "This project was a six-week sprint from idea to a fully functional mindfulness product, designed to help users stay present in the moment by addressing chronic digital distraction and cognitive overload.\nFrom initial research and ideation to final product execution and promotional planning, every stage was optimized for efficiency, proving that impactful design doesn’t require a high budget—just the right vision and execution.",
-      "technicalDetails": " Throughout the development process, I tackled multiple challenges, including rapid prototyping, user testing, marketing, and financial constraints. With a strict budget of ₹400,I focused on cost-effective materials, minimalistic yet engaging design, and creative marketing strategies to ensure accessibility and scalability.",
-      "sections": [
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/concept_drawings.png",
-          "alt": "Data processing workflow"
-        },
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/embodiement1.png",
-          "alt": "Data processing workflow"
-        },
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/final_embodiment.png",
-          "alt": "Data processing workflow"
-        },
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/logo%20exploration.png",
-          "alt": "Data processing workflow"
-        },
-        {
-          "type": "image",
-          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/OPEN%20DAY%20TEST.png",
-          "alt": "Data processing workflow"
-        }
-      ]
-    },
+    
     {
       "title": "Old Projects",
       "description": "A mobile app that uses AI to create personalized soundscapes for focus and relaxation.",
@@ -1889,6 +1923,47 @@
       ]
     },
     {
+      "title": "Prism",
+      "description": "An immersive data narrative exploring climate change through generative visuals.",
+      "tags": [
+        "Product Design Development and Management",
+        "CMF"
+      ],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/prismthumbnail.gif",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismHeroThumbnail.png",
+      "designProcessImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/PrismDesignStages.png",
+      "fullDescription": "Prism (Present Resonance Interface for Sensory Mindfulness) is a stylish, minimalist wearable device designed to gently nudge users back to the present moment through subtle sensory cues. It combines haptic feedback, soft light, and a companion app to cultivate mindfulness without screen dependency.",
+      "designProcess": "This project was a six-week sprint from idea to a fully functional mindfulness product, designed to help users stay present in the moment by addressing chronic digital distraction and cognitive overload.\nFrom initial research and ideation to final product execution and promotional planning, every stage was optimized for efficiency, proving that impactful design doesn’t require a high budget—just the right vision and execution.",
+      "technicalDetails": " Throughout the development process, I tackled multiple challenges, including rapid prototyping, user testing, marketing, and financial constraints. With a strict budget of ₹400,I focused on cost-effective materials, minimalistic yet engaging design, and creative marketing strategies to ensure accessibility and scalability.",
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/concept_drawings.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/embodiement1.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/final_embodiment.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/logo%20exploration.png",
+          "alt": "Data processing workflow"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Products/Prism/OPEN%20DAY%20TEST.png",
+          "alt": "Data processing workflow"
+        }
+      ]
+    },
+    {
       "title": "Bengaluru Bat Craft",
       "description": "The Cricket Bat in Bengaluru: A Semiotic Study of Meaning, Emotion, and Socioeconomic Context Among Non-Professional Players",
       "tags": [
@@ -2050,149 +2125,6 @@
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/BengaluruBatCraft/27.png",
           "alt": "Interactive installation setup"
-        }
-      ]
-    },
-    {
-      "title": "REKORDER MUSIC",
-      "description": "Professional music recording and production software with AI-assisted mixing capabilities.",
-      "tags": [
-        "Desktop App",
-        "Music Production",
-        "AI",
-        "Audio Engineering"
-      ],
-      "cardImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=533&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop",
-      "designProcessImage": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop",
-      "fullDescription": "REKORDER MUSIC is a professional-grade music production software that combines traditional recording tools with cutting-edge AI technology. The platform assists musicians and producers in creating high-quality recordings with intelligent mixing and mastering suggestions.",
-      "designProcess": "The design process focused on creating an interface that would be intuitive for both beginners and professional audio engineers. We prioritized workflow efficiency and visual feedback for complex audio operations.",
-      "technicalDetails": "Built with Electron and Web Audio API, featuring real-time audio processing, VST plugin support, and AI-powered mixing algorithms. The software includes advanced audio analysis tools and automated mastering capabilities.",
-      "sections": [
-        {
-          "type": "image",
-          "src": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop",
-          "alt": "REKORDER MUSIC software interface"
-        },
-        {
-          "type": "paragraph",
-          "content": "The AI engine analyzes audio tracks and provides intelligent suggestions for mixing, EQ, compression, and effects. This helps both novice and experienced producers achieve professional-quality results more efficiently."
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example11"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Download Trial",
-              "href": "https://rekorder-music.com/trial"
-            },
-            {
-              "label": "Plugin Store",
-              "href": "https://plugins.rekorder-music.com"
-            },
-            {
-              "label": "User Manual",
-              "href": "https://docs.rekorder-music.com"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "NEURAL CANVAS",
-      "description": "AI-powered digital art creation tool that generates unique artworks based on user prompts.",
-      "tags": [
-        "Web App",
-        "AI Art",
-        "Creative Tools",
-        "Machine Learning"
-      ],
-      "cardImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=400&h=533&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
-      "designProcessImage": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
-      "fullDescription": "NEURAL CANVAS is an innovative digital art platform that leverages artificial intelligence to help artists and creators generate unique artworks. Users can input text descriptions, upload reference images, or combine multiple styles to create original pieces.",
-      "designProcess": "The design process focused on creating an intuitive interface that would make AI art generation accessible to users of all skill levels. We prioritized creative freedom while maintaining ease of use and clear visual feedback.",
-      "technicalDetails": "Built with React and TensorFlow.js, featuring multiple AI models for different art styles and techniques. The platform includes real-time preview generation, style transfer capabilities, and collaborative features.",
-      "sections": [
-        {
-          "type": "image",
-          "src": "https://images.unsplash.com/photo-1541961017774-a3eb161ffa5f?w=1200&h=600&fit=crop",
-          "alt": "NEURAL CANVAS art generation interface"
-        },
-        {
-          "type": "paragraph",
-          "content": "The AI models are trained on diverse artistic styles and can generate everything from realistic portraits to abstract compositions. Users can fine-tune parameters, blend multiple styles, and export high-resolution artwork for various purposes."
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example12"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Create Art",
-              "href": "https://neural-canvas.com/create"
-            },
-            {
-              "label": "Gallery",
-              "href": "https://neural-canvas.com/gallery"
-            },
-            {
-              "label": "Style Library",
-              "href": "https://neural-canvas.com/styles"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "QUANTUM DASHBOARD",
-      "description": "Real-time data visualization platform for complex datasets with interactive 3D representations.",
-      "tags": [
-        "Web App",
-        "Data Visualization",
-        "3D Graphics",
-        "Real-time Analytics"
-      ],
-      "cardImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=533&fit=crop",
-      "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
-      "fullDescription": "QUANTUM DASHBOARD is a cutting-edge data visualization platform that transforms complex datasets into intuitive, interactive 3D representations. The platform is designed for data scientists, researchers, and business analysts who need to explore and present complex information.",
-      "designProcess": "The design process focused on creating an interface that would make complex data accessible and engaging. We prioritized performance, interactivity, and the ability to handle large datasets without compromising user experience.",
-      "technicalDetails": "Built with Three.js and WebGL for 3D graphics, featuring real-time data processing, interactive visualizations, and support for multiple data formats. The platform includes advanced filtering, zooming, and collaboration tools.",
-      "sections": [
-        {
-          "type": "image",
-          "src": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
-          "alt": "QUANTUM DASHBOARD 3D visualization interface"
-        },
-        {
-          "type": "paragraph",
-          "content": "The platform can handle millions of data points in real-time, providing smooth 3D navigation and interactive exploration. Users can create custom visualizations, share insights, and collaborate on data analysis projects."
-        },
-        {
-          "type": "youtube-video",
-          "youtubeUrl": "https://www.youtube.com/watch?v=example13"
-        },
-        {
-          "type": "external-links",
-          "externalLinks": [
-            {
-              "label": "Live Demo",
-              "href": "https://quantum-dashboard.example.com"
-            },
-            {
-              "label": "Enterprise Version",
-              "href": "https://enterprise.quantum-dashboard.com"
-            },
-            {
-              "label": "API Reference",
-              "href": "https://api.quantum-dashboard.com"
-            }
-          ]
         }
       ]
     }
