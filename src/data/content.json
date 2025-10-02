@@ -555,6 +555,53 @@
               "youtubeUrl": "https://www.youtube.com/watch?v=zAkwTGWPL4Y"
             }
           ]
+        },
+        {
+          "type": "custom-section",
+          "title": "ReactoSphere",
+          "customBlocks": [
+            {
+              "type": "external-links",
+              "externalLinks": [
+                {
+                  "label": "Product Page",
+                  "href": "https://reactosphere.vercel.app "
+                },
+                {
+                  "label": "Demo",
+                  "href": "https://youtube.com/shorts/mjhWmz3M2Fs?si=2alivmEMLxxvo9O5 "
+                }
+              ]
+            },
+            {
+              "type": "marquee-inline",
+              "marqueeInlineLeftImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/perspective.png",
+              "marqueeInlineItems": [
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/cad_model.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/front.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/back.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/Wiring.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/BreadBoard.png",
+                "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/PcbBoard.png"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": "ReactoSphere is a compact, user-friendly device designed to measure human reflex responses with ±1ms accuracy. Built around an ATmega328P microcontroller, it features a 4-digit 7-segment display for real-time feedback, green and red LEDs for visual cues, and tactile buttons for input. Upon startup, a rotating dash animation transitions into a 3-2-1 countdown, followed by the display of the best score stored in non-volatile EEPROM memory. During operation, a random 2–3s delay prevents anticipation before activating the red LED, with reaction time calculated from the LED activation to button press. The device handles errors (early presses/timeouts) gracefully, displaying Err1 or FULL, and incorporates a long-press reset (>2s) to reboot or clear scores. Designed for durability and safety, it uses current-limiting resistors (220Ω for LEDs, 330Ω for display segments), debounced button inputs, and low-power components, making it ideal for sports training, cognitive assessments, and competitive gaming."
+            },
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/Schematics.png"
+            },
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/KicadDesign.png"
+            },
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/ReactoSphere/Userflow.png"
+            }
+          ]
         }
       ]
     },
