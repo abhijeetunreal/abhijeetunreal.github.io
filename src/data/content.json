@@ -514,10 +514,7 @@
         "designJourney": false
       },
       "sections": [
-        {
-          "type": "paragraph",
-          "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
-        },
+        
         {
           "type": "custom-section",
           "title": "Robotic Arm Simulator",
@@ -565,40 +562,30 @@
       "title": "Generative Modeling",
       "description": "This page contains projects that are related to generative modeling.",
       "tags": [
-        "Generative Art",
-        "Web App",
+        "Generative Modeling",
+        "Computational Design",
+        "Procedural Modeling",
         "AI"
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/GenerativeModeling/GenerativeCard.png",
       "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/GenerativeModeling/GenerativeHero.png",
-      "fullDescription": "This page contains different phygital projects that i have worked on which includes the seamless integration of both physical and digital experiences to create a more immersive and user-friendly interaction. ",
+      "fullDescription": "This page contains some experimental project that i have worked on , It includes generative modeling, computational design, procedural modeling, and AI.",
       "visibility": {
         "designProcess": false,
         "technicalDetails": false,
         "designJourney": false
       },
       "sections": [
-        {
-          "type": "paragraph",
-          "content": "Weather patterns become musical compositions, translating the planet's atmospheric data into ambient soundscapes. Each location generates its unique sonic signature, creating an ever-changing global symphony driven by meteorological forces."
-        },
+        
         {
           "type": "custom-section",
           "title": "BikeGen",
           "customBlocks": [
-            {
-              "type": "external-links",
-              "externalLinks": [
-                {
-                  "label": "Github",
-                  "href": "https://github.com/abhijeetunreal/Robotic_Arm_Simulator "
-                }
-              ]
-            },
+            
             
             {
               "type": "paragraph",
-              "content": "This project is an interactive simulation of a robotic arm controlled in 3D space by a custom-built, motion-sensing air mouse. The user physically moves the air mouse, and the on-screen robotic arm mimics the motion to perform tasks in a training game. The system is designed to be highly modular, allowing for easy customization of the arm's structure, controls, and game mechanics."
+              "content": " BikeGen is a generative design tool that allows you to design and create your own bicycles in no time, it is fully procedural, you can customize the design parameters according to your needs. This project is still in development and i am working on it to make it more effective and efficient. This project is based on Unity C# programming languagge.  Initially i started this project in Blender using python script , but later i switched to unity , because as i was adding more and more features Blender was kind of slwo or crashing sometimes. So i decided to switch to unity , as it is a game engine it can handle lots of calculations easily."
             },
             {
               "type": "image",
@@ -606,11 +593,15 @@
             },
             {
               "type": "image",
-              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Phygital/airmouseVideo2.webp"
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/GenerativeModeling/BikeGenEditor1.webp"
             },
             {
-              "type": "youtube-video",
-              "youtubeUrl": "https://www.youtube.com/watch?v=zAkwTGWPL4Y"
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/GenerativeModeling/BikeGenEditor2.webp"
+            },
+            {
+              "type": "image",
+              "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/GenerativeModeling/BikeGenEditor.webp"
             }
           ]
         }
