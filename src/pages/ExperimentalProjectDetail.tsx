@@ -8,6 +8,7 @@ import { Project } from '@/types/content';
 import DetailMarquee from '@/components/DetailMarquee';
 import MediaDisplay from '@/components/ui/MediaDisplay';
 import CustomSectionRenderer from '@/components/CustomSectionRenderer';
+import { ScrollProgress } from '@/components/ScrollProgress';
 
 interface ExperimentalProjectDetailProps {
     project: Project;
@@ -35,6 +36,7 @@ const ExperimentalProjectDetail: React.FC<ExperimentalProjectDetailProps> = ({
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
+            <ScrollProgress />
             <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="EXPERIMENTAL" showBackButton={true} />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 

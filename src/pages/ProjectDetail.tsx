@@ -10,6 +10,7 @@ import DetailMarquee from '@/components/DetailMarquee';
 import AccordionProjects from '@/components/AccordionProjects';
 import MediaDisplay from '@/components/ui/MediaDisplay';
 import CustomSectionRenderer from '@/components/CustomSectionRenderer';
+import { ScrollProgress } from '@/components/ScrollProgress';
 
 interface ProjectDetailProps {
     project: Project;
@@ -37,6 +38,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
     return (
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
+            <ScrollProgress />
             <Header onGoHome={onBack} onGoToAbout={onGoToAbout} currentSection="HOME" showBackButton={true} />
             <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
                 
