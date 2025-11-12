@@ -18,12 +18,89 @@ import { Project } from "./types/content";
 
 const queryClient = new QueryClient();
 
+// Helper function to parse hash and get initial route state
+const getInitialRouteFromHash = () => {
+  const hash = window.location.hash;
+  
+  if (hash.startsWith('#project/')) {
+    const slug = hash.replace('#project/', '');
+    const project = content.projects.find((p) => slugify(p.title) === slug);
+    if (project) {
+      return {
+        selectedSlug: slug,
+        selectedExperimentalSlug: null,
+        selectedBlogSlug: null,
+        currentPage: "home" as const,
+        showSplash: false
+      };
+    }
+  } else if (hash.startsWith('#experimental-project/')) {
+    const slug = hash.replace('#experimental-project/', '');
+    const project = content.experimentalProjects.find((p) => slugify(p.title) === slug);
+    if (project) {
+      return {
+        selectedSlug: null,
+        selectedExperimentalSlug: slug,
+        selectedBlogSlug: null,
+        currentPage: "experimental" as const,
+        showSplash: false
+      };
+    }
+  } else if (hash.startsWith('#blog-post/')) {
+    const slug = hash.replace('#blog-post/', '');
+    const post = content.blogPosts.find((p) => slugify(p.title) === slug);
+    if (post) {
+      return {
+        selectedSlug: null,
+        selectedExperimentalSlug: null,
+        selectedBlogSlug: slug,
+        currentPage: "blog" as const,
+        showSplash: false
+      };
+    }
+  } else if (hash === '#about') {
+    return {
+      selectedSlug: null,
+      selectedExperimentalSlug: null,
+      selectedBlogSlug: null,
+      currentPage: "about" as const,
+      showSplash: false
+    };
+  } else if (hash === '#experimental') {
+    return {
+      selectedSlug: null,
+      selectedExperimentalSlug: null,
+      selectedBlogSlug: null,
+      currentPage: "experimental" as const,
+      showSplash: false
+    };
+  } else if (hash === '#blog') {
+    return {
+      selectedSlug: null,
+      selectedExperimentalSlug: null,
+      selectedBlogSlug: null,
+      currentPage: "blog" as const,
+      showSplash: false
+    };
+  }
+  
+  // Default: home page with splash
+  return {
+    selectedSlug: null,
+    selectedExperimentalSlug: null,
+    selectedBlogSlug: null,
+    currentPage: "home" as const,
+    showSplash: true
+  };
+};
+
 const App = () => {
-  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-  const [selectedExperimentalSlug, setSelectedExperimentalSlug] = useState<string | null>(null);
-  const [selectedBlogSlug, setSelectedBlogSlug] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState<string>("home");
-  const [showSplash, setShowSplash] = useState(true);
+  const initialRoute = getInitialRouteFromHash();
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(initialRoute.selectedSlug);
+  const [selectedExperimentalSlug, setSelectedExperimentalSlug] = useState<string | null>(initialRoute.selectedExperimentalSlug);
+  const [selectedBlogSlug, setSelectedBlogSlug] = useState<string | null>(initialRoute.selectedBlogSlug);
+  const [currentPage, setCurrentPage] = useState<string>(initialRoute.currentPage);
+  const [showSplash, setShowSplash] = useState(initialRoute.showSplash);
 
   const handleSelectProject = (slug: string) => {
     setSelectedSlug(slug);
@@ -230,21 +307,77 @@ const App = () => {
       }
     };
 
-    // Add event listener for browser back/forward buttons
+    const onHashChange = () => {
+      // Handle manual hash changes (e.g., when user types in address bar)
+      const hash = window.location.hash;
+      
+      if (hash.startsWith('#project/')) {
+        const slug = hash.replace('#project/', '');
+        const project = content.projects.find((p) => slugify(p.title) === slug);
+        if (project) {
+          setSelectedSlug(slug);
+          setCurrentPage("home");
+          setSelectedExperimentalSlug(null);
+          setSelectedBlogSlug(null);
+          window.scrollTo(0, 0);
+        }
+      } else if (hash.startsWith('#experimental-project/')) {
+        const slug = hash.replace('#experimental-project/', '');
+        const project = content.experimentalProjects.find((p) => slugify(p.title) === slug);
+        if (project) {
+          setSelectedExperimentalSlug(slug);
+          setCurrentPage("experimental");
+          setSelectedSlug(null);
+          setSelectedBlogSlug(null);
+          window.scrollTo(0, 0);
+        }
+      } else if (hash.startsWith('#blog-post/')) {
+        const slug = hash.replace('#blog-post/', '');
+        const post = content.blogPosts.find((p) => slugify(p.title) === slug);
+        if (post) {
+          setSelectedBlogSlug(slug);
+          setCurrentPage("blog");
+          setSelectedSlug(null);
+          setSelectedExperimentalSlug(null);
+          window.scrollTo(0, 0);
+        }
+      } else if (hash === '#about') {
+        setCurrentPage("about");
+        setSelectedSlug(null);
+        setSelectedExperimentalSlug(null);
+        setSelectedBlogSlug(null);
+        window.scrollTo(0, 0);
+      } else if (hash === '#experimental') {
+        setCurrentPage("experimental");
+        setSelectedSlug(null);
+        setSelectedExperimentalSlug(null);
+        setSelectedBlogSlug(null);
+        window.scrollTo(0, 0);
+      } else if (hash === '#blog') {
+        setCurrentPage("blog");
+        setSelectedSlug(null);
+        setSelectedExperimentalSlug(null);
+        setSelectedBlogSlug(null);
+        window.scrollTo(0, 0);
+      } else if (hash === '#' || hash === '') {
+        setCurrentPage("home");
+        setSelectedSlug(null);
+        setSelectedExperimentalSlug(null);
+        setSelectedBlogSlug(null);
+        window.scrollTo(0, 0);
+      }
+    };
+
+    // Add event listeners for browser back/forward buttons and hash changes
     window.addEventListener("popstate", onPopState);
+    window.addEventListener("hashchange", onHashChange);
     
     return () => {
       window.removeEventListener("popstate", onPopState);
+      window.removeEventListener("hashchange", onHashChange);
     };
   }, [selectedSlug, selectedExperimentalSlug, selectedBlogSlug, currentPage]);
 
-  // Initialize browser history on component mount
-  useEffect(() => {
-    // Set initial history state
-    if (!selectedSlug && !selectedExperimentalSlug && !selectedBlogSlug && currentPage === "home") {
-      window.history.replaceState({ page: "home" }, "", `#`);
-    }
-  }, []);
 
   // The theme is now handled by ThemeToggle.tsx
   return (

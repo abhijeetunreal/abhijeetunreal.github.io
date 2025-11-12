@@ -70,9 +70,6 @@ const Header = ({ onGoHome, onGoToAbout, currentSection, showBackButton = false 
                         onGoHome();
                       } else if (link.href === '/#about' && onGoToAbout) {
                         onGoToAbout();
-                      } else if (link.href === '/#contact') {
-                        // Handle contact navigation if needed
-                        window.location.hash = 'contact';
                       }
                     }}
                     className={`hover:text-gray-400 transition-colors duration-300 ${link.label.replace(/\[|\]/g, '').toUpperCase() === currentSection.toUpperCase() ? 'font-bold' : ''}`}
