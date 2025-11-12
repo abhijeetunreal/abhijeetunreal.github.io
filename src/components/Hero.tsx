@@ -3,6 +3,7 @@ import content from '@/data/content.json';
 import { ThemeToggle } from './ThemeToggle';
 import { slugify } from '@/lib/utils';
 import MediaDisplay from './ui/MediaDisplay';
+import MorphingText from './MorphingText';
 
 interface CardData {
   title: string;
@@ -286,13 +287,14 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       </header>
 
       {/* Main Content (Logo) */}
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-8 pb-4 sm:pb-0">
-        <h1 
-          className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter text-center cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={onGoHome}
-        >
-            {content.name}<sup className="text-2xl sm:text-3xl md:text-4xl -top-8 sm:-top-20  ">▲</sup>
-        </h1>
+      <main className="flex-grow flex items-center justify-center  sm:px-8 pb-4 sm:pb-0">
+        <div className="w-full max-w-screen-md mx-auto cursor-pointer hover:opacity-80 transition-opacity" onClick={onGoHome}>
+          <MorphingText 
+            texts={["Explorer", "Designer",  "Builder", "Futurist", "Creator"]}
+            className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter"
+          />
+          
+        </div>
       </main>
 
       {/* Infinite Scroller Section */}

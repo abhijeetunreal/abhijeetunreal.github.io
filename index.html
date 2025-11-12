@@ -56,5 +56,19 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- SVG Filter for Morphing Text -->
+    <svg id="filters" class="fixed h-0 w-0" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <filter id="threshold">
+          <!-- This matrix creates the "gooey" effect by pushing alpha values to extremes -->
+          <!-- It takes pixels that are partially transparent (due to blur) and makes them fully opaque or fully transparent -->
+          <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 255 -140" />
+        </filter>
+      </defs>
+    </svg>
   </body>
 </html>
