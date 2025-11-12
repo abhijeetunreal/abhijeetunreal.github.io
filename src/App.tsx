@@ -10,7 +10,6 @@ import ExperimentalProjects from "./pages/ExperimentalProjects";
 import ExperimentalProjectDetail from "./pages/ExperimentalProjectDetail";
 import Blog from "./pages/Blog";
 import BlogPostDetail from "./pages/BlogPostDetail";
-import SplashPage from "./components/SplashPage";
 import StickyChat from "./components/StickyChat";
 import content from '@/data/content.json';
 import { slugify } from '@/lib/utils';
@@ -30,8 +29,7 @@ const getInitialRouteFromHash = () => {
         selectedSlug: slug,
         selectedExperimentalSlug: null,
         selectedBlogSlug: null,
-        currentPage: "home" as const,
-        showSplash: false
+        currentPage: "home" as const
       };
     }
   } else if (hash.startsWith('#experimental-project/')) {
@@ -42,8 +40,7 @@ const getInitialRouteFromHash = () => {
         selectedSlug: null,
         selectedExperimentalSlug: slug,
         selectedBlogSlug: null,
-        currentPage: "experimental" as const,
-        showSplash: false
+        currentPage: "experimental" as const
       };
     }
   } else if (hash.startsWith('#blog-post/')) {
@@ -54,8 +51,7 @@ const getInitialRouteFromHash = () => {
         selectedSlug: null,
         selectedExperimentalSlug: null,
         selectedBlogSlug: slug,
-        currentPage: "blog" as const,
-        showSplash: false
+        currentPage: "blog" as const
       };
     }
   } else if (hash === '#about') {
@@ -63,34 +59,30 @@ const getInitialRouteFromHash = () => {
       selectedSlug: null,
       selectedExperimentalSlug: null,
       selectedBlogSlug: null,
-      currentPage: "about" as const,
-      showSplash: false
+      currentPage: "about" as const
     };
   } else if (hash === '#experimental') {
     return {
       selectedSlug: null,
       selectedExperimentalSlug: null,
       selectedBlogSlug: null,
-      currentPage: "experimental" as const,
-      showSplash: false
+      currentPage: "experimental" as const
     };
   } else if (hash === '#blog') {
     return {
       selectedSlug: null,
       selectedExperimentalSlug: null,
       selectedBlogSlug: null,
-      currentPage: "blog" as const,
-      showSplash: false
+      currentPage: "blog" as const
     };
   }
   
-  // Default: home page with splash
+  // Default: home page
   return {
     selectedSlug: null,
     selectedExperimentalSlug: null,
     selectedBlogSlug: null,
-    currentPage: "home" as const,
-    showSplash: true
+    currentPage: "home" as const
   };
 };
 
@@ -100,7 +92,6 @@ const App = () => {
   const [selectedExperimentalSlug, setSelectedExperimentalSlug] = useState<string | null>(initialRoute.selectedExperimentalSlug);
   const [selectedBlogSlug, setSelectedBlogSlug] = useState<string | null>(initialRoute.selectedBlogSlug);
   const [currentPage, setCurrentPage] = useState<string>(initialRoute.currentPage);
-  const [showSplash, setShowSplash] = useState(initialRoute.showSplash);
 
   const handleSelectProject = (slug: string) => {
     setSelectedSlug(slug);
@@ -159,10 +150,6 @@ const App = () => {
     
     // Update browser history to reflect the blog list page
     window.history.pushState({ page: "blog" }, "", `#blog`);
-  };
-
-  const handleSplashComplete = () => {
-    setShowSplash(false);
   };
 
   // Get current project and its index
@@ -385,12 +372,8 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <div data-splash={showSplash.toString()}>
-          {showSplash ? (
-            <SplashPage onComplete={handleSplashComplete} />
-          ) : (
-            <>
-              {project ? (
+        <>
+          {project ? (
                 <ProjectDetail 
                   project={project} 
                   onBack={handleGoHome}
@@ -441,10 +424,8 @@ const App = () => {
                   onNavigateToBlog={handleGoToBlog}
                 />
               )}
-              <StickyChat projects={content.projects as Project[]} />
-            </>
-          )}
-        </div>
+          <StickyChat projects={content.projects as Project[]} />
+        </>
       </TooltipProvider>
     </QueryClientProvider>
   );
