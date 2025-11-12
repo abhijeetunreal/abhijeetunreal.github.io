@@ -40,7 +40,7 @@ const Header = ({ onGoHome, onGoToAbout, currentSection, showBackButton = false 
     // Also update after a short delay to ensure DOM is ready
     const timer = setTimeout(updateUnderline, 50);
     return () => clearTimeout(timer);
-  }, [currentSection, navLinks, navRefs]);
+  }, [currentSection, navLinks]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg">
