@@ -14,7 +14,7 @@ export function ScrollProgress({
   const { scrollYProgress } = useScroll()
 
   return (
-    <div className="fixed inset-x-0 top-0 z-[100] h-1.5 pointer-events-none">
+    <div className="fixed inset-x-0 top-[56px] sm:top-[64px] z-[100] h-[1px] pointer-events-none">
       <motion.div
         ref={ref}
         className={cn(

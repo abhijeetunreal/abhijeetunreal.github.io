@@ -19,7 +19,7 @@ const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperi
     <div className="text-foreground min-h-screen font-mono relative z-[60]">
       <Header onGoHome={onGoHome} onGoToAbout={onGoToAbout} currentSection="ABOUT" />
       
-      <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
+      <main className="container mx-auto px-4 pt-20 md:pt-24 pb-16">
         {/* Hero Section */}
         <section className="mb-24 md:mb-32">
           <div className="text-center mb-12">

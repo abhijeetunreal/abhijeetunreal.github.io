@@ -248,7 +248,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
   return (
     <div className="hero-section h-screen flex flex-col">
       {/* Header Navigation */}
-      <header className="w-full p-6 sm:p-8">
+      <header className="w-full px-4 sm:px-6 py-3 sm:py-4">
         <nav className="flex justify-center sm:justify-end">
           <ul className="flex items-center space-x-6 md:space-x-8 text-sm font-bold tracking-wider">
             <li>

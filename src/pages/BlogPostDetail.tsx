@@ -51,7 +51,7 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({
         <div className="text-foreground min-h-screen font-mono relative z-[60]">
             <ScrollProgress />
             <Header onGoHome={onBack} onGoToAbout={onNavigateToAbout} currentSection="BLOG" showBackButton={true} />
-            <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
+            <main className="container mx-auto px-4 pt-20 md:pt-24 pb-16">
                 
                 
                 <div>

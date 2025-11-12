@@ -44,7 +44,7 @@ const Header = ({ onGoHome, onGoToAbout, currentSection, showBackButton = false 
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg">
-      <div className="w-full p-6 sm:p-8">
+      <div className="w-full px-4 sm:px-6 py-3 sm:py-4">
         <nav className="flex justify-between items-center">
           {/* Back Button */}
           {showBackButton && (

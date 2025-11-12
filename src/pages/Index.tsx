@@ -44,7 +44,7 @@ const Index = ({ onSelectProject, onGoHome, onGoToAbout, onNavigateToExperimenta
     <div className="text-foreground min-h-screen font-mono relative z-[60]">
       <Header onGoHome={onGoHome} onGoToAbout={onGoToAbout} currentSection={currentSection} />
       <Hero onGoHome={onGoHome} onSelectProject={onSelectProject} />
-      <main className="container mx-auto px-4 pt-24 md:pt-32 pb-16">
+      <main className="container mx-auto px-4 pt-20 md:pt-24 pb-16">
         <section id="worked-with" className="mb-24 md:mb-32">
           <h3 className="text-2xl font-bold text-center mb-8">{workedWith.title}</h3>
           <Marquee items={workedWith.companies} />
