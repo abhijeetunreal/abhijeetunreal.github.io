@@ -820,6 +820,22 @@
           "alt": "Mobile app interface design"
         },
         {
+          "type": "youtube-video",
+          "youtubeUrl": "https://www.youtube.com/watch?v=5uicbVb_E8A"
+        },
+        {
+          "type": "youtube-video",
+          "youtubeUrl": "https://www.youtube.com/watch?v=9Lx1ReDKHt0"
+        },
+        {
+          "type": "youtube-video",
+          "youtubeUrl": "https://www.youtube.com/watch?v=J6j41dqSmbQ"
+        },
+        {
+          "type": "youtube-video",
+          "youtubeUrl": "https://www.youtube.com/watch?v=vWuekcbh4N4"
+        },
+        {
           "type": "image",
           "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/21.png",
           "alt": "Mobile app interface design"
