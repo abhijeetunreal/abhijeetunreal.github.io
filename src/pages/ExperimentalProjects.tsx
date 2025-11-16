@@ -67,8 +67,8 @@ const ExperimentalProjects: React.FC<ExperimentalProjectsProps> = ({ onGoHome, o
           <p className="text-lg text-muted-foreground mb-6">
             Interested in collaborating on experimental projects?
           </p>
-          <Button size="lg" className="px-8 py-3">
-            Let's Connect
+          <Button size="lg" className="px-8 py-3">            
+            <a href="https://www.linkedin.com/in/abhijeetunreal/">Let's Connect</a>
           </Button>
         </div>
       </main>
