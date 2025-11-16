@@ -1630,6 +1630,129 @@
           }
       ]
     },
+
+    {
+      "title": "Aggerated Elevator",
+      "description": "A proof of concept for an aggereted elevator system.",
+      "tags": [
+        "Design",
+        "Prototype",
+        "Proof of Concept"
+      ],
+      "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/aethumbnail.png",
+      "heroImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/hero.png",
+      "fullDescription": "We built a proof-of-concept for an aggregated elevator system—a modular lift concept where multiple small elevators can link together to form one large lift when needed (for transporting oversized objects). I led the system brain design, creating the lift communication protocol, behavior logic, and robotic control system. My work involved programming microcontrollers, integrating motors and actuators, and ensuring smooth synchronized movement across units. Although the prototype simulates only three floors, the protocol and mechanism were intentionally designed to be scalable and easily extendable. I also contributed to defining the mechanical direction so all modules can assemble and sync seamlessly.",
+      "labels": {
+        "designProcess": "Process",
+        "technicalDetails": "Key Design Objectives",
+        "designJourney": "Process",
+        "externalResources": "Resources"
+      },
+      "visibility": {
+        "designProcess": false,
+        "technicalDetails": false,
+        "designJourney": true
+      },
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/1.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/2.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/3.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/4.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/5.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/6.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/7.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/8.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/9.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/10.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/11.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/12.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/13.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/14.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/15.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/16.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/17.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/18.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/protocol.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/19.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/20.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/21.png"
+        },
+        {
+          "type": "image",
+          "src": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Experimental/Elevatron/22.png"
+        }
+        
+        
+        
+      ]
+    },
+
+    
     {
       "title": "UPPER BODY MOTION ANALYSIS",
       "description": "Ergonomics assessment of upper body motion.",
