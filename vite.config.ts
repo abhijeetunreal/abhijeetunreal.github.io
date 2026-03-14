@@ -5,7 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // Use relative paths for static deployment
+  base: process.env.BASE_PATH || './',
   server: {
     port: 8080
   },
