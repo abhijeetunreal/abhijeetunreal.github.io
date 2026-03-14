@@ -862,7 +862,7 @@
         "Photogrammetry"
       ],
       "cardImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/oldProjects/3drendercard.png",
-      "heroImage": "https://abhijeetunreal.github.io/assets/img/articles/photogrammetry/ruin.gif",
+      "heroImage": "https://abhijeetunreal.github.io/old_portfolio/assets/img/articles/photogrammetry/ruin.gif",
       "designProcessImage": "",
       "fullDescription": "This page contains some of my past 3D renders of 3D model which I created in past. ",
       "designProcess": "These 3D renders are the result of continious learnign and gaining exprience in 3D softwares some renders are from my initial day of learning different 3D softwares, here I am not listing all of my 3D creation you can explore other model on my Sketchfab account where I have posted my other 3D models",
@@ -881,17 +881,17 @@
       "sections": [
         {
           "type": "image",
-          "src": "https://abhijeetunreal.github.io/assets/img/articles/renders/chessis.png",
+          "src": "https://abhijeetunreal.github.io/old_portfolio/assets/img/articles/renders/chessis.png",
           "alt": "Futuristic brain-computer interface concept"
         },
         {
           "type": "image",
-          "src": "https://abhijeetunreal.github.io/assets/img/articles/renders/onyx%20camera.png",
+          "src": "https://abhijeetunreal.github.io/old_portfolio/assets/img/articles/renders/onyx%20camera.png",
           "alt": "Futuristic brain-computer interface concept"
         },
         {
           "type": "image",
-          "src": "https://abhijeetunreal.github.io/assets/img/articles/link/link2.png",
+          "src": "https://abhijeetunreal.github.io/old_portfolio/assets/img/articles/link/link2.png",
           "alt": "Futuristic brain-computer interface concept"
         },
         {
