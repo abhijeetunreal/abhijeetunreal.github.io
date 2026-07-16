@@ -50,7 +50,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
   const createCard = (item: CardData) => (
     <a 
       href={item.link} 
-      className="card-link" 
+      className="card-link flex-shrink-0 w-48 sm:w-56 md:w-64 lg:w-80" 
       draggable={false} 
       key={item.title}
       onClick={(e) => {
@@ -61,7 +61,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
         }
       }}
     >
-      <div className="flex-shrink-0 w-48 sm:w-56 md:w-64 lg:w-80">
+      <div>
         <p className="text-xs font-bold mb-2 tracking-wider">{item.title}</p>
         <div className="aspect-[3/4] rounded-lg overflow-hidden">
           <MediaDisplay
@@ -298,9 +298,18 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       </main>
 
       {/* Infinite Scroller Section */}
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 flex justify-end">
+        <a
+          href="#experimental"
+          className="inline-block text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary"
+        >
+          Discover other projects
+        </a>
+      </div>
       <div 
         ref={scrollerRef}
         className="scroller pb-2 sm:pb-4 md:pb-6 w-full max-w-full overflow-hidden cursor-grab select-none"
+        style={{ marginTop: '56px' }}
       >
         <div 
           ref={scrollerInnerRef}
@@ -310,14 +319,6 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
         </div>
       </div>
 
-      <div className="w-full flex justify-start px-4 sm:px-6 pt-2 pb-2 sm:pb-3" style={{ marginTop: '8px' }}>
-        <a
-          href="#experimental"
-          className="text-[11px] sm:text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary whitespace-nowrap"
-        >
-          Discover other projects
-        </a>
-      </div>
     </div>
   );
 };
