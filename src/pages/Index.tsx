@@ -46,8 +46,16 @@ const Index = ({ onSelectProject, onGoHome, onGoToAbout, onNavigateToExperimenta
       <Hero onGoHome={onGoHome} onSelectProject={onSelectProject} />
       <main className="container mx-auto px-4 pt-20 md:pt-24 pb-16">
         <section id="worked-with" className="mb-24 md:mb-32">
-          <h3 className="text-2xl font-bold text-center mb-8">{workedWith.title}</h3>
-          <Marquee items={workedWith.companies} />
+          <div className="relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <span className="text-[clamp(4rem,12vw,10rem)] font-extrabold uppercase tracking-[0.15em] text-foreground/10 dark:text-foreground/12 text-center leading-none whitespace-nowrap">
+                {workedWith.title}
+              </span>
+            </div>
+            <div className="relative z-10">
+              <Marquee items={workedWith.companies} />
+            </div>
+          </div>
         </section>
       </main>
       <Footer onNavigateToExperimental={onNavigateToExperimental} onNavigateToBlog={onNavigateToBlog} />
