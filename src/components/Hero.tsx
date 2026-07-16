@@ -310,10 +310,10 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
         </div>
       </div>
 
-      <div className="mt-auto w-full flex justify-start px-4 sm:px-6 pb-4 sm:pb-6">
+      <div className="w-full flex justify-start px-4 sm:px-6 pb-2 sm:pb-3 mt-1">
         <a
           href="#experimental"
-          className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary whitespace-nowrap"
+          className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary whitespace-nowrap"
         >
           Discover other projects
         </a>
