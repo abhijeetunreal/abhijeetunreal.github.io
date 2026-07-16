@@ -287,7 +287,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       </header>
 
       {/* Main Content (Logo) */}
-      <main className="flex-grow flex items-center justify-center  sm:px-8 pb-4 sm:pb-0">
+      <main className="flex-grow flex items-center justify-center sm:px-8 pb-2 sm:pb-0">
         <div className="w-full max-w-screen-md mx-auto cursor-pointer hover:opacity-80 transition-opacity" onClick={onGoHome}>
           <MorphingText 
             texts={["Explorer", "Designer",  "Builder", "Futurist", "Creator"]}
@@ -300,7 +300,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
       {/* Infinite Scroller Section */}
       <div 
         ref={scrollerRef}
-        className="scroller pb-4 sm:pb-6 md:pb-8 w-full max-w-full overflow-hidden cursor-grab select-none"
+        className="scroller pb-2 sm:pb-4 md:pb-6 w-full max-w-full overflow-hidden cursor-grab select-none"
       >
         <div 
           ref={scrollerInnerRef}
@@ -310,7 +310,7 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
         </div>
       </div>
 
-      <div className="w-full flex justify-start px-4 sm:px-6 pt-2 pb-2" style={{ marginTop: '8px' }}>
+      <div className="w-full flex justify-start px-4 sm:px-6 pt-2 pb-2 sm:pb-3" style={{ marginTop: '8px' }}>
         <a
           href="#experimental"
           className="text-[11px] sm:text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary whitespace-nowrap"
