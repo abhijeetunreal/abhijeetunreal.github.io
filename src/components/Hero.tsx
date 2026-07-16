@@ -309,6 +309,15 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
           {cardData.map((item, index) => createCard(item))}
         </div>
       </div>
+
+      <div className="w-full flex justify-start mt-4 pb-6 px-4 sm:px-6 overflow-x-auto scrollbar-none">
+        <a
+          href="#experimental"
+          className="min-w-max text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary whitespace-nowrap sm:whitespace-normal"
+        >
+          Discover other projects
+        </a>
+      </div>
     </div>
   );
 };
