@@ -299,12 +299,18 @@ const Hero: React.FC<HeroProps> = ({ onGoHome, onSelectProject }) => {
 
       {/* Infinite Scroller Section */}
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 flex justify-end">
-        <a
-          href="#experimental"
-          className="inline-block text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition hover:text-primary"
-        >
-          Discover other projects
-        </a>
+        <div className="relative">
+          <a
+            href="#experimental"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-slate-800 to-slate-700 dark:from-slate-700 dark:to-slate-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5"
+            aria-label="Discover other projects"
+          >
+            <span className="text-xs sm:text-sm md:text-base font-semibold tracking-wider uppercase">Discover other projects</span>
+            <span className="w-6 h-6 flex items-center justify-center bg-white/10 rounded-full">
+              <svg className="w-4 h-4 text-white transform transition" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
       <div 
         ref={scrollerRef}
