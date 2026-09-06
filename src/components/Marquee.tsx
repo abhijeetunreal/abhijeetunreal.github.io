@@ -72,31 +72,23 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false, vari
         container.scrollLeft += 0.5;
       }
 
-      // Check boundaries and reposition items for infinite loop (same as ProjectShowcase)
-      const firstItem = content.children[0] as HTMLElement;
-      if (firstItem) {
-        const firstItemWidth = firstItem.offsetWidth + gap;
-        if (container.scrollLeft >= firstItemWidth) {
-          content.appendChild(firstItem);
-          container.scrollLeft -= firstItemWidth;
-          if (isDownRef.current) {
-            initialScrollLeftRef.current -= firstItemWidth;
-          }
+      // Seamless looping: duplicate content approach — when passing half of total scrollWidth,
+      // reset by subtracting half. This avoids DOM mutations (append/insert) that cause jitter.
+      const totalWidth = content.scrollWidth;
+      const halfWidth = totalWidth / 2 || 0;
+
+      if (halfWidth > 0 && container.scrollLeft >= halfWidth) {
+        container.scrollLeft -= halfWidth;
+        if (isDownRef.current) {
+          initialScrollLeftRef.current -= halfWidth;
+        }
+      } else if (halfWidth > 0 && container.scrollLeft <= 0) {
+        container.scrollLeft += halfWidth;
+        if (isDownRef.current) {
+          initialScrollLeftRef.current += halfWidth;
         }
       }
 
-      const lastItem = content.children[content.children.length - 1] as HTMLElement;
-      if (lastItem) {
-        const lastItemWidth = lastItem.offsetWidth + gap;
-        if (container.scrollLeft <= 0) {
-          content.insertBefore(lastItem, content.firstChild);
-          container.scrollLeft += lastItemWidth;
-          if (isDownRef.current) {
-            initialScrollLeftRef.current += lastItemWidth;
-          }
-        }
-      }
-      
       animationRef.current = requestAnimationFrame(scrollLoop);
     };
 
@@ -270,13 +262,13 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false, vari
         <div 
           key={`${item.name}-${index}`} 
           className={`flex-shrink-0 flex items-center justify-center p-4`}
-          style={{ width: '200px', height: '80px', minWidth: '200px' }}
+          style={{ width: '160px', height: '64px', minWidth: '160px' }}
         >
           <img 
             src={logoUrl} 
             alt={item.name}
             className={'max-w-full max-h-full object-contain marquee-logo'}
-            style={{ maxWidth: '180px', maxHeight: '60px' }}
+            style={{ maxWidth: '140px', maxHeight: '56px' }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
@@ -324,7 +316,7 @@ const Marquee: React.FC<MarqueeProps> = ({ items, className, debug = false, vari
       >
         <div
           ref={contentRef}
-          className="flex items-center w-max py-4 gap-6"
+          className="flex items-center w-max py-4 gap-8"
           style={{ width: 'fit-content' }}
         >
           {repeatedItems.map((item, index) => renderItem(item, index))}
