@@ -10,6 +10,7 @@
       "href": "/#about"
     }
   ],
+  "profileImage": "https://raw.githubusercontent.com/abhijeetunreal/IMGDB/refs/heads/main/Portfolio/Profile/abhijeet.jpg",
   "contactLinks": [
     {
       "label": "EMAIL",
@@ -110,12 +111,12 @@
     ]
   },
   "aboutPage": {
-    "title": "ABOUT ME",
-    "subtitle": "Designer, Innovator, Technologist",
+    "title": "Research • Design • Systems",
+    "subtitle": "Design researcher and systems thinker working at the intersection of human experience, emerging technology, and responsible innovation.",
     "bio": {
-      "intro": "I'm a passionate product designer and technologist who believes in the power of interdisciplinary collaboration to solve complex human problems. With a background spanning design, technology, and innovation, I create experiences that bridge the gap between human needs and technological possibilities.",
-      "mission": "My mission is to design products and experiences that not only solve problems but also inspire and empower people to achieve their full potential. I believe in creating technology that serves humanity, not the other way around.",
-      "approach": "I approach design as a conversation between constraints and creativity, between user needs and technological capabilities. Every project is an opportunity to learn, iterate, and push the boundaries of what's possible."
+      "intro": "I work across research, interaction design, and emerging technologies to create thoughtful experiences that are both rigorous and humane. My practice is shaped by a commitment to evidence-based design, clear communication, and long-term impact.",
+      "mission": "My work focuses on understanding complex problems, translating ambiguity into clear direction, and building systems that support people with care and precision.",
+      "approach": "I approach projects as research-led design opportunities: framing questions, mapping context, iterating with purpose, and refining solutions through reflection and feedback."
     },
     "education": [
       {
@@ -220,6 +221,53 @@
     "awards": [
       
     ]
+    ,
+    "sidebar": {
+      "currentWork": {
+        "title": "Currently working on",
+        "content": "Designing an adaptive learning interface for aerospace training (Airbus)—focus on usability and safety in high-stakes workflows."
+      ,
+        "images": [
+          "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=800&q=60",
+          "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=800&q=60"
+        ]
+      },
+      "carouselImages": [
+        "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=60",
+        "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=800&q=60",
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=60"
+      ],
+      "news": [
+        "Published a short case study on gamified onboarding (Airbus).",
+        "Speaking at the IISc student design meetup in Nov 2026."
+      ],
+      "newsImages": [
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=60",
+        "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=800&q=60"
+      ],
+      "ngo": {
+        "name": "Design for Good",
+        "role": "Volunteer Mentor",
+        "description": "Mentoring young designers on accessible design practices.",
+        "link": "https://example.org/designforgood"
+      ,
+        "images": [
+          "https://images.unsplash.com/photo-1520975911729-2f99c8d7a5c9?w=800&q=60",
+          "https://images.unsplash.com/photo-1531973968078-9bb02785f13d?w=800&q=60"
+        ]
+      },
+      "hobbies": [
+        "Motorcycling",
+        "Travel",
+        "Photography",
+        "Cooking"
+      ],
+      "hobbyImages": [
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=60",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=60"
+      ],
+      "extraLife": "I build side-projects that blend physical interaction and generative visuals—often prototyped in a weekend."
+    }
   },
   "aiPhilosophy": {
     "context": "As a designer, I am driven by the convergence of disparate fields. I thrive on combining, blending, and innovating with emerging technologies to create experiences that are not just useful, but meaningful. My process is a dialogue between human needs and technological possibilities. I believe design is a medium for conversation, technology should be an extension of human capability, ambiguity should be embraced, and collaboration is key.",

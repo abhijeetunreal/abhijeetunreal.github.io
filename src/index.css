@@ -376,6 +376,18 @@
     scroll-padding-top: 80px; /* Reduced to bring titles closer to navbar */
   }
 
+  /* LinkedIn-like palette utilities (used by About page) */
+  .text-linkedin-blue { color: #0a66c2; }
+  .bg-linkedin-blue { background-color: #0a66c2; }
+  .hover-bg-linkedin-blue:hover { background-color: #004182; }
+  .text-linkedin-gray { color: rgba(0,0,0,0.6); }
+  .text-linkedin-black { color: rgba(0,0,0,0.9); }
+  .border-linkedin { border-color: #e0dfdc; }
+  .nav-item-active {
+    color: rgba(0,0,0,0.9);
+    border-bottom: 2px solid rgba(0,0,0,0.9);
+  }
+
   /* Alternative approach using scroll-margin-top on sections */
   #work, #about, #contact {
     scroll-margin-top: 80px;
