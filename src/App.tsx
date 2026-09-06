@@ -107,11 +107,18 @@ const App = () => {
   };
 
   const handleSelectBlogPost = (slug: string) => {
+    console.log('[App] handleSelectBlogPost:', slug);
     setSelectedBlogSlug(slug);
     setSelectedSlug(null);
     setSelectedExperimentalSlug(null);
     setCurrentPage("blog"); // Keep current page as blog when viewing a post
     window.scrollTo(0, 0);
+    // Ensure the URL/hash reflects the selected post immediately to avoid navigation race conditions
+    try {
+      window.history.pushState({ blogPost: slug }, "", `#blog-post/${slug}`);
+    } catch (e) {
+      // ignore
+    }
   };
 
   const handleGoHome = () => {
@@ -410,7 +417,7 @@ const App = () => {
                   onNavigateToBlog={handleGoToBlog}
                 />
               ) : currentPage === "about" ? (
-                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onNavigateToExperimental={handleGoToExperimental} onNavigateToBlog={handleGoToBlog} />
+                <About onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onNavigateToExperimental={handleGoToExperimental} onNavigateToBlog={handleGoToBlog} onSelectBlogPost={handleSelectBlogPost} />
               ) : currentPage === "experimental" ? (
                 <ExperimentalProjects onGoHome={handleGoHome} onGoToAbout={handleGoToAbout} onSelectExperimentalProject={handleSelectExperimentalProject} onNavigateToExperimental={handleGoToExperimental} onNavigateToBlog={handleGoToBlog} />
               ) : currentPage === "blog" ? (

@@ -38,7 +38,7 @@ const Blog: React.FC<BlogProps> = ({ onGoHome, onSelectBlogPost, onGoToAbout, on
             <div
               key={index}
               className="group cursor-pointer blog-card"
-              onClick={() => onSelectBlogPost(slugify(post.title))}
+              onClick={() => { console.log('[Blog] click post', post.title); onSelectBlogPost(slugify(post.title)); }}
             >
               {/* Title above the card */}
               <h3 className="text-xs md:text-sm font-test mb-0 text-left">

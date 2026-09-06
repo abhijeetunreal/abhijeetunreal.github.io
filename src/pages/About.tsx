@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import content from '@/data/content.json';
+import { slugify } from '@/lib/utils';
 import Footer from '@/components/Footer';
 import SidebarCarousel from '@/components/SidebarCarousel';
 
@@ -9,6 +10,7 @@ interface AboutProps {
   onGoToAbout: () => void;
   onNavigateToExperimental: () => void;
   onNavigateToBlog: () => void;
+  onSelectBlogPost: (slug: string) => void;
 }
 
 const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperimental, onNavigateToBlog }) => {
@@ -239,6 +241,33 @@ const About: React.FC<AboutProps> = ({ onGoHome, onGoToAbout, onNavigateToExperi
                   </li>
                 ))}
               </ul>
+            </div>
+
+            <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 shadow-sm dark:text-gray-200">
+              <h3 className="text-sm font-semibold mb-2">Latest blogs</h3>
+              <ul className="space-y-3">
+                {((content as any).blogPosts || []).slice(0,4).map((post: any, idx: number) => (
+                  <li key={idx} className="flex items-center gap-3">
+                    {post.cardImage ? (
+                      <button type="button" onClick={() => { console.log('[About] click thumb', post.title); onSelectBlogPost(slugify(post.title)); }} className="block w-12 h-12 shrink-0 rounded-sm overflow-hidden p-0 border-0 bg-transparent">
+                        <img src={post.cardImage} alt={post.title} className="w-full h-full object-cover" />
+                      </button>
+                    ) : (
+                      <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-sm" />
+                    )}
+                    <div className="flex-1">
+                      <button type="button" onClick={() => { console.log('[About] click title', post.title); onSelectBlogPost(slugify(post.title)); }} className="text-left w-full text-sm font-medium text-linkedin-black dark:text-gray-100 hover:underline">
+                        {post.title}
+                      </button>
+                      {post.tags && <div className="text-xs text-gray-500 dark:text-gray-400">{post.tags.slice(0,2).join(' • ')}</div>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-3 text-right">
+                <a href="#blog" onClick={(e) => { e.preventDefault(); onNavigateToBlog(); }} className="text-sm font-semibold text-linkedin-blue hover:underline">View all blogs</a>
+              </div>
             </div>
 
             <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 shadow-sm dark:text-gray-200">
